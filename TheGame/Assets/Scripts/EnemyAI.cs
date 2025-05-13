@@ -10,7 +10,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] int faceTargetSpeed;
 
     [SerializeField] Transform shootPos;
-    [SerializeField] GameObject bullet;
+    [SerializeField] GameObject projectile;
     [SerializeField] float shootRate;
 
     Color colorOrig;
