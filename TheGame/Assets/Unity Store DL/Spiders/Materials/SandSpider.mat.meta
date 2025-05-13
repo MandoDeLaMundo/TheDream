@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 07e809b29b003a54f8743f984e705407
+guid: 5ac51c7de07714d4ab6e74dc98bf9525
 NativeFormatImporter:
   externalObjects: {}
-  mainObjectFileID: 7400000
+  mainObjectFileID: 2100000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -11,5 +11,5 @@ AssetOrigin:
   productId: 236418
   packageName: fantasy spiders
   packageVersion: 1.0
-  assetPath: Assets/Spiders/Animations/Death.anim
+  assetPath: Assets/Spiders/Materials/SandSpider.mat
   uploadId: 535463

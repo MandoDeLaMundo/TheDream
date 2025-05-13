@@ -1,8 +1,7 @@
 fileFormatVersion: 2
-guid: 07e809b29b003a54f8743f984e705407
-NativeFormatImporter:
+guid: 3af956640595c6e4cb9436f0f4545ffd
+PrefabImporter:
   externalObjects: {}
-  mainObjectFileID: 7400000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -11,5 +10,5 @@ AssetOrigin:
   productId: 236418
   packageName: fantasy spiders
   packageVersion: 1.0
-  assetPath: Assets/Spiders/Animations/Death.anim
+  assetPath: Assets/Spiders/Prefabs/Sand Spider.prefab
   uploadId: 535463
