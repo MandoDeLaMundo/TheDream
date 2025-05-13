@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
-public class EnemyAI : MonoBehaviour
+public class EnemyAI : MonoBehaviour, IDamage
 {
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
@@ -65,7 +65,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    public void takeDamage(int amount)
+    public void TakeDMG(int amount)
     {
         HP -= amount;
 
