@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
-public class EnemyAI : MonoBehaviour, IDamage
+public class EnemyAI : MonoBehaviour
 {
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
@@ -25,24 +25,20 @@ public class EnemyAI : MonoBehaviour, IDamage
     void Start()
     {
         colorOrig = model.material.color;
-        Gamemanager.instance.updateGameGoal(1);
+        // Gamemanager.instance.updateGameGoal(1);
     }
 
     // Update is called once per frame
     void Update()
     {
-        shootTimer += Time.deltaTime;
+
 
         if (playerInRange)
         {
-            playerDir = (Gamemanager.instance.player.transform.position - transform.position);
+            //  playerDir = (Gamemanager.instance.player.transform.position - transform.position);
 
-            agent.SetDestination(Gamemanager.instance.player.transform.position);
+            //  agent.SetDestination(Gamemanager.instance.player.transform.position);
 
-            if (shootTimer >= shootRate)
-            {
-                shoot();
-            }
 
             if (agent.remainingDistance <= agent.stoppingDistance)
             {
@@ -73,11 +69,11 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         HP -= amount;
 
-        agent.SetDestination(Gamemanager.instance.player.transform.position);
+        // agent.SetDestination(Gamemanager.instance.player.transform.position);
 
         if (HP <= 0)
         {
-            Gamemanager.instance.updateGameGoal(-1);
+            //     Gamemanager.instance.updateGameGoal(-1);
             Destroy(gameObject);
         }
         else
@@ -97,11 +93,5 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, transform.position.y, playerDir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
-    }
-
-    void shoot()
-    {
-        shootTimer = 0;
-        Instantiate(bullet, shootPos.position, transform.rotation);
     }
 }
