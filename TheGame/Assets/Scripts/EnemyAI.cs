@@ -25,7 +25,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     void Start()
     {
         colorOrig = model.material.color;
-        // Gamemanager.instance.updateGameGoal(1);
+         gameManager.instance.UpdateGameGoal(1);
     }
 
     // Update is called once per frame
@@ -35,9 +35,9 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         if (playerInRange)
         {
-            //  playerDir = (Gamemanager.instance.player.transform.position - transform.position);
+              playerDir = (gameManager.instance.player.transform.position - transform.position);
 
-            //  agent.SetDestination(Gamemanager.instance.player.transform.position);
+              agent.SetDestination(gameManager.instance.player.transform.position);
 
 
             if (agent.remainingDistance <= agent.stoppingDistance)
@@ -69,11 +69,11 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         HP -= amount;
 
-        // agent.SetDestination(Gamemanager.instance.player.transform.position);
+         agent.SetDestination(gameManager.instance.player.transform.position);
 
         if (HP <= 0)
         {
-            //     Gamemanager.instance.updateGameGoal(-1);
+            gameManager.instance.UpdateGameGoal(-1);
             Destroy(gameObject);
         }
         else
