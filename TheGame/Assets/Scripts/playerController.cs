@@ -1,11 +1,15 @@
 using System.Data.SqlTypes;
 using UnityEngine;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class playerController : MonoBehaviour
 {
     [SerializeField] CharacterController controller;
     [SerializeField] LayerMask ignoreLayer;
+
+    [SerializeField] int HP;
+    int HPOrig;
 
     [SerializeField] int speed;
     [SerializeField] int sprintMod;
@@ -15,6 +19,10 @@ public class playerController : MonoBehaviour
     [SerializeField] float shootRate;
     [SerializeField] int shootDist;
     float shootTimer;
+
+    [SerializeField] bool teleporting;
+    [SerializeField] float teleportRate;
+    [SerializeField] int teleportDist;
 
     [SerializeField] int jumpMax;
     [SerializeField] int jumpForce;
@@ -28,7 +36,7 @@ public class playerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        HPOrig = HP;
     }
 
     // Update is called once per frame
@@ -37,6 +45,10 @@ public class playerController : MonoBehaviour
         if (shooting)
         {
             Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
+        }
+        if (teleporting)
+        {
+            Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * teleportDist, Color.blue);
         }
         Movement();
         sprint();
@@ -63,6 +75,10 @@ public class playerController : MonoBehaviour
         if (Input.GetButton("Fire1") && shootTimer >= shootRate && shooting)
         {
             shoot();
+        }
+        if(Input.GetButton("Fire2") && shootTimer >= teleportRate && teleporting)
+        {
+            teleportbyclick();
         }
     }
 
@@ -95,7 +111,42 @@ public class playerController : MonoBehaviour
 
         if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
         {
+            Debug.Log(hit.collider.name);
+            IDamage dmg = hit.collider.GetComponent<IDamage>();
 
+            if (dmg != null)
+            {
+                dmg.TakeDMG(shootDamage);
+            }
         }
     }
+
+    void teleportbyclick()
+    {
+        shootTimer = 0;
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
+        {
+            Debug.Log(hit.collider.name);
+            Vector3 teleportpos = hit.point;
+            if (Vector3.Distance(transform.position, teleportpos) <= teleportDist)
+            {
+                teleportpos.y = transform.position.y;
+                transform.position = teleportpos;
+            }
+        }
+    }
+
+    public void TakeDMG(int amount)
+    {
+        HP -= amount;
+
+        if(HP == 0)
+        {
+            gameManager.instance.YouLose();
+        }
+    }
+
 }
