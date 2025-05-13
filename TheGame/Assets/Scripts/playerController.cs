@@ -50,6 +50,10 @@ public class playerController : MonoBehaviour
 		{
 			Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * teleportDist, Color.blue);
 		}
+
+		if (controller.transform.position.y < 0)
+			TakeDMG(100);
+
 		Movement();
 		sprint();
 	}
@@ -143,10 +147,7 @@ public class playerController : MonoBehaviour
 	{
 		HP -= amount;
 
-		if (controller.transform.position.y < 0)
-			HP = 0;
-
-		if (HP == 0)
+		if (HP <= 0)
 		{
 			gameManager.instance.YouLose();
 		}
