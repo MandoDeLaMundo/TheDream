@@ -14,13 +14,13 @@ public class playerController : MonoBehaviour
 	[SerializeField] int speed;
 	[SerializeField] int sprintMod;
 
-	[SerializeField] bool shooting;
+	[SerializeField] bool isShooting;
 	[SerializeField] int shootDamage;
 	[SerializeField] float shootRate;
 	[SerializeField] int shootDist;
 	float shootTimer;
 
-	[SerializeField] bool teleporting;
+	[SerializeField] bool isTeleporting;
 	[SerializeField] float teleportRate;
 	[SerializeField] int teleportDist;
 
@@ -30,23 +30,32 @@ public class playerController : MonoBehaviour
 	int jumpCount;
 	Vector3 playerVel;
 
-
+	[SerializeField] Transform shootPos;
+	[SerializeField] bool isFireball;
+	[SerializeField] GameObject fireBall;
+	[SerializeField] bool isIce;
+	[SerializeField] GameObject Ice;
+	[SerializeField] bool isLightning;
+	[SerializeField] GameObject Lightning;
+	
 
 	Vector3 moveDir;
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
 	{
 		HPOrig = HP;
-	}
+		updatePlayerUI();
+
+    }
 
 	// Update is called once per frame
 	void Update()
 	{
-		if (shooting)
+		if (isShooting)
 		{
 			Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
 		}
-		if (teleporting)
+		if (isTeleporting)
 		{
 			Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * teleportDist, Color.blue);
 		}
@@ -76,11 +85,18 @@ public class playerController : MonoBehaviour
 
 		controller.Move(playerVel * Time.deltaTime);
 		playerVel.y -= Gravity * Time.deltaTime;
-		if (Input.GetButton("Fire1") && shootTimer >= shootRate && shooting)
+		if (Input.GetButton("Fire1") && shootTimer >= shootRate)
 		{
+			if(isShooting)
 			shoot();
+			if(isFireball)
+			shootFireball();
+			if(isIce)
+			shootIce();
+			if(isLightning)
+			shootLightning();
 		}
-		if (Input.GetButton("Fire2") && shootTimer >= teleportRate && teleporting)
+		if (Input.GetButton("Fire2") && shootTimer >= teleportRate && isTeleporting)
 		{
 			teleportbyclick();
 		}
@@ -143,14 +159,44 @@ public class playerController : MonoBehaviour
 		}
 	}
 
+	void shootFireball()
+	{
+		shootTimer = 0;
+		Instantiate(fireBall, shootPos.position, transform.rotation);
+	}
+	void shootIce()
+	{
+		shootTimer = 0;
+		Instantiate(Ice, shootPos.position, transform.rotation);
+	}
+	void shootLightning()
+	{
+		shootTimer = 0;
+		Instantiate(Lightning, shootPos.position, transform.rotation);
+	}
+
 	public void TakeDMG(int amount)
 	{
 		HP -= amount;
+		updatePlayerUI();
+		StartCoroutine(flashDamageScreen());
 
-		if (HP <= 0)
+
+        if (HP <= 0)
 		{
 			gameManager.instance.YouLose();
 		}
 	}
 
+	public void updatePlayerUI()
+	{
+		gameManager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
+	}
+
+	IEnumerator flashDamageScreen()
+	{
+		gameManager.instance.playerDamageScreen.SetActive(true);
+		yield return new WaitForSeconds(0.1f);
+		gameManager.instance.playerDamageScreen.SetActive(false);
+	}
 }
