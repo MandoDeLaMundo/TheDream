@@ -44,7 +44,9 @@ public class playerController : MonoBehaviour
 	void Start()
 	{
 		HPOrig = HP;
-	}
+		updatePlayerUI();
+
+    }
 
 	// Update is called once per frame
 	void Update()
@@ -176,11 +178,25 @@ public class playerController : MonoBehaviour
 	public void TakeDMG(int amount)
 	{
 		HP -= amount;
+		updatePlayerUI();
+		StartCoroutine(flashDamageScreen());
 
-		if (HP <= 0)
+
+        if (HP <= 0)
 		{
 			gameManager.instance.YouLose();
 		}
 	}
 
+	public void updatePlayerUI()
+	{
+		gameManager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
+	}
+
+	IEnumerator flashDamageScreen()
+	{
+		gameManager.instance.playerDamageScreen.SetActive(true);
+		yield return new WaitForSeconds(0.1f);
+		gameManager.instance.playerDamageScreen.SetActive(false);
+	}
 }
