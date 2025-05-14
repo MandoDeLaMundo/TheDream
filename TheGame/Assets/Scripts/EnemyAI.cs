@@ -12,13 +12,16 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform shootPos;
     [SerializeField] GameObject projectile;
     [SerializeField] float shootRate;
+    [SerializeField] float meleeRate;
+    [SerializeField] int meleeDamage;
+    [SerializeField] float meleeRange;
 
     Color colorOrig;
 
     Vector3 playerDir;
 
     float shootTimer;
-
+    float meleeTimer;
     bool playerInRange;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -33,18 +36,27 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
 
 
-        if (playerInRange)
+        if (!playerInRange) return;
         {
-              playerDir = (gameManager.instance.player.transform.position - transform.position);
+              playerDir = (gameManager.instance.player.transform.position - transform.position).normalized;
 
               agent.SetDestination(gameManager.instance.player.transform.position);
+                 faceTarget();
 
 
-            if (agent.remainingDistance <= agent.stoppingDistance)
-            {
-                faceTarget();
-            }
+                float distToPlayer = Vector3.Distance(transform.position, gameManager.instance.player.transform.position);
+                if (distToPlayer <= meleeRange)
+                {
+                    TryMeleeAttack();
+                }
+                else
+                {
+                    TryShootProjectile();
+                }
+            
         }
+        shootTimer += Time.deltaTime;
+        meleeTimer += Time.deltaTime;
 
 
     }
@@ -64,6 +76,31 @@ public class EnemyAI : MonoBehaviour, IDamage
             playerInRange = false;
         }
     }
+
+    void TryMeleeAttack()
+    {
+        if(meleeTimer >= meleeRate)
+        {
+            meleeTimer = 0f;
+            playerController player = gameManager.instance.playerScript;
+            player.TakeDMG(meleeDamage);
+        }
+    }
+
+    void TryShootProjectile()
+    {
+        if (projectile == null) return;
+
+        if (shootTimer >= shootRate)
+        {
+            shootTimer = 0f;
+            Vector3 playerPos = gameManager.instance.player.transform.position;
+            Vector3 shootDir = (playerPos - shootPos.position).normalized;
+
+            GameObject Projectile = Instantiate(projectile, shootPos.position, Quaternion.LookRotation(shootDir));
+        }
+    }
+
 
     public void TakeDMG(int amount)
     {
