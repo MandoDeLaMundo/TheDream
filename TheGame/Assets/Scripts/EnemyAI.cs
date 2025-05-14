@@ -12,16 +12,13 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform shootPos;
     [SerializeField] GameObject projectile;
     [SerializeField] float shootRate;
-    [SerializeField] float meleeRate;
-    [SerializeField] int meleeDamage;
-    [SerializeField] float meleeRange;
-
+    [SerializeField] int damageAmount;
     Color colorOrig;
 
     Vector3 playerDir;
 
     float shootTimer;
-    float meleeTimer;
+
     bool playerInRange;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -36,31 +33,33 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
 
 
-        if (!playerInRange) return;
+        if (playerInRange)
         {
-              playerDir = (gameManager.instance.player.transform.position - transform.position).normalized;
+              playerDir = (gameManager.instance.player.transform.position - transform.position);
 
               agent.SetDestination(gameManager.instance.player.transform.position);
-                 faceTarget();
 
 
-                float distToPlayer = Vector3.Distance(transform.position, gameManager.instance.player.transform.position);
-                if (distToPlayer <= meleeRange)
-                {
-                    TryMeleeAttack();
-                }
-                else
-                {
-                    TryShootProjectile();
-                }
-            
+            if (agent.remainingDistance <= agent.stoppingDistance)  
+            {
+                faceTarget();
+            }
         }
-        shootTimer += Time.deltaTime;
-        meleeTimer += Time.deltaTime;
 
 
     }
-
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Collision detected with: " + collision.collider.name);
+        if (collision.collider.CompareTag("Player"))
+        {
+            IDamage dmg = collision.collider.GetComponent<IDamage>();
+            if (dmg != null)
+            {
+                dmg.TakeDMG(damageAmount);
+            }
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -76,31 +75,6 @@ public class EnemyAI : MonoBehaviour, IDamage
             playerInRange = false;
         }
     }
-
-    void TryMeleeAttack()
-    {
-        if(meleeTimer >= meleeRate)
-        {
-            meleeTimer = 0f;
-            playerController player = gameManager.instance.playerScript;
-            player.TakeDMG(meleeDamage);
-        }
-    }
-
-    void TryShootProjectile()
-    {
-        if (projectile == null) return;
-
-        if (shootTimer >= shootRate)
-        {
-            shootTimer = 0f;
-            Vector3 playerPos = gameManager.instance.player.transform.position;
-            Vector3 shootDir = (playerPos - shootPos.position).normalized;
-
-            GameObject Projectile = Instantiate(projectile, shootPos.position, Quaternion.LookRotation(shootDir));
-        }
-    }
-
 
     public void TakeDMG(int amount)
     {

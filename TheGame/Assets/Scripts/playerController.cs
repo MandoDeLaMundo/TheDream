@@ -190,7 +190,7 @@ public class playerController : MonoBehaviour
 
 	public void updatePlayerUI()
 	{
-		gameManager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
+		//gameManager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
 	}
 
 	IEnumerator flashDamageScreen()
