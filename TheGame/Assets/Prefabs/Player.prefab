@@ -98,12 +98,12 @@ MonoBehaviour:
   jumpForce: 12
   Gravity: 35
   shootPos: {fileID: 3579017854613924312}
-  isFireball: 0
+  isFireball: 1
   fireBall: {fileID: 6835206923963006979, guid: 4eb59755d47c84743a6408d5c48c0565, type: 3}
-  isIce: 0
-  Ice: {fileID: 0}
-  isLightning: 0
-  Lightning: {fileID: 0}
+  isIce: 1
+  Ice: {fileID: 3749515074666461166, guid: 37186984fa0c2694f87dc32d80232d8d, type: 3}
+  isLightning: 1
+  Lightning: {fileID: 3749515074666461166, guid: 8050d5cc44e91fc469f497359c3382ab, type: 3}
 --- !u!33 &4531356348622312624
 MeshFilter:
   m_ObjectHideFlags: 0
