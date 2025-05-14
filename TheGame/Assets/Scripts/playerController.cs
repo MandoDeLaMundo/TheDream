@@ -149,6 +149,7 @@ public class playerController : MonoBehaviour
 	{
 		HP -= amount;
 		updatePlayerUI();
+		StartCoroutine(flashDamageScreen());
 
 
         if (HP <= 0)
@@ -160,5 +161,12 @@ public class playerController : MonoBehaviour
 	public void updatePlayerUI()
 	{
 		gameManager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
+	}
+
+	IEnumerator flashDamageScreen()
+	{
+		gameManager.instance.playerDamageScreen.SetActive(true);
+		yield return new WaitForSeconds(0.1f);
+		gameManager.instance.playerDamageScreen.SetActive(false);
 	}
 }
