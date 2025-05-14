@@ -40,6 +40,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 		if (playerInRange)
 		{
 			meleeTimer += Time.deltaTime;
+			shootTimer += Time.deltaTime;
 
 			playerDir = (gameManager.instance.player.transform.position - transform.position);
 
@@ -54,6 +55,11 @@ public class EnemyAI : MonoBehaviour, IDamage
 			if (playerDir.magnitude <= meleeDistance && meleeTimer >= meleeRate)
 			{
 				attackPlayer();
+			}
+
+			if (playerDir.magnitude >  meleeDistance && shootTimer >= shootRate)
+			{
+				shootPlayer();
 			}
 		}
 
@@ -119,7 +125,13 @@ public class EnemyAI : MonoBehaviour, IDamage
 
 	private void attackPlayer()
 	{
-		gameManager.instance.player.GetComponent<playerController>().TakeDMG(meleeDmgAmount);
 		meleeTimer = 0;
+		gameManager.instance.player.GetComponent<playerController>().TakeDMG(meleeDmgAmount);
+	}
+
+	private void shootPlayer()
+	{
+		shootTimer = 0;
+		Instantiate(projectile, shootPos.position, transform.rotation);
 	}
 }

@@ -1,9 +1,7 @@
-using System.Data.SqlTypes;
 using UnityEngine;
 using System.Collections;
-using Unity.VisualScripting;
 
-public class playerController : MonoBehaviour
+public class playerController : MonoBehaviour, IDamage
 {
 	[SerializeField] CharacterController controller;
 	[SerializeField] LayerMask ignoreLayer;

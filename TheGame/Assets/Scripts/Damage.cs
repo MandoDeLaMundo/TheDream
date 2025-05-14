@@ -42,12 +42,14 @@ public class NewMonoBehaviourScript : MonoBehaviour
 		{
 			return;
 		}
+
 		IDamage dmg = other.GetComponent<IDamage>();
-		if (dmg != null && type == damagetype.moving || type == damagetype.stationary || type == damagetype.homing)
+
+		if (dmg != null && (type == damagetype.moving || type == damagetype.stationary || type == damagetype.homing))
 		{
 			dmg.TakeDMG(damageAmount);
-
 		}
+
 		if (type == damagetype.moving || type == damagetype.homing)
 		{
 			Destroy(gameObject);
