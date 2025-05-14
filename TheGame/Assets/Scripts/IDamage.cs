@@ -2,6 +2,6 @@ using UnityEngine;
 
 public interface IDamage
 {
-    void TakeDMG(int amount);
+	void TakeDMG(int amount);
 }
 
