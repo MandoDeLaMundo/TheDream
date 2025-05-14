@@ -37,7 +37,9 @@ public class playerController : MonoBehaviour
 	void Start()
 	{
 		HPOrig = HP;
-	}
+		updatePlayerUI();
+
+    }
 
 	// Update is called once per frame
 	void Update()
@@ -146,11 +148,17 @@ public class playerController : MonoBehaviour
 	public void TakeDMG(int amount)
 	{
 		HP -= amount;
+		updatePlayerUI();
 
-		if (HP <= 0)
+
+        if (HP <= 0)
 		{
 			gameManager.instance.YouLose();
 		}
 	}
 
+	public void updatePlayerUI()
+	{
+		gameManager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
+	}
 }
