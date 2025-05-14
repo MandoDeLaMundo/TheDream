@@ -7,7 +7,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     [SerializeField] damagetype type;
     [SerializeField] Rigidbody rb;
 
-    [SerializeField] int damageAmmount;
+    [SerializeField] int damageAmount;
     [SerializeField] int damageRate;
     [SerializeField] int speed;
     [SerializeField] int destroyTime;
@@ -45,7 +45,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         IDamage dmg = other.GetComponent<IDamage>();
         if (dmg != null && type == damagetype.moving || type == damagetype.stationary || type == damagetype.homing)
         {
-            dmg.TakeDMG(damageAmmount);
+            dmg.TakeDMG(damageAmount);
 
         }
         if (type == damagetype.moving || type == damagetype.homing)
@@ -53,6 +53,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.isTrigger)
@@ -73,7 +74,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     IEnumerator damageOther(IDamage d)
     {
         isDamaging = true;
-        d.TakeDMG(damageAmmount);
+        d.TakeDMG(damageAmount);
         yield return new WaitForSeconds(damageRate);
         isDamaging = false;
 
