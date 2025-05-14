@@ -14,7 +14,6 @@ public class playerController : MonoBehaviour
 	[SerializeField] int speed;
 	[SerializeField] int sprintMod;
 
-	//[SerializeField] bool isShooting;
 	[SerializeField] int shootDamage;
 	[SerializeField] float shootRate;
 	[SerializeField] int shootDist;
@@ -51,10 +50,6 @@ public class playerController : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		//if (isShooting)
-		//{
-		//	Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
-		//}
 		if (isTeleporting)
 		{
 			Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * teleportDist, Color.blue);
@@ -87,14 +82,7 @@ public class playerController : MonoBehaviour
 		playerVel.y -= Gravity * Time.deltaTime;
 		if (Input.GetButton("Fire1") && shootTimer >= shootRate)
 		{
-			//if (isShooting)
 				shoot();
-			//if (isFireball)
-			//	shootFireball();
-			//if (isIce)
-			//	shootIce();
-			//if (isLightning)
-			//	shootLightning();
 		}
 		if (Input.GetButton("Fire2") && shootTimer >= teleportRate && isTeleporting)
 		{
@@ -128,7 +116,7 @@ public class playerController : MonoBehaviour
 		shootTimer = 0;
 
 		Instantiate(fireBall, shootPos.position, shootPos.transform.rotation);
-
+		
 		//RaycastHit hit;
 
 		//if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
