@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
-using Unity.VisualScripting;
 public class EnemyAI : MonoBehaviour, IDamage
 {
 	[SerializeField] Renderer model;
@@ -9,10 +8,11 @@ public class EnemyAI : MonoBehaviour, IDamage
 
 	[SerializeField] int HP;
 	[SerializeField] int faceTargetSpeed;
-	[SerializeField] bool isRange;
-    [SerializeField] Transform shootPos;
+
+	[SerializeField] Transform shootPos;
 	[SerializeField] GameObject projectile;
 	[SerializeField] float shootRate;
+	[SerializeField] int rangeDmgAmount;
 
 	[SerializeField] float meleeRate;
 	[SerializeField] float meleeDistance;
@@ -56,14 +56,26 @@ public class EnemyAI : MonoBehaviour, IDamage
 			{
 				attackPlayer();
 			}
-			
-			if (playerDir.magnitude > meleeDistance && shootTimer >= shootRate)
+
+			if (playerDir.magnitude >  meleeDistance && shootTimer >= shootRate)
 			{
 				shootPlayer();
 			}
 		}
 
 
+	}
+	private void OnCollisionEnter(Collision collision)
+	{
+		Debug.Log("Collision detected with: " + collision.collider.name);
+		if (collision.collider.CompareTag("Player"))
+		{
+			IDamage dmg = collision.collider.GetComponent<IDamage>();
+			if (dmg != null)
+			{
+				dmg.TakeDMG(rangeDmgAmount);
+			}
+		}
 	}
 	private void OnTriggerEnter(Collider other)
 	{
@@ -119,9 +131,9 @@ public class EnemyAI : MonoBehaviour, IDamage
 
 	private void shootPlayer()
 	{
-		if (isRange != false)
+		shootTimer = 0;
+		if (projectile != null)
 		{
-			shootTimer = 0;
 			Instantiate(projectile, shootPos.position, transform.rotation);
 		}
 	}
