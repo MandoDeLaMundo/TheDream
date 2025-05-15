@@ -3,7 +3,7 @@ using System.Collections;
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
-	enum damagetype { moving, stationary, DOT, homing }
+	enum damagetype { moving, stationary, DOT, homing, contact }
 	[SerializeField] damagetype type;
 	[SerializeField] Rigidbody rb;
 
@@ -11,8 +11,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
 	[SerializeField] int damageRate;
 	[SerializeField] int speed;
 	[SerializeField] int destroyTime;
+	[SerializeField] int contactDMGAmount;
 
-	bool isDamaging;
+
+    bool isDamaging;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
@@ -38,7 +40,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (other.isTrigger)
+        Debug.Log("Player Trigger");
+        if (other.isTrigger)
 		{
 			return;
 		}
@@ -54,7 +57,12 @@ public class NewMonoBehaviourScript : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
-	}
+        if (other.CompareTag("Player") && type == damagetype.contact )
+        {
+            dmg.TakeDMG(contactDMGAmount);
+            //knockback added later
+        }
+    }
 
 	private void OnTriggerStay(Collider other)
 	{
