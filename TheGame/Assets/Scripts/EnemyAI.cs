@@ -132,6 +132,9 @@ public class EnemyAI : MonoBehaviour, IDamage
 	private void shootPlayer()
 	{
 		shootTimer = 0;
-		Instantiate(projectile, shootPos.position, transform.rotation);
+		if (projectile != null)
+		{
+			Instantiate(projectile, shootPos.position, transform.rotation);
+		}
 	}
 }
