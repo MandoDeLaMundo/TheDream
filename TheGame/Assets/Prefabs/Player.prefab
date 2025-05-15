@@ -25,11 +25,11 @@ Transform:
   m_GameObject: {fileID: 994144851230147437}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.6098747, y: 0.25, z: 0.13869953}
+  m_LocalPosition: {x: 0.6098747, y: -0.74999994, z: 0.38869953}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1901461990055869878}
+  m_Father: {fileID: 2288383127976024690}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1813122186319802432
 GameObject:
@@ -65,7 +65,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2288383127976024690}
-  - {fileID: 3579017854613924312}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5934466673113150788
@@ -83,11 +82,10 @@ MonoBehaviour:
   controller: {fileID: 3944378243251323118}
   ignoreLayer:
     serializedVersion: 2
-    m_Bits: 0
-  HP: 0
+    m_Bits: 8
+  HP: 10
   speed: 5
   sprintMod: 10
-  isShooting: 0
   shootDamage: 1
   shootRate: 0.25
   shootDist: 150
@@ -98,12 +96,7 @@ MonoBehaviour:
   jumpForce: 12
   Gravity: 35
   shootPos: {fileID: 3579017854613924312}
-  isFireball: 1
-  fireBall: {fileID: 6835206923963006979, guid: 4eb59755d47c84743a6408d5c48c0565, type: 3}
-  isIce: 1
-  Ice: {fileID: 3749515074666461166, guid: 37186984fa0c2694f87dc32d80232d8d, type: 3}
-  isLightning: 1
-  Lightning: {fileID: 3749515074666461166, guid: 8050d5cc44e91fc469f497359c3382ab, type: 3}
+  fireBall: {fileID: 544241052533153475, guid: 5c4e86f7eab0bcb45970360bdb1676e9, type: 3}
 --- !u!33 &4531356348622312624
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -214,7 +207,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3579017854613924312}
   m_Father: {fileID: 1901461990055869878}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3653799142643266943

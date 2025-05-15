@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: bb0e974a1801cf7479765582197358f4
+=======
+guid: ff5a5c90c0abe63409fc9b60e9d41cd8
+>>>>>>> safety
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable:
