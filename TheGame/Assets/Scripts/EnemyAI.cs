@@ -131,8 +131,13 @@ public class EnemyAI : MonoBehaviour, IDamage
 
 	private void shootPlayer()
 	{
+<<<<<<< HEAD
 		shootTimer = 0;
 		if (projectile != null)
+=======
+        shootTimer = 0;
+        if (projectile != null && isRange != false)
+>>>>>>> roy
 		{
 			Instantiate(projectile, shootPos.position, transform.rotation);
 		}
