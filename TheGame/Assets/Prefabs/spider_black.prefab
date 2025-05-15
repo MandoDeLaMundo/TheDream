@@ -1209,9 +1209,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5902101312579513452}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.00000058114523}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0.04931369, y: 0, z: 21.023092}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8570396293573798495}
@@ -1232,15 +1232,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 1248787912239602036}
   agent: {fileID: 6593155544289491966}
-  HP: 3
+  HP: 20
   faceTargetSpeed: 8
   shootPos: {fileID: 5708466202975835065}
   projectile: {fileID: 3831039740292043157, guid: e7d7b9097e3975d49a2381b8d6e2c171, type: 3}
   shootRate: 2
-  rangeDmgAmount: 1
+  rangeDmgAmount: 2
   meleeRate: 2
-  meleeDistance: 5
-  meleeDmgAmount: 1
+  meleeDistance: 7
+  meleeDmgAmount: 2
 --- !u!195 &6593155544289491966
 NavMeshAgent:
   m_ObjectHideFlags: 0
