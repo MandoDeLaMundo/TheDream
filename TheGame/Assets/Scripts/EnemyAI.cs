@@ -12,7 +12,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 	[SerializeField] Transform shootPos;
 	[SerializeField] GameObject projectile;
 	[SerializeField] float shootRate;
-	[SerializeField] int rangeDmgAmount;
+	[SerializeField] int contactDamageAmount;
 
 	[SerializeField] float meleeRate;
 	[SerializeField] float meleeDistance;
@@ -73,7 +73,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 			IDamage dmg = collision.collider.GetComponent<IDamage>();
 			if (dmg != null)
 			{
-				dmg.TakeDMG(rangeDmgAmount);
+				dmg.TakeDMG(contactDamageAmount);
 			}
 		}
 	}
