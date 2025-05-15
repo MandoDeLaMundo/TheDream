@@ -200,6 +200,79 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1141765328072170888}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1661740935750499398
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4966208307273855801}
+  - component: {fileID: 6433188616712655252}
+  - component: {fileID: 8677577847060555804}
+  m_Layer: 6
+  m_Name: Contact DMG Zone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4966208307273855801
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1661740935750499398}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6265938848654347517}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &6433188616712655252
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1661740935750499398}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.75
+  m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &8677577847060555804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1661740935750499398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2960946ae34777144a3501ab25dba669, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 4
+  rb: {fileID: 0}
+  damageAmount: 0
+  damageRate: 5
+  speed: 0
+  destroyTime: 0
+  contactDMGAmount: 1
 --- !u!1 &3214105562008047276
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,11 +666,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6265938848654347517}
-  - component: {fileID: 7712586284579418390}
   - component: {fileID: 2440318415877622601}
-  - component: {fileID: 5944561078723700438}
+  - component: {fileID: 6954951005305003048}
   - component: {fileID: 9036227168474811613}
   - component: {fileID: 9109970487657239081}
+  - component: {fileID: 6874314298572996053}
   m_Layer: 6
   m_Name: FantasyBee
   m_TagString: Untagged
@@ -620,31 +693,9 @@ Transform:
   m_Children:
   - {fileID: 3265891099054838399}
   - {fileID: 4178083341376634408}
+  - {fileID: 4966208307273855801}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -15, z: 0}
---- !u!114 &7712586284579418390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8148157657707424640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfca280d20251fc4194c4fe5a309372a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  model: {fileID: 8771125115474620525}
-  agent: {fileID: 2440318415877622601}
-  HP: 3
-  faceTargetSpeed: 8
-  shootPos: {fileID: 1328508842478970136}
-  projectile: {fileID: 0}
-  shootRate: 0
-  rangeDmgAmount: 0
-  meleeRate: 1
-  meleeDistance: 5
-  meleeDmgAmount: 1
 --- !u!195 &2440318415877622601
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -653,7 +704,7 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8148157657707424640}
   m_Enabled: 1
-  m_AgentTypeID: 0
+  m_AgentTypeID: -1372625422
   m_Radius: 0.4
   m_Speed: 10
   m_Acceleration: 32
@@ -667,27 +718,29 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!65 &5944561078723700438
-BoxCollider:
+--- !u!114 &6954951005305003048
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8148157657707424640}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.72, y: 0.56, z: 0.62}
-  m_Center: {x: 0, y: 0.44, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfca280d20251fc4194c4fe5a309372a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  model: {fileID: 8771125115474620525}
+  agent: {fileID: 2440318415877622601}
+  HP: 20
+  faceTargetSpeed: 45
+  isRange: 0
+  shootPos: {fileID: 1328508842478970136}
+  projectile: {fileID: 3831039740292043157, guid: e7d7b9097e3975d49a2381b8d6e2c171, type: 3}
+  shootRate: 0
+  meleeRate: 0
+  meleeDistance: 0
+  meleeDmgAmount: 0
 --- !u!135 &9036227168474811613
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -731,6 +784,27 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!135 &6874314298572996053
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8148157657707424640}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &8729367520463359566
 GameObject:
   m_ObjectHideFlags: 0
