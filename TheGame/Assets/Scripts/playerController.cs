@@ -17,9 +17,12 @@ public class playerController : MonoBehaviour, IDamage
 	[SerializeField] int shootDist;
 	float shootTimer;
 
-	[SerializeField] bool isTeleporting;
+	[SerializeField] bool isTeleportingRaycast;
 	[SerializeField] float teleportRate;
 	[SerializeField] int teleportDist;
+	
+	[SerializeField] bool isTeleportingProj;
+	[SerializeField] GameObject Teleport;
 
 	[SerializeField] int jumpMax;
 	[SerializeField] int jumpForce;
@@ -48,7 +51,7 @@ public class playerController : MonoBehaviour, IDamage
 	// Update is called once per frame
 	void Update()
 	{
-		if (isTeleporting)
+		if (isTeleportingRaycast)
 		{
 			Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * teleportDist, Color.blue);
 		}
@@ -82,9 +85,12 @@ public class playerController : MonoBehaviour, IDamage
 		{
 				shoot();
 		}
-		if (Input.GetButton("Fire2") && shootTimer >= teleportRate && isTeleporting)
+		if (Input.GetButton("Fire2") && shootTimer >= teleportRate)
 		{
+			if(isTeleportingRaycast)
 			teleportbyclick();
+			if (isTeleportingProj)
+				teleportproj();
 		}
 	}
 
@@ -145,6 +151,13 @@ public class playerController : MonoBehaviour, IDamage
 				transform.position = teleportpos;
 			}
 		}
+	}
+
+	void teleportproj()
+	{
+		shootTimer = 0;
+
+		Instantiate(Teleport, shootPos.position, shootPos.transform.rotation);
 	}
 
 	//void shootFireball()
