@@ -15,8 +15,8 @@ TagManager:
   - Player Bullet
   - Enemy Bullet
   - Door
-  - 
-  - 
+  - 'Teleportable '
+  - Not Teleportable
   - 
   - 
   - 

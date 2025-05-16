@@ -23,6 +23,9 @@ public class playerController : MonoBehaviour
 	[SerializeField] bool isTeleporting;
 	[SerializeField] float teleportRate;
 	[SerializeField] int teleportDist;
+	[SerializeField] GameObject teleportProj;
+
+	GameObject currentTeleProj;
 
 	[SerializeField] int jumpMax;
 	[SerializeField] int jumpForce;
@@ -143,37 +146,35 @@ public class playerController : MonoBehaviour
 
 	void teleportbyclick()
 	{
+		if (currentTeleProj != null) return;
 		shootTimer = 0;
 
-		RaycastHit hit;
+		GameObject teleProj = Instantiate(teleportProj, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+        Rigidbody rb = teleProj.GetComponent<Rigidbody>();
 
-		if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
+		if (rb != null)
 		{
-			Debug.Log(hit.collider.name);
-			Vector3 teleportpos = hit.point;
-			if (Vector3.Distance(transform.position, teleportpos) <= teleportDist)
-			{
-				teleportpos.y = transform.position.y;
-				transform.position = teleportpos;
-			}
+			rb.linearVelocity = Camera.main.transform.forward * 20f;
 		}
+		currentTeleProj = teleProj;
+	
 	}
 
 	void shootFireball()
 	{
 		shootTimer = 0;
-		Instantiate(fireBall, shootPos.position, transform.rotation);
+		Instantiate(fireBall, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
 	}
 	void shootIce()
 	{
 		shootTimer = 0;
-		Instantiate(Ice, shootPos.position, transform.rotation);
-	}
+		Instantiate(Ice, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+    }
 	void shootLightning()
 	{
 		shootTimer = 0;
-		Instantiate(Lightning, shootPos.position, transform.rotation);
-	}
+		Instantiate(Lightning, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+    }
 
 	public void TakeDMG(int amount)
 	{
