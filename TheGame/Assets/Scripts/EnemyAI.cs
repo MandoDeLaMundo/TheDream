@@ -3,132 +3,138 @@ using System.Collections;
 using UnityEngine.AI;
 public class EnemyAI : MonoBehaviour, IDamage
 {
-    [SerializeField] Renderer model;
-    [SerializeField] NavMeshAgent agent;
+	[SerializeField] Renderer model;
+	[SerializeField] NavMeshAgent agent;
 
-    [SerializeField] int HP;
-    [SerializeField] int faceTargetSpeed;
+	[SerializeField] int HP;
+	[SerializeField] int faceTargetSpeed;
 
-    [SerializeField] Transform shootPos;
-    [SerializeField] GameObject projectile;
-    [SerializeField] float shootRate;
-    [SerializeField] float meleeRate;
-    [SerializeField] int meleeDamage;
-    [SerializeField] float meleeRange;
+	[SerializeField] Transform shootPos;
+	[SerializeField] GameObject projectile;
+	[SerializeField] float shootRate;
+	[SerializeField] int rangeDmgAmount;
 
-    Color colorOrig;
+	[SerializeField] float meleeRate;
+	[SerializeField] float meleeDistance;
+	[SerializeField] int meleeDmgAmount;
 
-    Vector3 playerDir;
+	Color colorOrig;
 
-    float shootTimer;
-    float meleeTimer;
-    bool playerInRange;
+	Vector3 playerDir;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        colorOrig = model.material.color;
-         gameManager.instance.UpdateGameGoal(1);
-    }
+	float shootTimer;
+	float meleeTimer;
 
-    // Update is called once per frame
-    void Update()
-    {
+	bool playerInRange;
 
+	// Start is called once before the first execution of Update after the MonoBehaviour is created
+	void Start()
+	{
+		colorOrig = model.material.color;
+		gameManager.instance.UpdateGameGoal(1);
+	}
 
-        if (!playerInRange) return;
-        {
-              playerDir = (gameManager.instance.player.transform.position - transform.position).normalized;
+	// Update is called once per frame
+	void Update()
+	{
+		if (playerInRange)
+		{
+			meleeTimer += Time.deltaTime;
+			shootTimer += Time.deltaTime;
 
-              agent.SetDestination(gameManager.instance.player.transform.position);
-                 faceTarget();
+			playerDir = (gameManager.instance.player.transform.position - transform.position);
 
-
-                float distToPlayer = Vector3.Distance(transform.position, gameManager.instance.player.transform.position);
-                if (distToPlayer <= meleeRange)
-                {
-                    TryMeleeAttack();
-                }
-                else
-                {
-                    TryShootProjectile();
-                }
-            
-        }
-        shootTimer += Time.deltaTime;
-        meleeTimer += Time.deltaTime;
+			agent.SetDestination(gameManager.instance.player.transform.position);
 
 
-    }
+			if (agent.remainingDistance <= agent.stoppingDistance)
+			{
+				faceTarget();
+			}
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInRange = true;
-        }
-    }
+			if (playerDir.magnitude <= meleeDistance && meleeTimer >= meleeRate)
+			{
+				attackPlayer();
+			}
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInRange = false;
-        }
-    }
-
-    void TryMeleeAttack()
-    {
-        if(meleeTimer >= meleeRate)
-        {
-            meleeTimer = 0f;
-            playerController player = gameManager.instance.playerScript;
-            player.TakeDMG(meleeDamage);
-        }
-    }
-
-    void TryShootProjectile()
-    {
-        if (projectile == null) return;
-
-        if (shootTimer >= shootRate)
-        {
-            shootTimer = 0f;
-            Vector3 playerPos = gameManager.instance.player.transform.position;
-            Vector3 shootDir = (playerPos - shootPos.position).normalized;
-
-            GameObject Projectile = Instantiate(projectile, shootPos.position, Quaternion.LookRotation(shootDir));
-        }
-    }
+			if (playerDir.magnitude >  meleeDistance && shootTimer >= shootRate)
+			{
+				shootPlayer();
+			}
+		}
 
 
-    public void TakeDMG(int amount)
-    {
-        HP -= amount;
+	}
+	private void OnCollisionEnter(Collision collision)
+	{
+		Debug.Log("Collision detected with: " + collision.collider.name);
+		if (collision.collider.CompareTag("Player"))
+		{
+			IDamage dmg = collision.collider.GetComponent<IDamage>();
+			if (dmg != null)
+			{
+				dmg.TakeDMG(rangeDmgAmount);
+			}
+		}
+	}
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.CompareTag("Player"))
+		{
+			playerInRange = true;
+		}
+	}
 
-         agent.SetDestination(gameManager.instance.player.transform.position);
+	private void OnTriggerExit(Collider other)
+	{
+		if (other.CompareTag("Player"))
+		{
+			playerInRange = false;
+		}
+	}
 
-        if (HP <= 0)
-        {
-            gameManager.instance.UpdateGameGoal(-1);
-            Destroy(gameObject);
-        }
-        else
-        {
-            StartCoroutine(flashRed());
-        }
-    }
+	public void TakeDMG(int amount)
+	{
+		HP -= amount;
 
-    IEnumerator flashRed()
-    {
-        model.material.color = Color.red;
-        yield return new WaitForSeconds(0.05f);
-        model.material.color = colorOrig;
-    }
+		agent.SetDestination(gameManager.instance.player.transform.position);
 
-    void faceTarget()
-    {
-        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, transform.position.y, playerDir.z));
-        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
-    }
+		if (HP <= 0)
+		{
+			gameManager.instance.UpdateGameGoal(-1);
+			Destroy(gameObject);
+		}
+		else
+		{
+			StartCoroutine(flashRed());
+		}
+	}
+
+	IEnumerator flashRed()
+	{
+		model.material.color = Color.red;
+		yield return new WaitForSeconds(0.05f);
+		model.material.color = colorOrig;
+	}
+
+	void faceTarget()
+	{
+		Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, transform.position.y, playerDir.z));
+		transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
+	}
+
+	private void attackPlayer()
+	{
+		meleeTimer = 0;
+		gameManager.instance.player.GetComponent<playerController>().TakeDMG(meleeDmgAmount);
+	}
+
+	private void shootPlayer()
+	{
+		shootTimer = 0;
+		if (projectile != null)
+		{
+			Instantiate(projectile, shootPos.position, transform.rotation);
+		}
+	}
 }
