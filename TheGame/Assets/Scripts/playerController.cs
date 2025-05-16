@@ -91,14 +91,14 @@ public class playerController : MonoBehaviour
 		playerVel.y -= Gravity * Time.deltaTime;
 		if (Input.GetButton("Fire1") && shootTimer >= shootRate)
 		{
-			if(isShooting)
-			shoot();
-			if(isFireball)
-			shootFireball();
-			if(isIce)
-			shootIce();
-			if(isLightning)
-			shootLightning();
+			//if(isShooting)
+			//shoot();
+			//if(isFireball)
+			//shootFireball();
+			//if(isIce)
+			//shootIce();
+			//if(isLightning)
+			//shootLightning();
 		}
 		if (Input.GetButton("Fire2") && shootTimer >= teleportRate)
 		{
@@ -166,21 +166,21 @@ public class playerController : MonoBehaviour
 
     void teleportproj() { }
 
-    void shootFireball()
-	{
-		shootTimer = 0;
-		Instantiate(fireBall, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
-	}
-	void shootIce()
-	{
-		shootTimer = 0;
-		Instantiate(Ice, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
-    }
-	void shootLightning()
-	{
-		shootTimer = 0;
-		Instantiate(Lightning, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
-    }
+ //   void shootFireball()
+	//{
+	//	shootTimer = 0;
+	//	Instantiate(fireBall, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+	//}
+	//void shootIce()
+	//{
+	//	shootTimer = 0;
+	//	Instantiate(Ice, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+ //   }
+	//void shootLightning()
+	//{
+	//	shootTimer = 0;
+	//	Instantiate(Lightning, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+ //   }
 
 	public void TakeDMG(int amount)
 	{
