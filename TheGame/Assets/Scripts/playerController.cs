@@ -24,6 +24,7 @@ public class playerController : MonoBehaviour
 	[SerializeField] float teleportRate;
 	[SerializeField] int teleportDist;
 	[SerializeField] GameObject teleportProj;
+	[SerializeField] bool isTeleportingProj;
 
 	GameObject currentTeleProj;
 
@@ -58,7 +59,7 @@ public class playerController : MonoBehaviour
 		{
 			Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
 		}
-		if (isTeleporting)
+		if (isTeleportingRaycast)
 		{
 			Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * teleportDist, Color.blue);
 		}
@@ -163,7 +164,9 @@ public class playerController : MonoBehaviour
 	
 	}
 
-	void shootFireball()
+    void teleportproj() { }
+
+    void shootFireball()
 	{
 		shootTimer = 0;
 		Instantiate(fireBall, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));

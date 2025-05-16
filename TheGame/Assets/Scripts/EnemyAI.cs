@@ -8,7 +8,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
 	[SerializeField] int HP;
 	[SerializeField] int faceTargetSpeed;
-
+	[SerializeField] bool isRange;
 	[SerializeField] Transform shootPos;
 	[SerializeField] GameObject projectile;
 	[SerializeField] float shootRate;
@@ -131,13 +131,8 @@ public class EnemyAI : MonoBehaviour, IDamage
 
 	private void shootPlayer()
 	{
-<<<<<<< HEAD
-		shootTimer = 0;
-		if (projectile != null)
-=======
         shootTimer = 0;
         if (projectile != null && isRange != false)
->>>>>>> roy
 		{
 			Instantiate(projectile, shootPos.position, transform.rotation);
 		}
