@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 3749515074666461166}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.076675, y: 3.0584388, z: -24.653736}
+  m_LocalPosition: {x: 60.336273, y: 1.0800037, z: 29.133326}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   rb: {fileID: 1726855954963603785}
-  damageAmmount: 3
+  damageAmount: 0
   damageRate: 1
   speed: 20
   destroyTime: 3

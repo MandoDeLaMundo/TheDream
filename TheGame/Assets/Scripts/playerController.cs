@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Collections;
 using Unity.VisualScripting;
 
-public class playerController : MonoBehaviour
+public class playerController : MonoBehaviour, IDamage
 {
 	[SerializeField] CharacterController controller;
 	[SerializeField] LayerMask ignoreLayer;
@@ -20,9 +20,13 @@ public class playerController : MonoBehaviour
 	[SerializeField] int shootDist;
 	float shootTimer;
 
-	[SerializeField] bool isTeleporting;
+	[SerializeField] bool isTeleportingRaycast;
 	[SerializeField] float teleportRate;
 	[SerializeField] int teleportDist;
+	[SerializeField] GameObject teleportProj;
+	[SerializeField] bool isTeleportingProj;
+
+	GameObject currentTeleProj;
 
 	[SerializeField] int jumpMax;
 	[SerializeField] int jumpForce;
@@ -55,7 +59,7 @@ public class playerController : MonoBehaviour
 		{
 			Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
 		}
-		if (isTeleporting)
+		if (isTeleportingRaycast)
 		{
 			Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * teleportDist, Color.blue);
 		}
@@ -87,18 +91,21 @@ public class playerController : MonoBehaviour
 		playerVel.y -= Gravity * Time.deltaTime;
 		if (Input.GetButton("Fire1") && shootTimer >= shootRate)
 		{
-			if(isShooting)
-			shoot();
-			if(isFireball)
-			shootFireball();
-			if(isIce)
-			shootIce();
-			if(isLightning)
-			shootLightning();
+			if (isShooting)
+				shoot();
+			if (isFireball)
+				shootFireball();
+			//if(isIce)
+			//shootIce();
+			//if(isLightning)
+			//shootLightning();
 		}
-		if (Input.GetButton("Fire2") && shootTimer >= teleportRate && isTeleporting)
+		if (Input.GetButton("Fire2") && shootTimer >= teleportRate)
 		{
+			if(isTeleportingRaycast)
 			teleportbyclick();
+			if (isTeleportingProj)
+				teleportproj();
 		}
 	}
 
@@ -143,37 +150,37 @@ public class playerController : MonoBehaviour
 
 	void teleportbyclick()
 	{
+		if (currentTeleProj != null) return;
 		shootTimer = 0;
 
-		RaycastHit hit;
+		GameObject teleProj = Instantiate(teleportProj, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+        Rigidbody rb = teleProj.GetComponent<Rigidbody>();
 
-		if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
+		if (rb != null)
 		{
-			Debug.Log(hit.collider.name);
-			Vector3 teleportpos = hit.point;
-			if (Vector3.Distance(transform.position, teleportpos) <= teleportDist)
-			{
-				teleportpos.y = transform.position.y;
-				transform.position = teleportpos;
-			}
+			rb.linearVelocity = Camera.main.transform.forward * 20f;
 		}
+		currentTeleProj = teleProj;
+	
 	}
+
+    void teleportproj() { }
 
 	void shootFireball()
 	{
 		shootTimer = 0;
-		Instantiate(fireBall, shootPos.position, transform.rotation);
+		Instantiate(fireBall, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
 	}
-	void shootIce()
-	{
-		shootTimer = 0;
-		Instantiate(Ice, shootPos.position, transform.rotation);
-	}
-	void shootLightning()
-	{
-		shootTimer = 0;
-		Instantiate(Lightning, shootPos.position, transform.rotation);
-	}
+	//void shootIce()
+	//{
+	//	shootTimer = 0;
+	//	Instantiate(Ice, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+	//   }
+	//void shootLightning()
+	//{
+	//	shootTimer = 0;
+	//	Instantiate(Lightning, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+	//   }
 
 	public void TakeDMG(int amount)
 	{

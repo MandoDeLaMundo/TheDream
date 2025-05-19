@@ -12,9 +12,12 @@ public class NewMonoBehaviourScript : MonoBehaviour
 	[SerializeField] int speed;
 	[SerializeField] int destroyTime;
 	[SerializeField] int contactDMGAmount;
-
+	[SerializeField] float knockBackDistance;
+	[SerializeField] float knockBackSpeed;
+	[SerializeField] float knockbackDelay;
 
     bool isDamaging;
+	bool canKnockBack = true;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
@@ -41,6 +44,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
 	private void OnTriggerEnter(Collider other)
 	{
         Debug.Log("Player Trigger");
+		if (!canKnockBack)
+		{
+			return;
+		}
         if (other.isTrigger)
 		{
 			return;
@@ -60,7 +67,9 @@ public class NewMonoBehaviourScript : MonoBehaviour
         if (other.CompareTag("Player") && type == damagetype.contact )
         {
             dmg.TakeDMG(contactDMGAmount);
-            //knockback added later
+            Debug.Log("Contact DMG");
+            StartCoroutine(PlayerKnockBack(other.transform));
+            StartCoroutine(Cooldown());
         }
     }
 
@@ -88,6 +97,25 @@ public class NewMonoBehaviourScript : MonoBehaviour
 		yield return new WaitForSeconds(damageRate);
 		isDamaging = false;
 
+	}
+	IEnumerator PlayerKnockBack(Transform playerPosition)
+	{
+		canKnockBack = false;
+		Vector3 direction = (playerPosition.position - transform.position).normalized;
+		float move = 0f;
+		while (move < knockBackDistance)
+		{
+			float range = knockBackSpeed * Time.deltaTime;
+			playerPosition.Translate(direction * range, Space.World);
+			move += range;
+			yield return null;
+		}
+	}
+	IEnumerator Cooldown()
+	{
+		canKnockBack = false;
+		yield return new WaitForSeconds (knockbackDelay);
+		canKnockBack = true;
 	}
 }
 

@@ -252,7 +252,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.75
+  m_Radius: 0.8
   m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &8677577847060555804
 MonoBehaviour:
@@ -269,10 +269,13 @@ MonoBehaviour:
   type: 4
   rb: {fileID: 0}
   damageAmount: 0
-  damageRate: 5
+  damageRate: 1
   speed: 0
   destroyTime: 0
   contactDMGAmount: 1
+  knockBackDistance: 30
+  knockBackSpeed: 30
+  knockbackDelay: 2
 --- !u!1 &3214105562008047276
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,10 +737,10 @@ MonoBehaviour:
   agent: {fileID: 2440318415877622601}
   HP: 20
   faceTargetSpeed: 45
-  isRange: 0
   shootPos: {fileID: 1328508842478970136}
-  projectile: {fileID: 3831039740292043157, guid: e7d7b9097e3975d49a2381b8d6e2c171, type: 3}
+  projectile: {fileID: 0}
   shootRate: 0
+  rangeDmgAmount: 0
   meleeRate: 0
   meleeDistance: 0
   meleeDmgAmount: 0
