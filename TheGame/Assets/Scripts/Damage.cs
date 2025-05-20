@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class Damage : MonoBehaviour
 {
 	enum damagetype { moving, stationary, DOT, homing, contact }
 	[SerializeField] damagetype type;
