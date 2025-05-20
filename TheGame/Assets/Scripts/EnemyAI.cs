@@ -8,6 +8,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
 	[SerializeField] int HP;
 	[SerializeField] int faceTargetSpeed;
+
 	[SerializeField] Transform shootPos;
 	[SerializeField] GameObject projectile;
 	[SerializeField] float shootRate;
@@ -62,7 +63,6 @@ public class EnemyAI : MonoBehaviour, IDamage
 			}
 		}
 
-
 	}
 	private void OnCollisionEnter(Collision collision)
 	{
@@ -76,6 +76,8 @@ public class EnemyAI : MonoBehaviour, IDamage
 			}
 		}
 	}
+	
+
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.CompareTag("Player"))
@@ -130,10 +132,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
 	private void shootPlayer()
 	{
-        shootTimer = 0;
-        if (projectile != null)
-		{
-			Instantiate(projectile, shootPos.position, transform.rotation);
-		}
+		shootTimer = 0;
+		Instantiate(projectile, shootPos.position, transform.rotation);
 	}
 }
