@@ -1,5 +1,7 @@
+using System.Data.SqlTypes;
 using UnityEngine;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class playerController : MonoBehaviour, IDamage
 {
@@ -12,14 +14,19 @@ public class playerController : MonoBehaviour, IDamage
 	[SerializeField] int speed;
 	[SerializeField] int sprintMod;
 
+	[SerializeField] bool isShooting;
 	[SerializeField] int shootDamage;
 	[SerializeField] float shootRate;
 	[SerializeField] int shootDist;
 	float shootTimer;
 
-	[SerializeField] bool isTeleporting;
+	[SerializeField] bool isTeleportingRaycast;
 	[SerializeField] float teleportRate;
 	[SerializeField] int teleportDist;
+	[SerializeField] GameObject teleportProj;
+	[SerializeField] bool isTeleportingProj;
+
+	GameObject currentTeleProj;
 
 	[SerializeField] int jumpMax;
 	[SerializeField] int jumpForce;
@@ -28,13 +35,13 @@ public class playerController : MonoBehaviour, IDamage
 	Vector3 playerVel;
 
 	[SerializeField] Transform shootPos;
-	//[SerializeField] bool isFireball;
+	[SerializeField] bool isFireball;
 	[SerializeField] GameObject fireBall;
-	//[SerializeField] bool isIce;
-	//[SerializeField] GameObject Ice;
-	//[SerializeField] bool isLightning;
-	//[SerializeField] GameObject Lightning;
-
+	[SerializeField] bool isIce;
+	[SerializeField] GameObject Ice;
+	[SerializeField] bool isLightning;
+	[SerializeField] GameObject Lightning;
+	
 
 	Vector3 moveDir;
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -43,12 +50,16 @@ public class playerController : MonoBehaviour, IDamage
 		HPOrig = HP;
 		updatePlayerUI();
 
-	}
+    }
 
 	// Update is called once per frame
 	void Update()
 	{
-		if (isTeleporting)
+		if (isShooting)
+		{
+			Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
+		}
+		if (isTeleportingRaycast)
 		{
 			Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * teleportDist, Color.blue);
 		}
@@ -80,11 +91,21 @@ public class playerController : MonoBehaviour, IDamage
 		playerVel.y -= Gravity * Time.deltaTime;
 		if (Input.GetButton("Fire1") && shootTimer >= shootRate)
 		{
+			if (isShooting)
 				shoot();
+			if (isFireball)
+				shootFireball();
+			//if(isIce)
+			//shootIce();
+			//if(isLightning)
+			//shootLightning();
 		}
-		if (Input.GetButton("Fire2") && shootTimer >= teleportRate && isTeleporting)
+		if (Input.GetButton("Fire2") && shootTimer >= teleportRate)
 		{
+			if(isTeleportingRaycast)
 			teleportbyclick();
+			if (isTeleportingProj)
+				teleportproj();
 		}
 	}
 
@@ -113,55 +134,53 @@ public class playerController : MonoBehaviour, IDamage
 	{
 		shootTimer = 0;
 
-		Instantiate(fireBall, shootPos.position, shootPos.transform.rotation);
-		
-		//RaycastHit hit;
-
-		//if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
-		//{
-		//	Debug.Log(hit.collider.name);
-		//	IDamage dmg = hit.collider.GetComponent<IDamage>();
-
-		//	if (dmg != null)
-		//	{
-		//		dmg.TakeDMG(shootDamage);
-		//	}
-		//}
-	}
-
-	void teleportbyclick()
-	{
-		shootTimer = 0;
-
 		RaycastHit hit;
 
 		if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
 		{
 			Debug.Log(hit.collider.name);
-			Vector3 teleportpos = hit.point;
-			if (Vector3.Distance(transform.position, teleportpos) <= teleportDist)
+			IDamage dmg = hit.collider.GetComponent<IDamage>();
+
+			if (dmg != null)
 			{
-				teleportpos.y = transform.position.y;
-				transform.position = teleportpos;
+				dmg.TakeDMG(shootDamage);
 			}
 		}
 	}
 
-	//void shootFireball()
-	//{
-	//	shootTimer = 0;
-	//	Instantiate(fireBall, shootPos.position, transform.rotation);
-	//}
+	void teleportbyclick()
+	{
+		if (currentTeleProj != null) return;
+		shootTimer = 0;
+
+		GameObject teleProj = Instantiate(teleportProj, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+        Rigidbody rb = teleProj.GetComponent<Rigidbody>();
+
+		if (rb != null)
+		{
+			rb.linearVelocity = Camera.main.transform.forward * 20f;
+		}
+		currentTeleProj = teleProj;
+	
+	}
+
+    void teleportproj() { }
+
+	void shootFireball()
+	{
+		shootTimer = 0;
+		Instantiate(fireBall, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+	}
 	//void shootIce()
 	//{
 	//	shootTimer = 0;
-	//	Instantiate(Ice, shootPos.position, transform.rotation);
-	//}
+	//	Instantiate(Ice, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+	//   }
 	//void shootLightning()
 	//{
 	//	shootTimer = 0;
-	//	Instantiate(Lightning, shootPos.position, transform.rotation);
-	//}
+	//	Instantiate(Lightning, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+	//   }
 
 	public void TakeDMG(int amount)
 	{
@@ -170,7 +189,7 @@ public class playerController : MonoBehaviour, IDamage
 		StartCoroutine(flashDamageScreen());
 
 
-		if (HP <= 0)
+        if (HP <= 0)
 		{
 			gameManager.instance.YouLose();
 		}

@@ -171,15 +171,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+=======
+    - target: {fileID: 5934466673113150788, guid: 7df180d1f5585a1408de42c6f3ef5dd2, type: 3}
+      propertyPath: HP
+      value: 15
+=======
     - target: {fileID: 5934466673113150788, guid: 7df180d1f5585a1408de42c6f3ef5dd2, type: 3}
       propertyPath: HP
       value: 1
+>>>>>>> safety
       objectReference: {fileID: 0}
     - target: {fileID: 5934466673113150788, guid: 7df180d1f5585a1408de42c6f3ef5dd2, type: 3}
       propertyPath: isIce
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5934466673113150788, guid: 7df180d1f5585a1408de42c6f3ef5dd2, type: 3}
+<<<<<<< HEAD
+      propertyPath: isShooting
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5934466673113150788, guid: 7df180d1f5585a1408de42c6f3ef5dd2, type: 3}
+=======
+>>>>>>> safety
       propertyPath: isLightning
       value: 0
       objectReference: {fileID: 0}
@@ -187,11 +202,76 @@ PrefabInstance:
       propertyPath: isTeleporting
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< HEAD
+>>>>>>> Stashed changes
+=======
+>>>>>>> safety
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7df180d1f5585a1408de42c6f3ef5dd2, type: 3}
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+=======
+--- !u!1001 &686399589
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1362394450722247761, guid: 544cd02931516904899d3fbe091ff9ec, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.371381
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362394450722247761, guid: 544cd02931516904899d3fbe091ff9ec, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362394450722247761, guid: 544cd02931516904899d3fbe091ff9ec, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9.20149
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362394450722247761, guid: 544cd02931516904899d3fbe091ff9ec, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9914449
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362394450722247761, guid: 544cd02931516904899d3fbe091ff9ec, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362394450722247761, guid: 544cd02931516904899d3fbe091ff9ec, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.13052654
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362394450722247761, guid: 544cd02931516904899d3fbe091ff9ec, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362394450722247761, guid: 544cd02931516904899d3fbe091ff9ec, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362394450722247761, guid: 544cd02931516904899d3fbe091ff9ec, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362394450722247761, guid: 544cd02931516904899d3fbe091ff9ec, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2146641682306397528, guid: 544cd02931516904899d3fbe091ff9ec, type: 3}
+      propertyPath: m_Name
+      value: FantasyBee
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 544cd02931516904899d3fbe091ff9ec, type: 3}
+=======
 --- !u!1 &818462305
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,6 +346,7 @@ MonoBehaviour:
   damageRate: 1
   speed: 0
   destroyTime: 0
+>>>>>>> safety
 --- !u!1 &847004879
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,6 +411,10 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 6ec30b724eb9f31498b0d7846184175e, type: 2}
   m_BuildHeightMesh: 0
+<<<<<<< HEAD
+>>>>>>> Stashed changes
+=======
+>>>>>>> safety
 --- !u!1 &911112342
 GameObject:
   m_ObjectHideFlags: 0
@@ -1372,5 +1457,13 @@ SceneRoots:
   - {fileID: 2003529041}
   - {fileID: 120314861}
   - {fileID: 1887131216}
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+=======
+  - {fileID: 847004880}
+  - {fileID: 686399589}
+>>>>>>> Stashed changes
+=======
   - {fileID: 4698440593139384225}
   - {fileID: 847004880}
+>>>>>>> safety

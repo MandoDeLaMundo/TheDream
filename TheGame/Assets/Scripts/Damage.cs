@@ -3,7 +3,7 @@ using System.Collections;
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
-	enum damagetype { moving, stationary, DOT, homing }
+	enum damagetype { moving, stationary, DOT, homing, contact }
 	[SerializeField] damagetype type;
 	[SerializeField] Rigidbody rb;
 
@@ -11,8 +11,13 @@ public class NewMonoBehaviourScript : MonoBehaviour
 	[SerializeField] int damageRate;
 	[SerializeField] int speed;
 	[SerializeField] int destroyTime;
+	[SerializeField] int contactDMGAmount;
+	[SerializeField] float knockBackDistance;
+	[SerializeField] float knockBackSpeed;
+	[SerializeField] float knockbackDelay;
 
-	bool isDamaging;
+    bool isDamaging;
+	bool canKnockBack = true;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
@@ -38,7 +43,12 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (other.isTrigger)
+        Debug.Log("Player Trigger");
+		if (!canKnockBack)
+		{
+			return;
+		}
+        if (other.isTrigger)
 		{
 			return;
 		}
@@ -54,7 +64,14 @@ public class NewMonoBehaviourScript : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
-	}
+        if (other.CompareTag("Player") && type == damagetype.contact )
+        {
+            dmg.TakeDMG(contactDMGAmount);
+            Debug.Log("Contact DMG");
+            StartCoroutine(PlayerKnockBack(other.transform));
+            StartCoroutine(Cooldown());
+        }
+    }
 
 	private void OnTriggerStay(Collider other)
 	{
@@ -80,6 +97,25 @@ public class NewMonoBehaviourScript : MonoBehaviour
 		yield return new WaitForSeconds(damageRate);
 		isDamaging = false;
 
+	}
+	IEnumerator PlayerKnockBack(Transform playerPosition)
+	{
+		canKnockBack = false;
+		Vector3 direction = (playerPosition.position - transform.position).normalized;
+		float move = 0f;
+		while (move < knockBackDistance)
+		{
+			float range = knockBackSpeed * Time.deltaTime;
+			playerPosition.Translate(direction * range, Space.World);
+			move += range;
+			yield return null;
+		}
+	}
+	IEnumerator Cooldown()
+	{
+		canKnockBack = false;
+		yield return new WaitForSeconds (knockbackDelay);
+		canKnockBack = true;
 	}
 }
 
