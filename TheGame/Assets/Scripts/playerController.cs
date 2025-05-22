@@ -65,10 +65,10 @@ public class playerController : MonoBehaviour, IDamage, IPickup
 	// Update is called once per frame
 	void Update()
 	{
-		//if (isShooting)
-		//{
-		//	Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
-		//}
+		if (choice == shootchoice.shootraycast)
+		{
+			Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
+		}
 		if (isTeleportingRaycast)
 		{
 			Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * teleportDist, Color.blue);
@@ -158,6 +158,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup
 	void shootSpell()
 	{
 		shootTimer = 0;
+		Mana -= manaCost;
+		updatePlayerUI();
 		Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
 	}
 
@@ -203,15 +205,10 @@ public class playerController : MonoBehaviour, IDamage, IPickup
 		}
 	}
 
-	void UseMana(int mana)
-	{
-
-	}
-
 	public void updatePlayerUI()
 	{
 		gameManager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
-		//gameManager.instance
+		gameManager.instance.playerManaBar.fillAmount = (float)Mana / ManaOrig;
 	}
 
 	IEnumerator flashDamageScreen()
