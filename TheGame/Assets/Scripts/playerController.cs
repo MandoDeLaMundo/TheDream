@@ -194,7 +194,7 @@ public class playerController : MonoBehaviour, IDamage
 			gameManager.instance.YouLose();
 		}
 	}
-
+	
 	public void updatePlayerUI()
 	{
 		gameManager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
