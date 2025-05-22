@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c98ca3fd2af46934991a4be106694953
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 308875
+  packageName: Stylised Animated Plant Monster
+  packageVersion: 1.1
+  assetPath: Assets/GreyratsLab/Stylised Plant Monster/Animator/PlantMonsterAnimator.controller
+  uploadId: 729793
