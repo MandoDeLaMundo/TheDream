@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Lightning_Bone Spell
   m_EditorClassIdentifier: 
   model: {fileID: 0}
+  spellProjectile: {fileID: 3749515074666461166, guid: 8050d5cc44e91fc469f497359c3382ab, type: 3}
   shootDMG: 3
   shootRate: 0.5
   shootDist: 15
