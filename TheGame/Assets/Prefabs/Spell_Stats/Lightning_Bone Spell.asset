@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4679952212bcb7c48b6fd9f89c05547d, type: 3}
   m_Name: Lightning_Bone Spell
   m_EditorClassIdentifier: 
-  model: {fileID: 0}
+  model: {fileID: 4417435450986619218, guid: 0d0ae09fa98635e4e8435fc1a1fc72c7, type: 3}
   spellProjectile: {fileID: 3749515074666461166, guid: 8050d5cc44e91fc469f497359c3382ab, type: 3}
   shootDMG: 3
   shootRate: 0.5

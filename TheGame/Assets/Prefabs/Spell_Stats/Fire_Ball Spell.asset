@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4679952212bcb7c48b6fd9f89c05547d, type: 3}
   m_Name: Fire_Ball Spell
   m_EditorClassIdentifier: 
-  model: {fileID: 0}
-  spellProjectile: {fileID: 544241052533153475, guid: 5c4e86f7eab0bcb45970360bdb1676e9, type: 3}
+  model: {fileID: 5875270693028758024, guid: 3058356566addd04d8ab52928169b5e2, type: 3}
+  spellProjectile: {fileID: 6835206923963006979, guid: 4eb59755d47c84743a6408d5c48c0565, type: 3}
   shootDMG: 5
   shootRate: 2.5
   shootDist: 45

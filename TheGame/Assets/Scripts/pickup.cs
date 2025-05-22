@@ -10,7 +10,6 @@ public class pickup : MonoBehaviour
 
 		if (toPickup != null)
 		{
-			Debug.Log("Pickup is not null");
 			toPickup.GetSpellStats(spell);
 
 			Destroy(gameObject);
