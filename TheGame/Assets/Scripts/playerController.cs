@@ -18,7 +18,8 @@ public class playerController : MonoBehaviour, IDamage
 	[SerializeField] int speed;
 	[SerializeField] int sprintMod;
 
-
+	enum shootchoice { shootraycast, spellList }
+	[SerializeField] shootchoice choice;
 	[SerializeField] List<spellStats> spellList = new List<spellStats>();
 	[SerializeField] GameObject spellModel;
 	[SerializeField] GameObject spell;
@@ -100,7 +101,9 @@ public class playerController : MonoBehaviour, IDamage
 		playerVel.y -= Gravity * Time.deltaTime;
 		if (Input.GetButton("Fire1") && shootTimer >= shootRate)
 		{
-			//if (isShooting)
+			if (choice == shootchoice.shootraycast)
+				shoot();
+			if (choice == shootchoice.spellList)
 				shoot();
 		}
 		if (Input.GetButton("Fire2") && shootTimer >= teleportRate)
@@ -152,6 +155,11 @@ public class playerController : MonoBehaviour, IDamage
 			}
 		}
 	}
+	//void shootSpell()
+	//{
+	//	shootTimer = 0;
+	//	Instantiate(, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+	//}
 
 	void teleportbyclick()
 	{
@@ -171,11 +179,6 @@ public class playerController : MonoBehaviour, IDamage
 
     void teleportproj() { }
 
-	//void shootFireball()
-	//{
-	//	shootTimer = 0;
-	//	Instantiate(fireBall, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
-	//}
 	//void shootIce()
 	//{
 	//	shootTimer = 0;
@@ -241,6 +244,8 @@ public class playerController : MonoBehaviour, IDamage
 
 		spellModel.GetComponent<MeshFilter>().sharedMesh = spellList[spellListPos].GetComponent<MeshFilter>().sharedMesh;
 		spellModel.GetComponent<MeshRenderer>().sharedMaterial = spellList[spellListPos].GetComponent<MeshRenderer>().sharedMaterial;
+
+		
     }
 
 	public void getSpellStats(spellStats spell)
