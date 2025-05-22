@@ -83,27 +83,26 @@ MonoBehaviour:
   controller: {fileID: 3944378243251323118}
   ignoreLayer:
     serializedVersion: 2
-    m_Bits: 512
-  HP: 999
+    m_Bits: 0
+  HP: 0
   speed: 5
-  sprintMod: 3
+  sprintMod: 10
   isShooting: 0
   shootDamage: 1
-  shootRate: 0.5
-  shootDist: 100
-  isTeleporting: 1
-  teleportRate: 2
-  teleportDist: 15
-  teleportProj: {fileID: 3749515074666461166, guid: e25cdfc2416e85445ae2d91969a01a75, type: 3}
-  jumpMax: 4
+  shootRate: 0.25
+  shootDist: 150
+  isTeleporting: 0
+  teleportRate: 0
+  teleportDist: 0
+  jumpMax: 1
   jumpForce: 12
   Gravity: 35
   shootPos: {fileID: 3579017854613924312}
   isFireball: 1
   fireBall: {fileID: 6835206923963006979, guid: 4eb59755d47c84743a6408d5c48c0565, type: 3}
-  isIce: 0
+  isIce: 1
   Ice: {fileID: 3749515074666461166, guid: 37186984fa0c2694f87dc32d80232d8d, type: 3}
-  isLightning: 0
+  isLightning: 1
   Lightning: {fileID: 3749515074666461166, guid: 8050d5cc44e91fc469f497359c3382ab, type: 3}
 --- !u!33 &4531356348622312624
 MeshFilter:
@@ -230,7 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 118b614f2feef4c4bb697c90b28ef578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensitivity: 600
+  sensitivity: 300
   lockVertMin: -90
   lockVertMax: 90
   invertY: 0
