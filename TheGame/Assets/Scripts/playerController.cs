@@ -4,7 +4,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using System.Collections.Generic;
 
-public class playerController : MonoBehaviour, IDamage
+public class playerController : MonoBehaviour, IDamage, IPickup
 {
 	[SerializeField] CharacterController controller;
 	[SerializeField] LayerMask ignoreLayer;
@@ -248,7 +248,7 @@ public class playerController : MonoBehaviour, IDamage
 		
     }
 
-	public void getSpellStats(spellStats spell)
+	public void GetSpellStats(spellStats spell)
 	{
 		spellList.Add(spell);
 		spellListPos = spellList.Count - 1;
