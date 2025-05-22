@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Ice_Saw Spell
   m_EditorClassIdentifier: 
   model: {fileID: 0}
+  spellProjectile: {fileID: 3749515074666461166, guid: 37186984fa0c2694f87dc32d80232d8d, type: 3}
   shootDMG: 10
   shootRate: 4.25
   shootDist: 55

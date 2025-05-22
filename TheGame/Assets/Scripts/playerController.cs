@@ -2,8 +2,9 @@ using System.Data.SqlTypes;
 using UnityEngine;
 using System.Collections;
 using Unity.VisualScripting;
+using System.Collections.Generic;
 
-public class playerController : MonoBehaviour, IDamage
+public class playerController : MonoBehaviour, IDamage, IPickup
 {
 	[SerializeField] CharacterController controller;
 	[SerializeField] LayerMask ignoreLayer;
@@ -17,11 +18,18 @@ public class playerController : MonoBehaviour, IDamage
 	[SerializeField] int speed;
 	[SerializeField] int sprintMod;
 
-	[SerializeField] bool isShooting;
+	enum shootchoice { shootraycast, spellList }
+	[SerializeField] shootchoice choice;
+	[SerializeField] List<spellStats> spellList = new List<spellStats>();
+	[SerializeField] GameObject spellModel;
+	[SerializeField] GameObject spell;
+	[SerializeField] Transform shootPos;
 	[SerializeField] int shootDamage;
 	[SerializeField] float shootRate;
 	[SerializeField] int shootDist;
+	[SerializeField] int manaCost;
 	float shootTimer;
+	int spellListPos;
 
 	[SerializeField] bool isTeleportingRaycast;
 	[SerializeField] float teleportRate;
@@ -37,13 +45,12 @@ public class playerController : MonoBehaviour, IDamage
 	int jumpCount;
 	Vector3 playerVel;
 
-	[SerializeField] Transform shootPos;
-	[SerializeField] bool isFireball;
-	[SerializeField] GameObject fireBall;
-	[SerializeField] bool isIce;
-	[SerializeField] GameObject Ice;
-	[SerializeField] bool isLightning;
-	[SerializeField] GameObject Lightning;
+	//[SerializeField] bool isFireball;
+	//[SerializeField] GameObject fireBall;
+	//[SerializeField] bool isIce;
+	//[SerializeField] GameObject Ice;
+	//[SerializeField] bool isLightning;
+	//[SerializeField] GameObject Lightning;
 	
 
 	Vector3 moveDir;
@@ -58,10 +65,10 @@ public class playerController : MonoBehaviour, IDamage
 	// Update is called once per frame
 	void Update()
 	{
-		if (isShooting)
-		{
-			Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
-		}
+		//if (isShooting)
+		//{
+		//	Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
+		//}
 		if (isTeleportingRaycast)
 		{
 			Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * teleportDist, Color.blue);
@@ -94,14 +101,10 @@ public class playerController : MonoBehaviour, IDamage
 		playerVel.y -= Gravity * Time.deltaTime;
 		if (Input.GetButton("Fire1") && shootTimer >= shootRate)
 		{
-			if (isShooting)
+			if (choice == shootchoice.shootraycast)
 				shoot();
-			if (isFireball)
-				shootFireball();
-			//if(isIce)
-			//shootIce();
-			//if(isLightning)
-			//shootLightning();
+			if (choice == shootchoice.spellList)
+				shoot();
 		}
 		if (Input.GetButton("Fire2") && shootTimer >= teleportRate)
 		{
@@ -110,6 +113,8 @@ public class playerController : MonoBehaviour, IDamage
 			if (isTeleportingProj)
 				teleportproj();
 		}
+
+		selectSpell();
 	}
 
 	void jump()
@@ -150,6 +155,11 @@ public class playerController : MonoBehaviour, IDamage
 			}
 		}
 	}
+	//void shootSpell()
+	//{
+	//	shootTimer = 0;
+	//	Instantiate(, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+	//}
 
 	void teleportbyclick()
 	{
@@ -169,11 +179,6 @@ public class playerController : MonoBehaviour, IDamage
 
     void teleportproj() { }
 
-	void shootFireball()
-	{
-		shootTimer = 0;
-		Instantiate(fireBall, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
-	}
 	//void shootIce()
 	//{
 	//	shootTimer = 0;
@@ -214,5 +219,40 @@ public class playerController : MonoBehaviour, IDamage
 		gameManager.instance.playerDamageScreen.SetActive(true);
 		yield return new WaitForSeconds(0.1f);
 		gameManager.instance.playerDamageScreen.SetActive(false);
+	}
+
+	void selectSpell()
+	{
+		if(Input.GetAxis("Mouse ScrollWheel") > 0 && spellListPos < spellList.Count - 1)
+		{
+			spellListPos++;
+			changeSpell();
+		}
+        if (Input.GetAxis("Mouse ScrollWheel") < 0 && spellListPos > 0)
+        {
+            spellListPos--;
+            changeSpell();
+        }
+    }
+
+	void changeSpell()
+	{
+		shootDamage = spellList[spellListPos].shootDMG;
+		shootDist = spellList[spellListPos].shootDist;
+		shootRate = spellList[spellListPos].shootRate;
+		manaCost = spellList[spellListPos].manaCost;
+
+		spellModel.GetComponent<MeshFilter>().sharedMesh = spellList[spellListPos].GetComponent<MeshFilter>().sharedMesh;
+		spellModel.GetComponent<MeshRenderer>().sharedMaterial = spellList[spellListPos].GetComponent<MeshRenderer>().sharedMaterial;
+
+		
+    }
+
+	public void GetSpellStats(spellStats spell)
+	{
+		spellList.Add(spell);
+		spellListPos = spellList.Count - 1;
+
+		changeSpell();
 	}
 }
