@@ -5,11 +5,18 @@ public class EnemyAI : MonoBehaviour, IDamage
 {
 	[SerializeField] Renderer model;
 	[SerializeField] NavMeshAgent agent;
+	[SerializeField] Animator anim;
+	[SerializeField] Transform headPos;
+	[SerializeField] Collider weaponCol;
 
 	[SerializeField] int HP;
 	[SerializeField] int faceTargetSpeed;
+	[SerializeField] int FOV;
+	[SerializeField] int roamDist;
+    [SerializeField] int roamPauseTime;
+    [SerializeField] int animTranSpeed;
 
-	[SerializeField] Transform shootPos;
+    [SerializeField] Transform shootPos;
 	[SerializeField] GameObject projectile;
 	[SerializeField] float shootRate;
 	[SerializeField] int rangeDmgAmount;
@@ -21,31 +28,40 @@ public class EnemyAI : MonoBehaviour, IDamage
 	Color colorOrig;
 
 	Vector3 playerDir;
+    Vector3 startingPos;
 
-	float shootTimer;
+    float shootTimer;
 	float meleeTimer;
+    float angleToPlayer;
+    float roamTimer;
+    float stoppingDistOrig;
 
-	bool playerInRange;
+    bool playerInRange;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
 	{
 		colorOrig = model.material.color;
 		gameManager.instance.UpdateGameGoal(1);
+		startingPos = transform.position;
+        stoppingDistOrig = agent.stoppingDistance;
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
+		meleeTimer += Time.deltaTime;
+		shootTimer += Time.deltaTime;
+
+		if (agent.remainingDistance < 0.01f)
+		{
+			roamTimer += Time.deltaTime;
+		}
 		if (playerInRange)
 		{
-			meleeTimer += Time.deltaTime;
-			shootTimer += Time.deltaTime;
-
-			playerDir = (gameManager.instance.player.transform.position - transform.position);
+			playerDir = gameManager.instance.player.transform.position - transform.position;
 
 			agent.SetDestination(gameManager.instance.player.transform.position);
-
 
 			if (agent.remainingDistance <= agent.stoppingDistance)
 			{
@@ -57,14 +73,64 @@ public class EnemyAI : MonoBehaviour, IDamage
 				attackPlayer();
 			}
 
-			if (playerDir.magnitude >  meleeDistance && shootTimer >= shootRate)
+			if (playerDir.magnitude > meleeDistance && shootTimer >= shootRate && CanSeePlayer())
 			{
 				shootPlayer();
 			}
 		}
+		else
+		{
+			
+				checkRoam();
+		}
+	
+    }
 
-	}
-	private void OnCollisionEnter(Collision collision)
+    void checkRoam()
+    {
+        if (roamTimer >= roamPauseTime && agent.remainingDistance < 0.01f)
+        {
+            roam();
+        }
+    }
+
+    void roam()
+    {
+        roamTimer = 0;
+        agent.stoppingDistance = 0;
+
+        Vector3 ranPos = Random.insideUnitSphere * roamDist + startingPos;
+
+        if (NavMesh.SamplePosition(ranPos, out NavMeshHit hit, roamDist, NavMesh.AllAreas))
+        {
+            agent.SetDestination(hit.position);
+        }
+    }
+
+	bool CanSeePlayer()
+	{
+		Vector3 directionToPlayer = gameManager.instance.player.transform.position - headPos.position;
+		Vector3 horizontalDir = new Vector3(directionToPlayer.x, 0, directionToPlayer.z);
+		angleToPlayer = Vector3.Angle(horizontalDir, transform.forward);
+
+		Debug.DrawRay(headPos.position, horizontalDir, Color.yellow);
+
+		if (angleToPlayer <= FOV)
+		{
+			if (Physics.Raycast(headPos.position, directionToPlayer, out RaycastHit hit))
+			{
+				if (hit.collider.CompareTag("Player"))
+				{
+					agent.stoppingDistance = stoppingDistOrig;
+					return true;
+				}
+			}
+		}
+        agent.stoppingDistance = 0;
+        return false;
+    }
+
+    private void OnCollisionEnter(Collision collision)
 	{
 		Debug.Log("Collision detected with: " + collision.collider.name);
 		if (collision.collider.CompareTag("Player"))
@@ -76,8 +142,6 @@ public class EnemyAI : MonoBehaviour, IDamage
 			}
 		}
 	}
-	
-
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.CompareTag("Player"))
@@ -91,7 +155,8 @@ public class EnemyAI : MonoBehaviour, IDamage
 		if (other.CompareTag("Player"))
 		{
 			playerInRange = false;
-		}
+            agent.stoppingDistance = 0;
+        }
 	}
 
 	public void TakeDMG(int amount)
@@ -132,7 +197,10 @@ public class EnemyAI : MonoBehaviour, IDamage
 
 	private void shootPlayer()
 	{
-		shootTimer = 0;
-		Instantiate(projectile, shootPos.position, transform.rotation);
+        shootTimer = 0;
+        if (projectile != null)
+		{
+			Instantiate(projectile, shootPos.position, transform.rotation);
+		}
 	}
 }

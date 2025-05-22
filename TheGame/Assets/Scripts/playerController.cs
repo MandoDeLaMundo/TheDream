@@ -11,6 +11,9 @@ public class playerController : MonoBehaviour, IDamage
 	[SerializeField] int HP;
 	int HPOrig;
 
+	[SerializeField] int Mana;
+	int ManaOrig;
+
 	[SerializeField] int speed;
 	[SerializeField] int sprintMod;
 
@@ -48,8 +51,8 @@ public class playerController : MonoBehaviour, IDamage
 	void Start()
 	{
 		HPOrig = HP;
+		ManaOrig = Mana;
 		updatePlayerUI();
-
     }
 
 	// Update is called once per frame
@@ -195,9 +198,15 @@ public class playerController : MonoBehaviour, IDamage
 		}
 	}
 
+	void UseMana(int mana)
+	{
+
+	}
+
 	public void updatePlayerUI()
 	{
 		gameManager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
+		//gameManager.instance
 	}
 
 	IEnumerator flashDamageScreen()
