@@ -378,6 +378,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -15
       objectReference: {fileID: 0}
+    - target: {fileID: 734878612560499528, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
+      propertyPath: playerManaBar
+      value: 
+      objectReference: {fileID: 1647684912}
     - target: {fileID: 1052187278966226661, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -551,6 +555,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6363235147101668856, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
   m_PrefabInstance: {fileID: 1647684910}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1647684912 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 413352395655811836, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
+  m_PrefabInstance: {fileID: 1647684910}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2048135088
 PrefabInstance:
   m_ObjectHideFlags: 0

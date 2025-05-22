@@ -103,8 +103,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup
 		{
 			if (choice == shootchoice.shootraycast)
 				shoot();
-			if (choice == shootchoice.spellList)
-				shoot();
+			if (choice == shootchoice.spellList && spell != null)
+				shootSpell();
 		}
 		if (Input.GetButton("Fire2") && shootTimer >= teleportRate)
 		{
@@ -155,11 +155,11 @@ public class playerController : MonoBehaviour, IDamage, IPickup
 			}
 		}
 	}
-	//void shootSpell()
-	//{
-	//	shootTimer = 0;
-	//	Instantiate(, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
-	//}
+	void shootSpell()
+	{
+		shootTimer = 0;
+		Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+	}
 
 	void teleportbyclick()
 	{
@@ -242,10 +242,10 @@ public class playerController : MonoBehaviour, IDamage, IPickup
 		shootRate = spellList[spellListPos].shootRate;
 		manaCost = spellList[spellListPos].manaCost;
 
-		spellModel.GetComponent<MeshFilter>().sharedMesh = spellList[spellListPos].GetComponent<MeshFilter>().sharedMesh;
-		spellModel.GetComponent<MeshRenderer>().sharedMaterial = spellList[spellListPos].GetComponent<MeshRenderer>().sharedMaterial;
+		spellModel.GetComponent<MeshFilter>().sharedMesh = spellList[spellListPos].model.GetComponent<MeshFilter>().sharedMesh;
+		spellModel.GetComponent<MeshRenderer>().sharedMaterial = spellList[spellListPos].model.GetComponent<MeshRenderer>().sharedMaterial;
 
-		
+		spell = spellList[spellListPos].spellProjectile;
     }
 
 	public void GetSpellStats(spellStats spell)
