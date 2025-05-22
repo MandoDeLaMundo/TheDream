@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: Fire_Ball Spell
   m_EditorClassIdentifier: 
   model: {fileID: 0}
-  shootDMG: 0
-  shootRate: 0
-  shootDist: 0
-  currMana: 0
-  maxMana: 0
-  manaCost: 0
+  shootDMG: 5
+  shootRate: 2.5
+  shootDist: 45
+  manaCost: 5
+  spellRadius: 6
   hitEffect: {fileID: 0}
   shootSound: []
   shootSoundVol: 0

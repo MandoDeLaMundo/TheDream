@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Ice_Saw Spell
   m_EditorClassIdentifier: 
   model: {fileID: 0}
-  shootDMG: 0
-  shootRate: 0
-  shootDist: 0
-  manaCost: 0
+  shootDMG: 10
+  shootRate: 4.25
+  shootDist: 55
+  manaCost: 40
+  spellRadius: 0
   hitEffect: {fileID: 0}
   shootSound: []
   shootSoundVol: 0
