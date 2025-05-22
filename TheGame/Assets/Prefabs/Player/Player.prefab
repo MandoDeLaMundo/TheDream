@@ -84,17 +84,18 @@ MonoBehaviour:
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 512
-  HP: 999
+  HP: 10
   speed: 5
   sprintMod: 3
   isShooting: 0
   shootDamage: 1
   shootRate: 0.5
   shootDist: 100
-  isTeleporting: 1
+  isTeleportingRaycast: 0
   teleportRate: 2
   teleportDist: 15
   teleportProj: {fileID: 3749515074666461166, guid: e25cdfc2416e85445ae2d91969a01a75, type: 3}
+  isTeleportingProj: 0
   jumpMax: 4
   jumpForce: 12
   Gravity: 35

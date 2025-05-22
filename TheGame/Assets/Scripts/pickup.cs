@@ -6,13 +6,14 @@ public class pickup : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		IPickup pickup = other.GetComponent<IPickup>();
+		IPickup toPickup = other.GetComponent<IPickup>();
 
-		if (pickup != null)
+		if (toPickup != null)
 		{
-			pickup.GetSpellStats(spell);
+			Debug.Log("Pickup is not null");
+			toPickup.GetSpellStats(spell);
 
-			Destroy(GameObject);
+			Destroy(gameObject);
 		}
 	}
 }
