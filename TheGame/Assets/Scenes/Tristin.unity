@@ -662,7 +662,7 @@ PrefabInstance:
       objectReference: {fileID: 1396295489}
     - target: {fileID: 4958875843018377022, guid: b74a37d8f026c2641a7b93a4ceaa88ab, type: 3}
       propertyPath: manaRegenRate
-      value: 1
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4958875843018377022, guid: b74a37d8f026c2641a7b93a4ceaa88ab, type: 3}
       propertyPath: manaCoolDownRate
