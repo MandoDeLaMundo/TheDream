@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    [SerializeField] GameObject doormodel;
+    [SerializeField] GameObject doorModel;
     [SerializeField] GameObject button;
     [SerializeField] string text;
 
@@ -20,7 +20,7 @@ public class Door : MonoBehaviour
         {
             if (Input.GetButtonDown("Interact"))
             {
-                doormodel.SetActive(false);
+                doorModel.SetActive(false);
                 button.SetActive(false);
             }
         }
@@ -33,8 +33,8 @@ public class Door : MonoBehaviour
         {
             button.SetActive(true);
             playerInTrigger = true;
-            //gameManager.instance.textPopUpDescription.text = text;
-            //gameManager.instance.textPopUp.SetActive(true);
+            gameManager.instance.textDescription.text = text;
+            gameManager.instance.textBox.SetActive(true);
         }
 
     }
@@ -45,8 +45,8 @@ public class Door : MonoBehaviour
         {
             button.SetActive(false);
             playerInTrigger = false;
-            doormodel.SetActive(true);
-            //gameManager.instance.textPopUp.SetActive(false);
+            doorModel.SetActive(true);
+            gameManager.instance.textBox.SetActive(false);
         }
 
     }
