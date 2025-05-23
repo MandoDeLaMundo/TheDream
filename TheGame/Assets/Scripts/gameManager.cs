@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Security.Cryptography.X509Certificates;
 
 public class gameManager : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class gameManager : MonoBehaviour
 	public GameObject player;
 	public playerController playerScript;
     public Image playerManaBar;
+	public GameObject textBox;
+	public TMP_Text textDescription;
 
     public bool isPaused;
 
