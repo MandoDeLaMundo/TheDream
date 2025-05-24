@@ -25,6 +25,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 	[SerializeField] float meleeDistance;
 	[SerializeField] int meleeDmgAmount;
 
+	[SerializeField] bool isSentry;
 	Color colorOrig;
 
 	Vector3 playerDir;
@@ -45,6 +46,10 @@ public class EnemyAI : MonoBehaviour, IDamage
 		gameManager.instance.UpdateGameGoal(1);
 		startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
+		if(isSentry)
+		{
+			agent.enabled = false;
+		}
 	}
 
 	// Update is called once per frame
@@ -61,12 +66,21 @@ public class EnemyAI : MonoBehaviour, IDamage
 		{
 			playerDir = gameManager.instance.player.transform.position - transform.position;
 
-			agent.SetDestination(gameManager.instance.player.transform.position);
-
-			if (agent.remainingDistance <= agent.stoppingDistance)
+			if (!isSentry)
 			{
-				faceTarget();
+				agent.SetDestination(gameManager.instance.player.transform.position);
+
+				if (agent.remainingDistance <= agent.stoppingDistance)
+				{
+					faceTarget();
+				}
 			}
+			else
+			{
+				faceTarget3D();
+			}
+
+
 
 			if (playerDir.magnitude <= meleeDistance && meleeTimer >= meleeRate)
 			{
@@ -78,12 +92,19 @@ public class EnemyAI : MonoBehaviour, IDamage
 				shootPlayer();
 			}
 		}
-		else
+		else if (!isSentry)
 		{
 			
 				checkRoam();
 		}
 	
+    }
+
+    void faceTarget3D()
+    {
+        Vector3 direction = (gameManager.instance.player.transform.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * faceTargetSpeed);
     }
 
     void checkRoam()
@@ -200,7 +221,8 @@ public class EnemyAI : MonoBehaviour, IDamage
         shootTimer = 0;
         if (projectile != null)
 		{
-			Instantiate(projectile, shootPos.position, transform.rotation);
-		}
+            Vector3 dir = (gameManager.instance.player.transform.position - shootPos.position).normalized;
+            GameObject proj = Instantiate(projectile, shootPos.position, Quaternion.LookRotation(dir));
+        }
 	}
 }

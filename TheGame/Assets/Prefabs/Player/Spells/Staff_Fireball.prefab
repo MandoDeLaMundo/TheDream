@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7167711087978041352}
   - component: {fileID: 5100220870117197346}
   - component: {fileID: 5951992103781252099}
-  - component: {fileID: 8182147611896067171}
+  - component: {fileID: 9321308723820792}
   m_Layer: 0
   m_Name: Staff_Fireball
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7459730609816191117}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.20469208, w: 0.9788264}
+  m_LocalRotation: {x: 0, y: 0, z: 0.2046925, w: 0.97882634}
   m_LocalPosition: {x: 0.13, y: 1.51, z: 7.063}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -47,7 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76a7bda188c412f40ab6e1ce937f43bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   spell: {fileID: 11400000, guid: 7e580131584ee514c9232d516fe51967, type: 2}
+  item: {fileID: 0}
 --- !u!33 &5100220870117197346
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -101,8 +103,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &8182147611896067171
-SphereCollider:
+--- !u!65 &9321308723820792
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -120,5 +122,5 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.4924474
-  m_Center: {x: 0.05251246, y: 0.17379937, z: -0.0019264668}
+  m_Size: {x: 0.5, y: 2.2114878, z: 0.5}
+  m_Center: {x: 0.00000022351742, y: -0.22919038, z: 0.00000018253922}
