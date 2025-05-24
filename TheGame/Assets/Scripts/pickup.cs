@@ -2,10 +2,13 @@ using UnityEngine;
 
 public class pickup : MonoBehaviour
 {
-
+	enum pickupType { weapon, item }
+	[SerializeField] pickupType type;
 
 	[SerializeField] spellStats spell;
-	//[SerializeField] itemStats item;
+	[SerializeField] itemStats item;
+
+	bool isFirstTimePickedup;
 
 	private void OnTriggerEnter(Collider other)
 	{
@@ -13,8 +16,11 @@ public class pickup : MonoBehaviour
 
 		if (toPickup != null)
 		{
-			toPickup.GetSpellStats(spell);
-
+			if (type == pickupType.weapon)
+				toPickup.GetSpellStats(spell);
+			else if (type == pickupType.item)
+				toPickup.GetItemStats(item);
+			
 			Destroy(gameObject);
 		}
 	}
