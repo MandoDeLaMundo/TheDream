@@ -2,7 +2,10 @@ using UnityEngine;
 
 public class pickup : MonoBehaviour
 {
+
+
 	[SerializeField] spellStats spell;
+	//[SerializeField] itemStats item;
 
 	private void OnTriggerEnter(Collider other)
 	{
