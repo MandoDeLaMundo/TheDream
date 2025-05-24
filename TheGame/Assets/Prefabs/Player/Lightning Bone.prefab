@@ -50,10 +50,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   rb: {fileID: 1726855954963603785}
-  damageAmmount: 2
+  damageAmount: 0
   damageRate: 1
   speed: 40
   destroyTime: 3
+  contactDMGAmount: 0
+  knockBackDistance: 0
+  knockBackSpeed: 0
+  knockbackDelay: 0
 --- !u!33 &8472469645794640667
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -122,7 +126,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

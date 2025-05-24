@@ -1,7 +1,6 @@
 using System.Data.SqlTypes;
 using UnityEngine;
 using System.Collections;
-using Unity.VisualScripting;
 using System.Collections.Generic;
 
 public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
@@ -35,7 +34,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     [SerializeField] float manaCoolDownRate;
     [SerializeField] float manaRegenRate;
     float manaRegenTimer;
-    float manaTimer;
+    float manaCooldownTimer;
 
     [SerializeField] GameObject teleportProj;
     [SerializeField] bool isTeleportingRaycast;
@@ -94,7 +93,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         shootTimer += Time.deltaTime;
 
         if (Mana != ManaOrig)
-            manaTimer += Time.deltaTime;
+            manaCooldownTimer += Time.deltaTime;
 
         if (controller.isGrounded)
         {
@@ -112,22 +111,21 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         playerVel.y -= Gravity * Time.deltaTime;
         if (Input.GetButton("Fire1") && shootTimer >= shootRate)
         {
-            if (choice == shootchoice.shootraycast)
+            if (choice == shootchoice.shootraycast )
                 shoot();
-            if (choice == shootchoice.spellList && spell != null && Mana >= 1)
+            if (choice == shootchoice.spellList && spell != null && Mana > manaCost)
                 shootSpell();
         }
-        if (Input.GetButton("Fire2") && shootTimer >= teleportRate)
+        if (Input.GetButton("Fire2"))
         {
-            if (isTeleportingRaycast)
+            if (isTeleportingRaycast && shootTimer >= teleportRate)
                 teleportbyclick();
-            if (isTeleportingProj)
+            if (isTeleportingProj && spell != null && Mana > manaCost)
                 teleportproj();
         }
 
-        if (manaTimer >= manaCoolDownRate)
+        if (manaCooldownTimer >= manaCoolDownRate)
         {
-            Debug.Log("Mana regen check");
             ManaRegen();
         }
 
@@ -176,7 +174,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     void shootSpell()
     {
         shootTimer = 0;
-        manaTimer = 0;
+        manaCooldownTimer = 0;
 
         Mana -= manaCost;
         updatePlayerUI();
@@ -188,24 +186,13 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         manaRegenTimer += Time.deltaTime;
         if (manaRegenTimer >= manaRegenRate)
         {
-            Debug.Log("Mana Regen");
             Mana += 1;
             updatePlayerUI();
             manaRegenTimer = 0;
         }
         if (Mana == ManaOrig || Input.GetButton("Fire1"))
         {
-            manaTimer = 0;
-        }
-        else if (Mana > ManaOrig)
-        {
-            Mana = ManaOrig;
-            updatePlayerUI();
-        }
-        else if (Mana < 0)
-        {
-            Mana = 0;
-            updatePlayerUI();
+            manaCooldownTimer = 0;
         }
     }
 

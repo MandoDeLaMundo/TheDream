@@ -735,10 +735,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4472765997356283682}
   - {fileID: 685835036591112419}
   - {fileID: 2333631415124861548}
   - {fileID: 4714314409244027761}
-  - {fileID: 4472765997356283682}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4958875843018377022
@@ -771,11 +771,13 @@ MonoBehaviour:
   shootRate: 0.25
   shootDist: 150
   manaCost: 0
+  manaCoolDownRate: 0
+  manaRegenRate: 0
+  teleportProj: {fileID: 0}
   isTeleportingRaycast: 0
+  isTeleportingProj: 0
   teleportRate: 2
   teleportDist: 15
-  teleportProj: {fileID: 0}
-  isTeleportingProj: 0
   jumpMax: 1
   jumpForce: 12
   Gravity: 35
