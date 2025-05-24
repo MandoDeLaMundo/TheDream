@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1969496036213659106}
   - component: {fileID: 5790605339702143715}
   m_Layer: 0
-  m_Name: Shield Spell
+  m_Name: Pickup_Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

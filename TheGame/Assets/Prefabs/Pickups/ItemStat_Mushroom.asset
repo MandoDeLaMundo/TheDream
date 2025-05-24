@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8fa449b0a99887c4c86b8770222bbb74, type: 3}
-  m_Name: Bee Wax
+  m_Name: ItemStat_Mushroom
   m_EditorClassIdentifier: 
-  model: {fileID: 6791816518937276895, guid: 4caa6851baabe4f40bde9724dafa3b8e, type: 3}
-  itemName: Bee Wax
-  itemDescription: This particular monster produces wax similar to butter, but far
-    more delicious!
+  model: {fileID: 1197006836730729220, guid: b41ef6b0fcdee1c4b9e62aa1102626d7, type: 3}
+  itemName: Mushroom
+  itemDescription: Unlike some Italian plumbers, I like mushrooms, they go REALLY
+    well on omelets!
   healFactor: 0

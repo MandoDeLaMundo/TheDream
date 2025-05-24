@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8fa449b0a99887c4c86b8770222bbb74, type: 3}
-  m_Name: Boar Meat
+  m_Name: ItemStat_Egg
   m_EditorClassIdentifier: 
-  model: {fileID: 227577062100369360, guid: 78aa69274795dd6458edadb8e3efe5c3, type: 3}
-  itemName: Boar Meat
-  itemDescription: This boar meat comes from a creature resembling a cow. I could
-    make bacon with this, perfect for my omelet!
+  model: {fileID: 4077141521328887635, guid: 26dd2342357dc454bb29148a4339dd1d, type: 3}
+  itemName: Boss Egg
+  itemDescription: The boss monster egg. The perfect base for my omelet!
   healFactor: 0
