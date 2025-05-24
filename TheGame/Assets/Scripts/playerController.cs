@@ -4,7 +4,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using System.Collections.Generic;
 
-public class playerController : MonoBehaviour, IDamage, IPickup
+public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 {
     [SerializeField] CharacterController controller;
     //[SerializeField] Animator anim;
@@ -299,4 +299,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup
 
         changeSpell();
     }
+
+    public void GetItemStats(itemStats item) { }
 }
