@@ -12,6 +12,7 @@ public class gameManager : MonoBehaviour
 	[SerializeField] GameObject menuWin;
 	[SerializeField] GameObject menuLose;
 	[SerializeField] TMP_Text gameGoalCountText;
+	
 
 	public GameObject playerDamageScreen;
 	public Image playerHPBar;
@@ -20,6 +21,8 @@ public class gameManager : MonoBehaviour
     public Image playerManaBar;
 	public GameObject textBox;
 	public TMP_Text textDescription;
+	public TMP_Text playerHPCount;
+	public TMP_Text playerMPCount;
 
     public bool isPaused;
 
