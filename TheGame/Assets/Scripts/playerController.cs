@@ -55,9 +55,9 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     void Start()
     {
         HPOrig = HP;
-        //gameManager.instance.UpdateHP(HP);
+        gameManager.instance.UpdatePlayerHPCount(HP);
         ManaOrig = Mana;
-        //gameManager.instance.UpdateMana(Mana);
+        gameManager.instance.UpdatePlayerMPCount(Mana);
         updatePlayerUI();
         if (spellList != null)
             changeSpell();
@@ -173,10 +173,18 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         manaCooldownTimer = 0;
 
         Mana -= manaCost;
-        //gameManager.instance.UpdateMana(-manaCost);
+        gameManager.instance.UpdatePlayerMPCount(-manaCost);
         updatePlayerUI();
         if (spellList[spellListPos].name != "Teleport Spell")
-        Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+        {
+            Debug.Log("Every spell but teleport");
+            Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+        }
+        else
+        {
+            Debug.Log("Teleport spell");
+            Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+        }
 
 
     }
@@ -187,7 +195,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         if (manaRegenTimer >= manaRegenRate)
         {
             Mana += 1;
-            //gameManager.instance.UpdateMana(1);
+            gameManager.instance.UpdatePlayerMPCount(1);
             updatePlayerUI();
             manaRegenTimer = 0;
         }
@@ -232,7 +240,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     public void TakeDMG(int amount)
     {
         HP -= amount;
-        //gameManager.instance.UpdateHP(-amount);
+        gameManager.instance.UpdatePlayerHPCount(-amount);
         updatePlayerUI();
         StartCoroutine(flashDamageScreen());
 
