@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   rb: {fileID: 1726855954963603785}
-  damageAmount: 0
+  damageAmount: 3
   damageRate: 1
   speed: 40
   destroyTime: 3

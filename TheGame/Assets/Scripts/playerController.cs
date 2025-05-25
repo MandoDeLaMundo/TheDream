@@ -72,10 +72,11 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     // Update is called once per frame
     void Update()
     {
-        if (choice == shootchoice.shootraycast)
-        {
-            Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
-        }
+        //if (choice == shootchoice.shootraycast)
+        //{
+        Debug.DrawRay(shootPos.position, Camera.main.transform.forward * shootDist, Color.red);
+        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
+        //}
         if (isTeleportingRaycast)
         {
             Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * teleportDist, Color.blue);
@@ -111,7 +112,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         playerVel.y -= Gravity * Time.deltaTime;
         if (Input.GetButton("Fire1") && shootTimer >= shootRate)
         {
-            if (choice == shootchoice.shootraycast )
+            if (choice == shootchoice.shootraycast)
                 shoot();
             if (choice == shootchoice.spellList && spell != null && Mana > manaCost)
                 shootSpell();
@@ -173,12 +174,14 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     void shootSpell()
     {
+
         shootTimer = 0;
         manaCooldownTimer = 0;
 
         Mana -= manaCost;
         updatePlayerUI();
         Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+
     }
 
     void ManaRegen()
@@ -198,6 +201,23 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     void teleportbyclick()
     {
+        RaycastHit hit;
+
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
+        {
+            Debug.Log(hit.collider.name);
+            Vector3 teleportPosition = hit.point;
+            if (Vector3.Distance(transform.position, teleportPosition) <= teleportDist)
+            {
+                teleportPosition.y = 1.0f;
+                transform.position = teleportPosition;
+            }
+        }
+
+    }
+
+    void teleportproj()
+    {
         if (currentTeleProj != null) return;
         shootTimer = 0;
 
@@ -209,21 +229,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             rb.linearVelocity = Camera.main.transform.forward * 20f;
         }
         currentTeleProj = teleProj;
-
     }
-
-    void teleportproj() { }
-
-    //void shootIce()
-    //{
-    //	shootTimer = 0;
-    //	Instantiate(Ice, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
-    //   }
-    //void shootLightning()
-    //{
-    //	shootTimer = 0;
-    //	Instantiate(Lightning, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
-    //   }
 
     public void TakeDMG(int amount)
     {
@@ -269,6 +275,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     void changeSpell()
     {
         shootDamage = spellList[spellListPos].shootDMG;
+
         shootDist = spellList[spellListPos].shootDist;
         shootRate = spellList[spellListPos].shootRate;
         manaCost = spellList[spellListPos].manaCost;
@@ -287,5 +294,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         changeSpell();
     }
 
-    public void GetItemStats(itemStats item) { }
+    public void GetItemStats(itemStats item)
+    {
+
+    }
 }

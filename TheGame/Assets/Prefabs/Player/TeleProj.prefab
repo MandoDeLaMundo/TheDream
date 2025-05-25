@@ -50,10 +50,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   rb: {fileID: 1726855954963603785}
-  damageAmmount: 3
+  damageAmount: 0
   damageRate: 1
   speed: 20
   destroyTime: 3
+  contactDMGAmount: 0
+  knockBackDistance: 0
+  knockBackSpeed: 0
+  knockbackDelay: 0
 --- !u!33 &8472469645794640667
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -61,7 +65,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3749515074666461166}
-  m_Mesh: {fileID: -318380812313391449, guid: edcc86a903182d0429c0d7b2c727fec0, type: 3}
+  m_Mesh: {fileID: -5144344001418381243, guid: 5f08b7e2d7e779b489d62a277820e3ff, type: 3}
 --- !u!23 &4575469929640943367
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -85,7 +89,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: eb39e6b8c61f4ee419e3643e2bd48722, type: 2}
+  - {fileID: 2100000, guid: 69c9fd2d60493ee448e90dd335fcac85, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
