@@ -12,22 +12,23 @@ public class gameManager : MonoBehaviour
 	[SerializeField] GameObject menuWin;
 	[SerializeField] GameObject menuLose;
 	[SerializeField] TMP_Text gameGoalCountText;
-	
+    [SerializeField] TMP_Text playerHPCountText;
+    [SerializeField] TMP_Text playerMPCountText;
 
-	public GameObject playerDamageScreen;
+    public GameObject playerDamageScreen;
 	public Image playerHPBar;
 	public GameObject player;
 	public playerController playerScript;
     public Image playerManaBar;
 	public GameObject textBox;
 	public TMP_Text textDescription;
-	public TMP_Text playerHPCount;
-	public TMP_Text playerMPCount;
 
     public bool isPaused;
 
 	float timeScaleOrig;
 	int gameGoalCount;
+	int playerHPCountOrig;
+	int playerMPCountOrig;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Awake()
@@ -94,5 +95,19 @@ public class gameManager : MonoBehaviour
 			menuActive = menuWin;
 			menuActive.SetActive(true);
 		}
+	}
+
+	public void UpdatePlayerHPCount(int amount)
+    {
+		playerHPCountOrig += amount;
+		playerHPCountText.text = playerHPCountOrig.ToString("F0");
+		
+        
+    }
+
+	public void UpdatePlayerMPCount(int amount)
+	{
+		playerMPCountOrig += amount;
+		playerMPCountText.text = playerMPCountOrig.ToString("F0");
 	}
 }
