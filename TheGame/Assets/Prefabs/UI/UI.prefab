@@ -2808,6 +2808,8 @@ MonoBehaviour:
   menuWin: {fileID: 5001548040472073686}
   menuLose: {fileID: 5003362304647114940}
   gameGoalCountText: {fileID: 3085985599920020501}
+  playerHPCountText: {fileID: 9071689530912312614}
+  playerMPCountText: {fileID: 5381193607921784384}
   playerDamageScreen: {fileID: 5585800772390485183}
   playerHPBar: {fileID: 9121913521343069128}
   player: {fileID: 0}
@@ -2815,8 +2817,6 @@ MonoBehaviour:
   playerManaBar: {fileID: 413352395655811836}
   textBox: {fileID: 0}
   textDescription: {fileID: 0}
-  playerHPCount: {fileID: 9071689530912312614}
-  playerMPCount: {fileID: 5381193607921784384}
   isPaused: 0
 --- !u!1 &5804555079100988327
 GameObject:
