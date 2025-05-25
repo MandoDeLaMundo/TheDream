@@ -18,12 +18,12 @@ public class pickup : MonoBehaviour
 		{
 			if (type == pickupType.weapon)
 			{
-				Debug.Log("Picked up a weapon");
+				//Debug.Log("Picked up a weapon");
 				toPickup.GetSpellStats(spell);
 			}
 			else if (type == pickupType.item)
 			{
-				Debug.Log("Picked up an item");
+				//Debug.Log("Picked up an item");
 				toPickup.GetItemStats(item);
 			}
 			
