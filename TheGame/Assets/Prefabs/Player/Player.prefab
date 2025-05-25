@@ -50,7 +50,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1901461990055869878
 Transform:
   m_ObjectHideFlags: 0
@@ -84,7 +84,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   HP: 10
-  Mana: 5
+  Mana: 100
   speed: 5
   sprintMod: 10
   choice: 1
@@ -97,11 +97,13 @@ MonoBehaviour:
   shootRate: 0.25
   shootDist: 150
   manaCost: 0
+  manaCoolDownRate: 2
+  manaRegenRate: 0.1
+  teleportProj: {fileID: 0}
   isTeleportingRaycast: 0
+  isTeleportingProj: 0
   teleportRate: 2
   teleportDist: 15
-  teleportProj: {fileID: 0}
-  isTeleportingProj: 0
   jumpMax: 1
   jumpForce: 12
   Gravity: 35

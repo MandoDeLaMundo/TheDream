@@ -50,20 +50,14 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     int jumpCount;
     Vector3 playerVel;
 
-    //[SerializeField] bool isFireball;
-    //[SerializeField] GameObject fireBall;
-    //[SerializeField] bool isIce;
-    //[SerializeField] GameObject Ice;
-    //[SerializeField] bool isLightning;
-    //[SerializeField] GameObject Lightning;
-
-
     Vector3 moveDir;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         HPOrig = HP;
+        //gameManager.instance.UpdateHP(HP);
         ManaOrig = Mana;
+        //gameManager.instance.UpdateMana(Mana);
         updatePlayerUI();
         if (spellList != null)
             changeSpell();
@@ -179,8 +173,11 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         manaCooldownTimer = 0;
 
         Mana -= manaCost;
+        //gameManager.instance.UpdateMana(-manaCost);
         updatePlayerUI();
+        if (spellList[spellListPos].name != "Teleport Spell")
         Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+
 
     }
 
@@ -190,6 +187,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         if (manaRegenTimer >= manaRegenRate)
         {
             Mana += 1;
+            //gameManager.instance.UpdateMana(1);
             updatePlayerUI();
             manaRegenTimer = 0;
         }
@@ -234,6 +232,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     public void TakeDMG(int amount)
     {
         HP -= amount;
+        //gameManager.instance.UpdateHP(-amount);
         updatePlayerUI();
         StartCoroutine(flashDamageScreen());
 

@@ -406,7 +406,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2044589232528666286}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5002673, y: -0.33898485, z: 0.25845087, w: 0.75367427}
+  m_LocalRotation: {x: 0.5002674, y: -0.33898488, z: 0.2584509, w: 0.7536744}
   m_LocalPosition: {x: 0.000000004470348, y: 0.44433245, z: 0.000000011511147}
   m_LocalScale: {x: 1.0000012, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -730,7 +730,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3074450609331110259}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -758,7 +758,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   HP: 10
-  Mana: 5
+  Mana: 100
   speed: 5
   sprintMod: 10
   choice: 1
@@ -766,13 +766,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3152bdeabdc9d8145bfce5983ab7ab46, type: 2}
   spellModel: {fileID: 5866187890336837446}
   spell: {fileID: 0}
-  shootPos: {fileID: 0}
+  shootPos: {fileID: 2068290404957403179}
   shootDamage: 1
   shootRate: 0.25
   shootDist: 150
   manaCost: 0
-  manaCoolDownRate: 0
-  manaRegenRate: 0
+  manaCoolDownRate: 2
+  manaRegenRate: 0.1
   teleportProj: {fileID: 0}
   isTeleportingRaycast: 0
   isTeleportingProj: 0
@@ -791,7 +791,7 @@ Animator:
   m_GameObject: {fileID: 3074450609331110259}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 35c44a97c30e4e946a0f4d3310613b95, type: 3}
-  m_Controller: {fileID: 9100000, guid: 603bf475fb1d11845be435e295f9f2bf, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
