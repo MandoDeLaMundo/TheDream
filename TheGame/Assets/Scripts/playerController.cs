@@ -57,6 +57,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         gameManager.instance.UpdatePlayerHPCount(HP);
         ManaOrig = Mana;
         gameManager.instance.UpdatePlayerMPCount(Mana);
+        //gameManager.instance.MaxPlayerHPMP(HP,Mana);
         //gameManager.instance.MaxPlayerHPMana(HP,Mana);
         updatePlayerUI();
         if (spellList != null)
