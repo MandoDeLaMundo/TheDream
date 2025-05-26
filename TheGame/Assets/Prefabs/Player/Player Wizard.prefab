@@ -758,7 +758,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   HP: 10
-  Mana: 100
+  Mana: 10
   speed: 5
   sprintMod: 10
   choice: 1

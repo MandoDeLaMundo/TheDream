@@ -1,4 +1,3 @@
-using System.Data.SqlTypes;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -58,6 +57,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         gameManager.instance.UpdatePlayerHPCount(HP);
         ManaOrig = Mana;
         gameManager.instance.UpdatePlayerMPCount(Mana);
+        //gameManager.instance.MaxPlayerHPMana(HP,Mana);
         updatePlayerUI();
         if (spellList != null)
             changeSpell();
