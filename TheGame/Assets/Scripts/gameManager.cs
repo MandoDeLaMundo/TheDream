@@ -19,6 +19,7 @@ public class gameManager : MonoBehaviour
 	[SerializeField] TMP_Text textOBJ1;
 	[SerializeField] TMP_Text textOBJ2;
     [SerializeField] TMP_Text textOBJ3;
+	[SerializeField] TMP_Text potionText;
 
     public GameObject playerDamageScreen;
 	public Image playerHPBar;
@@ -34,6 +35,9 @@ public class gameManager : MonoBehaviour
 	int gameGoalCount;
 	int playerHPCountOrig;
 	int playerMPCountOrig;
+	int playerHPMaxOrig;
+	int playerMPMaxOrig;
+	int potionCountOrig;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Awake()
@@ -114,5 +118,20 @@ public class gameManager : MonoBehaviour
 	{
 		playerMPCountOrig += amount;
 		playerMPCountText.text = playerMPCountOrig.ToString("F0");
+	}
+
+	public void UpdatePlayerMaxHPMPCount(int amount)
+	{
+		playerMPMaxOrig += amount;
+		playerMPMaxText.text = playerMPMaxOrig.ToString("F0");
+		playerHPMaxOrig += amount;
+		playerHPMaxText.text = playerHPMaxOrig.ToString("F0");
+	}
+
+	public void UpdatePotionCount(int amount)
+	{
+		potionCountOrig += amount;
+		potionText.text = potionCountOrig.ToString("F0");
+
 	}
 }
