@@ -127,9 +127,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1315425215259821101, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 734878612560499528, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
+      propertyPath: gameGoalCountText
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 734878612560499528, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
+      propertyPath: playerHPCountText
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 734878612560499528, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
+      propertyPath: playerMPCountText
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2489639799210999176, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
       propertyPath: m_Pivot.x
@@ -214,14 +222,6 @@ PrefabInstance:
     - target: {fileID: 3252357819667347973, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
       propertyPath: m_Name
       value: UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 6607091591298903407, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6862261641429769479, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
