@@ -5443,6 +5443,13 @@ MonoBehaviour:
   gameGoalCountText: {fileID: 0}
   playerHPCountText: {fileID: 0}
   playerMPCountText: {fileID: 0}
+  playerHPMaxText: {fileID: 0}
+  playerMPMaxText: {fileID: 0}
+  textOBJ1: {fileID: 0}
+  textOBJ2: {fileID: 0}
+  textOBJ3: {fileID: 0}
+  textOBJ4: {fileID: 0}
+  potionText: {fileID: 9211669686770967111}
   playerDamageScreen: {fileID: 5585800772390485183}
   playerHPBar: {fileID: 9121913521343069128}
   player: {fileID: 0}

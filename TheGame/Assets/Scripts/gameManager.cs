@@ -19,7 +19,8 @@ public class gameManager : MonoBehaviour
 	[SerializeField] TMP_Text textOBJ1;
 	[SerializeField] TMP_Text textOBJ2;
     [SerializeField] TMP_Text textOBJ3;
-	[SerializeField] TMP_Text potionText;
+    [SerializeField] TMP_Text textOBJ4;
+    [SerializeField] TMP_Text potionText;
 
     public GameObject playerDamageScreen;
 	public Image playerHPBar;
@@ -38,6 +39,7 @@ public class gameManager : MonoBehaviour
 	int playerHPMaxOrig;
 	int playerMPMaxOrig;
 	int potionCountOrig;
+	int object4CountOrig;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Awake()
@@ -120,11 +122,15 @@ public class gameManager : MonoBehaviour
 		playerMPCountText.text = playerMPCountOrig.ToString("F0");
 	}
 
-	public void UpdatePlayerMaxHPMPCount(int amount)
+	public void UpdatePlayerMaxHPMPCount(int hpAmount, int mpAmount)
 	{
-		playerMPMaxOrig += amount;
+		UpdatePlayerHPCount(hpAmount);
+		UpdatePlayerMPCount(mpAmount);
+
+		playerMPMaxOrig += mpAmount;
 		playerMPMaxText.text = playerMPMaxOrig.ToString("F0");
-		playerHPMaxOrig += amount;
+
+		playerHPMaxOrig += hpAmount;
 		playerHPMaxText.text = playerHPMaxOrig.ToString("F0");
 	}
 
@@ -132,6 +138,12 @@ public class gameManager : MonoBehaviour
 	{
 		potionCountOrig += amount;
 		potionText.text = potionCountOrig.ToString("F0");
-
 	}
+
+	public void UpdateObject4Count(int amount)
+    {
+        object4CountOrig += amount;
+
+        textOBJ4.text = object4CountOrig.ToString("F0");
+    }
 }
