@@ -50,10 +50,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   rb: {fileID: 2453830040963180304}
-  damageAmount: 1
+  damageAmount: 5
   damageRate: 0
   speed: 25
   destroyTime: 3
+  contactDMGAmount: 0
+  knockBackDistance: 0
+  knockBackSpeed: 0
+  knockbackDelay: 0
 --- !u!33 &286852086730160532
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -85,7 +89,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4c59487b5877ffb489c88e5779d3745e, type: 2}
+  - {fileID: 2100000, guid: 196a83e4fac7a644ebc189706f6c2082, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -1,7 +1,6 @@
 using System.Data.SqlTypes;
 using UnityEngine;
 using System.Collections;
-using Unity.VisualScripting;
 using System.Collections.Generic;
 
 public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
@@ -35,7 +34,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     [SerializeField] float manaCoolDownRate;
     [SerializeField] float manaRegenRate;
     float manaRegenTimer;
-    float manaTimer;
+    float manaCooldownTimer;
 
     [SerializeField] GameObject teleportProj;
     [SerializeField] bool isTeleportingRaycast;
@@ -51,20 +50,14 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     int jumpCount;
     Vector3 playerVel;
 
-    //[SerializeField] bool isFireball;
-    //[SerializeField] GameObject fireBall;
-    //[SerializeField] bool isIce;
-    //[SerializeField] GameObject Ice;
-    //[SerializeField] bool isLightning;
-    //[SerializeField] GameObject Lightning;
-
-
     Vector3 moveDir;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         HPOrig = HP;
+        gameManager.instance.UpdatePlayerHPCount(HP);
         ManaOrig = Mana;
+        gameManager.instance.UpdatePlayerMPCount(Mana);
         updatePlayerUI();
         if (spellList != null)
             changeSpell();
@@ -73,10 +66,11 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     // Update is called once per frame
     void Update()
     {
-        if (choice == shootchoice.shootraycast)
-        {
-            Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
-        }
+        //if (choice == shootchoice.shootraycast)
+        //{
+        Debug.DrawRay(shootPos.position, Camera.main.transform.forward * shootDist, Color.red);
+        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
+        //}
         if (isTeleportingRaycast)
         {
             Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * teleportDist, Color.blue);
@@ -94,7 +88,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         shootTimer += Time.deltaTime;
 
         if (Mana != ManaOrig)
-            manaTimer += Time.deltaTime;
+            manaCooldownTimer += Time.deltaTime;
 
         if (controller.isGrounded)
         {
@@ -114,20 +108,19 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         {
             if (choice == shootchoice.shootraycast)
                 shoot();
-            if (choice == shootchoice.spellList && spell != null && Mana >= 1)
+            if (choice == shootchoice.spellList && spell != null && Mana > manaCost)
                 shootSpell();
         }
-        if (Input.GetButton("Fire2") && shootTimer >= teleportRate)
+        if (Input.GetButton("Fire2"))
         {
-            if (isTeleportingRaycast)
+            if (isTeleportingRaycast && shootTimer >= teleportRate)
                 teleportbyclick();
-            if (isTeleportingProj)
+            if (isTeleportingProj && spell != null && Mana > manaCost)
                 teleportproj();
         }
 
-        if (manaTimer >= manaCoolDownRate)
+        if (manaCooldownTimer >= manaCoolDownRate)
         {
-            Debug.Log("Mana regen check");
             ManaRegen();
         }
 
@@ -175,12 +168,25 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     void shootSpell()
     {
+
         shootTimer = 0;
-        manaTimer = 0;
+        manaCooldownTimer = 0;
 
         Mana -= manaCost;
+        gameManager.instance.UpdatePlayerMPCount(-manaCost);
         updatePlayerUI();
-        Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+        if (spellList[spellListPos].name != "Teleport Spell")
+        {
+            Debug.Log("Every spell but teleport");
+            Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+        }
+        else
+        {
+            Debug.Log("Teleport spell");
+            Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+        }
+
+
     }
 
     void ManaRegen()
@@ -188,28 +194,35 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         manaRegenTimer += Time.deltaTime;
         if (manaRegenTimer >= manaRegenRate)
         {
-            Debug.Log("Mana Regen");
             Mana += 1;
+            gameManager.instance.UpdatePlayerMPCount(1);
             updatePlayerUI();
             manaRegenTimer = 0;
         }
         if (Mana == ManaOrig || Input.GetButton("Fire1"))
         {
-            manaTimer = 0;
-        }
-        else if (Mana > ManaOrig)
-        {
-            Mana = ManaOrig;
-            updatePlayerUI();
-        }
-        else if (Mana < 0)
-        {
-            Mana = 0;
-            updatePlayerUI();
+            manaCooldownTimer = 0;
         }
     }
 
     void teleportbyclick()
+    {
+        RaycastHit hit;
+
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
+        {
+            Debug.Log(hit.collider.name);
+            Vector3 teleportPosition = hit.point;
+            if (Vector3.Distance(transform.position, teleportPosition) <= teleportDist)
+            {
+                teleportPosition.y = 1.0f;
+                transform.position = teleportPosition;
+            }
+        }
+
+    }
+
+    void teleportproj()
     {
         if (currentTeleProj != null) return;
         shootTimer = 0;
@@ -222,25 +235,12 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             rb.linearVelocity = Camera.main.transform.forward * 20f;
         }
         currentTeleProj = teleProj;
-
     }
-
-    void teleportproj() { }
-
-    //void shootIce()
-    //{
-    //	shootTimer = 0;
-    //	Instantiate(Ice, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
-    //   }
-    //void shootLightning()
-    //{
-    //	shootTimer = 0;
-    //	Instantiate(Lightning, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
-    //   }
 
     public void TakeDMG(int amount)
     {
         HP -= amount;
+        gameManager.instance.UpdatePlayerHPCount(-amount);
         updatePlayerUI();
         StartCoroutine(flashDamageScreen());
 
@@ -282,6 +282,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     void changeSpell()
     {
         shootDamage = spellList[spellListPos].shootDMG;
+
         shootDist = spellList[spellListPos].shootDist;
         shootRate = spellList[spellListPos].shootRate;
         manaCost = spellList[spellListPos].manaCost;
@@ -300,5 +301,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         changeSpell();
     }
 
-    public void GetItemStats(itemStats item) { }
+    public void GetItemStats(itemStats item)
+    {
+
+    }
 }
