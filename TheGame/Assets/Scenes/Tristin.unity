@@ -1089,6 +1089,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 734878612560499528, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
+      propertyPath: potionText
+      value: 
+      objectReference: {fileID: 1048228801}
+    - target: {fileID: 734878612560499528, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
+      propertyPath: playerHPMaxText
+      value: 
+      objectReference: {fileID: 1048228804}
+    - target: {fileID: 734878612560499528, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
+      propertyPath: playerMPMaxText
+      value: 
+      objectReference: {fileID: 1048228802}
+    - target: {fileID: 734878612560499528, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
+      propertyPath: playerHPCountText
+      value: 
+      objectReference: {fileID: 1048228805}
+    - target: {fileID: 734878612560499528, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
+      propertyPath: playerMPCountText
+      value: 
+      objectReference: {fileID: 1048228803}
     - target: {fileID: 2489639799210999176, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1182,6 +1202,61 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
+--- !u!114 &1048228801 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9211669686770967111, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
+  m_PrefabInstance: {fileID: 1048228800}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1048228802 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6259776306196115505, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
+  m_PrefabInstance: {fileID: 1048228800}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1048228803 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4925587890956501598, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
+  m_PrefabInstance: {fileID: 1048228800}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1048228804 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5599035424042714299, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
+  m_PrefabInstance: {fileID: 1048228800}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1048228805 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1434935364265904542, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
+  m_PrefabInstance: {fileID: 1048228800}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1306419498
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1761,6 +1836,10 @@ MonoBehaviour:
   playerMPCountText: {fileID: 5535397093380284982}
   playerHPMaxText: {fileID: 555662178}
   playerMPMaxText: {fileID: 250279980}
+  textOBJ1: {fileID: 0}
+  textOBJ2: {fileID: 0}
+  textOBJ3: {fileID: 0}
+  potionText: {fileID: 0}
   playerDamageScreen: {fileID: 5585800772928972972}
   playerHPBar: {fileID: 9121913522955694043}
   player: {fileID: 0}

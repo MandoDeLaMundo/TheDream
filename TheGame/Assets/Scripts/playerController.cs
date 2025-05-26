@@ -49,6 +49,12 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     int jumpCount;
     Vector3 playerVel;
 
+    [SerializeField] int healingCooldown;
+    public int healingnum;
+    int healingnumOrig;
+    public int numofhealpotions;
+    float healTimer;
+
     Vector3 moveDir;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -57,6 +63,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         gameManager.instance.UpdatePlayerHPCount(HP);
         ManaOrig = Mana;
         gameManager.instance.UpdatePlayerMPCount(Mana);
+        healingnumOrig = healingnum;
+        gameManager.instance.UpdatePotionCount(numofhealpotions);
         //gameManager.instance.MaxPlayerHPMP(HP,Mana);
         //gameManager.instance.MaxPlayerHPMana(HP,Mana);
         updatePlayerUI();
@@ -87,6 +95,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     void Movement()
     {
         shootTimer += Time.deltaTime;
+        healTimer += Time.deltaTime;
 
         if (Mana != ManaOrig)
             manaCooldownTimer += Time.deltaTime;
@@ -119,7 +128,10 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             if (isTeleportingProj && spell != null && Mana > manaCost)
                 teleportproj();
         }
-
+        if (Input.GetKey("r") && HP != HPOrig && healTimer > healingCooldown)
+        {
+            Healpotion();
+        }
         if (manaCooldownTimer >= manaCoolDownRate)
         {
             ManaRegen();
@@ -188,6 +200,30 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         }
 
 
+    }
+
+    void Healpotion()
+    {
+        if(numofhealpotions != 0)
+        {
+            numofhealpotions--;
+            gameManager.instance.UpdatePotionCount(-1);
+            HP += healingnum;
+            if (HP > HPOrig)
+            {
+                healingnum = healingnum + (HPOrig - HP);
+                gameManager.instance.UpdatePlayerHPCount(healingnum);
+                HP = HPOrig;
+                healingnum =healingnumOrig;
+            }
+            else
+            {
+                gameManager.instance.UpdatePlayerHPCount(healingnum);
+            }
+            healTimer = 0;
+
+            updatePlayerUI();
+        }
     }
 
     void ManaRegen()
