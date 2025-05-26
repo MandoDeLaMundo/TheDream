@@ -14,6 +14,11 @@ public class gameManager : MonoBehaviour
 	[SerializeField] TMP_Text gameGoalCountText;
     [SerializeField] TMP_Text playerHPCountText;
     [SerializeField] TMP_Text playerMPCountText;
+	[SerializeField] TMP_Text playerHPMaxText;
+	[SerializeField] TMP_Text playerMPMaxText;
+	[SerializeField] TMP_Text textOBJ1;
+	[SerializeField] TMP_Text textOBJ2;
+    [SerializeField] TMP_Text textOBJ3;
 
     public GameObject playerDamageScreen;
 	public Image playerHPBar;
