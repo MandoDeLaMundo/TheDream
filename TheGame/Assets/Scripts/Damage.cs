@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Damage : MonoBehaviour
 {
-	enum damagetype { moving, stationary, DOT, homing, contact }
+	enum damagetype { moving, stationary, DOT, homing, contact, AOE }
 	[SerializeField] damagetype type;
 	[SerializeField] Rigidbody rb;
 
@@ -15,17 +15,19 @@ public class Damage : MonoBehaviour
 	[SerializeField] float knockBackDistance;
 	[SerializeField] float knockBackSpeed;
 	[SerializeField] float knockbackDelay;
+	[SerializeField] GameObject explosionArea;
 
     bool isDamaging;
 	bool canKnockBack = true;
+	bool isExploded = false;
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start()
 	{
-		if (type == damagetype.moving || type == damagetype.homing)
+		if (type == damagetype.moving || type == damagetype.homing || type == damagetype.AOE)
 		{
 			Destroy(gameObject, destroyTime);
-			if (type == damagetype.moving)
+			if (type == damagetype.moving || type == damagetype.AOE)
 			{
 				rb.linearVelocity = transform.forward * speed;
 			}
@@ -43,7 +45,6 @@ public class Damage : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-        Debug.Log("Player Trigger");
 		if (!canKnockBack)
 		{
 			return;
@@ -71,6 +72,15 @@ public class Damage : MonoBehaviour
             StartCoroutine(PlayerKnockBack(other.transform));
             StartCoroutine(Cooldown());
         }
+		if(type == damagetype.AOE)
+		{
+            Debug.Log("Hit: " + other.name);
+            if (isExploded)
+            {
+                return;
+            }
+            Explode();
+        }
     }
 
 	private void OnTriggerStay(Collider other)
@@ -88,7 +98,15 @@ public class Damage : MonoBehaviour
 			}
 
 		}
-
+	}
+	void Explode()
+	{
+		Debug.Log("Explosion Trigger");
+		isExploded = true;
+		explosionArea.SetActive(true);
+		GetComponent<MeshRenderer>().enabled = false;
+		GetComponent<Collider>().enabled = false;
+		Destroy(gameObject, 0.1f);
 	}
 	IEnumerator damageOther(IDamage d)
 	{
