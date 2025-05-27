@@ -59,10 +59,9 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        gameManager.instance.UpdatePlayerMaxHPMPCount(HP, Mana);
         HPOrig = HP;
-        gameManager.instance.UpdatePlayerHPCount(HP);
         ManaOrig = Mana;
-        gameManager.instance.UpdatePlayerMPCount(Mana);
         healingnumOrig = healingnum;
         gameManager.instance.UpdatePotionCount(numofhealpotions);
         //gameManager.instance.MaxPlayerHPMP(HP,Mana);
