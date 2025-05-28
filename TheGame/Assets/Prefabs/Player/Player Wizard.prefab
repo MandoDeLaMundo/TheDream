@@ -722,7 +722,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6102249918370417236
 Transform:
   m_ObjectHideFlags: 0
@@ -761,7 +761,7 @@ MonoBehaviour:
   HP: 10
   Mana: 10
   speed: 5
-  sprintMod: 10
+  sprintMod: 2
   choice: 1
   spellList:
   - {fileID: 11400000, guid: 3152bdeabdc9d8145bfce5983ab7ab46, type: 2}
@@ -1593,7 +1593,7 @@ GameObject:
   - component: {fileID: 4942747418265503161}
   - component: {fileID: 1522402810660849512}
   m_Layer: 0
-  m_Name: SpellCasting
+  m_Name: SpellCastingPW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1918,7 +1918,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2068290404957403179}
   m_Layer: 0
-  m_Name: ShootPos
+  m_Name: ShootPosPW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
