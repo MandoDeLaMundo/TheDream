@@ -45,7 +45,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     int jumpCount;
     Vector3 playerVel;
 
-    [SerializeField] int healingCooldown;
+    [SerializeField] float healingCooldown;
     public int healingnum;
     int healingnumOrig;
     public int numofhealpotions;
@@ -54,6 +54,21 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     int baconcount;
     int beewaxcount;
     int mushroomscount;
+    bool baconFirstTime;
+    bool beewaxFirstTime;
+    bool mushroomsFirstTime;
+
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip[] audStep;
+    [Range(0, 1)][SerializeField] float audStepVol;
+    [SerializeField] AudioClip[] audJump;
+    [Range(0, 1)][SerializeField] float audJumpVol;
+    [SerializeField] AudioClip[] audHurt;
+    [Range(0, 1)][SerializeField] float audHurtVol;
+
+    bool isSprinting;
+    bool isPlayingStep;
+    Coroutine co;
 
     Vector3 moveDir;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -65,6 +80,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         gameManager.instance.UpdatePlayerMaxHPMPCount(HP, Mana);
         gameManager.instance.UpdatePotionCount(numofhealpotions);
         updatePlayerUI();
+        FirstTime();
         if (spellList != null)
             changeSpell();
     }
@@ -100,6 +116,10 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
         if (controller.isGrounded)
         {
+            if (moveDir.normalized.magnitude > 0.3f && !isPlayingStep)
+            {
+                StartCoroutine(playStep());
+            }
             jumpCount = 0;
             playerVel = Vector3.zero;
         }
@@ -116,12 +136,16 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         {
             if (choice == shootchoice.shootraycast)
                 shoot();
-            if (choice == shootchoice.spellList && spell != null && Mana > manaCost)
+            if (choice == shootchoice.spellList && spellList.Count > 0 && Mana > manaCost)
                 shootSpell();
         }
-        if (Input.GetKey("r") && HP != HPOrig && healTimer > healingCooldown)
+        if (Input.GetKey("r") && HP < HPOrig && healTimer > healingCooldown)
         {
-            Healpotion();
+            Heal();
+        }
+        if (Input.GetKey("q") && beewaxcount > 0 && mushroomscount > 0 && healTimer > healingCooldown)
+        {
+            CraftPotion();
         }
         if (manaCooldownTimer >= manaCoolDownRate)
         {
@@ -129,6 +153,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         }
 
         selectSpell();
+
+        gameManager.instance.UpdateIngredientCount(baconcount, beewaxcount, mushroomscount);
     }
 
     void jump()
@@ -137,6 +163,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         {
             jumpCount++;
             playerVel.y = jumpForce;
+            aud.PlayOneShot(audJump[Random.Range(0, audJump.Length)], audJumpVol);
         }
     }
 
@@ -144,11 +171,13 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     {
         if (Input.GetButtonDown("Sprint"))
         {
-            speed += sprintMod;
+            //speed += sprintMod;
+            speed *= sprintMod;
         }
         if (Input.GetButtonUp("Sprint"))
         {
-            speed -= sprintMod;
+            //speed -= sprintMod;
+            speed /= sprintMod;
         }
     }
 
@@ -160,6 +189,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
         {
+            
             Debug.Log(hit.collider.name);
             IDamage dmg = hit.collider.GetComponent<IDamage>();
 
@@ -182,6 +212,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         if (spellList[spellListPos].name != "Teleport Spell")
         {
             Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+            Instantiate(spellList[spellListPos].hitEffect, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
         }
         else
         {
@@ -191,19 +222,17 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     }
 
-    void Healpotion()
+    void Heal()
     {
-        if(numofhealpotions != 0)
+        if (numofhealpotions > 0)
         {
-            numofhealpotions--;
-            gameManager.instance.UpdatePotionCount(-1);
             HP += healingnum;
             if (HP > HPOrig)
             {
                 healingnum = healingnum + (HPOrig - HP);
                 gameManager.instance.UpdatePlayerHPCount(healingnum);
                 HP = HPOrig;
-                healingnum =healingnumOrig;
+                healingnum = healingnumOrig;
             }
             else
             {
@@ -212,7 +241,19 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             healTimer = 0;
 
             updatePlayerUI();
+            numofhealpotions--;
+            gameManager.instance.UpdatePotionCount(-1);
         }
+    }
+
+    void CraftPotion()
+    {
+        numofhealpotions++;
+        gameManager.instance.UpdatePotionCount(1);
+        beewaxcount--;
+        mushroomscount--;
+
+        healTimer = 0;
     }
 
     void ManaRegen()
@@ -249,6 +290,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     public void TakeDMG(int amount)
     {
+        aud.PlayOneShot(audJump[Random.Range(0, audHurt.Length)], audHurtVol);
         HP -= amount;
         gameManager.instance.UpdatePlayerHPCount(-amount);
         updatePlayerUI();
@@ -266,13 +308,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     {
         gameManager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
         gameManager.instance.playerManaBar.fillAmount = (float)Mana / ManaOrig;
-    }
-
-    IEnumerator flashDamageScreen()
-    {
-        gameManager.instance.playerDamageScreen.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
-        gameManager.instance.playerDamageScreen.SetActive(false);
     }
 
     void selectSpell()
@@ -313,24 +348,48 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     public void GetItemStats(itemStats item)
     {
-        if(item.itemName == "Boar Meat")
+        if (item.itemName == "Boar Meat")
         {
-            baconcount += 1;
+            if (baconFirstTime)
+            {
+
+                baconFirstTime = false;
+                baconcount += 1;
+            }
+            else
+                baconcount += 1;
         }
         else if (item.itemName == "Bee Wax")
         {
-            beewaxcount += 1;
+            if (beewaxFirstTime)
+            {   
+
+                beewaxFirstTime = false;
+                beewaxcount += 1;
+            }
+            else
+                beewaxcount += 1;
         }
         else if (item.itemName == "Mushroom")
         {
-            mushroomscount += 1;
+            if (mushroomsFirstTime)
+            {   
+                
+                mushroomsFirstTime = false;
+                mushroomscount += 1;
+            }
+            else
+                mushroomscount += 1;
         }
         else if (item.itemName == "Health Potion")
         {
             numofhealpotions += 1;
             gameManager.instance.UpdatePotionCount(1);
         }
-        gameManager.instance.UpdateIngredientCount(baconcount, beewaxcount, mushroomscount);
+        else if (item.itemName == "Boss Egg")
+        {
+            gameManager.instance.UpdateMonsterEgg(true);
+        }
     }
 
     void Teleport()
@@ -338,5 +397,34 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         GameObject teleproj = Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
         teleproj.GetComponent<Teleport>().player = gameObject;
         teleproj.GetComponent<Teleport>().playercon = controller;
+    }
+
+    IEnumerator flashDamageScreen()
+    {
+        gameManager.instance.playerDamageScreen.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        gameManager.instance.playerDamageScreen.SetActive(false);
+    }
+
+    IEnumerator playStep()
+    {
+        isPlayingStep = true;
+        aud.PlayOneShot(audStep[Random.Range(0, audStep.Length)], audStepVol);
+        if (isSprinting)
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
+        isPlayingStep = false;
+    }
+
+    void FirstTime()
+    {
+        baconFirstTime = true;
+        beewaxFirstTime = true;
+        mushroomsFirstTime = true;
     }
 }

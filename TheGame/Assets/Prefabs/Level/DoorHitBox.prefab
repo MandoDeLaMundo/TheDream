@@ -514,9 +514,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorModel: {fileID: 3744768814389390567}
-  button: {fileID: 679273514085153208}
   text: You shall not PASS! But you can click E to open it.
-  destroyDoorOn: 0
+  destroyDoorOn: 1
 --- !u!65 &9134860401005210128
 BoxCollider:
   m_ObjectHideFlags: 0
