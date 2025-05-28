@@ -116,6 +116,16 @@ public class gameManager : MonoBehaviour
 		menuActive.SetActive(true);
 	}
 
+	public void DisplayDescription(string description)
+    {
+        textBox.SetActive(true);
+        textDescription.text = description;
+
+		isPaused = true;
+		Time.timeScale = 0;
+		Cursor.visible = true;
+		Cursor.lockState = CursorLockMode.None;
+    }
 
 	public void UpdateGameGoal(int amount)
 	{
@@ -198,5 +208,15 @@ public class gameManager : MonoBehaviour
 	{
 		hasMonsterEgg = hasEgg;
 
+	}
+
+	public void GameGoalMonsterEgg()
+	{
+		if (hasMonsterEgg)
+		{
+			StatePause();
+			menuActive = menuWin;
+			menuActive.SetActive(true);
+		}
 	}
 }
