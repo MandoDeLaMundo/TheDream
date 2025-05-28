@@ -761,7 +761,7 @@ MonoBehaviour:
   HP: 10
   Mana: 10
   speed: 5
-  sprintMod: 10
+  sprintMod: 2
   choice: 1
   spellList:
   - {fileID: 11400000, guid: 3152bdeabdc9d8145bfce5983ab7ab46, type: 2}
