@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4679952212bcb7c48b6fd9f89c05547d, type: 3}
-  m_Name: Wand_Lightning
+  m_Name: Weak_FIreBall
   m_EditorClassIdentifier: 
-  model: {fileID: 2548421307829038991, guid: a976c1b6e1a7097458bb2765bcb0ab4d, type: 3}
-  spellProjectile: {fileID: 6211368091158433607, guid: 9eb1dc2bff3568444a216f62f458e6fb, type: 3}
+  model: {fileID: 4260819330917749670, guid: 3b4b27421c2a6de4f88b36cc36531976, type: 3}
+  spellProjectile: {fileID: 544241052533153475, guid: 5c4e86f7eab0bcb45970360bdb1676e9, type: 3}
   shootDMG: 1
   shootRate: 1
   shootDist: 10
   manaCost: 1
   spellRadius: 0
-  hitEffect: {fileID: 0}
+  hitEffect: {fileID: 1260262680682125493, guid: 366377810aaf4fc4ab2be725a54c5712, type: 3}
   shootSound: []
-  shootSoundVol: 0
+  shootSoundVol: 0.5
