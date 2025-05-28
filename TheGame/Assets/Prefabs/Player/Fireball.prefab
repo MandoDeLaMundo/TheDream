@@ -83,7 +83,7 @@ GameObject:
   - component: {fileID: 2453830040963180304}
   m_Layer: 7
   m_Name: Fireball
-  m_TagString: Untagged
+  m_TagString: FireBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,6 +126,8 @@ MonoBehaviour:
   knockBackDistance: 0
   knockBackSpeed: 0
   knockbackDelay: 0
+  maxBounce: 0
+  bounceRange: 0
   explosionArea: {fileID: 4266772375598545637}
 --- !u!33 &286852086730160532
 MeshFilter:
