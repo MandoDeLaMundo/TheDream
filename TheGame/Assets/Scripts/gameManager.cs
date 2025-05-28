@@ -19,14 +19,11 @@ public class gameManager : MonoBehaviour
 	[SerializeField] TMP_Text baconCountText;
 	[SerializeField] TMP_Text beesWaxCountText;
     [SerializeField] TMP_Text mushroomCountText;
-    [SerializeField] TMP_Text textOBJ4;
     [SerializeField] TMP_Text potionText;
-	[SerializeField] int baconCount;
-    [SerializeField] int beesWaxCount;
-    [SerializeField] int mushroomCount;
-    [SerializeField] int baconGoal;
-	[SerializeField] int beesWaxGoal;
-	[SerializeField] int mushroomGoal;
+    [SerializeField] TMP_Text baconGoalText;
+    [SerializeField] TMP_Text beesWaxGoalText;
+    [SerializeField] TMP_Text mushroomGoalText;
+    
 
     public GameObject playerDamageScreen;
 	public Image playerHPBar;
@@ -45,9 +42,14 @@ public class gameManager : MonoBehaviour
 	int playerHPMaxOrig;
 	int playerMPMaxOrig;
 	int potionCountOrig;
-	int object4CountOrig;
+    int baconCount;
+    int beesWaxCount;
+    int mushroomCount;
+    int baconGoal;
+    int beesWaxGoal;
+    int mushroomGoal;
 
-	bool hasMonsterEgg = false;
+    bool hasMonsterEgg = false;
 	bool hasEnoughBacon = false;
     bool hasEnoughBeesWax = false;
 	bool hasEnoughMushroom = false;
@@ -107,6 +109,7 @@ public class gameManager : MonoBehaviour
 		menuActive.SetActive(true);
 	}
 
+
 	public void UpdateGameGoal(int amount)
 	{
 		gameGoalCount += amount;
@@ -119,6 +122,7 @@ public class gameManager : MonoBehaviour
 			menuActive.SetActive(true);
 		}
 	}
+	
 
 	public void UpdatePlayerHPCount(int amount)
     {
@@ -151,27 +155,16 @@ public class gameManager : MonoBehaviour
 		potionCountOrig += amount;
 		potionText.text = potionCountOrig.ToString("F0");
 	}
-
-	public void UpdateObject4Count(int amount)
-    {
-        object4CountOrig += amount;
-
-        textOBJ4.text = object4CountOrig.ToString("F0");
-    }
-
+	
 	public void UpdateIngredientCount(int baconAmount, int beesWaxAmount, int mushroomAmount)
     {
-       baconCount = baconAmount;
-        beesWaxCount = beesWaxAmount;
-        mushroomCount = mushroomAmount;
+       baconCount += baconAmount;
+        beesWaxCount += beesWaxAmount;
+        mushroomCount += mushroomAmount;
 
-		baconCountText.text = baconAmount.ToString("F0");
-        beesWaxCountText.text = beesWaxAmount.ToString("F0");
-        mushroomCountText.text = mushroomAmount.ToString("F0");
-
-        hasEnoughBacon = baconAmount >= baconGoal;
-        hasEnoughBeesWax = beesWaxAmount >= beesWaxGoal;
-        hasEnoughMushroom = mushroomAmount >= mushroomGoal;
+		baconCountText.text = baconCount.ToString("F0");
+        beesWaxCountText.text = beesWaxCount.ToString("F0");
+        mushroomCountText.text = mushroomCount.ToString("F0");
 
     }
 
@@ -181,12 +174,20 @@ public class gameManager : MonoBehaviour
 		beesWaxGoal = beesWaxAmount;
 		mushroomGoal = mushroomAmount;
 
-		hasEnoughBacon = baconCount >= baconGoal;
-		hasEnoughBeesWax = beesWaxCount >= beesWaxGoal;
-		hasEnoughMushroom = mushroomCount >= mushroomGoal;
+		baconGoalText.text = baconGoal.ToString("F0");
+		beesWaxGoalText.text = beesWaxGoal.ToString("F0");
+		mushroomGoalText.text = mushroomGoal.ToString("F0");
 
+		CheckIngredientGoals();
 	}
 
+	private void CheckIngredientGoals()
+	{
+        hasEnoughBacon = baconCount >= baconGoal;
+        hasEnoughBeesWax = beesWaxCount >= beesWaxGoal;
+        hasEnoughMushroom = mushroomCount >= mushroomGoal;
+    }
+	
     public void UpdateMonsterEgg(bool hasEgg)
 	{
 		hasMonsterEgg = hasEgg;

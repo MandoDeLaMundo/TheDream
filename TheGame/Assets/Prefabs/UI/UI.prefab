@@ -5524,11 +5524,10 @@ MonoBehaviour:
   baconCountText: {fileID: 804759506802311126}
   beesWaxCountText: {fileID: 5717865229122240729}
   mushroomCountText: {fileID: 3234266188814425625}
-  textOBJ4: {fileID: 0}
   potionText: {fileID: 9211669686770967111}
-  baconGoal: 3
-  beesWaxGoal: 2
-  mushroomGoal: 3
+  baconGoalText: {fileID: 7172826457092872945}
+  beesWaxGoalText: {fileID: 5387075810765201972}
+  mushroomGoalText: {fileID: 3234266188814425625}
   playerDamageScreen: {fileID: 5585800772390485183}
   playerHPBar: {fileID: 9121913521343069128}
   player: {fileID: 0}
@@ -6605,7 +6604,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 112, y: 0}
+  m_AnchoredPosition: {x: 110, y: 0}
   m_SizeDelta: {x: 41.9, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2069194689621181865
@@ -6636,7 +6635,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 00
+  m_text: '00
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
