@@ -17,7 +17,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     [SerializeField] int speed;
     [SerializeField] int sprintMod;
 
-    enum shootchoice { shootraycast, spellList }
+    enum shootchoice { shootraycast, spellList, teleportraycast }
     [SerializeField] shootchoice choice;
     [SerializeField] List<spellStats> spellList = new List<spellStats>();
     [SerializeField] GameObject spellModel;
@@ -54,6 +54,9 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     int baconcount;
     int beewaxcount;
     int mushroomscount;
+    int baconMax;
+    int beewaxMax;
+    int mushroomsMax;
     bool baconFirstTime;
     bool beewaxFirstTime;
     bool mushroomsFirstTime;
@@ -136,6 +139,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         {
             if (choice == shootchoice.shootraycast)
                 shoot();
+            if (choice == shootchoice.teleportraycast)
+                teleportbyclick();
             if (choice == shootchoice.spellList && spellList.Count > 0 && Mana > manaCost)
                 shootSpell();
         }
@@ -190,7 +195,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
         {
             
-            Debug.Log(hit.collider.name);
+            //Debug.Log(hit.collider.name);
             IDamage dmg = hit.collider.GetComponent<IDamage>();
 
             if (dmg != null)
@@ -278,19 +283,21 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
         {
-            Debug.Log(hit.collider.name);
+            //Debug.Log(hit.collider.name);
             Vector3 teleportPosition = hit.point;
             if (Vector3.Distance(transform.position, teleportPosition) <= teleportDist)
             {
+                controller.enabled = false;
                 teleportPosition.y = 1.0f;
                 transform.position = teleportPosition;
+                controller.enabled = true;
             }
         }
     }
 
     public void TakeDMG(int amount)
     {
-        aud.PlayOneShot(audJump[Random.Range(0, audHurt.Length)], audHurtVol);
+        aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
         HP -= amount;
         gameManager.instance.UpdatePlayerHPCount(-amount);
         updatePlayerUI();
