@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 {
+    public static playerController instance;
+
     [SerializeField] CharacterController controller;
     //[SerializeField] Animator anim;
     [SerializeField] LayerMask ignoreLayer;
@@ -40,8 +42,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     [SerializeField] bool isTeleportingProj;
     [SerializeField] float teleportRate;
     [SerializeField] int teleportDist;
-
-    GameObject currentTeleProj;
+    public float throwForce = 15f;
 
     [SerializeField] int jumpMax;
     [SerializeField] int jumpForce;
@@ -59,13 +60,12 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        gameManager.instance.UpdatePlayerMaxHPMPCount(HP, Mana);
+        instance = this;
         HPOrig = HP;
         ManaOrig = Mana;
         healingnumOrig = healingnum;
+        gameManager.instance.UpdatePlayerMaxHPMPCount(HP, Mana);
         gameManager.instance.UpdatePotionCount(numofhealpotions);
-        //gameManager.instance.MaxPlayerHPMP(HP,Mana);
-        //gameManager.instance.MaxPlayerHPMana(HP,Mana);
         updatePlayerUI();
         if (spellList != null)
             changeSpell();
@@ -76,6 +76,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     {
         //if (choice == shootchoice.shootraycast)
         //{
+        //Debug.Log(transform.position);
         Debug.DrawRay(shootPos.position, Camera.main.transform.forward * shootDist, Color.red);
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
         //}
@@ -119,13 +120,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
                 shoot();
             if (choice == shootchoice.spellList && spell != null && Mana > manaCost)
                 shootSpell();
-        }
-        if (Input.GetButton("Fire2"))
-        {
-            if (isTeleportingRaycast && shootTimer >= teleportRate)
-                teleportbyclick();
-            if (isTeleportingProj && spell != null && Mana > manaCost)
-                teleportproj();
         }
         if (Input.GetKey("r") && HP != HPOrig && healTimer > healingCooldown)
         {
@@ -189,13 +183,11 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         updatePlayerUI();
         if (spellList[spellListPos].name != "Teleport Spell")
         {
-            Debug.Log("Every spell but teleport");
             Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
         }
         else
         {
-            Debug.Log("Teleport spell");
-            Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+            Teleport();
         }
 
 
@@ -256,21 +248,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             }
         }
 
-    }
-
-    void teleportproj()
-    {
-        if (currentTeleProj != null) return;
-        shootTimer = 0;
-
-        GameObject teleProj = Instantiate(teleportProj, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
-        Rigidbody rb = teleProj.GetComponent<Rigidbody>();
-
-        if (rb != null)
-        {
-            rb.linearVelocity = Camera.main.transform.forward * 20f;
-        }
-        currentTeleProj = teleProj;
     }
 
     public void TakeDMG(int amount)
@@ -340,5 +317,12 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     public void GetItemStats(itemStats item)
     {
 
+    }
+
+    void Teleport()
+    {
+        GameObject teleproj = Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+        teleproj.GetComponent<Teleport>().player = gameObject;
+        teleproj.GetComponent<Teleport>().playercon = controller;
     }
 }

@@ -314,6 +314,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 250279978}
   m_CullTransparentMesh: 1
+--- !u!1001 &341427137
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4825607470107316854, guid: ddb0691f0cd84b14da67306d3d67427e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.46155262
+      objectReference: {fileID: 0}
+    - target: {fileID: 4825607470107316854, guid: ddb0691f0cd84b14da67306d3d67427e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.008965841
+      objectReference: {fileID: 0}
+    - target: {fileID: 4825607470107316854, guid: ddb0691f0cd84b14da67306d3d67427e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.3837638
+      objectReference: {fileID: 0}
+    - target: {fileID: 4825607470107316854, guid: ddb0691f0cd84b14da67306d3d67427e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4825607470107316854, guid: ddb0691f0cd84b14da67306d3d67427e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4825607470107316854, guid: ddb0691f0cd84b14da67306d3d67427e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4825607470107316854, guid: ddb0691f0cd84b14da67306d3d67427e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4825607470107316854, guid: ddb0691f0cd84b14da67306d3d67427e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4825607470107316854, guid: ddb0691f0cd84b14da67306d3d67427e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4825607470107316854, guid: ddb0691f0cd84b14da67306d3d67427e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5017834780979802642, guid: ddb0691f0cd84b14da67306d3d67427e, type: 3}
+      propertyPath: m_Name
+      value: Teleport _Wand_
+      objectReference: {fileID: 0}
+    - target: {fileID: 8444463205551947522, guid: ddb0691f0cd84b14da67306d3d67427e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ddb0691f0cd84b14da67306d3d67427e, type: 3}
 --- !u!1001 &400557330
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1269,6 +1330,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor
       objectReference: {fileID: 0}
+    - target: {fileID: 4279176978379449902, guid: ede134831358c4943a198611d82fc0a9, type: 3}
+      propertyPath: m_TagString
+      value: Teleportable
+      objectReference: {fileID: 0}
     - target: {fileID: 5484923045954317727, guid: ede134831358c4943a198611d82fc0a9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1839,6 +1904,7 @@ MonoBehaviour:
   textOBJ1: {fileID: 0}
   textOBJ2: {fileID: 0}
   textOBJ3: {fileID: 0}
+  textOBJ4: {fileID: 0}
   potionText: {fileID: 0}
   playerDamageScreen: {fileID: 5585800772928972972}
   playerHPBar: {fileID: 9121913522955694043}
@@ -7484,6 +7550,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Wizard
       objectReference: {fileID: 0}
+    - target: {fileID: 4958875843018377022, guid: b74a37d8f026c2641a7b93a4ceaa88ab, type: 3}
+      propertyPath: Mana
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958875843018377022, guid: b74a37d8f026c2641a7b93a4ceaa88ab, type: 3}
+      propertyPath: healingnum
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958875843018377022, guid: b74a37d8f026c2641a7b93a4ceaa88ab, type: 3}
+      propertyPath: teleportProj
+      value: 
+      objectReference: {fileID: 3749515074666461166, guid: 3c7027a0383d31140b6112b59317cb8a, type: 3}
+    - target: {fileID: 4958875843018377022, guid: b74a37d8f026c2641a7b93a4ceaa88ab, type: 3}
+      propertyPath: healingCooldown
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958875843018377022, guid: b74a37d8f026c2641a7b93a4ceaa88ab, type: 3}
+      propertyPath: numofhealpotions
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958875843018377022, guid: b74a37d8f026c2641a7b93a4ceaa88ab, type: 3}
+      propertyPath: spellList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958875843018377022, guid: b74a37d8f026c2641a7b93a4ceaa88ab, type: 3}
+      propertyPath: 'spellList.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 99d23de32e5203e48b1b2985e7a053c2, type: 2}
     - target: {fileID: 6102249918370417236, guid: b74a37d8f026c2641a7b93a4ceaa88ab, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -7696,3 +7790,4 @@ SceneRoots:
   - {fileID: 9173123861950950338}
   - {fileID: 1908567834}
   - {fileID: 934447146}
+  - {fileID: 341427137}

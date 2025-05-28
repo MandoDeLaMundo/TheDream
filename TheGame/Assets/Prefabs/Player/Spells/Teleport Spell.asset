@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4679952212bcb7c48b6fd9f89c05547d, type: 3}
   m_Name: Teleport Spell
   m_EditorClassIdentifier: 
-  model: {fileID: 0}
-  spellProjectile: {fileID: 0}
+  model: {fileID: 5017834780979802642, guid: ddb0691f0cd84b14da67306d3d67427e, type: 3}
+  spellProjectile: {fileID: 3749515074666461166, guid: 3c7027a0383d31140b6112b59317cb8a, type: 3}
   shootDMG: 1
-  shootRate: 0
-  shootDist: 1
+  shootRate: 1
+  shootDist: 10
   manaCost: 1
   spellRadius: 0
   hitEffect: {fileID: 0}
