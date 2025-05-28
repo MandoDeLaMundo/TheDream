@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4679952212bcb7c48b6fd9f89c05547d, type: 3}
-  m_Name: Wand_Lightning
+  m_Name: Super_FireBall
   m_EditorClassIdentifier: 
-  model: {fileID: 2548421307829038991, guid: a976c1b6e1a7097458bb2765bcb0ab4d, type: 3}
-  spellProjectile: {fileID: 6211368091158433607, guid: 9eb1dc2bff3568444a216f62f458e6fb, type: 3}
-  shootDMG: 1
-  shootRate: 1
-  shootDist: 10
-  manaCost: 1
-  spellRadius: 0
-  hitEffect: {fileID: 0}
+  model: {fileID: 5875270693028758024, guid: 3058356566addd04d8ab52928169b5e2, type: 3}
+  spellProjectile: {fileID: 6835206923963006979, guid: 4eb59755d47c84743a6408d5c48c0565, type: 3}
+  shootDMG: 5
+  shootRate: 2.5
+  shootDist: 45
+  manaCost: 5
+  spellRadius: 6
+  hitEffect: {fileID: 5444105318733727396, guid: cf82839c411151342a7b2337bda9fb34, type: 3}
   shootSound: []
   shootSoundVol: 0

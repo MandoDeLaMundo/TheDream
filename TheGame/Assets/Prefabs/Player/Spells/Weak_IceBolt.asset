@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4679952212bcb7c48b6fd9f89c05547d, type: 3}
-  m_Name: Fire_Ball Spell
+  m_Name: Weak_IceBolt
   m_EditorClassIdentifier: 
-  model: {fileID: 5875270693028758024, guid: 3058356566addd04d8ab52928169b5e2, type: 3}
-  spellProjectile: {fileID: 6835206923963006979, guid: 4eb59755d47c84743a6408d5c48c0565, type: 3}
-  shootDMG: 5
-  shootRate: 2.5
-  shootDist: 45
-  manaCost: 5
-  spellRadius: 6
+  model: {fileID: 6262986123301899059, guid: 8e26553eb7bc8f84e87ad5cbe258d7a2, type: 3}
+  spellProjectile: {fileID: 3461775368703754523, guid: 481127b6fe2938f4da694c091457ff4d, type: 3}
+  shootDMG: 1
+  shootRate: 1
+  shootDist: 10
+  manaCost: 1
+  spellRadius: 0
   hitEffect: {fileID: 0}
   shootSound: []
   shootSoundVol: 0

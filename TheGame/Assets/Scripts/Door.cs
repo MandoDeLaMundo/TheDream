@@ -3,9 +3,9 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     [SerializeField] GameObject doorModel;
-    [SerializeField] GameObject button;
+    //[SerializeField] GameObject button;
     [SerializeField] string text;
-    [SerializeField] bool destroyDoorOn;
+    //[SerializeField] bool destroyDoorOn;
 
     bool playerInTrigger;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -22,7 +22,7 @@ public class Door : MonoBehaviour
             if (Input.GetButtonDown("Interact"))
             {
                 doorModel.SetActive(false);
-                button.SetActive(false);
+                //button.SetActive(false);
             }
         }
     }
@@ -32,15 +32,16 @@ public class Door : MonoBehaviour
         IInteraction openable = other.GetComponent<IInteraction>();
         if (openable != null)
         {
-            button.SetActive(true);
+            //button.SetActive(true);
             playerInTrigger = true;
             gameManager.instance.textDescription.text = text;
             gameManager.instance.textBox.SetActive(true);
         }
-        if (other.CompareTag("FireBall") && destroyDoorOn != false)
+        //&& destroyDoorOn != false (add this below if needed)
+        if (other.CompareTag("FireBall"))
         {
             doorModel.SetActive(false);
-            button.SetActive(false);
+            //button.SetActive(false);
             gameManager.instance.textBox.SetActive(false);
             Destroy(gameObject);
             Destroy(other.gameObject);
@@ -52,7 +53,7 @@ public class Door : MonoBehaviour
         IInteraction openable = other.GetComponent<IInteraction>();
         if (openable != null)
         {
-            button.SetActive(false);
+            //button.SetActive(false);
             playerInTrigger = false;
             doorModel.SetActive(true);
             gameManager.instance.textBox.SetActive(false);
