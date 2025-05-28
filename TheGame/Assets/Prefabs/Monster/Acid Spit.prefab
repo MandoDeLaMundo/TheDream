@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3055908584081065050}
   m_Layer: 8
   m_Name: Acid Spit
-  m_TagString: Untagged
+  m_TagString: EnemyProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55,6 +55,13 @@ MonoBehaviour:
   damageRate: 1
   speed: 10
   destroyTime: 3
+  contactDMGAmount: 0
+  knockBackDistance: 0
+  knockBackSpeed: 0
+  knockbackDelay: 0
+  maxBounce: 0
+  bounceRange: 0
+  explosionArea: {fileID: 0}
 --- !u!54 &450174861105785468
 Rigidbody:
   m_ObjectHideFlags: 0
