@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
+using UnityEngine.UI;
 public class EnemyAI : MonoBehaviour, IDamage
 {
 	[SerializeField] Renderer model;
@@ -8,6 +9,9 @@ public class EnemyAI : MonoBehaviour, IDamage
 	[SerializeField] Animator anim;
 	[SerializeField] Transform headPos;
 	[SerializeField] Collider weaponCol;
+	[SerializeField] GameObject healthBarPrefab;
+    [SerializeField] Transform healthBarUI;
+	[SerializeField] Image healthBarFill;
 
 	[SerializeField] int HP;
 	[SerializeField] int faceTargetSpeed;
@@ -46,10 +50,19 @@ public class EnemyAI : MonoBehaviour, IDamage
 		gameManager.instance.UpdateGameGoal(1);
 		startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
+
 		if(isSentry)
 		{
 			agent.enabled = false;
 		}
+
+		if (healthBarPrefab)
+		{
+            GameObject hb = Instantiate(healthBarPrefab, transform);
+            hb.transform.localPosition = new Vector3(0, 2.5f, 0); 
+            healthBarUI = hb.transform;
+            healthBarFill = hb.GetComponentInChildren<Image>();
+        }
 	}
 
 	// Update is called once per frame
@@ -97,7 +110,11 @@ public class EnemyAI : MonoBehaviour, IDamage
 			
 				checkRoam();
 		}
-	
+        if (healthBarUI)
+        {
+            healthBarUI.transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward);
+        }
+
     }
 
     void faceTarget3D()
@@ -184,7 +201,10 @@ public class EnemyAI : MonoBehaviour, IDamage
 	{
 		HP -= amount;
 
-		agent.SetDestination(gameManager.instance.player.transform.position);
+        if (healthBarFill)
+            healthBarFill.fillAmount = (float)HP / 100f; 
+
+        agent.SetDestination(gameManager.instance.player.transform.position);
 
 		if (HP <= 0)
 		{

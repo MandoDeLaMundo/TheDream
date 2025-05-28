@@ -5,6 +5,7 @@ public class Door : MonoBehaviour
     [SerializeField] GameObject doorModel;
     [SerializeField] GameObject button;
     [SerializeField] string text;
+    [SerializeField] bool destroyDoorOn;
 
     bool playerInTrigger;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -35,6 +36,14 @@ public class Door : MonoBehaviour
             playerInTrigger = true;
             gameManager.instance.textDescription.text = text;
             gameManager.instance.textBox.SetActive(true);
+        }
+        if (other.CompareTag("FireBall") && destroyDoorOn != false)
+        {
+            doorModel.SetActive(false);
+            button.SetActive(false);
+            gameManager.instance.textBox.SetActive(false);
+            Destroy(gameObject);
+            Destroy(other.gameObject);
         }
 
     }

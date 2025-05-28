@@ -21,7 +21,7 @@ public class Spawner : MonoBehaviour
     {
         if (startSpawning)
         {
-            spawnTimer = Time.deltaTime;
+            spawnTimer += Time.deltaTime;
             if (spawnTimer >= spawnRate && spawnCount < numToSpawn)
             {
                 spawn();

@@ -12,7 +12,7 @@ public class damageAOE : MonoBehaviour
         if (damagedTick.Contains(dmg))
         {
             return;
-        }
+        }   
         if (dmg != null)
         {
             dmg.TakeDMG(damageAmount);

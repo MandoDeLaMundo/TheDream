@@ -16,11 +16,14 @@ public class gameManager : MonoBehaviour
     [SerializeField] TMP_Text playerMPCountText;
 	[SerializeField] TMP_Text playerHPMaxText;
 	[SerializeField] TMP_Text playerMPMaxText;
-	[SerializeField] TMP_Text textOBJ1;
-	[SerializeField] TMP_Text textOBJ2;
-    [SerializeField] TMP_Text textOBJ3;
+	[SerializeField] TMP_Text baconCountText;
+	[SerializeField] TMP_Text beesWaxCountText;
+    [SerializeField] TMP_Text mushroomCountText;
     [SerializeField] TMP_Text textOBJ4;
     [SerializeField] TMP_Text potionText;
+	[SerializeField] int baconGoal;
+	[SerializeField] int beesWaxGoal;
+	[SerializeField] int mushroomGoal;
 
     public GameObject playerDamageScreen;
 	public Image playerHPBar;
@@ -40,6 +43,12 @@ public class gameManager : MonoBehaviour
 	int playerMPMaxOrig;
 	int potionCountOrig;
 	int object4CountOrig;
+
+	bool hasMonsterEgg = false;
+	bool hasEnoughBacon = false;
+    bool hasEnoughBeesWax = false;
+	bool hasEnoughMushroom = false;
+	 
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Awake()
@@ -146,4 +155,22 @@ public class gameManager : MonoBehaviour
 
         textOBJ4.text = object4CountOrig.ToString("F0");
     }
+
+	public void UpdateIngredientCount(int baconAmount, int beesWaxAmount, int mushroomAmount)
+    {
+        baconCountText.text = baconAmount.ToString("F0");
+        beesWaxCountText.text = beesWaxAmount.ToString("F0");
+        mushroomCountText.text = mushroomAmount.ToString("F0");
+
+        hasEnoughBacon = baconAmount >= baconGoal;
+        hasEnoughBeesWax = beesWaxAmount >= beesWaxGoal;
+        hasEnoughMushroom = mushroomAmount >= mushroomGoal;
+
+    }
+
+	public void UpdateMonsterEgg(bool hasEgg)
+	{
+		hasMonsterEgg = hasEgg;
+
+	}
 }

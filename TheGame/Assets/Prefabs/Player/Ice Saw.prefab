@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2960946ae34777144a3501ab25dba669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 6
   rb: {fileID: 1726855954963603785}
   damageAmount: 10
   damageRate: 1
@@ -58,6 +58,9 @@ MonoBehaviour:
   knockBackDistance: 0
   knockBackSpeed: 0
   knockbackDelay: 0
+  maxBounce: 2
+  bounceRange: 10
+  explosionArea: {fileID: 0}
 --- !u!33 &8472469645794640667
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -5445,11 +5445,14 @@ MonoBehaviour:
   playerMPCountText: {fileID: 0}
   playerHPMaxText: {fileID: 0}
   playerMPMaxText: {fileID: 0}
-  textOBJ1: {fileID: 0}
-  textOBJ2: {fileID: 0}
-  textOBJ3: {fileID: 0}
+  baconCountText: {fileID: 804759506802311126}
+  beesWaxCountText: {fileID: 5717865229122240729}
+  mushroomCountText: {fileID: 3234266188814425625}
   textOBJ4: {fileID: 0}
   potionText: {fileID: 9211669686770967111}
+  baconGoal: 0
+  beesWaxGoal: 0
+  mushroomGoal: 0
   playerDamageScreen: {fileID: 5585800772390485183}
   playerHPBar: {fileID: 9121913521343069128}
   player: {fileID: 0}
