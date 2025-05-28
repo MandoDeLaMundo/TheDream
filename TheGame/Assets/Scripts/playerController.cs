@@ -54,6 +54,21 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     int baconcount;
     int beewaxcount;
     int mushroomscount;
+    bool baconFirstTime;
+    bool beewaxFirstTime;
+    bool mushroomsFirstTime;
+
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip[] audStep;
+    [Range(0, 1)][SerializeField] float audStepVol;
+    [SerializeField] AudioClip[] audJump;
+    [Range(0, 1)][SerializeField] float audJumpVol;
+    [SerializeField] AudioClip[] audHurt;
+    [Range(0, 1)][SerializeField] float audHurtVol;
+
+    bool isSprinting;
+    bool isPlayingStep;
+    Coroutine co;
 
     Vector3 moveDir;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -65,6 +80,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         gameManager.instance.UpdatePlayerMaxHPMPCount(HP, Mana);
         gameManager.instance.UpdatePotionCount(numofhealpotions);
         updatePlayerUI();
+        FirstTime();
         if (spellList != null)
             changeSpell();
     }
@@ -100,6 +116,10 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
         if (controller.isGrounded)
         {
+            if (moveDir.normalized.magnitude > 0.3f && !isPlayingStep)
+            {
+                StartCoroutine(playStep());
+            }
             jumpCount = 0;
             playerVel = Vector3.zero;
         }
@@ -143,6 +163,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         {
             jumpCount++;
             playerVel.y = jumpForce;
+            aud.PlayOneShot(audJump[Random.Range(0, audJump.Length)], audJumpVol);
         }
     }
 
@@ -267,6 +288,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     public void TakeDMG(int amount)
     {
+        aud.PlayOneShot(audJump[Random.Range(0, audHurt.Length)], audHurtVol);
         HP -= amount;
         gameManager.instance.UpdatePlayerHPCount(-amount);
         updatePlayerUI();
@@ -284,13 +306,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     {
         gameManager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
         gameManager.instance.playerManaBar.fillAmount = (float)Mana / ManaOrig;
-    }
-
-    IEnumerator flashDamageScreen()
-    {
-        gameManager.instance.playerDamageScreen.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
-        gameManager.instance.playerDamageScreen.SetActive(false);
     }
 
     void selectSpell()
@@ -333,15 +348,33 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     {
         if (item.itemName == "Boar Meat")
         {
-            baconcount += 1;
+            if (baconFirstTime)
+            {
+
+                baconFirstTime = false;
+            }
+            else
+                baconcount += 1;
         }
         else if (item.itemName == "Bee Wax")
         {
-            beewaxcount += 1;
+            if (beewaxFirstTime)
+            {   
+
+                beewaxFirstTime = false;
+            }
+            else
+                beewaxcount += 1;
         }
         else if (item.itemName == "Mushroom")
         {
-            mushroomscount += 1;
+            if (mushroomsFirstTime)
+            {   
+                
+                mushroomsFirstTime = false;
+            }
+            else
+                mushroomscount += 1;
         }
         else if (item.itemName == "Health Potion")
         {
@@ -359,5 +392,34 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         GameObject teleproj = Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
         teleproj.GetComponent<Teleport>().player = gameObject;
         teleproj.GetComponent<Teleport>().playercon = controller;
+    }
+
+    IEnumerator flashDamageScreen()
+    {
+        gameManager.instance.playerDamageScreen.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        gameManager.instance.playerDamageScreen.SetActive(false);
+    }
+
+    IEnumerator playStep()
+    {
+        isPlayingStep = true;
+        aud.PlayOneShot(audStep[Random.Range(0, audStep.Length)], audStepVol);
+        if (isSprinting)
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
+        isPlayingStep = false;
+    }
+
+    void FirstTime()
+    {
+        baconFirstTime = true;
+        beewaxFirstTime = true;
+        mushroomsFirstTime = true;
     }
 }
