@@ -45,7 +45,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     int jumpCount;
     Vector3 playerVel;
 
-    [SerializeField] int healingCooldown;
+    [SerializeField] float healingCooldown;
     public int healingnum;
     int healingnumOrig;
     public int numofhealpotions;
@@ -119,9 +119,13 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             if (choice == shootchoice.spellList && spell != null && Mana > manaCost)
                 shootSpell();
         }
-        if (Input.GetKey("r") && HP != HPOrig && healTimer > healingCooldown)
+        if (Input.GetKey("r") && HP < HPOrig && healTimer > healingCooldown)
         {
-            Healpotion();
+            Heal();
+        }
+        if (Input.GetKey("q") && beewaxcount > 0 && mushroomscount > 0 && healTimer > healingCooldown)
+        {
+            CraftPotion();
         }
         if (manaCooldownTimer >= manaCoolDownRate)
         {
@@ -129,6 +133,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         }
 
         selectSpell();
+
+        gameManager.instance.UpdateIngredientCount(baconcount, beewaxcount, mushroomscount);
     }
 
     void jump()
@@ -144,11 +150,13 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     {
         if (Input.GetButtonDown("Sprint"))
         {
-            speed += sprintMod;
+            //speed += sprintMod;
+            speed *= sprintMod;
         }
         if (Input.GetButtonUp("Sprint"))
         {
-            speed -= sprintMod;
+            //speed -= sprintMod;
+            speed /= sprintMod;
         }
     }
 
@@ -191,19 +199,17 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     }
 
-    void Healpotion()
+    void Heal()
     {
-        if(numofhealpotions != 0)
+        if (numofhealpotions > 0)
         {
-            numofhealpotions--;
-            gameManager.instance.UpdatePotionCount(-1);
             HP += healingnum;
             if (HP > HPOrig)
             {
                 healingnum = healingnum + (HPOrig - HP);
                 gameManager.instance.UpdatePlayerHPCount(healingnum);
                 HP = HPOrig;
-                healingnum =healingnumOrig;
+                healingnum = healingnumOrig;
             }
             else
             {
@@ -212,7 +218,19 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             healTimer = 0;
 
             updatePlayerUI();
+            numofhealpotions--;
+            gameManager.instance.UpdatePotionCount(-1);
         }
+    }
+
+    void CraftPotion()
+    {
+        numofhealpotions++;
+        gameManager.instance.UpdatePotionCount(1);
+        beewaxcount--;
+        mushroomscount--;
+
+        healTimer = 0;
     }
 
     void ManaRegen()
@@ -313,7 +331,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     public void GetItemStats(itemStats item)
     {
-        if(item.itemName == "Boar Meat")
+        if (item.itemName == "Boar Meat")
         {
             baconcount += 1;
         }
@@ -330,7 +348,10 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             numofhealpotions += 1;
             gameManager.instance.UpdatePotionCount(1);
         }
-        gameManager.instance.UpdateIngredientCount(baconcount, beewaxcount, mushroomscount);
+        else if (item.itemName == "Boss Egg")
+        {
+            gameManager.instance.UpdateMonsterEgg(true);
+        }
     }
 
     void Teleport()
