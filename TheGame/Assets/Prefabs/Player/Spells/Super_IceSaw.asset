@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4679952212bcb7c48b6fd9f89c05547d, type: 3}
-  m_Name: Wand_Ice
+  m_Name: Super_IceSaw
   m_EditorClassIdentifier: 
-  model: {fileID: 6262986123301899059, guid: 8e26553eb7bc8f84e87ad5cbe258d7a2, type: 3}
-  spellProjectile: {fileID: 3461775368703754523, guid: 481127b6fe2938f4da694c091457ff4d, type: 3}
-  shootDMG: 1
-  shootRate: 1
-  shootDist: 10
-  manaCost: 1
+  model: {fileID: 3676379699232972619, guid: 340f8fecb7a9daa4bb72c4d06454e3c6, type: 3}
+  spellProjectile: {fileID: 3749515074666461166, guid: 37186984fa0c2694f87dc32d80232d8d, type: 3}
+  shootDMG: 5
+  shootRate: 4.25
+  shootDist: 55
+  manaCost: 2
   spellRadius: 0
   hitEffect: {fileID: 0}
   shootSound: []
