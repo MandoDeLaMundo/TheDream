@@ -136,7 +136,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         {
             if (choice == shootchoice.shootraycast)
                 shoot();
-            if (choice == shootchoice.spellList && spell != null && Mana > manaCost)
+            if (choice == shootchoice.spellList && spellList.Count > 0 && Mana > manaCost)
                 shootSpell();
         }
         if (Input.GetKey("r") && HP < HPOrig && healTimer > healingCooldown)
