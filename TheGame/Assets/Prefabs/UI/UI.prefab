@@ -5519,16 +5519,16 @@ MonoBehaviour:
   gameGoalCountText: {fileID: 0}
   playerHPCountText: {fileID: 1434935364265904542}
   playerMPCountText: {fileID: 4925587890956501598}
-  playerHPMaxText: {fileID: 0}
-  playerMPMaxText: {fileID: 0}
+  playerHPMaxText: {fileID: 5599035424042714299}
+  playerMPMaxText: {fileID: 6259776306196115505}
   baconCountText: {fileID: 804759506802311126}
   beesWaxCountText: {fileID: 5717865229122240729}
   mushroomCountText: {fileID: 3234266188814425625}
   textOBJ4: {fileID: 0}
   potionText: {fileID: 9211669686770967111}
-  baconGoal: 0
-  beesWaxGoal: 0
-  mushroomGoal: 0
+  baconGoal: 3
+  beesWaxGoal: 2
+  mushroomGoal: 3
   playerDamageScreen: {fileID: 5585800772390485183}
   playerHPBar: {fileID: 9121913521343069128}
   player: {fileID: 0}
