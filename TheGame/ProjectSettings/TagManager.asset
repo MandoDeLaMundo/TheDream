@@ -7,6 +7,7 @@ TagManager:
   - Weapon
   - Enemy
   - Teleportable
+  - FireBall
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Door
   - Weapon
   - Food
-  - 
+  - Roof
   - 
   - 
   - 
