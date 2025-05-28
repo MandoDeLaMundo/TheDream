@@ -32,6 +32,12 @@ public class gameManager : MonoBehaviour
     public Image playerManaBar;
 	public GameObject textBox;
 	public TMP_Text textDescription;
+	public GameObject DialogueBox;
+	public TMP_Text DialogueDescription;
+	public int baconGoalPI;
+	public int beesWaxGoalPI;
+	public int mushroomGoalPI;
+
 
     public bool isPaused;
 
@@ -65,6 +71,7 @@ public class gameManager : MonoBehaviour
 
 		Cursor.visible = false;
 		Cursor.lockState = CursorLockMode.Locked;
+		UpdateIngredientGoal(baconGoalPI, beesWaxGoalPI, mushroomGoalPI);
 	}
 
 	// Update is called once per frame
@@ -128,8 +135,6 @@ public class gameManager : MonoBehaviour
     {
 		playerHPCountOrig += amount;
 		playerHPCountText.text = playerHPCountOrig.ToString("F0");
-		
-        
     }
 
 	public void UpdatePlayerMPCount(int amount)
@@ -166,6 +171,7 @@ public class gameManager : MonoBehaviour
         beesWaxCountText.text = beesWaxCount.ToString("F0");
         mushroomCountText.text = mushroomCount.ToString("F0");
 
+        CheckIngredientGoals();
     }
 
     public void UpdateIngredientGoal(int baconAmount, int beesWaxAmount, int mushroomAmount)
@@ -178,7 +184,7 @@ public class gameManager : MonoBehaviour
 		beesWaxGoalText.text = beesWaxGoal.ToString("F0");
 		mushroomGoalText.text = mushroomGoal.ToString("F0");
 
-		CheckIngredientGoals();
+		
 	}
 
 	private void CheckIngredientGoals()
