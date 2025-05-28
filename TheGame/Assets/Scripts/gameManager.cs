@@ -210,5 +210,13 @@ public class gameManager : MonoBehaviour
 
 	}
 
-
+	public void GameGoalMonsterEgg()
+	{
+		if (hasMonsterEgg)
+		{
+			StatePause();
+			menuActive = menuWin;
+			menuActive.SetActive(true);
+		}
+	}
 }
