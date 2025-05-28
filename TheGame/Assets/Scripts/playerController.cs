@@ -189,6 +189,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
         {
+            
             Debug.Log(hit.collider.name);
             IDamage dmg = hit.collider.GetComponent<IDamage>();
 
@@ -211,6 +212,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         if (spellList[spellListPos].name != "Teleport Spell")
         {
             Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+            Instantiate(spellList[spellListPos].hitEffect, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
         }
         else
         {
@@ -352,6 +354,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             {
 
                 baconFirstTime = false;
+                baconcount += 1;
             }
             else
                 baconcount += 1;
@@ -362,6 +365,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             {   
 
                 beewaxFirstTime = false;
+                beewaxcount += 1;
             }
             else
                 beewaxcount += 1;
@@ -372,6 +376,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             {   
                 
                 mushroomsFirstTime = false;
+                mushroomscount += 1;
             }
             else
                 mushroomscount += 1;
