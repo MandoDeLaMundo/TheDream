@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class Teleport : MonoBehaviour
 {
-    enum teleporttype { floor }
-    [SerializeField] teleporttype type;
     [SerializeField] Rigidbody rb;
 
     [SerializeField] int speed;
@@ -13,10 +11,7 @@ public class Teleport : MonoBehaviour
 
     void Start()
     {
-        if (type == teleporttype.floor)
-        {
             rb.linearVelocity = transform.forward * speed;
-        }
     }
 
     void Update()

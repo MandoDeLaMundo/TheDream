@@ -4,8 +4,6 @@ using System.Collections.Generic;
 
 public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 {
-    public static playerController instance;
-
     [SerializeField] CharacterController controller;
     //[SerializeField] Animator anim;
     [SerializeField] LayerMask ignoreLayer;
@@ -37,12 +35,9 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     float manaRegenTimer;
     float manaCooldownTimer;
 
-    [SerializeField] GameObject teleportProj;
     [SerializeField] bool isTeleportingRaycast;
-    [SerializeField] bool isTeleportingProj;
     [SerializeField] float teleportRate;
     [SerializeField] int teleportDist;
-    public float throwForce = 15f;
 
     [SerializeField] int jumpMax;
     [SerializeField] int jumpForce;
@@ -56,11 +51,14 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     public int numofhealpotions;
     float healTimer;
 
+    int baconcount;
+    int beewaxcount;
+    int mushroomscount;
+
     Vector3 moveDir;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        instance = this;
         HPOrig = HP;
         ManaOrig = Mana;
         healingnumOrig = healingnum;
@@ -247,7 +245,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
                 transform.position = teleportPosition;
             }
         }
-
     }
 
     public void TakeDMG(int amount)
@@ -316,7 +313,24 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     public void GetItemStats(itemStats item)
     {
-
+        if(item.itemName == "Boar Meat")
+        {
+            baconcount += 1;
+        }
+        else if (item.itemName == "Bee Wax")
+        {
+            beewaxcount += 1;
+        }
+        else if (item.itemName == "Mushroom")
+        {
+            mushroomscount += 1;
+        }
+        else if (item.itemName == "Health Potion")
+        {
+            numofhealpotions += 1;
+            gameManager.instance.UpdatePotionCount(1);
+        }
+        gameManager.instance.UpdateIngredientCount(baconcount, beewaxcount, mushroomscount);
     }
 
     void Teleport()
