@@ -1,9 +1,10 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Damage : MonoBehaviour
 {
-	enum damagetype { moving, stationary, DOT, homing, contact, AOE }
+	enum damagetype { moving, stationary, DOT, homing, contact, AOE, bounce }
 	[SerializeField] damagetype type;
 	[SerializeField] Rigidbody rb;
 
@@ -15,19 +16,25 @@ public class Damage : MonoBehaviour
 	[SerializeField] float knockBackDistance;
 	[SerializeField] float knockBackSpeed;
 	[SerializeField] float knockbackDelay;
+	[SerializeField] int maxBounce;
+	[SerializeField] int bounceRange;
 	[SerializeField] GameObject explosionArea;
 
     bool isDamaging;
 	bool canKnockBack = true;
 	bool isExploded = false;
 
-	// Start is called once before the first execution of Update after the MonoBehaviour is created
-	void Start()
+    int bounceCount;
+	HashSet<Transform> bounceEnemies = new HashSet<Transform>();
+	Transform curEnemy;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
 	{
-		if (type == damagetype.moving || type == damagetype.homing || type == damagetype.AOE)
+		if (type == damagetype.moving || type == damagetype.homing || type == damagetype.AOE || type == damagetype.bounce)
 		{
 			Destroy(gameObject, destroyTime);
-			if (type == damagetype.moving || type == damagetype.AOE)
+			if (type == damagetype.moving || type == damagetype.AOE || type == damagetype.bounce)
 			{
 				rb.linearVelocity = transform.forward * speed;
 			}
@@ -41,6 +48,16 @@ public class Damage : MonoBehaviour
 		{
 			rb.linearVelocity = (gameManager.instance.transform.position - transform.position).normalized * speed * Time.deltaTime;
 		}
+		if (type == damagetype.bounce && curEnemy != null)
+		{
+			Vector3 direct = (curEnemy.position - transform.position).normalized;
+			rb.linearVelocity = direct * speed;
+			if (Vector3.Distance(transform.position, curEnemy.position) < 0.5f)
+			{
+				HitTargetCount(curEnemy);
+			}
+		}
+		
 	}
 
 	private void OnTriggerEnter(Collider other)
@@ -81,6 +98,10 @@ public class Damage : MonoBehaviour
             }
             Explode();
         }
+        if (type == damagetype.bounce && dmg != null && !bounceEnemies.Contains(other.transform))
+        {
+            HitTargetCount(other.transform);
+        }
     }
 
 	private void OnTriggerStay(Collider other)
@@ -99,6 +120,51 @@ public class Damage : MonoBehaviour
 
 		}
 	}
+	void HitTargetCount(Transform target)
+	{
+		IDamage dmg = target.GetComponent<IDamage>();
+		if (dmg != null)
+		{
+			dmg.TakeDMG(damageAmount);
+		}
+        bounceEnemies.Add(target);
+		bounceCount++;
+		if (bounceCount < maxBounce)
+		{
+			FindTarget();
+		}
+		else
+		{
+			Destroy(gameObject, 0.5f);
+		}
+	}
+
+	void FindTarget()
+	{
+		Collider[] hits = Physics.OverlapSphere(transform.position, bounceRange);
+		Transform nearbyEnemy = null;
+		float minRange = Mathf.Infinity;
+		foreach (Collider box in hits)
+		{
+			if (box.CompareTag("Enemy") && !bounceEnemies.Contains(box.transform))
+			{
+				float range = Vector3.Distance(transform.position,box.transform.position);
+				if (range < minRange)
+				{
+					minRange = range;
+					nearbyEnemy = box.transform;
+				}
+			}
+		}
+		if (nearbyEnemy != null)
+		{
+			curEnemy = nearbyEnemy;
+		}
+		else
+		{
+			Destroy(gameObject, 0.5f);
+		}
+	}
 	void Explode()
 	{
 		Debug.Log("Explosion Trigger");
@@ -106,7 +172,7 @@ public class Damage : MonoBehaviour
 		explosionArea.SetActive(true);
 		GetComponent<MeshRenderer>().enabled = false;
 		GetComponent<Collider>().enabled = false;
-		Destroy(gameObject, 0.1f);
+		Destroy(gameObject, destroyTime);
 	}
 	IEnumerator damageOther(IDamage d)
 	{
