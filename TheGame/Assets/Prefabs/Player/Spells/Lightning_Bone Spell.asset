@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 4417435450986619218, guid: 0d0ae09fa98635e4e8435fc1a1fc72c7, type: 3}
   spellProjectile: {fileID: 3749515074666461166, guid: 8050d5cc44e91fc469f497359c3382ab, type: 3}
-  shootDMG: 3
+  shootDMG: 5
   shootRate: 0.5
   shootDist: 15
-  manaCost: 30
+  manaCost: 1
   spellRadius: 20
   hitEffect: {fileID: 0}
   shootSound: []
