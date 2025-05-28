@@ -35,13 +35,9 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     float manaRegenTimer;
     float manaCooldownTimer;
 
-    [SerializeField] GameObject teleportProj;
     [SerializeField] bool isTeleportingRaycast;
-    [SerializeField] bool isTeleportingProj;
     [SerializeField] float teleportRate;
     [SerializeField] int teleportDist;
-
-    GameObject currentTeleProj;
 
     [SerializeField] int jumpMax;
     [SerializeField] int jumpForce;
@@ -55,17 +51,19 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     public int numofhealpotions;
     float healTimer;
 
+    int baconcount;
+    int beewaxcount;
+    int mushroomscount;
+
     Vector3 moveDir;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        gameManager.instance.UpdatePlayerMaxHPMPCount(HP, Mana);
         HPOrig = HP;
         ManaOrig = Mana;
         healingnumOrig = healingnum;
+        gameManager.instance.UpdatePlayerMaxHPMPCount(HP, Mana);
         gameManager.instance.UpdatePotionCount(numofhealpotions);
-        //gameManager.instance.MaxPlayerHPMP(HP,Mana);
-        //gameManager.instance.MaxPlayerHPMana(HP,Mana);
         updatePlayerUI();
         if (spellList != null)
             changeSpell();
@@ -76,6 +74,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     {
         //if (choice == shootchoice.shootraycast)
         //{
+        //Debug.Log(transform.position);
         Debug.DrawRay(shootPos.position, Camera.main.transform.forward * shootDist, Color.red);
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
         //}
@@ -119,13 +118,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
                 shoot();
             if (choice == shootchoice.spellList && spell != null && Mana > manaCost)
                 shootSpell();
-        }
-        if (Input.GetButton("Fire2"))
-        {
-            if (isTeleportingRaycast && shootTimer >= teleportRate)
-                teleportbyclick();
-            if (isTeleportingProj && spell != null && Mana > manaCost)
-                teleportproj();
         }
         if (Input.GetKey("r") && HP != HPOrig && healTimer > healingCooldown)
         {
@@ -189,13 +181,11 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         updatePlayerUI();
         if (spellList[spellListPos].name != "Teleport Spell")
         {
-            Debug.Log("Every spell but teleport");
             Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
         }
         else
         {
-            Debug.Log("Teleport spell");
-            Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+            Teleport();
         }
 
 
@@ -255,22 +245,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
                 transform.position = teleportPosition;
             }
         }
-
-    }
-
-    void teleportproj()
-    {
-        if (currentTeleProj != null) return;
-        shootTimer = 0;
-
-        GameObject teleProj = Instantiate(teleportProj, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
-        Rigidbody rb = teleProj.GetComponent<Rigidbody>();
-
-        if (rb != null)
-        {
-            rb.linearVelocity = Camera.main.transform.forward * 20f;
-        }
-        currentTeleProj = teleProj;
     }
 
     public void TakeDMG(int amount)
@@ -339,6 +313,30 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     public void GetItemStats(itemStats item)
     {
+        if(item.itemName == "Boar Meat")
+        {
+            baconcount += 1;
+        }
+        else if (item.itemName == "Bee Wax")
+        {
+            beewaxcount += 1;
+        }
+        else if (item.itemName == "Mushroom")
+        {
+            mushroomscount += 1;
+        }
+        else if (item.itemName == "Health Potion")
+        {
+            numofhealpotions += 1;
+            gameManager.instance.UpdatePotionCount(1);
+        }
+        gameManager.instance.UpdateIngredientCount(baconcount, beewaxcount, mushroomscount);
+    }
 
+    void Teleport()
+    {
+        GameObject teleproj = Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+        teleproj.GetComponent<Teleport>().player = gameObject;
+        teleproj.GetComponent<Teleport>().playercon = controller;
     }
 }
