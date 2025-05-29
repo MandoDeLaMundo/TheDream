@@ -60,6 +60,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     bool baconFirstTime;
     bool beewaxFirstTime;
     bool mushroomsFirstTime;
+    bool healpotionFirstTime;
 
     [SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] audStep;
@@ -208,7 +209,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
         {
-            
+
             //Debug.Log(hit.collider.name);
             IDamage dmg = hit.collider.GetComponent<IDamage>();
 
@@ -380,7 +381,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         }
         else if (item.itemName == "Bee Wax")
         {
-            if (beewaxFirstTime) { 
+            if (beewaxFirstTime)
+            {
 
                 gameManager.instance.DisplayDescription(item.itemDescription);
                 beewaxFirstTime = false;
@@ -402,6 +404,13 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         }
         else if (item.itemName == "Health Potion")
         {
+            if (healpotionFirstTime)
+            {
+                gameManager.instance.DisplayDescription(item.itemDescription);
+                healpotionFirstTime = false;
+                numofhealpotions += 1;
+                gameManager.instance.UpdatePotionCount(1);
+            }
             numofhealpotions += 1;
             gameManager.instance.UpdatePotionCount(1);
         }
@@ -446,5 +455,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         baconFirstTime = true;
         beewaxFirstTime = true;
         mushroomsFirstTime = true;
+        healpotionFirstTime = true;
     }
 }
