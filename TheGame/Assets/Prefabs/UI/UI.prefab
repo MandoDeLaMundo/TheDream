@@ -1097,7 +1097,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1285745187611940480
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1844,7 +1844,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: This is our description box
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5527,7 +5527,7 @@ MonoBehaviour:
   potionText: {fileID: 9211669686770967111}
   baconGoalText: {fileID: 7172826457092872945}
   beesWaxGoalText: {fileID: 5387075810765201972}
-  mushroomGoalText: {fileID: 3234266188814425625}
+  mushroomGoalText: {fileID: 6278262549736596936}
   playerDamageScreen: {fileID: 5585800772390485183}
   playerHPBar: {fileID: 9121913521343069128}
   player: {fileID: 0}
@@ -5535,6 +5535,11 @@ MonoBehaviour:
   playerManaBar: {fileID: 413352395655811836}
   textBox: {fileID: 1315425215259821101}
   textDescription: {fileID: 1845219320807462932}
+  DialogueBox: {fileID: 0}
+  DialogueDescription: {fileID: 0}
+  baconGoalPI: 0
+  beesWaxGoalPI: 0
+  mushroomGoalPI: 0
   isPaused: 0
 --- !u!1 &5804555079100988327
 GameObject:
@@ -6604,7 +6609,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 110, y: 0}
+  m_AnchoredPosition: {x: 112, y: 0}
   m_SizeDelta: {x: 41.9, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2069194689621181865
