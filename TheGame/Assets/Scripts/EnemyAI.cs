@@ -287,7 +287,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     private void shootPlayer()
     {
-        anim.SetTrigger("Shoot");
+        //anim.SetTrigger("Shoot");
 
         shootTimer = 0;
         if (projectile != null)
