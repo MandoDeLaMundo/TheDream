@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Security.Cryptography.X509Certificates;
+using Unity.VisualScripting;
 
 public class gameManager : MonoBehaviour
 {
@@ -12,11 +13,13 @@ public class gameManager : MonoBehaviour
 	[SerializeField] GameObject menuWin;
 	[SerializeField] GameObject menuLose;
 	[SerializeField] TMP_Text gameGoalCountText;
-    [SerializeField] TMP_Text playerHPCountText;
-    [SerializeField] TMP_Text playerMPCountText;
-	[SerializeField] TMP_Text playerHPMaxText;
+    [SerializeField] TMP_Text playerHPCountText; 
+    [SerializeField] TMP_Text playerMPCountText; 
+	[SerializeField] TMP_Text playerHPMaxText; 
 	[SerializeField] TMP_Text playerMPMaxText;
-	[SerializeField] TMP_Text baconCountText;
+    [SerializeField] TMP_Text bossHPCountText;
+    [SerializeField] TMP_Text bossHPMaxText;
+    [SerializeField] TMP_Text baconCountText;
 	[SerializeField] TMP_Text beesWaxCountText;
     [SerializeField] TMP_Text mushroomCountText;
     [SerializeField] TMP_Text potionText;
@@ -34,6 +37,7 @@ public class gameManager : MonoBehaviour
 	public TMP_Text textDescription;
 	public GameObject DialogueBox;
 	public TMP_Text DialogueDescription;
+	public Image bossHPBar; 
 	public int baconGoalPI;
 	public int beesWaxGoalPI;
 	public int mushroomGoalPI;
@@ -43,11 +47,13 @@ public class gameManager : MonoBehaviour
 
 	float timeScaleOrig;
 	int gameGoalCount;
-	int playerHPCountOrig;
+	int playerHPCountOrig; 
 	int playerMPCountOrig;
-	int playerHPMaxOrig;
+	int playerHPMaxOrig;  
 	int playerMPMaxOrig;
-	int potionCountOrig;
+    int bossHPCountOrig;
+	int bossHPMaxOrig;
+    int potionCountOrig;
     int baconCount;
     int beesWaxCount;
     int mushroomCount;
@@ -85,9 +91,13 @@ public class gameManager : MonoBehaviour
 				menuActive = menuPause;
 				menuActive.SetActive(isPaused);
 			}
-
 			else if (menuActive == menuPause)
 				StateUnpause();
+		}
+
+		if (Input.GetKey("q"))
+		{
+			HideDescription();
 		}
 	}
 
@@ -123,8 +133,18 @@ public class gameManager : MonoBehaviour
 
 		isPaused = true;
 		Time.timeScale = 0;
-		Cursor.visible = true;
 		Cursor.lockState = CursorLockMode.None;
+
+    }
+
+	public void HideDescription()
+	{
+        textBox.SetActive(false);
+		textDescription.text = "";
+
+        isPaused = false;
+        Time.timeScale = timeScaleOrig;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
 	public void UpdateGameGoal(int amount)
@@ -165,6 +185,12 @@ public class gameManager : MonoBehaviour
 		playerHPMaxText.text = playerHPMaxOrig.ToString("F0");
 	}
 
+	public void UpdateBossHPCount(int amount)
+    {
+        bossHPCountOrig += amount;
+        bossHPCountText.text = bossHPCountOrig.ToString("F0");
+    }
+
 	public void UpdatePotionCount(int amount)
 	{
 		potionCountOrig += amount;
@@ -173,9 +199,9 @@ public class gameManager : MonoBehaviour
 	
 	public void UpdateIngredientCount(int baconAmount, int beesWaxAmount, int mushroomAmount)
     {
-       baconCount += baconAmount;
-        beesWaxCount += beesWaxAmount;
-        mushroomCount += mushroomAmount;
+       baconCount = baconAmount;
+        beesWaxCount = beesWaxAmount;
+        mushroomCount = mushroomAmount;
 
 		baconCountText.text = baconCount.ToString("F0");
         beesWaxCountText.text = beesWaxCount.ToString("F0");

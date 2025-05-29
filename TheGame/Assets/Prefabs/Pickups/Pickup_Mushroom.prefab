@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3233986638071437005}
   - component: {fileID: 33861587784486183}
   - component: {fileID: 6973705968269151114}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Pickup_Mushroom
   m_TagString: Untagged
   m_Icon: {fileID: 0}

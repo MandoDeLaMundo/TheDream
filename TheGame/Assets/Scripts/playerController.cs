@@ -60,6 +60,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     bool baconFirstTime;
     bool beewaxFirstTime;
     bool mushroomsFirstTime;
+    bool healpotionFirstTime;
 
     [SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] audStep;
@@ -68,6 +69,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     [Range(0, 1)][SerializeField] float audJumpVol;
     [SerializeField] AudioClip[] audHurt;
     [Range(0, 1)][SerializeField] float audHurtVol;
+
+    [SerializeField] GameObject sheild;
 
     bool isSprinting;
     bool isPlayingStep;
@@ -135,26 +138,41 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
         controller.Move(playerVel * Time.deltaTime);
         playerVel.y -= Gravity * Time.deltaTime;
+
         if (Input.GetButton("Fire1") && shootTimer >= shootRate)
         {
             if (choice == shootchoice.shootraycast)
                 shoot();
             if (choice == shootchoice.teleportraycast)
                 teleportbyclick();
-            if (choice == shootchoice.spellList && spellList.Count > 0 && Mana > manaCost)
+            if (choice == shootchoice.spellList && spellList.Count > 0 && Mana >= manaCost)
                 shootSpell();
         }
+
         if (Input.GetKey("r") && HP < HPOrig && healTimer > healingCooldown)
         {
             Heal();
         }
-        if (Input.GetKey("q") && beewaxcount > 0 && mushroomscount > 0 && healTimer > healingCooldown)
+        if (Input.GetKey("c") && beewaxcount > 0 && mushroomscount > 0 && healTimer > healingCooldown)
         {
             CraftPotion();
         }
         if (manaCooldownTimer >= manaCoolDownRate)
         {
             ManaRegen();
+        }
+
+        if (Input.GetKey("b"))
+        {
+            if (Input.GetKeyDown("b"))
+            {
+                sheild.SetActive(true);
+                Mana -= manaCost;
+            }
+            else
+            {
+                sheild.SetActive(false);
+            }
         }
 
         selectSpell();
@@ -194,7 +212,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
         {
-            
+
             //Debug.Log(hit.collider.name);
             IDamage dmg = hit.collider.GetComponent<IDamage>();
 
@@ -217,14 +235,13 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         if (spellList[spellListPos].name != "Teleport Spell")
         {
             Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
-            Instantiate(spellList[spellListPos].hitEffect, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+            if (spellList[spellListPos].hitEffect != null)
+                Instantiate(spellList[spellListPos].hitEffect, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
         }
         else
         {
             Teleport();
         }
-
-
     }
 
     void Heal()
@@ -359,7 +376,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         {
             if (baconFirstTime)
             {
-
+                gameManager.instance.DisplayDescription(item.itemDescription);
                 baconFirstTime = false;
                 baconcount += 1;
             }
@@ -369,8 +386,9 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         else if (item.itemName == "Bee Wax")
         {
             if (beewaxFirstTime)
-            {   
+            {
 
+                gameManager.instance.DisplayDescription(item.itemDescription);
                 beewaxFirstTime = false;
                 beewaxcount += 1;
             }
@@ -380,8 +398,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         else if (item.itemName == "Mushroom")
         {
             if (mushroomsFirstTime)
-            {   
-                
+            {
+                gameManager.instance.DisplayDescription(item.itemDescription);
                 mushroomsFirstTime = false;
                 mushroomscount += 1;
             }
@@ -390,12 +408,23 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         }
         else if (item.itemName == "Health Potion")
         {
-            numofhealpotions += 1;
-            gameManager.instance.UpdatePotionCount(1);
+            if (healpotionFirstTime)
+            {
+                gameManager.instance.DisplayDescription(item.itemDescription);
+                healpotionFirstTime = false;
+                numofhealpotions += 1;
+                gameManager.instance.UpdatePotionCount(1);
+            }
+            else
+            {
+                numofhealpotions += 1;
+                gameManager.instance.UpdatePotionCount(1);
+            }
         }
         else if (item.itemName == "Boss Egg")
         {
             gameManager.instance.UpdateMonsterEgg(true);
+            gameManager.instance.GameGoalMonsterEgg();
         }
     }
 
@@ -433,5 +462,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         baconFirstTime = true;
         beewaxFirstTime = true;
         mushroomsFirstTime = true;
+        healpotionFirstTime = true;
     }
 }

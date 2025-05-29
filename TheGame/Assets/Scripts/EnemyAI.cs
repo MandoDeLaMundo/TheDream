@@ -9,7 +9,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Animator anim;
     [SerializeField] Transform headPos;
     [SerializeField] Collider weaponCol;
-
+    [SerializeField] Transform LootPos;
     int HPOrig;
     [SerializeField] Image hpBar;
 
@@ -222,7 +222,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         }
         else
         {
-            Instantiate(dropItemPrefab, transform.position, Quaternion.identity);
+            Instantiate(dropItemPrefab,LootPos.position, Quaternion.identity);
         }
     }
 
