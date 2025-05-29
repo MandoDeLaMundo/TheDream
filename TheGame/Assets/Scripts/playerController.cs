@@ -69,6 +69,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     [SerializeField] AudioClip[] audHurt;
     [Range(0, 1)][SerializeField] float audHurtVol;
 
+    [SerializeField] GameObject sheild;
+
     bool isSprinting;
     bool isPlayingStep;
     Coroutine co;
@@ -155,6 +157,18 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         if (manaCooldownTimer >= manaCoolDownRate)
         {
             ManaRegen();
+        }
+        if (Input.GetKey("b"))
+        {
+            if (Input.GetKeyDown("b"))
+            {
+                sheild.SetActive(true);
+                Mana -= manaCost;
+            }
+            else
+            {
+                sheild.SetActive(false);
+            }
         }
 
         selectSpell();
@@ -359,7 +373,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         {
             if (baconFirstTime)
             {
-
+                gameManager.instance.DisplayDescription(item.itemDescription);
                 baconFirstTime = false;
                 baconcount += 1;
             }
@@ -368,9 +382,9 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         }
         else if (item.itemName == "Bee Wax")
         {
-            if (beewaxFirstTime)
-            {   
+            if (beewaxFirstTime) { 
 
+                gameManager.instance.DisplayDescription(item.itemDescription);
                 beewaxFirstTime = false;
                 beewaxcount += 1;
             }
@@ -380,8 +394,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         else if (item.itemName == "Mushroom")
         {
             if (mushroomsFirstTime)
-            {   
-                
+            {
+                gameManager.instance.DisplayDescription(item.itemDescription);
                 mushroomsFirstTime = false;
                 mushroomscount += 1;
             }
@@ -396,6 +410,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         else if (item.itemName == "Boss Egg")
         {
             gameManager.instance.UpdateMonsterEgg(true);
+            gameManager.instance.GameGoalMonsterEgg();
         }
     }
 
