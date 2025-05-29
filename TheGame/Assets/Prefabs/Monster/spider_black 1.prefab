@@ -921,6 +921,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   headPos: {fileID: 8675209211930878780}
   weaponCol: {fileID: 0}
+  LootPos: {fileID: 2975702442668952382}
   hpBar: {fileID: 0}
   dropItemPrefab: {fileID: 1634457089981656779, guid: 34a0fd6865b7a9641851ec6978d767c5, type: 3}
   rb: {fileID: 0}
