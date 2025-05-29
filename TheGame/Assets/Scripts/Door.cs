@@ -34,15 +34,15 @@ public class Door : MonoBehaviour
         {
             //button.SetActive(true);
             playerInTrigger = true;
-            gameManager.instance.textDescription.text = text;
-            gameManager.instance.textBox.SetActive(true);
+            gameManager.instance.DialogueDescription.text = text;
+            gameManager.instance.DialogueBox.SetActive(true);
         }
         //&& destroyDoorOn != false (add this below if needed)
         if (other.CompareTag("FireBall"))
         {
             doorModel.SetActive(false);
             //button.SetActive(false);
-            gameManager.instance.textBox.SetActive(false);
+            gameManager.instance.DialogueBox.SetActive(false);
             Destroy(gameObject);
             Destroy(other.gameObject);
         }
@@ -56,7 +56,7 @@ public class Door : MonoBehaviour
             //button.SetActive(false);
             playerInTrigger = false;
             doorModel.SetActive(true);
-            gameManager.instance.textBox.SetActive(false);
+            gameManager.instance.DialogueBox.SetActive(false);
         }
 
     }
