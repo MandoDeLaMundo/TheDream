@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class Shield : MonoBehaviour
 {
-    
     void OnTriggerEnter(Collider other)
     {
         if (CompareTag("EnemyProjectile"))
