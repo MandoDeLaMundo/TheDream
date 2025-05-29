@@ -86,9 +86,13 @@ public class gameManager : MonoBehaviour
 				menuActive = menuPause;
 				menuActive.SetActive(isPaused);
 			}
-
 			else if (menuActive == menuPause)
 				StateUnpause();
+		}
+
+		if (Input.GetButtonDown("Submit"))
+		{
+			HideDescription();
 		}
 	}
 
@@ -126,11 +130,12 @@ public class gameManager : MonoBehaviour
 		Time.timeScale = 0;
 		Cursor.visible = true;
 		Cursor.lockState = CursorLockMode.None;
+
     }
 
 	public void HideDescription()
 	{
-        textBox.SetActive(true);
+        textBox.SetActive(false);
 		textDescription.text = "";
 
         isPaused = false;
