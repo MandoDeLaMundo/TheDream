@@ -173,9 +173,9 @@ public class gameManager : MonoBehaviour
 	
 	public void UpdateIngredientCount(int baconAmount, int beesWaxAmount, int mushroomAmount)
     {
-       baconCount += baconAmount;
-        beesWaxCount += beesWaxAmount;
-        mushroomCount += mushroomAmount;
+       baconCount = baconAmount;
+        beesWaxCount = beesWaxAmount;
+        mushroomCount = mushroomAmount;
 
 		baconCountText.text = baconCount.ToString("F0");
         beesWaxCountText.text = beesWaxCount.ToString("F0");
