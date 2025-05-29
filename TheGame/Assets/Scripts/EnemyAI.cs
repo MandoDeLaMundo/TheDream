@@ -51,7 +51,6 @@ public class EnemyAI : MonoBehaviour, IDamage
     void Start()
     {
         colorOrig = model.material.color;
-        gameManager.instance.UpdateGameGoal(1);
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
         HPOrig = HP;
@@ -100,18 +99,16 @@ public class EnemyAI : MonoBehaviour, IDamage
             {
                 faceTarget3D();
             }
+            checkRoam();
+            //  if (playerDir.magnitude <= meleeDistance && meleeTimer >= meleeRate)
+            //  {
+            //      attackPlayer();
+            // }
 
-
-
-            if (playerDir.magnitude <= meleeDistance && meleeTimer >= meleeRate)
-            {
-                attackPlayer();
-            }
-
-            if (playerDir.magnitude > meleeDistance && shootTimer >= shootRate)
-            {
-                shootPlayer();
-            }
+            //  if (playerDir.magnitude > meleeDistance && shootTimer >= shootRate)
+            // {
+            //     shootPlayer();
+            //  }
         }
         else if (!isSentry)
         {
@@ -141,12 +138,12 @@ public class EnemyAI : MonoBehaviour, IDamage
         roamTimer = 0;
         agent.stoppingDistance = 0;
 
-        Vector3 ranPos = Random.insideUnitSphere * roamDist + startingPos;
+        Vector3 ranPos = Random.insideUnitSphere * roamDist;
+        ranPos += startingPos;
 
-        if (NavMesh.SamplePosition(ranPos, out NavMeshHit hit, roamDist, NavMesh.AllAreas))
-        {
-            agent.SetDestination(hit.position);
-        }
+        NavMeshHit hit;
+        NavMesh.SamplePosition(ranPos, out hit, roamDist, 1);
+        agent.SetDestination(hit.position);
     }
 
     bool CanSeePlayer()
@@ -155,21 +152,29 @@ public class EnemyAI : MonoBehaviour, IDamage
         Vector3 horizontalDir = new Vector3(directionToPlayer.x, 0, directionToPlayer.z);
         angleToPlayer = Vector3.Angle(horizontalDir, transform.forward);
 
-        Debug.DrawRay(headPos.position, horizontalDir, Color.yellow);
-
-        if (angleToPlayer <= FOV)
+        // Debug.DrawRay(headPos.position, horizontalDir, Color.yellow);    
+        RaycastHit hit;
+        if (Physics.Raycast(headPos.position, directionToPlayer, out hit))
         {
-            if (Physics.Raycast(headPos.position, directionToPlayer, out RaycastHit hit))
+            if (angleToPlayer <= FOV && hit.collider.CompareTag("Player"))
             {
-                if (hit.collider.CompareTag("Player"))
+                agent.stoppingDistance = stoppingDistOrig;
+
+
+                if (playerDir.magnitude <= meleeDistance && meleeTimer >= meleeRate)
                 {
-                    agent.stoppingDistance = stoppingDistOrig;
-
-
-                    return true;
+                    attackPlayer();
                 }
+
+                if (playerDir.magnitude > meleeDistance && shootTimer >= shootRate)
+                {
+                    shootPlayer();
+                }
+                return true;
             }
         }
+
+
         agent.stoppingDistance = 0;
         return false;
     }
@@ -207,7 +212,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         if (dropItemPrefab == null) return;
 
-        Vector3 spawnOrigin = transform.position + Vector3.up * 1f; 
+        Vector3 spawnOrigin = transform.position + Vector3.up * 1f;
         RaycastHit hit;
 
         if (Physics.Raycast(spawnOrigin, Vector3.down, out hit, 10f))
@@ -239,7 +244,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             // gameManager.instance.UpdateGameGoal(-1);
 
             DropItem();
-          
+
             Destroy(gameObject);
         }
         else

@@ -7,6 +7,11 @@ TagManager:
   - Weapon
   - Enemy
   - Teleportable
+  - FireBall
+<<<<<<< HEAD
+=======
+  - EnemyProjectile
+>>>>>>> roy
   layers:
   - Default
   - TransparentFX
@@ -20,7 +25,7 @@ TagManager:
   - Door
   - Weapon
   - Food
-  - 
+  - Roof
   - 
   - 
   - 
