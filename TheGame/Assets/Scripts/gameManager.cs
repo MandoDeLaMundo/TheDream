@@ -90,7 +90,7 @@ public class gameManager : MonoBehaviour
 				StateUnpause();
 		}
 
-		if (Input.GetButtonDown("Submit"))
+		if (Input.GetKey("q"))
 		{
 			HideDescription();
 		}
