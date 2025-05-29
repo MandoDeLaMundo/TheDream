@@ -9286,6 +9286,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3454341998149831958, guid: c59ad50a8f86894428ca1a44b2d9b6f7, type: 3}
+      propertyPath: roamDist
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 4788485592055790963, guid: c59ad50a8f86894428ca1a44b2d9b6f7, type: 3}
       propertyPath: m_Name
       value: spider_black 1
