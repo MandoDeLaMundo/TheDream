@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9006805396059754473}
   - component: {fileID: 573394420668162896}
   - component: {fileID: 10418195156012385}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Pickup_Egg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
