@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Security.Cryptography.X509Certificates;
+using Unity.VisualScripting;
 
 public class gameManager : MonoBehaviour
 {
@@ -125,6 +126,17 @@ public class gameManager : MonoBehaviour
 		Time.timeScale = 0;
 		Cursor.visible = true;
 		Cursor.lockState = CursorLockMode.None;
+    }
+
+	public void HideDescription()
+	{
+        textBox.SetActive(true);
+		textDescription.text = "";
+
+        isPaused = false;
+        Time.timeScale = timeScaleOrig;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
 	public void UpdateGameGoal(int amount)
