@@ -880,6 +880,7 @@ GameObject:
   - component: {fileID: 3634328166892483399}
   - component: {fileID: 8485551744152574025}
   - component: {fileID: 1592206466211477079}
+  - component: {fileID: 9064806281726078075}
   m_Layer: 6
   m_Name: spider_black 1
   m_TagString: Untagged
@@ -918,7 +919,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 6580197734514022327}
   agent: {fileID: 3634328166892483399}
-  anim: {fileID: 0}
+  anim: {fileID: 9064806281726078075}
   headPos: {fileID: 8675209211930878780}
   weaponCol: {fileID: 0}
   LootPos: {fileID: 2975702442668952382}
@@ -928,9 +929,9 @@ MonoBehaviour:
   HP: 10
   faceTargetSpeed: 12
   FOV: 120
-  roamDist: 1
+  roamDist: 25
   roamPauseTime: 3
-  animTranSpeed: 10
+  animTransSpeed: 10
   shootPos: {fileID: 8813872039018758971}
   projectile: {fileID: 3831039740292043157, guid: e7d7b9097e3975d49a2381b8d6e2c171, type: 3}
   shootRate: 1
@@ -1003,6 +1004,28 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4, y: 3, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &9064806281726078075
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4788485592055790963}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: a96ff394aa19efb4bbcd55446aefd7db, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3f84ca341c1b1844eb99afcd13998555, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4884606332259709655
 GameObject:
   m_ObjectHideFlags: 0

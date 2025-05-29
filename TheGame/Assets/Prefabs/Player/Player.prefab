@@ -103,12 +103,12 @@ MonoBehaviour:
   isTeleportingRaycast: 0
   teleportRate: 2
   teleportDist: 15
-  jumpMax: 1
+  jumpMax: 2
   jumpForce: 12
   Gravity: 35
   healingCooldown: 0.5
   healingnum: 5
-  numofhealpotions: 2
+  numofhealpotions: 0
   aud: {fileID: 1038565525389119075}
   audStep:
   - {fileID: 8300000, guid: c744498b192e5bc4faa13f0440861ab1, type: 3}

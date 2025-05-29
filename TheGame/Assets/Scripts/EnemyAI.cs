@@ -21,7 +21,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] int FOV;
     [SerializeField] int roamDist;
     [SerializeField] int roamPauseTime;
-    [SerializeField] int animTranSpeed;
+    [SerializeField] int animTransSpeed;
 
     [SerializeField] Transform shootPos;
     [SerializeField] GameObject projectile;
@@ -75,6 +75,9 @@ public class EnemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
+        if(anim != null)
+        setAnimPara();
+
         meleeTimer += Time.deltaTime;
         shootTimer += Time.deltaTime;
 
@@ -116,6 +119,14 @@ public class EnemyAI : MonoBehaviour, IDamage
         }
 
 
+    }
+
+    void setAnimPara()
+    {
+        float agentSpeedCur = agent.velocity.normalized.magnitude;
+        float animSpeedCur = anim.GetFloat("Speed");
+
+        anim.SetFloat("Speed", Mathf.Lerp(animSpeedCur, agentSpeedCur, Time.deltaTime * animTransSpeed));
     }
 
     void faceTarget3D()
@@ -276,6 +287,8 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     private void shootPlayer()
     {
+        //anim.SetTrigger("Shoot");
+
         shootTimer = 0;
         if (projectile != null)
         {
