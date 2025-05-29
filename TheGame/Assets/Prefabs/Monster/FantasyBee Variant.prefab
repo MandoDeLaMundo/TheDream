@@ -209,6 +209,10 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6954951005305003048, guid: 544cd02931516904899d3fbe091ff9ec, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 136626365019670672}
+    - target: {fileID: 6954951005305003048, guid: 544cd02931516904899d3fbe091ff9ec, type: 3}
       propertyPath: hpBar
       value: 
       objectReference: {fileID: 179954024992936329}
@@ -291,6 +295,11 @@ PrefabInstance:
       addedObject: {fileID: 8377066619755829534}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 544cd02931516904899d3fbe091ff9ec, type: 3}
+--- !u!95 &136626365019670672 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9109970487657239081, guid: 544cd02931516904899d3fbe091ff9ec, type: 3}
+  m_PrefabInstance: {fileID: 9189728152747334329}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1257600376560284930 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7997159225709866939, guid: 544cd02931516904899d3fbe091ff9ec, type: 3}
