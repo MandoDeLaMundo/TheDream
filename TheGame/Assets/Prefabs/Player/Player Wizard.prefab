@@ -809,6 +809,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d642b4be86c400c4987eefd6db87631c, type: 3}
   - {fileID: 8300000, guid: ea034ca4f786b0b438f7be1dbb6d4424, type: 3}
   audHurtVol: 1
+  shield: {fileID: 0}
+  startupDialogue: I want an omelet for breakfast, I hope I can find an egg in this
+    dungeon!
 --- !u!95 &8951174746900345208
 Animator:
   serializedVersion: 7

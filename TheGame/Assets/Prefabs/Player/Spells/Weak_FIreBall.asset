@@ -22,3 +22,6 @@ MonoBehaviour:
   hitEffect: {fileID: 6280281539998945384, guid: f78aaaec3b393e24ca74cd6de8194347, type: 3}
   shootSound: []
   shootSoundVol: 0.5
+  spellCheck: 1
+  spellManual: "Ah yes, behold my signature spell: Tiny Fireball of Moderate Warmth\u2122!
+    It\u2019s not explosive, it sometimes barely toasts my marshmallows"

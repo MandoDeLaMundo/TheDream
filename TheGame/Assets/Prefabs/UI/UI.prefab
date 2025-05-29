@@ -675,9 +675,9 @@ MonoBehaviour:
   DialogueBox: {fileID: 3737422282485817401}
   DialogueDescription: {fileID: 7462713744859072922}
   bossHPBar: {fileID: 0}
-  baconGoalPI: 0
-  beesWaxGoalPI: 0
-  mushroomGoalPI: 0
+  baconGoalPI: 3
+  beesWaxGoalPI: 3
+  mushroomGoalPI: 3
   isPaused: 0
 --- !u!1 &578040612924016728
 GameObject:
@@ -3766,7 +3766,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8972306230675620541
 RectTransform:
   m_ObjectHideFlags: 0
