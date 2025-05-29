@@ -25,11 +25,14 @@ public class Teleport : MonoBehaviour
         {
             playercon.enabled = false;
             Vector3 teleportPosition = transform.position;
-            teleportPosition.y = 1;
             player.transform.position = teleportPosition;
 
             Destroy(gameObject, destroyDelay);
             playercon.enabled = true;
+        }
+        if(other.CompareTag("NONTeleportable"))
+        {
+            Destroy(gameObject, destroyDelay);
         }
     }
 }
