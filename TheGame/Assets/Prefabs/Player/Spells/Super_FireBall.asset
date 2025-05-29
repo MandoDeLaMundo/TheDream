@@ -22,3 +22,5 @@ MonoBehaviour:
   hitEffect: {fileID: 5444105318733727396, guid: cf82839c411151342a7b2337bda9fb34, type: 3}
   shootSound: []
   shootSoundVol: 0
+  spellCheck: 1
+  spellManual: 
