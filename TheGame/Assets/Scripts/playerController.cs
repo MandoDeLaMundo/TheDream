@@ -387,6 +387,9 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             {
 =======
             {   
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                 gameManager.instance.DisplayDescription(item.itemDescription);
                 beewaxFirstTime = false;
