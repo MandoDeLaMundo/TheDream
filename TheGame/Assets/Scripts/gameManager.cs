@@ -128,7 +128,6 @@ public class gameManager : MonoBehaviour
 
 		isPaused = true;
 		Time.timeScale = 0;
-		Cursor.visible = true;
 		Cursor.lockState = CursorLockMode.None;
 
     }
@@ -140,7 +139,6 @@ public class gameManager : MonoBehaviour
 
         isPaused = false;
         Time.timeScale = timeScaleOrig;
-        Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
