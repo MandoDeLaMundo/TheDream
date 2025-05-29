@@ -383,7 +383,11 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         else if (item.itemName == "Bee Wax")
         {
             if (beewaxFirstTime)
+<<<<<<< Updated upstream
             {
+=======
+            {   
+>>>>>>> Stashed changes
                 gameManager.instance.DisplayDescription(item.itemDescription);
                 beewaxFirstTime = false;
                 beewaxcount += 1;
