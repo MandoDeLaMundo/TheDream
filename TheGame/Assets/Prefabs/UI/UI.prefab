@@ -2358,7 +2358,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6299736075970128131
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2372,9 +2372,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   - {fileID: 8534311179864371653}
 >>>>>>> parent of df0bc2a (Update UI.prefab)
+=======
+>>>>>>> parent of 0fff84c (UPDATED the dialogue box)
   - {fileID: 6519188369495512619}
   m_Father: {fileID: 2489639799210999176}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
