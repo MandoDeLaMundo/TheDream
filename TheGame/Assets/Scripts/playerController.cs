@@ -237,8 +237,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         {
             Teleport();
         }
-
-
     }
 
     void Heal()
