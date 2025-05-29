@@ -1461,6 +1461,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5934466673113150788, guid: 7df180d1f5585a1408de42c6f3ef5dd2, type: 3}
+      propertyPath: startupDialogue
+      value: I want an omelet for breakfast, I hope I can find an egg in this dungeon!
+      objectReference: {fileID: 0}
+    - target: {fileID: 5934466673113150788, guid: 7df180d1f5585a1408de42c6f3ef5dd2, type: 3}
       propertyPath: spellList.Array.size
       value: 0
       objectReference: {fileID: 0}

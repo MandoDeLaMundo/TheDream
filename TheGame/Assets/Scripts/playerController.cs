@@ -16,7 +16,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     [SerializeField] int speed;
     [SerializeField] int sprintMod;
-
     enum shootchoice { shootraycast, spellList, teleportraycast }
     [SerializeField] shootchoice choice;
     [SerializeField] List<spellStats> spellList = new List<spellStats>();
@@ -70,7 +69,9 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     [SerializeField] AudioClip[] audHurt;
     [Range(0, 1)][SerializeField] float audHurtVol;
 
-    [SerializeField] GameObject sheild;
+    [SerializeField] GameObject shield;
+
+    public string startupDialogue;
 
     bool isSprinting;
     bool isPlayingStep;
@@ -80,6 +81,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        gameManager.instance.DisplayDescription(startupDialogue);
         HPOrig = HP;
         ManaOrig = Mana;
         healingnumOrig = healingnum;
@@ -166,12 +168,12 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         {
             if (Input.GetKeyDown("b"))
             {
-                sheild.SetActive(true);
+                shield.SetActive(true);
                 Mana -= manaCost;
             }
             else
             {
-                sheild.SetActive(false);
+                shield.SetActive(false);
             }
         }
 
