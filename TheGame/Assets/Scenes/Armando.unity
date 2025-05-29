@@ -120,11 +120,14 @@ NavMeshSettings:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1 &94186750 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2505148565851300637, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
   m_PrefabInstance: {fileID: 898202635}
   m_PrefabAsset: {fileID: 0}
+=======
+>>>>>>> parent of 0fff84c (UPDATED the dialogue box)
 =======
 >>>>>>> parent of 0fff84c (UPDATED the dialogue box)
 --- !u!1001 &898202635
