@@ -17,14 +17,7 @@ public class Door : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerInTrigger)
-        {
-            if (Input.GetButtonDown("Interact"))
-            {
-                doorModel.SetActive(false);
-                //button.SetActive(false);
-            }
-        }
+        
     }
 
     private void OnTriggerEnter(Collider other)
