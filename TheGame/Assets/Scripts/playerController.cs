@@ -161,7 +161,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         {
             ManaRegen();
         }
-        
+
         if (Input.GetKey("b"))
         {
             if (Input.GetKeyDown("b"))
@@ -236,7 +236,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         {
             Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
             if (spellList[spellListPos].hitEffect != null)
-            Instantiate(spellList[spellListPos].hitEffect, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+                Instantiate(spellList[spellListPos].hitEffect, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
         }
         else
         {
@@ -415,8 +415,11 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
                 numofhealpotions += 1;
                 gameManager.instance.UpdatePotionCount(1);
             }
-            numofhealpotions += 1;
-            gameManager.instance.UpdatePotionCount(1);
+            else
+            {
+                numofhealpotions += 1;
+                gameManager.instance.UpdatePotionCount(1);
+            }
         }
         else if (item.itemName == "Boss Egg")
         {
