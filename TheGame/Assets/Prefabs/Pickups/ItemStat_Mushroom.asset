@@ -15,5 +15,5 @@ MonoBehaviour:
   model: {fileID: 1197006836730729220, guid: b41ef6b0fcdee1c4b9e62aa1102626d7, type: 3}
   itemName: Mushroom
   itemDescription: Unlike some Italian plumbers, I like mushrooms, they go REALLY
-    well on omelets!
+    well on omelets! These plants moved really weird....
   healFactor: 0
