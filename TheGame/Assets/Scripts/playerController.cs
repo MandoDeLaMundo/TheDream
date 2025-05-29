@@ -138,6 +138,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
         controller.Move(playerVel * Time.deltaTime);
         playerVel.y -= Gravity * Time.deltaTime;
+
         if (Input.GetButton("Fire1") && shootTimer >= shootRate)
         {
             if (choice == shootchoice.shootraycast)
@@ -147,11 +148,12 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             if (choice == shootchoice.spellList && spellList.Count > 0 && Mana > manaCost)
                 shootSpell();
         }
+
         if (Input.GetKey("r") && HP < HPOrig && healTimer > healingCooldown)
         {
             Heal();
         }
-        if (Input.GetKey("q") && beewaxcount > 0 && mushroomscount > 0 && healTimer > healingCooldown)
+        if (Input.GetKey("c") && beewaxcount > 0 && mushroomscount > 0 && healTimer > healingCooldown)
         {
             CraftPotion();
         }
@@ -159,6 +161,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         {
             ManaRegen();
         }
+        
         if (Input.GetKey("b"))
         {
             if (Input.GetKeyDown("b"))
