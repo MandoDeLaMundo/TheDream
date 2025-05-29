@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6403050237368557091}
   - component: {fileID: 6723041176470689664}
   - component: {fileID: 6060561330082449549}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Pickup_BoarMeat
   m_TagString: Untagged
   m_Icon: {fileID: 0}

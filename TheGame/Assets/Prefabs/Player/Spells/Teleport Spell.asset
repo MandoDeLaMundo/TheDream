@@ -17,7 +17,7 @@ MonoBehaviour:
   shootDMG: 1
   shootRate: 1
   shootDist: 10
-  manaCost: 1
+  manaCost: 0
   spellRadius: 0
   hitEffect: {fileID: 0}
   shootSound: []
