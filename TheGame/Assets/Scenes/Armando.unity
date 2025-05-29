@@ -140,6 +140,10 @@ PrefabInstance:
       propertyPath: DialogueDescription
       value: 
       objectReference: {fileID: 1427993635}
+    - target: {fileID: 1173346095367234575, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
+      propertyPath: m_text
+      value: C
+      objectReference: {fileID: 0}
     - target: {fileID: 2489639799210999176, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
       propertyPath: m_Pivot.x
       value: 0
