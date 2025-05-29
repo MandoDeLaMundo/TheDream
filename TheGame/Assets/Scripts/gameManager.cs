@@ -86,14 +86,13 @@ public class gameManager : MonoBehaviour
 				menuActive = menuPause;
 				menuActive.SetActive(isPaused);
 			}
-
-			if(textBox == true)
-			{
-				HideDescription();
-			}
-
 			else if (menuActive == menuPause)
 				StateUnpause();
+		}
+
+		if (Input.GetButtonDown("Submit"))
+		{
+			HideDescription();
 		}
 	}
 
