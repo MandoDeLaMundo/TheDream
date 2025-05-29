@@ -89,7 +89,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         gameManager.instance.UpdatePotionCount(numofhealpotions);
         updatePlayerUI();
         FirstTime();
-        if (spellList != null)
+        if (spellList.Count > 0)
             changeSpell();
     }
 
@@ -366,10 +366,14 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     public void GetSpellStats(spellStats spell)
     {
-        spellList.Add(spell);
-        spellListPos = spellList.Count - 1;
+        if (spell.spellCheck)
+        {
+            spellList.Add(spell);
+            spellListPos = spellList.Count - 1;
 
-        changeSpell();
+            changeSpell();
+            gameManager.instance.DisplayDescription(spell.spellManual);
+        }
     }
 
     public void GetItemStats(itemStats item)
