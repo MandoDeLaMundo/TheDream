@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4096075793430114779}
   - component: {fileID: 2981035956737524537}
   - component: {fileID: 7627276931516254140}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Pickup_BeeWax
   m_TagString: Untagged
   m_Icon: {fileID: 0}

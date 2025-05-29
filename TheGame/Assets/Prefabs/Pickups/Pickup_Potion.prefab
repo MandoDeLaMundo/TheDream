@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 654424580939619798}
   - component: {fileID: 7384547428170042928}
   - component: {fileID: 7313324181914114764}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Pickup_Potion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
