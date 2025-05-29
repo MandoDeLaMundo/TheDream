@@ -22,6 +22,6 @@ MonoBehaviour:
   hitEffect: {fileID: 0}
   shootSound: []
   shootSoundVol: 0
-  spellCheck: 1
-  spellManual: A magic spell that lets you instantly move to a place where you want
-    to go. It's fast and helps you travel or escape quickly.
+  spellCheck: 0
+  spellManual: For some reason when I pick this "Wand" up. It disappears from my
+    view but I can feel the power of teleporting where ever I want to go

@@ -23,4 +23,5 @@ MonoBehaviour:
   shootSound: []
   shootSoundVol: 0.5
   spellCheck: 1
-  spellManual: 
+  spellManual: "Ah yes, behold my signature spell: Tiny Fireball of Moderate Warmth\u2122!
+    It\u2019s not explosive, it sometimes barely toasts my marshmallows"
