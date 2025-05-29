@@ -22,3 +22,6 @@ MonoBehaviour:
   hitEffect: {fileID: 0}
   shootSound: []
   shootSoundVol: 0
+  spellCheck: 1
+  spellManual: A magic spell that lets you instantly move to a place where you want
+    to go. It's fast and helps you travel or escape quickly.

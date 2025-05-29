@@ -72,6 +72,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     [SerializeField] GameObject sheild;
 
+    public string startupDialogue;
+
     bool isSprinting;
     bool isPlayingStep;
     Coroutine co;
@@ -80,6 +82,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        gameManager.instance.DisplayDescription(startupDialogue);
         HPOrig = HP;
         ManaOrig = Mana;
         healingnumOrig = healingnum;
@@ -364,10 +367,15 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     public void GetSpellStats(spellStats spell)
     {
-        spellList.Add(spell);
-        spellListPos = spellList.Count - 1;
+        if (spell.spellCheck)
+        {
+            spellList.Add(spell);
+            spellListPos = spellList.Count - 1;
 
-        changeSpell();
+            changeSpell();
+            gameManager.instance.DisplayDescription(spell.spellManual);
+            spell.spellCheck = false;
+        }
     }
 
     public void GetItemStats(itemStats item)
