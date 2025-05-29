@@ -13,11 +13,13 @@ public class gameManager : MonoBehaviour
 	[SerializeField] GameObject menuWin;
 	[SerializeField] GameObject menuLose;
 	[SerializeField] TMP_Text gameGoalCountText;
-    [SerializeField] TMP_Text playerHPCountText;
-    [SerializeField] TMP_Text playerMPCountText;
-	[SerializeField] TMP_Text playerHPMaxText;
+    [SerializeField] TMP_Text playerHPCountText; 
+    [SerializeField] TMP_Text playerMPCountText; 
+	[SerializeField] TMP_Text playerHPMaxText; 
 	[SerializeField] TMP_Text playerMPMaxText;
-	[SerializeField] TMP_Text baconCountText;
+    [SerializeField] TMP_Text bossHPCountText;
+    [SerializeField] TMP_Text bossHPMaxText;
+    [SerializeField] TMP_Text baconCountText;
 	[SerializeField] TMP_Text beesWaxCountText;
     [SerializeField] TMP_Text mushroomCountText;
     [SerializeField] TMP_Text potionText;
@@ -35,6 +37,7 @@ public class gameManager : MonoBehaviour
 	public TMP_Text textDescription;
 	public GameObject DialogueBox;
 	public TMP_Text DialogueDescription;
+	public Image bossHPBar; 
 	public int baconGoalPI;
 	public int beesWaxGoalPI;
 	public int mushroomGoalPI;
@@ -44,11 +47,13 @@ public class gameManager : MonoBehaviour
 
 	float timeScaleOrig;
 	int gameGoalCount;
-	int playerHPCountOrig;
+	int playerHPCountOrig; 
 	int playerMPCountOrig;
-	int playerHPMaxOrig;
+	int playerHPMaxOrig;  
 	int playerMPMaxOrig;
-	int potionCountOrig;
+    int bossHPCountOrig;
+	int bossHPMaxOrig;
+    int potionCountOrig;
     int baconCount;
     int beesWaxCount;
     int mushroomCount;
@@ -179,6 +184,12 @@ public class gameManager : MonoBehaviour
 		playerHPMaxOrig += hpAmount;
 		playerHPMaxText.text = playerHPMaxOrig.ToString("F0");
 	}
+
+	public void UpdateBossHPCount(int amount)
+    {
+        bossHPCountOrig += amount;
+        bossHPCountText.text = bossHPCountOrig.ToString("F0");
+    }
 
 	public void UpdatePotionCount(int amount)
 	{

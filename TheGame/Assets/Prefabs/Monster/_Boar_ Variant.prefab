@@ -263,6 +263,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: _Boar_ Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5142659777590169813, guid: 31116e1e856782b46a7bf408735d90df, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5142659777590169813, guid: 31116e1e856782b46a7bf408735d90df, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5142659777590169813, guid: 31116e1e856782b46a7bf408735d90df, type: 3}
+      propertyPath: m_Size.z
+      value: 1.25
+      objectReference: {fileID: 0}
     - target: {fileID: 8209504721125383280, guid: 31116e1e856782b46a7bf408735d90df, type: 3}
       propertyPath: m_Height
       value: 0.6
