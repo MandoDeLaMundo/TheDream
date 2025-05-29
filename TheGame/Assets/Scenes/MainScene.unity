@@ -34814,7 +34814,7 @@ GameObject:
   - component: {fileID: 8882108918136439972}
   m_Layer: 0
   m_Name: Wall (242)
-  m_TagString: Untagged
+  m_TagString: Teleportable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
