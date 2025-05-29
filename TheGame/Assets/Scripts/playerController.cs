@@ -145,7 +145,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
                 shoot();
             if (choice == shootchoice.teleportraycast)
                 teleportbyclick();
-            if (choice == shootchoice.spellList && spellList.Count > 0 && Mana > manaCost)
+            if (choice == shootchoice.spellList && spellList.Count > 0 && Mana >= manaCost)
                 shootSpell();
         }
 
@@ -235,6 +235,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         if (spellList[spellListPos].name != "Teleport Spell")
         {
             Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+            if (spellList[spellListPos].hitEffect != null)
             Instantiate(spellList[spellListPos].hitEffect, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
         }
         else
