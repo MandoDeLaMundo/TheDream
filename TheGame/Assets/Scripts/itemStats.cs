@@ -7,4 +7,5 @@ public class itemStats : ScriptableObject
 	public string itemName;
 	public string itemDescription;
 	[Range(0, 10)] public int healFactor;
+	[Range(0, 10)] public int ManaFactor;
 }

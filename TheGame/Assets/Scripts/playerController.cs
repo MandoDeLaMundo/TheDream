@@ -38,6 +38,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     [SerializeField] float manaCoolDownRate;
     [SerializeField] float manaRegenRate;
     float manaRegenTimer;
+    public int numofmanapotions;
     float manaCooldownTimer;
 
     [SerializeField] bool isTeleportingRaycast;
@@ -60,13 +61,11 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     int baconcount;
     int beewaxcount;
     int mushroomscount;
-    int baconMax;
-    int beewaxMax;
-    int mushroomsMax;
     bool baconFirstTime;
     bool beewaxFirstTime;
     bool mushroomsFirstTime;
     bool healpotionFirstTime;
+    bool manapotionFirstTime;
     bool inMud = false;
     bool canSprint = true;
 
@@ -100,7 +99,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
         healingnumOrig = healingnum;
         gameManager.instance.UpdatePlayerMaxHPMPCount(HP, Mana);
-        gameManager.instance.UpdatePotionCount(numofhealpotions);
+        gameManager.instance.UpdatePotionCount(numofhealpotions, numofmanapotions);
         updatePlayerUI();
         FirstTime();
         if (spellList.Count > 0)
@@ -170,6 +169,10 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         if (Input.GetKey("r") && HP < HPOrig && healTimer > healingCooldown)
         {
             Heal();
+        }
+        if (Input.GetKey("f") && Mana < ManaOrig && healTimer > healingCooldown)
+        {
+            ManaPotion();
         }
         if (Input.GetKey("c") && beewaxcount > 0 && mushroomscount > 0 && healTimer > healingCooldown)
         {
@@ -299,14 +302,38 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
             updatePlayerUI();
             numofhealpotions--;
-            gameManager.instance.UpdatePotionCount(-1);
+            gameManager.instance.UpdatePotionCount(-1, 0);
+        }
+    }
+
+    void ManaPotion()
+    {
+        if (numofmanapotions > 0)
+        {
+            Mana += healingnum;
+            if (Mana > ManaOrig)
+            {
+                healingnum = healingnum + (ManaOrig - Mana);
+                gameManager.instance.UpdatePlayerMPCount(healingnum);
+                Mana = ManaOrig;
+                healingnum = healingnumOrig;
+            }
+            else
+            {
+                gameManager.instance.UpdatePlayerMPCount(healingnum);
+            }
+            healTimer = 0;
+
+            updatePlayerUI();
+            numofmanapotions--;
+            gameManager.instance.UpdatePotionCount(0, -1);
         }
     }
 
     void CraftPotion()
     {
         numofhealpotions++;
-        gameManager.instance.UpdatePotionCount(1);
+        gameManager.instance.UpdatePotionCount(1, 0);
         beewaxcount--;
         mushroomscount--;
 
@@ -460,12 +487,27 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
                 gameManager.instance.DisplayDescription(item.itemDescription);
                 healpotionFirstTime = false;
                 numofhealpotions += 1;
-                gameManager.instance.UpdatePotionCount(1);
+                gameManager.instance.UpdatePotionCount(1, 0);
             }
             else
             {
                 numofhealpotions += 1;
-                gameManager.instance.UpdatePotionCount(1);
+                gameManager.instance.UpdatePotionCount(1, 0);
+            }
+        }
+        else if (item.itemName == "Mana Potion")
+        {
+            if (manapotionFirstTime)
+            {
+                gameManager.instance.DisplayDescription(item.itemDescription);
+                manapotionFirstTime = false;
+                numofmanapotions += 1;
+                gameManager.instance.UpdatePotionCount(0, 1);
+            }
+            else
+            {
+                numofhealpotions += 1;
+                gameManager.instance.UpdatePotionCount(0, 1);
             }
         }
         else if (item.itemName == "Boss Egg")
@@ -510,6 +552,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         beewaxFirstTime = true;
         mushroomsFirstTime = true;
         healpotionFirstTime = true;
+        manapotionFirstTime = true;
     }
 
     public void EnterMud()

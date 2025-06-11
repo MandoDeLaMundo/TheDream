@@ -22,7 +22,8 @@ public class gameManager : MonoBehaviour
     [SerializeField] TMP_Text baconCountText;
 	[SerializeField] TMP_Text beesWaxCountText;
     [SerializeField] TMP_Text mushroomCountText;
-    [SerializeField] TMP_Text potionText;
+    [SerializeField] TMP_Text healpotionText;
+    [SerializeField] TMP_Text manapotionText;
     [SerializeField] TMP_Text baconGoalText;
     [SerializeField] TMP_Text beesWaxGoalText;
     [SerializeField] TMP_Text mushroomGoalText;
@@ -53,7 +54,8 @@ public class gameManager : MonoBehaviour
 	int playerMPMaxOrig;
     int bossHPCountOrig;
 	int bossHPMaxOrig;
-    int potionCountOrig;
+    int healpotionCountOrig;
+    int manapotionCountOrig;
     int baconCount;
     int beesWaxCount;
     int mushroomCount;
@@ -191,11 +193,13 @@ public class gameManager : MonoBehaviour
         bossHPCountText.text = bossHPCountOrig.ToString("F0");
     }
 
-	public void UpdatePotionCount(int amount)
+	public void UpdatePotionCount(int heal, int mana)
 	{
-		potionCountOrig += amount;
-		potionText.text = potionCountOrig.ToString("F0");
-	}
+		healpotionCountOrig += heal;
+		healpotionText.text = healpotionCountOrig.ToString("F0");
+        manapotionCountOrig += mana;
+        manapotionText.text = manapotionCountOrig.ToString("F0");
+    }
 	
 	public void UpdateIngredientCount(int baconAmount, int beesWaxAmount, int mushroomAmount)
     {
