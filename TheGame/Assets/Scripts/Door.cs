@@ -7,7 +7,6 @@ public class Door : MonoBehaviour
     [SerializeField] string text;
     //[SerializeField] bool destroyDoorOn;
 
-    bool playerInTrigger;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -25,8 +24,7 @@ public class Door : MonoBehaviour
         IInteraction openable = other.GetComponent<IInteraction>();
         if (openable != null)
         {
-            //button.SetActive(true);
-            playerInTrigger = true;
+            //button.SetActive(true);          
             gameManager.instance.DialogueDescription.text = text;
             gameManager.instance.DialogueBox.SetActive(true);
         }
@@ -47,7 +45,6 @@ public class Door : MonoBehaviour
         if (openable != null)
         {
             //button.SetActive(false);
-            playerInTrigger = false;
             doorModel.SetActive(true);
             gameManager.instance.DialogueBox.SetActive(false);
         }
