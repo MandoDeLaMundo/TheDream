@@ -150,7 +150,7 @@ public class gameManager : MonoBehaviour
 	public void UpdateGameGoal(int amount)
 	{
 		gameGoalCount += amount;
-		gameGoalCountText.text = gameGoalCount.ToString("F0");
+		//gameGoalCountText.text = gameGoalCount.ToString("F0");
 
 		if (gameGoalCount <= 0)
 		{

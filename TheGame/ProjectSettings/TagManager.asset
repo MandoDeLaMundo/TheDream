@@ -9,6 +9,7 @@ TagManager:
   - Teleportable
   - FireBall
   - EnemyProjectile
+  - NONTeleportable
   layers:
   - Default
   - TransparentFX

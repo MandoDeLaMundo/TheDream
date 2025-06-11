@@ -22,3 +22,7 @@ MonoBehaviour:
   hitEffect: {fileID: 0}
   shootSound: []
   shootSoundVol: 0
+  spellCheck: 1
+  spellManual: For some reason when I pick this "Wand" up. It disappears from my
+    view but I can feel the power of teleporting where ever I want to go. I wonder
+    if I can "scroll" through my spells...

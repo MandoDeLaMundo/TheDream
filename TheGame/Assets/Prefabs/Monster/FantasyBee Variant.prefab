@@ -137,6 +137,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2440318415877622601, guid: 544cd02931516904899d3fbe091ff9ec, type: 3}
+      propertyPath: m_Speed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2440318415877622601, guid: 544cd02931516904899d3fbe091ff9ec, type: 3}
       propertyPath: m_Height
       value: 0.76
       objectReference: {fileID: 0}
@@ -216,6 +220,10 @@ PrefabInstance:
       propertyPath: headPos
       value: 
       objectReference: {fileID: 8377066619755829534}
+    - target: {fileID: 6954951005305003048, guid: 544cd02931516904899d3fbe091ff9ec, type: 3}
+      propertyPath: isSentry
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6954951005305003048, guid: 544cd02931516904899d3fbe091ff9ec, type: 3}
       propertyPath: roamDist
       value: 3

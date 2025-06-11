@@ -15,5 +15,6 @@ MonoBehaviour:
   model: {fileID: 227577062100369360, guid: 78aa69274795dd6458edadb8e3efe5c3, type: 3}
   itemName: Boar Meat
   itemDescription: This boar meat comes from a creature resembling a cow. I could
-    make bacon with this, perfect for my omelet!
+    make bacon with this, perfect for my omelet! Although, the monster seemed to
+    move oddly...
   healFactor: 0

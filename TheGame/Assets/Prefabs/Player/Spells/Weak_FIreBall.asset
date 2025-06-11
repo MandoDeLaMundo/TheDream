@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 4260819330917749670, guid: 3b4b27421c2a6de4f88b36cc36531976, type: 3}
   spellProjectile: {fileID: 544241052533153475, guid: 5c4e86f7eab0bcb45970360bdb1676e9, type: 3}
-  shootDMG: 1
+  shootDMG: 5
   shootRate: 0.5
   shootDist: 10
   manaCost: 1
@@ -22,3 +22,6 @@ MonoBehaviour:
   hitEffect: {fileID: 6280281539998945384, guid: f78aaaec3b393e24ca74cd6de8194347, type: 3}
   shootSound: []
   shootSoundVol: 0.5
+  spellCheck: 1
+  spellManual: "Ah yes, behold my signature spell: Tiny Fireball of Moderate Warmth\u2122!
+    It\u2019s not explosive, it sometimes barely toasts my marshmallows"

@@ -90,9 +90,7 @@ MonoBehaviour:
   speed: 5
   sprintMod: 2
   choice: 1
-  spellList:
-  - {fileID: 11400000, guid: 3152bdeabdc9d8145bfce5983ab7ab46, type: 2}
-  - {fileID: 11400000, guid: 99d23de32e5203e48b1b2985e7a053c2, type: 2}
+  spellList: []
   spellModel: {fileID: 6218788031528793982}
   spell: {fileID: 0}
   shootPos: {fileID: 3579017854613924312}
@@ -105,12 +103,12 @@ MonoBehaviour:
   isTeleportingRaycast: 0
   teleportRate: 2
   teleportDist: 15
-  jumpMax: 1
+  jumpMax: 2
   jumpForce: 12
   Gravity: 35
   healingCooldown: 0.5
   healingnum: 5
-  numofhealpotions: 2
+  numofhealpotions: 0
   aud: {fileID: 1038565525389119075}
   audStep:
   - {fileID: 8300000, guid: c744498b192e5bc4faa13f0440861ab1, type: 3}
@@ -136,6 +134,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d642b4be86c400c4987eefd6db87631c, type: 3}
   - {fileID: 8300000, guid: ea034ca4f786b0b438f7be1dbb6d4424, type: 3}
   audHurtVol: 1
+  shield: {fileID: 0}
+  startupDialogue: I want an omelet for breakfast, I hope I can find an egg in this
+    dungeon!
 --- !u!33 &4531356348622312624
 MeshFilter:
   m_ObjectHideFlags: 0
