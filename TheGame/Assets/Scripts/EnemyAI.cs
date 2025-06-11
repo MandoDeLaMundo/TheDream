@@ -75,8 +75,8 @@ public class EnemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        if(anim != null)
-        setAnimPara();
+        if (anim != null)
+            setAnimPara();
 
         meleeTimer += Time.deltaTime;
         shootTimer += Time.deltaTime;
@@ -233,7 +233,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         }
         else
         {
-            Instantiate(dropItemPrefab,LootPos.position, Quaternion.identity);
+            Instantiate(dropItemPrefab, LootPos.position, Quaternion.identity);
         }
     }
 
