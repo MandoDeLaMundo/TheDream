@@ -7,10 +7,11 @@ public class Cheatmanager : MonoBehaviour
 
     bool invulnerable = false;
 
-    private KeyCode[] cheatCode =
+    private KeyCode[] invulnerablecheatCode =
     {
-        KeyCode.UpArrow,
-        KeyCode.DownArrow
+        KeyCode.V,
+        KeyCode.U,
+        KeyCode.N
     };
 
     private int curIndex = 0;
@@ -25,13 +26,11 @@ public class Cheatmanager : MonoBehaviour
     {
         if (Input.anyKeyDown)
         {
-            if (Input.GetKeyDown(cheatCode[curIndex]))
+            if (Input.GetKeyDown(invulnerablecheatCode[curIndex]))
             {
-                Debug.Log(cheatCode[curIndex]);
                 curIndex++;
-                if (curIndex >= cheatCode.Length)
+                if (curIndex >= invulnerablecheatCode.Length)
                 {
-                Debug.Log("invulnerable");
                     invulnerable = true;
                     curIndex = 0;
                 }
