@@ -14,7 +14,10 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     [SerializeField] int Mana;
     int ManaOrig;
 
-    [SerializeField] int speed;
+    [SerializeField] float speed;
+    float origSpeed;
+
+
     [SerializeField] int sprintMod;
     enum shootchoice { shootraycast, spellList, teleportraycast }
     [SerializeField] shootchoice choice;
@@ -42,6 +45,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     [SerializeField] int jumpForce;
     [SerializeField] int Gravity;
     int jumpCount;
+    int origJump;
     Vector3 playerVel;
 
     [SerializeField] float healingCooldown;
@@ -60,6 +64,9 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     bool beewaxFirstTime;
     bool mushroomsFirstTime;
     bool healpotionFirstTime;
+    bool inMud = false;
+    bool canSprint = true;
+
 
     [SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] audStep;
@@ -84,6 +91,10 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         gameManager.instance.DisplayDescription(startupDialogue);
         HPOrig = HP;
         ManaOrig = Mana;
+        origSpeed = speed;
+        origJump = jumpForce;
+
+
         healingnumOrig = healingnum;
         gameManager.instance.UpdatePlayerMaxHPMPCount(HP, Mana);
         gameManager.instance.UpdatePotionCount(numofhealpotions);
@@ -107,8 +118,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * teleportDist, Color.blue);
         }
 
-        if (controller.transform.position.y < 0)
-            TakeDMG(100);
+        //   if (controller.transform.position.y < 0)
+        //      TakeDMG(100);
 
         Movement();
         sprint();
@@ -194,16 +205,30 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     void sprint()
     {
-        if (Input.GetButtonDown("Sprint"))
+        if (!canSprint)
+        {
+            if (isSprinting)
+            {
+                speed = origSpeed;
+                isSprinting = false;
+            }
+            return;
+        }
+        if (Input.GetButtonDown("Sprint") && !isSprinting)
         {
             //speed += sprintMod;
-            speed *= sprintMod;
+            speed = origSpeed * sprintMod;
+            isSprinting = true;
         }
-        if (Input.GetButtonUp("Sprint"))
+        else if (Input.GetButtonUp("Sprint") && isSprinting)
         {
             //speed -= sprintMod;
-            speed /= sprintMod;
+            speed = origSpeed;
+            isSprinting = false;
         }
+
+
+
     }
 
     void shoot()
@@ -236,7 +261,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         updatePlayerUI();
         if (spellList[spellListPos].name != "Teleport Spell")
         {
-            Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+            Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));  
             if (spellList[spellListPos].hitEffect != null)
                 Instantiate(spellList[spellListPos].hitEffect, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
         }
@@ -469,5 +494,36 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         beewaxFirstTime = true;
         mushroomsFirstTime = true;
         healpotionFirstTime = true;
+    }
+
+    public void EnterMud()
+    {
+        if (inMud) return;
+
+        if (isSprinting)
+        {
+            speed = origSpeed;
+            isSprinting = false;
+        }
+
+
+        origSpeed = Mathf.Max(1, speed / 2);
+        speed = origSpeed;
+        jumpForce = Mathf.Max(1, jumpForce / 2);
+
+        canSprint = false;
+        inMud = true;
+    }
+
+    public void ExitMud()
+    {
+        if (!inMud) return;
+
+        origSpeed *= 2;
+        speed = origSpeed;
+        jumpForce = origJump;
+
+        canSprint = true;
+        inMud = false;
     }
 }
