@@ -18,6 +18,7 @@ public class damageAOE : MonoBehaviour
             dmg.TakeDMG(damageAmount);
             damagedTick.Add(dmg);
         }
-
+        GetComponent<MeshRenderer>().enabled = false;
+        Destroy(gameObject, 2);
     }
 }
