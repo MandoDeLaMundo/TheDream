@@ -461,6 +461,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3dde6f89e8f2add40bba009c941096c0, type: 3}
+--- !u!95 &691647820 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8951174746900345208, guid: b74a37d8f026c2641a7b93a4ceaa88ab, type: 3}
+  m_PrefabInstance: {fileID: 9173123861950950338}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &699339652
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1325,6 +1330,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1813122186319802432, guid: 7df180d1f5585a1408de42c6f3ef5dd2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1901461990055869878, guid: 7df180d1f5585a1408de42c6f3ef5dd2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1382,6 +1391,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Wizard
       objectReference: {fileID: 0}
+    - target: {fileID: 3074450609331110259, guid: b74a37d8f026c2641a7b93a4ceaa88ab, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4958875843018377022, guid: b74a37d8f026c2641a7b93a4ceaa88ab, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 691647820}
     - target: {fileID: 6102249918370417236, guid: b74a37d8f026c2641a7b93a4ceaa88ab, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1422,6 +1439,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8951174746900345208, guid: b74a37d8f026c2641a7b93a4ceaa88ab, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 18b39ffd2107aea4da3405fa6d1044ad, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
