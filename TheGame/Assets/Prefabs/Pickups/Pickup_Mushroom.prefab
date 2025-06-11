@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6718239637355588229}
   - component: {fileID: 3233986638071437005}
   - component: {fileID: 33861587784486183}
-  - component: {fileID: 6973705968269151114}
+  - component: {fileID: 6995382113686172578}
   m_Layer: 11
   m_Name: Pickup_Mushroom
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3344483719382986607}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -105,8 +105,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6973705968269151114
-BoxCollider:
+--- !u!135 &6995382113686172578
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -124,5 +124,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.67430955, y: 1.2062507, z: 0.6722611}
+  m_Radius: 1
   m_Center: {x: 0.001264751, y: 0.28379282, z: -0.010837942}

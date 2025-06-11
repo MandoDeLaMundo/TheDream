@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3012369916838941854}
   - component: {fileID: 4096075793430114779}
   - component: {fileID: 2981035956737524537}
-  - component: {fileID: 7627276931516254140}
+  - component: {fileID: 7535247032051443435}
   m_Layer: 11
   m_Name: Pickup_BeeWax
   m_TagString: Untagged
@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6077862216683704733}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.3603839, w: 0.93280405}
+  m_LocalRotation: {x: 0, y: 0, z: 0.36038756, w: 0.9328027}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
@@ -126,8 +126,8 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -7326970753776522698, guid: c05e831c1a7cd42409777f8defe5b330, type: 3}
---- !u!65 &7627276931516254140
-BoxCollider:
+--- !u!135 &7535247032051443435
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -145,5 +145,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.15, y: 0.4, z: 0.15}
-  m_Center: {x: 0, y: 0.18210128, z: 0}
+  m_Radius: 0.5
+  m_Center: {x: 0.000000010854082, y: 0.18210128, z: 0}
