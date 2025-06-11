@@ -223,18 +223,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         if (dropItemPrefab == null) return;
 
-        Vector3 spawnOrigin = transform.position + Vector3.up * 1f;
-        RaycastHit hit;
-
-        if (Physics.Raycast(spawnOrigin, Vector3.down, out hit, 10f))
-        {
-            Vector3 groundPoint = hit.point;
-            Instantiate(dropItemPrefab, groundPoint, Quaternion.identity);
-        }
-        else
-        {
-            Instantiate(dropItemPrefab, LootPos.position, Quaternion.identity);
-        }
+        Instantiate(dropItemPrefab, LootPos.position, Quaternion.identity);
     }
 
     public void TakeDMG(int amount)
@@ -251,19 +240,14 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
-            // Debug.Log("Enemy should die now");
-            // gameManager.instance.UpdateGameGoal(-1);
-
             DropItem();
 
             Destroy(gameObject);
         }
         else
         {
-            // Debug.Log("Flashing red");
             StartCoroutine(flashRed());
         }
-        // Debug.Log($"{gameObject.name} took {amount} damage. HP = {HP}/{HPOrig}");
     }
 
     IEnumerator flashRed()
