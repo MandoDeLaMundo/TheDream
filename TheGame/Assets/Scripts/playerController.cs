@@ -1,12 +1,15 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.AI;
 
 public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 {
     [SerializeField] CharacterController controller;
-    //[SerializeField] Animator anim;
+    [SerializeField] NavMeshAgent agent;
+    [SerializeField] Animator anim;
     [SerializeField] LayerMask ignoreLayer;
+    [SerializeField] int animTransSpeed;
 
     [SerializeField] int HP;
     int HPOrig;
@@ -116,6 +119,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     void Movement()
     {
+        //setAnimPara();
+
         shootTimer += Time.deltaTime;
         healTimer += Time.deltaTime;
 
@@ -159,27 +164,34 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         {
             CraftPotion();
         }
-        if (manaCooldownTimer >= manaCoolDownRate)
+        if (manaCooldownTimer >= manaCoolDownRate && Mana < ManaOrig)
         {
             ManaRegen();
         }
 
-        if (Input.GetKey("b"))
-        {
-            if (Input.GetKeyDown("b"))
+        
+            if (Input.GetKey("b"))
             {
                 shield.SetActive(true);
+            Debug.Log(manaCost);
                 Mana -= manaCost;
             }
             else
             {
                 shield.SetActive(false);
             }
-        }
 
         selectSpell();
 
         gameManager.instance.UpdateIngredientCount(baconcount, beewaxcount, mushroomscount);
+    }
+
+    void setAnimPara()
+    {
+        float agentSpeedCur = agent.velocity.normalized.magnitude;
+        float animSpeedCur = anim.GetFloat("Speed");
+
+        anim.SetFloat("Speed", Mathf.Lerp(animSpeedCur, agentSpeedCur, Time.deltaTime * animTransSpeed));
     }
 
     void jump()
@@ -374,6 +386,11 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             changeSpell();
             gameManager.instance.DisplayDescription(spell.spellManual);
         }
+    }
+
+    bool SpellInventoryCheck() 
+    {
+        return true;
     }
 
     public void GetItemStats(itemStats item)
