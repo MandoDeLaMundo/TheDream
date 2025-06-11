@@ -236,7 +236,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         updatePlayerUI();
         if (spellList[spellListPos].name != "Teleport Spell")
         {
-            Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+            Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));  
             if (spellList[spellListPos].hitEffect != null)
                 Instantiate(spellList[spellListPos].hitEffect, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
         }
