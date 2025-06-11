@@ -20,8 +20,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     [SerializeField] float speed;
     float origSpeed;
 
-
     [SerializeField] int sprintMod;
+
     enum shootchoice { shootraycast, spellList, teleportraycast }
     [SerializeField] shootchoice choice;
     [SerializeField] List<spellStats> spellList = new List<spellStats>();
@@ -180,16 +180,16 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             ManaRegen();
         }
 
-            //if (Input.GetKey("b"))
-            //{
-            //    shield.SetActive(true);
-            //Debug.Log(manaCost);
-            //    Mana -= manaCost;
-            //}
-            //else
-            //{
-            //    shield.SetActive(false);
-            //}
+        //if (Input.GetKey("b"))
+        //{
+        //    shield.SetActive(true);
+        //Debug.Log(manaCost);
+        //    Mana -= manaCost;
+        //}
+        //else
+        //{
+        //    shield.SetActive(false);
+        //}
 
         selectSpell();
 
@@ -237,9 +237,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             speed = origSpeed;
             isSprinting = false;
         }
-
-
-
     }
 
     void shoot()
@@ -272,7 +269,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         updatePlayerUI();
         if (spellList[spellListPos].name != "Teleport Spell")
         {
-            Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));  
+            Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
             if (spellList[spellListPos].hitEffect != null)
                 Instantiate(spellList[spellListPos].hitEffect, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
         }
@@ -352,16 +349,19 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     public void TakeDMG(int amount)
     {
-        aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
-        HP -= amount;
-        gameManager.instance.UpdatePlayerHPCount(-amount);
-        updatePlayerUI();
+        if (!Cheatmanager.instance.IsInvulnerable())
+        {
+            aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
+            HP -= amount;
+            gameManager.instance.UpdatePlayerHPCount(-amount);
+            updatePlayerUI();
+        }
         StartCoroutine(flashDamageScreen());
 
 
         if (HP <= 0)
         {
-            //anim.SetTrigger("HP");
+            anim.SetTrigger("HP");
             gameManager.instance.YouLose();
         }
     }
@@ -412,7 +412,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         }
     }
 
-    bool SpellInventoryCheck() 
+    bool SpellInventoryCheck()
     {
         return true;
     }
