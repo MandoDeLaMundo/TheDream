@@ -169,17 +169,16 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             ManaRegen();
         }
 
-        
-            if (Input.GetKey("b"))
-            {
-                shield.SetActive(true);
-            Debug.Log(manaCost);
-                Mana -= manaCost;
-            }
-            else
-            {
-                shield.SetActive(false);
-            }
+            //if (Input.GetKey("b"))
+            //{
+            //    shield.SetActive(true);
+            //Debug.Log(manaCost);
+            //    Mana -= manaCost;
+            //}
+            //else
+            //{
+            //    shield.SetActive(false);
+            //}
 
         selectSpell();
 
