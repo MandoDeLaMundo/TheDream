@@ -662,7 +662,7 @@ MonoBehaviour:
   beesWaxCountText: {fileID: 7221593880852982395}
   mushroomCountText: {fileID: 1501317763467882239}
   healpotionText: {fileID: 2230608266468673722}
-  manapotionText: {fileID: 0}
+  manapotionText: {fileID: 8078245695835889669}
   baconGoalText: {fileID: 156786886950309798}
   beesWaxGoalText: {fileID: 6461101487252379927}
   mushroomGoalText: {fileID: 6504139577423112059}
