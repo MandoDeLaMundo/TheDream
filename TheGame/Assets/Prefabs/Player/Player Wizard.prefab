@@ -722,7 +722,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6102249918370417236
 Transform:
   m_ObjectHideFlags: 0
@@ -755,9 +755,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 636491748014205516}
+  agent: {fileID: 0}
+  anim: {fileID: 8951174746900345208}
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 8
+  animTransSpeed: 0
   HP: 10
   Mana: 10
   speed: 5
@@ -775,6 +778,7 @@ MonoBehaviour:
   manaCost: 0
   manaCoolDownRate: 2
   manaRegenRate: 0.1
+  numofmanapotions: 0
   isTeleportingRaycast: 0
   teleportRate: 2
   teleportDist: 15
@@ -822,7 +826,7 @@ Animator:
   m_GameObject: {fileID: 3074450609331110259}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 35c44a97c30e4e946a0f4d3310613b95, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 18b39ffd2107aea4da3405fa6d1044ad, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1

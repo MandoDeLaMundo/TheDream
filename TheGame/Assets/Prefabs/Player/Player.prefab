@@ -51,7 +51,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1901461990055869878
 Transform:
   m_ObjectHideFlags: 0
@@ -82,9 +82,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 3944378243251323118}
+  agent: {fileID: 0}
+  anim: {fileID: 0}
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 8
+  animTransSpeed: 0
   HP: 10
   Mana: 10
   speed: 5
@@ -100,6 +103,7 @@ MonoBehaviour:
   manaCost: 0
   manaCoolDownRate: 2
   manaRegenRate: 0.1
+  numofmanapotions: 0
   isTeleportingRaycast: 0
   teleportRate: 2
   teleportDist: 15
