@@ -166,15 +166,11 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
                 shootSpell();
         }
 
-        if (Input.GetKey("r") && HP < HPOrig && healTimer > healingCooldown)
+        if (Input.GetKey("f"))
         {
-            Heal();
+            PotionUsed();
         }
-        if (Input.GetKey("f") && Mana < ManaOrig && healTimer > healingCooldown)
-        {
-            ManaPotion();
-        }
-        if (Input.GetKey("c") && beewaxcount > 0 && mushroomscount > 0 && healTimer > healingCooldown)
+        if (Input.GetKey("c"))
         {
             CraftPotion();
         }
@@ -282,6 +278,18 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         }
     }
 
+    void PotionUsed()
+    {
+        if (craftingSystem.instance.IsHPPotion() && HP < HPOrig && healTimer > healingCooldown)
+        {
+            Heal();
+        }
+        else if (craftingSystem.instance.IsMPPotion())
+        {
+            ManaPotion();
+        }
+    }
+
     void Heal()
     {
         if (numofhealpotions > 0)
@@ -332,12 +340,22 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     void CraftPotion()
     {
-        numofhealpotions++;
-        gameManager.instance.UpdatePotionCount(1, 0);
-        beewaxcount--;
-        mushroomscount--;
+        if (craftingSystem.instance.IsHPPotion() && beewaxcount > 0 && mushroomscount > 0 && healTimer > healingCooldown)
+        {
+            numofhealpotions++;
+            gameManager.instance.UpdatePotionCount(1, 0);
+            beewaxcount--;
+            mushroomscount--;
 
-        healTimer = 0;
+            healTimer = 0;
+        }
+        else if (craftingSystem.instance.IsMPPotion() && baconcount > 0 && mushroomscount > 0)
+        {
+            numofmanapotions++;
+            gameManager.instance.UpdatePotionCount(0, 1);
+            baconcount--;
+            mushroomscount--;
+        }
     }
 
     void ManaRegen()
