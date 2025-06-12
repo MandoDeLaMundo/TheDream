@@ -165,7 +165,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             if (choice == shootchoice.spellList && spellList.Count > 0 && Mana >= manaCost)
                 shootSpell();
         }
-
         if (Input.GetKey("f"))
         {
             PotionUsed();

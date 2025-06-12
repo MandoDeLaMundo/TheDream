@@ -161,7 +161,6 @@ public class gameManager : MonoBehaviour
 			menuActive.SetActive(true);
 		}
 	}
-	
 
 	public void UpdatePlayerHPCount(int amount)
     {
