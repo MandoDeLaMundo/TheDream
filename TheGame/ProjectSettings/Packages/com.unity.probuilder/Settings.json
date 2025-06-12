@@ -164,12 +164,12 @@
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "ShapeBuilder.LastSize.Cube",
-                "value": "{\"m_Value\":{\"x\":-24.25,\"y\":6.75,\"z\":2.0}}"
+                "value": "{\"m_Value\":{\"x\":-31.75,\"y\":8.0,\"z\":-19.75}}"
             },
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "ShapeBuilder.LastSize.Stairs",
-                "value": "{\"m_Value\":{\"x\":-34.5,\"y\":14.75,\"z\":-32.25}}"
+                "value": "{\"m_Value\":{\"x\":-8.75,\"y\":10.25,\"z\":-8.5}}"
             },
             {
                 "type": "UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
