@@ -276,8 +276,6 @@ MonoBehaviour:
   knockBackDistance: 30
   knockBackSpeed: 30
   knockbackDelay: 2
-  maxBounce: 0
-  bounceRange: 0
   explosionArea: {fileID: 0}
 --- !u!1 &3214105562008047276
 GameObject:
@@ -742,15 +740,17 @@ MonoBehaviour:
   anim: {fileID: 0}
   headPos: {fileID: 0}
   weaponCol: {fileID: 0}
-  healthBarPrefab: {fileID: 0}
-  healthBarUI: {fileID: 0}
-  healthBarFill: {fileID: 0}
+  LootPos: {fileID: 0}
+  enemyHP: {fileID: 0}
+  hpBar: {fileID: 0}
+  dropItemPrefab: {fileID: 0}
+  rb: {fileID: 0}
   HP: 20
   faceTargetSpeed: 45
   FOV: 0
   roamDist: 0
   roamPauseTime: 0
-  animTranSpeed: 0
+  animTransSpeed: 0
   shootPos: {fileID: 1328508842478970136}
   projectile: {fileID: 0}
   shootRate: 0
