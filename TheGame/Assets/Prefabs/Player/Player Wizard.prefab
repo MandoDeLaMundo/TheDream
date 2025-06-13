@@ -755,6 +755,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 636491748014205516}
+  mainCam: {fileID: 6639311137780996620}
   agent: {fileID: 0}
   anim: {fileID: 8951174746900345208}
   ignoreLayer:

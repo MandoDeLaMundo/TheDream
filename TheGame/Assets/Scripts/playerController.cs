@@ -8,6 +8,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     public static playerController instance;
 
     public CharacterController controller;
+    [SerializeField] Camera mainCam;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator anim;
     [SerializeField] LayerMask ignoreLayer;
@@ -108,7 +109,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         //if (choice == shootchoice.shootraycast)
         //{
         //Debug.Log(transform.position);
-        Debug.DrawRay(shootPos.position, Camera.main.transform.forward * shootDist, Color.red);
+
+        //Debug.DrawRay(shootPos.position, Camera.main.transform.forward * shootDist, Color.red);
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
         //}
         if (isTeleportingRaycast)
@@ -126,7 +128,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     void Movement()
     {
         //setAnimPara();
-
         shootTimer += Time.deltaTime;
         healTimer += Time.deltaTime;
 
@@ -145,13 +146,13 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
         moveDir = (Input.GetAxis("Horizontal") * transform.right) + (Input.GetAxis("Vertical") * transform.forward);
 
-        if(controller.enabled == true)
-        controller.Move(moveDir * speed * Time.deltaTime);
+        if (controller.enabled == true)
+            controller.Move(moveDir * speed * Time.deltaTime);
 
         jump();
 
-        if(controller.enabled == true)
-        controller.Move(playerVel * Time.deltaTime);
+        if (controller.enabled == true)
+            controller.Move(playerVel * Time.deltaTime);
 
         playerVel.y -= Gravity * Time.deltaTime;
 
@@ -266,9 +267,16 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         updatePlayerUI();
         if (spellList[spellListPos].name != "Teleport Spell")
         {
-            Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
-            if (spellList[spellListPos].hitEffect != null)
-                Instantiate(spellList[spellListPos].hitEffect, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+            Ray ray = new Ray(mainCam.transform.position, mainCam.transform.forward);
+            if (Physics.Raycast(ray, out RaycastHit hit, 1000f))
+            {
+                Vector3 targetPoint = hit.point;
+                Vector3 shootDirection = (targetPoint - shootPos.position).normalized;
+
+                Instantiate(spell, shootPos.position, Quaternion.LookRotation(shootDirection));
+                if (spellList[spellListPos].hitEffect != null)
+                    Instantiate(spellList[spellListPos].hitEffect, shootPos.position, Quaternion.LookRotation(shootDirection));
+            }
         }
         else
         {

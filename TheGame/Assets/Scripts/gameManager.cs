@@ -149,7 +149,28 @@ public class gameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-	public void UpdateGameGoal(int amount)
+    public void DisplayDialogue(string Dialogue)
+    {
+        DialogueBox.SetActive(true);
+        DialogueDescription.text = Dialogue;
+
+        isPaused = true;
+        Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.None;
+
+    }
+
+    public void HideDialogue()
+    {
+        DialogueBox.SetActive(false);
+        DialogueDescription.text = "";
+
+        isPaused = false;
+        Time.timeScale = timeScaleOrig;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void UpdateGameGoal(int amount)
 	{
 		gameGoalCount += amount;
 		//gameGoalCountText.text = gameGoalCount.ToString("F0");
