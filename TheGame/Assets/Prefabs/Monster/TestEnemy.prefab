@@ -180,7 +180,7 @@ MonoBehaviour:
   m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 1
+  m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!1 &5494710014339713399
@@ -549,6 +549,7 @@ MonoBehaviour:
   headPos: {fileID: 1743895540865423980}
   weaponCol: {fileID: 0}
   LootPos: {fileID: 7569443946780628135}
+  enemyHP: {fileID: 1738991734705369071}
   hpBar: {fileID: 3949078710656363558}
   dropItemPrefab: {fileID: 6077862216683704733, guid: 3dde6f89e8f2add40bba009c941096c0, type: 3}
   rb: {fileID: 0}

@@ -219,9 +219,8 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void DropItem()
     {
-        if (dropItemPrefab == null) return;
-
-        Instantiate(dropItemPrefab, LootPos.position, Quaternion.identity);
+        if (dropItemPrefab != null)
+            Instantiate(dropItemPrefab, LootPos.position, Quaternion.identity);
     }
 
     public void TakeDMG(int amount)
