@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
 using UnityEngine.UI;
+
 public class EnemyAI : MonoBehaviour, IDamage
 {
     [SerializeField] Renderer model;
@@ -11,7 +12,11 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Collider weaponCol;
     [SerializeField] Transform LootPos;
     int HPOrig;
-    [SerializeField] Image hpBar;
+
+    // This is so that the HP bar can rotate with the player
+    public Image enemyHP;
+    // This is so that the enemy health goes down when damaged
+    public Image hpBar;
 
     [SerializeField] GameObject dropItemPrefab;
     [SerializeField] Rigidbody rb;
@@ -109,7 +114,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             checkRoam();
         }
 
-
+        enemyHP.transform.rotation = gameManager.instance.player.transform.rotation;
     }
 
     void setAnimPara()
