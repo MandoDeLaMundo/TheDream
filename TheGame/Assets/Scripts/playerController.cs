@@ -69,7 +69,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     bool inMud = false;
     bool canSprint = true;
 
-
     [SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] audStep;
     [Range(0, 1)][SerializeField] float audStepVol;

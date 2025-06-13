@@ -11,8 +11,8 @@ public class SelectionSpawner : MonoBehaviour
 
     int spawnCount;
     float spawnTimer;
-    public bool playerInTrigger;
-    public bool startSpawner;
+    bool playerInTrigger;
+    bool startSpawner;
 
     // Update is called once per frame
     void Update()
