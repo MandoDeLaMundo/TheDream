@@ -44,7 +44,7 @@ public class Cheatmanager : MonoBehaviour
 
     public bool IsInvulnerable()
     {
-        Debug.Log(" bool invulnerable");
+        //Debug.Log(" bool invulnerable");
         return invulnerable;
     }
 }
