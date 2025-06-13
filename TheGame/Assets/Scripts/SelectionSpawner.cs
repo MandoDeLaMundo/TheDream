@@ -1,7 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.U2D;
 using UnityEngine.UI;
 
 public class SelectionSpawner : MonoBehaviour
@@ -11,7 +9,7 @@ public class SelectionSpawner : MonoBehaviour
     [SerializeField] int numToSpawn;
     [SerializeField] int spawnRate;
     [SerializeField] Transform[] spawnPos;
-    int objectListPos;
+    int objectListPos = 0;
 
     [SerializeField] GameObject Canvas;
     [SerializeField] Image image;
@@ -31,13 +29,21 @@ public class SelectionSpawner : MonoBehaviour
 
     void Start()
     {
-        image.sprite = spawnList[objectListPos].sprite;
-        spawnObject = spawnList[objectListPos].pickup;
+        if (spawnList != null)
+        {
+            spawnObject = spawnList[objectListPos].pickup;
 
-        leftButtonFilled.SetActive(true);
-        leftButtonHole.SetActive(false);
-        rightButtonFilled.SetActive(true);
-        rightButtonHole.SetActive(false);
+            if (spawnList[objectListPos].sprite != null)
+                image.sprite = spawnList[objectListPos].sprite;
+        }
+
+        if (rightButtonHole != null)
+        {
+            leftButtonFilled.SetActive(true);
+            leftButtonHole.SetActive(false);
+            rightButtonFilled.SetActive(true);
+            rightButtonHole.SetActive(false);
+        }
     }
     // Update is called once per frame
     void Update()
@@ -64,10 +70,13 @@ public class SelectionSpawner : MonoBehaviour
 
             if (buttonTimer >= buttonTime && leftButtonFilled.activeSelf == false || buttonTimer >= buttonTime && rightButtonFilled.activeSelf == false)
             {
-                leftButtonFilled.SetActive(true);
-                leftButtonHole.SetActive(false);
-                rightButtonFilled.SetActive(true);
-                rightButtonHole.SetActive(false);
+                if (rightButtonHole != null)
+                {
+                    leftButtonFilled.SetActive(true);
+                    leftButtonHole.SetActive(false);
+                    rightButtonFilled.SetActive(true);
+                    rightButtonHole.SetActive(false);
+                }
                 buttonTimer = 0;
             }
         }
@@ -103,15 +112,21 @@ public class SelectionSpawner : MonoBehaviour
     {
         if (Input.GetKeyDown("right") && objectListPos < spawnList.Count - 1)
         {
-            rightButtonFilled.SetActive(false);
-            rightButtonHole.SetActive(true);
+            if (rightButtonHole != null)
+            {
+                rightButtonFilled.SetActive(false);
+                rightButtonHole.SetActive(true);
+            }
             objectListPos++;
             changeEverything();
         }
         if (Input.GetKeyDown("left") && objectListPos > 0)
         {
-            leftButtonFilled.SetActive(false);
-            leftButtonHole.SetActive(true);
+            if (rightButtonHole != null)
+            {
+                leftButtonFilled.SetActive(false);
+                leftButtonHole.SetActive(true);
+            }
             objectListPos--;
             changeEverything();
         }
@@ -119,8 +134,10 @@ public class SelectionSpawner : MonoBehaviour
 
     void changeEverything()
     {
-        image.sprite = spawnList[objectListPos].sprite;
         spawnObject = spawnList[objectListPos].pickup;
+
+        if (spawnList[objectListPos].sprite != null)
+            image.sprite = spawnList[objectListPos].sprite;
     }
 
     void spawn()
