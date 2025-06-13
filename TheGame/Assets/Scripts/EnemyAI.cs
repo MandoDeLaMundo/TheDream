@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
 using UnityEngine.UI;
+
 public class EnemyAI : MonoBehaviour, IDamage
 {
     [SerializeField] Renderer model;
@@ -11,7 +12,11 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Collider weaponCol;
     [SerializeField] Transform LootPos;
     int HPOrig;
-    [SerializeField] Image hpBar;
+
+    // This is so that the HP bar can rotate with the player
+    public Image enemyHP;
+    // This is so that the enemy health goes down when damaged
+    public Image hpBar;
 
     [SerializeField] GameObject dropItemPrefab;
     [SerializeField] Rigidbody rb;
@@ -103,22 +108,13 @@ public class EnemyAI : MonoBehaviour, IDamage
                 faceTarget3D();
             }
             checkRoam();
-            //  if (playerDir.magnitude <= meleeDistance && meleeTimer >= meleeRate)
-            //  {
-            //      attackPlayer();
-            // }
-
-            //  if (playerDir.magnitude > meleeDistance && shootTimer >= shootRate)
-            // {
-            //     shootPlayer();
-            //  }
         }
         else if (!isSentry)
         {
             checkRoam();
         }
 
-
+        enemyHP.transform.rotation = gameManager.instance.player.transform.rotation;
     }
 
     void setAnimPara()
@@ -161,16 +157,17 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         Vector3 directionToPlayer = gameManager.instance.player.transform.position - headPos.position;
         Vector3 horizontalDir = new Vector3(directionToPlayer.x, 0, directionToPlayer.z);
+
+        playerDir = (gameManager.instance.player.transform.position - headPos.position);
         angleToPlayer = Vector3.Angle(horizontalDir, transform.forward);
 
-        // Debug.DrawRay(headPos.position, horizontalDir, Color.yellow);    
+        Debug.DrawRay(headPos.position, horizontalDir, Color.yellow);
         RaycastHit hit;
         if (Physics.Raycast(headPos.position, directionToPlayer, out hit))
         {
             if (angleToPlayer <= FOV && hit.collider.CompareTag("Player"))
             {
-                agent.stoppingDistance = stoppingDistOrig;
-
+                agent.SetDestination(gameManager.instance.player.transform.position);
 
                 if (playerDir.magnitude <= meleeDistance && meleeTimer >= meleeRate)
                 {
@@ -181,27 +178,28 @@ public class EnemyAI : MonoBehaviour, IDamage
                 {
                     shootPlayer();
                 }
+
+                agent.stoppingDistance = stoppingDistOrig;
                 return true;
             }
         }
-
 
         agent.stoppingDistance = 0;
         return false;
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("Collision detected with: " + collision.collider.name);
-        if (collision.collider.CompareTag("Player"))
-        {
-            IDamage dmg = collision.collider.GetComponent<IDamage>();
-            if (dmg != null)
-            {
-                dmg.TakeDMG(rangeDmgAmount);
-            }
-        }
-    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    Debug.Log("Collision detected with: " + collision.collider.name);
+    //    if (collision.collider.CompareTag("Player"))
+    //    {
+    //        IDamage dmg = collision.collider.GetComponent<IDamage>();
+    //        if (dmg != null)
+    //        {
+    //            dmg.TakeDMG(rangeDmgAmount);
+    //        }
+    //    }
+    //}
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -221,29 +219,23 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void DropItem()
     {
-        if (dropItemPrefab == null) return;
-
-        Instantiate(dropItemPrefab, LootPos.position, Quaternion.identity);
+        if (dropItemPrefab != null)
+            Instantiate(dropItemPrefab, LootPos.position, Quaternion.identity);
     }
 
     public void TakeDMG(int amount)
     {
-        // Debug.Log($"{gameObject.name} was hit. Damage: {amount}");
-
         HP -= amount;
         updateEnemyUI();
-
-        // Debug.Log($"New HP: {HP}");
-
 
         agent.SetDestination(gameManager.instance.player.transform.position);
 
         if (HP <= 0)
         {
             DropItem();
-
             Destroy(gameObject);
         }
+
         else
         {
             StartCoroutine(flashRed());

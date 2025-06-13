@@ -17,3 +17,7 @@ MonoBehaviour:
   itemDescription: This particular monster produces wax similar to butter, but far
     more delicious!
   healFactor: 0
+  ManaFactor: 0
+  firstTime: 1
+  pickup: {fileID: 6077862216683704733, guid: 3dde6f89e8f2add40bba009c941096c0, type: 3}
+  sprite: {fileID: 21300000, guid: 399a33bc15942634f9f956f57d62931f, type: 3}

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 593649367135404667}
   - component: {fileID: 6390544723581244884}
   m_Layer: 0
-  m_Name: Wand_Ice
+  m_Name: Pickup_Wand_Ice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

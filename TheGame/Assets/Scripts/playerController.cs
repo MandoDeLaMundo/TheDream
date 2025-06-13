@@ -5,7 +5,9 @@ using UnityEngine.AI;
 
 public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 {
-    [SerializeField] CharacterController controller;
+    public static playerController instance;
+
+    public CharacterController controller;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator anim;
     [SerializeField] LayerMask ignoreLayer;
@@ -61,14 +63,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     int baconcount;
     int beewaxcount;
     int mushroomscount;
-    bool baconFirstTime;
-    bool beewaxFirstTime;
-    bool mushroomsFirstTime;
-    bool healpotionFirstTime;
-    bool manapotionFirstTime;
     bool inMud = false;
     bool canSprint = true;
-
 
     [SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] audStep;
@@ -90,6 +86,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        instance = this;
         gameManager.instance.DisplayDescription(startupDialogue);
         HPOrig = HP;
         ManaOrig = Mana;
@@ -101,7 +98,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         gameManager.instance.UpdatePlayerMaxHPMPCount(HP, Mana);
         gameManager.instance.UpdatePotionCount(numofhealpotions, numofmanapotions);
         updatePlayerUI();
-        FirstTime();
         if (spellList.Count > 0)
             changeSpell();
     }
@@ -149,11 +145,14 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
         moveDir = (Input.GetAxis("Horizontal") * transform.right) + (Input.GetAxis("Vertical") * transform.forward);
 
+        if(controller.enabled == true)
         controller.Move(moveDir * speed * Time.deltaTime);
 
         jump();
 
+        if(controller.enabled == true)
         controller.Move(playerVel * Time.deltaTime);
+
         playerVel.y -= Gravity * Time.deltaTime;
 
         if (Input.GetButton("Fire1") && shootTimer >= shootRate)
@@ -465,10 +464,10 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     {
         if (item.itemName == "Boar Meat")
         {
-            if (baconFirstTime)
+            if (item.firstTime)
             {
                 gameManager.instance.DisplayDescription(item.itemDescription);
-                baconFirstTime = false;
+                item.firstTime = false;
                 baconcount += 1;
             }
             else
@@ -476,11 +475,11 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         }
         else if (item.itemName == "Bee Wax")
         {
-            if (beewaxFirstTime)
+            if (item.firstTime)
             {
 
                 gameManager.instance.DisplayDescription(item.itemDescription);
-                beewaxFirstTime = false;
+                item.firstTime = false;
                 beewaxcount += 1;
             }
             else
@@ -488,10 +487,10 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         }
         else if (item.itemName == "Mushroom")
         {
-            if (mushroomsFirstTime)
+            if (item.firstTime)
             {
                 gameManager.instance.DisplayDescription(item.itemDescription);
-                mushroomsFirstTime = false;
+                item.firstTime = false;
                 mushroomscount += 1;
             }
             else
@@ -499,10 +498,10 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         }
         else if (item.itemName == "Health Potion")
         {
-            if (healpotionFirstTime)
+            if (item.firstTime)
             {
                 gameManager.instance.DisplayDescription(item.itemDescription);
-                healpotionFirstTime = false;
+                item.firstTime = false;
                 numofhealpotions += 1;
                 gameManager.instance.UpdatePotionCount(1, 0);
             }
@@ -514,10 +513,10 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         }
         else if (item.itemName == "Mana Potion")
         {
-            if (manapotionFirstTime)
+            if (item.firstTime)
             {
                 gameManager.instance.DisplayDescription(item.itemDescription);
-                manapotionFirstTime = false;
+                item.firstTime = false;
                 numofmanapotions += 1;
                 gameManager.instance.UpdatePotionCount(0, 1);
             }
@@ -561,15 +560,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             yield return new WaitForSeconds(0.5f);
         }
         isPlayingStep = false;
-    }
-
-    void FirstTime()
-    {
-        baconFirstTime = true;
-        beewaxFirstTime = true;
-        mushroomsFirstTime = true;
-        healpotionFirstTime = true;
-        manapotionFirstTime = true;
     }
 
     public void EnterMud()

@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aadde711143cf24f86d97c6a7636986, type: 3}
+  m_Name: SpellSpawn2_Super_Fireball
+  m_EditorClassIdentifier: 
+  pickup: {fileID: 7459730609816191117, guid: 63641dc6567732e46aed45272fc1cbeb, type: 3}
+  sprite: {fileID: 21300000, guid: 0548055dae0bb37429e268035aa11620, type: 3}

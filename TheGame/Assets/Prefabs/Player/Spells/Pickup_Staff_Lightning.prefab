@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8101497067024949627}
   - component: {fileID: 149975011735768562}
   m_Layer: 0
-  m_Name: Staff_Lightning
+  m_Name: Pickup_Staff_Lightning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

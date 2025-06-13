@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5017834780979802642
+--- !u!1 &8813011081889499721
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,63 +8,61 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4825607470107316854}
-  - component: {fileID: 1997010756791998965}
-  - component: {fileID: 7007907335478893739}
-  - component: {fileID: 4286401602684492327}
-  - component: {fileID: 8444463205551947522}
+  - component: {fileID: 3478951818504218779}
+  - component: {fileID: 3330200711933751530}
+  - component: {fileID: 5484186597030766543}
+  - component: {fileID: 6531874843572358414}
+  - component: {fileID: 3156725236934621498}
   m_Layer: 0
-  m_Name: Teleport _Wand_
+  m_Name: Pickup_Staff_Ice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4825607470107316854
+--- !u!4 &3478951818504218779
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5017834780979802642}
+  m_GameObject: {fileID: 8813011081889499721}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.25, y: 2.25, z: -3.75}
-  m_LocalScale: {x: 7, y: 7, z: 7}
+  m_LocalRotation: {x: 0, y: 0, z: 0.2046925, w: 0.97882634}
+  m_LocalPosition: {x: -1.23, y: 1.46, z: 7.063}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1997010756791998965
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 23.623}
+--- !u!114 &3330200711933751530
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5017834780979802642}
+  m_GameObject: {fileID: 8813011081889499721}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76a7bda188c412f40ab6e1ce937f43bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  spell: {fileID: 11400000, guid: 99d23de32e5203e48b1b2985e7a053c2, type: 2}
-  item: {fileID: 0}
---- !u!33 &7007907335478893739
+  spell: {fileID: 11400000, guid: a652ab30a8f0bc0418a3549ce9da539d, type: 2}
+--- !u!33 &5484186597030766543
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5017834780979802642}
-  m_Mesh: {fileID: 8928767904399185277, guid: 140411fe5a74a324ea07791d091941b3, type: 3}
---- !u!23 &4286401602684492327
+  m_GameObject: {fileID: 8813011081889499721}
+  m_Mesh: {fileID: 1781805468462327908, guid: acd76795deeadd846a39bed2115bcc9b, type: 3}
+--- !u!23 &6531874843572358414
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5017834780979802642}
+  m_GameObject: {fileID: 8813011081889499721}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -81,7 +79,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9a526ccb9696d6545b3991e93bfb18bd, type: 2}
+  - {fileID: 2100000, guid: d2bf295b931260844ae49c916d7fc5e9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -103,13 +101,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &8444463205551947522
-SphereCollider:
+--- !u!65 &3156725236934621498
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5017834780979802642}
+  m_GameObject: {fileID: 8813011081889499721}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -122,5 +120,5 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.3
-  m_Center: {x: 0, y: 0, z: -0.15}
+  m_Size: {x: 0.5, y: 2.2114878, z: 0.5}
+  m_Center: {x: 0.00000022351742, y: -0.22919038, z: 0.00000018253922}

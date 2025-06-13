@@ -17,3 +17,6 @@ MonoBehaviour:
   itemDescription: This Mana potion will help with your mana in a pinch
   healFactor: 0
   ManaFactor: 5
+  firstTime: 0
+  pickup: {fileID: 1970931541226843332, guid: 3cf9838fbfeed584fb5575a337d6ab00, type: 3}
+  sprite: {fileID: 21300000, guid: 16083c08c66bc284a8638631496464e3, type: 3}

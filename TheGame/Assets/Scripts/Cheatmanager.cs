@@ -21,8 +21,8 @@ public class Cheatmanager : MonoBehaviour
         instance = this;
     }
 
-        // Update is called once per frame
-        void Update()
+    // Update is called once per frame
+    void Update()
     {
         if (Input.anyKeyDown)
         {
@@ -44,7 +44,6 @@ public class Cheatmanager : MonoBehaviour
 
     public bool IsInvulnerable()
     {
-        Debug.Log(" bool invulnerable");
         return invulnerable;
     }
 }
