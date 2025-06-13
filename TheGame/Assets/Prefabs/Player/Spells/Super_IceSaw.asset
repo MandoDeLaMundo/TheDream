@@ -24,5 +24,8 @@ MonoBehaviour:
   shootSoundVol: 0
   spellCheck: 1
   spellManual: 
+<<<<<<< HEAD
   pickup: {fileID: 8813011081889499721, guid: d84026e8e3505cf41a72f7a87e73f6b3, type: 3}
   sprite: {fileID: 21300000, guid: 3c25a042749a8f4419145d720286ab7d, type: 3}
+=======
+>>>>>>> roy
