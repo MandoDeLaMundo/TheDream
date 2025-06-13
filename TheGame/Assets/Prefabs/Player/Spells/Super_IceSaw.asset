@@ -12,17 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4679952212bcb7c48b6fd9f89c05547d, type: 3}
   m_Name: Super_IceSaw
   m_EditorClassIdentifier: 
-  model: {fileID: 3676379699232972619, guid: 340f8fecb7a9daa4bb72c4d06454e3c6, type: 3}
+  model: {fileID: 8813011081889499721, guid: d84026e8e3505cf41a72f7a87e73f6b3, type: 3}
   spellProjectile: {fileID: 3749515074666461166, guid: 37186984fa0c2694f87dc32d80232d8d, type: 3}
-  shootDMG: 5
-  shootRate: 4.25
-  shootDist: 55
-  manaCost: 2
-  spellRadius: 0
+  shootDMG: 2
+  shootRate: 1
+  shootDist: 10
+  manaCost: 3
+  spellRadius: 4
   hitEffect: {fileID: 0}
   shootSound: []
   shootSoundVol: 0
-  spellCheck: 1
+  spellCheck: 0
   spellManual: 
-  pickup: {fileID: 8813011081889499721, guid: d84026e8e3505cf41a72f7a87e73f6b3, type: 3}
-  sprite: {fileID: 21300000, guid: 3c25a042749a8f4419145d720286ab7d, type: 3}
