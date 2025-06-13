@@ -9,15 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fa449b0a99887c4c86b8770222bbb74, type: 3}
-  m_Name: ItemStat_BeeWax
+  m_Script: {fileID: 11500000, guid: 5aadde711143cf24f86d97c6a7636986, type: 3}
+  m_Name: ItemSpawn1_BeeWax
   m_EditorClassIdentifier: 
-  model: {fileID: 6791816518937276895, guid: 4caa6851baabe4f40bde9724dafa3b8e, type: 3}
-  itemName: Bee Wax
-  itemDescription: This particular monster produces wax similar to butter, but far
-    more delicious!
-  healFactor: 0
-  ManaFactor: 0
-  firstTime: 1
   pickup: {fileID: 6077862216683704733, guid: 3dde6f89e8f2add40bba009c941096c0, type: 3}
   sprite: {fileID: 21300000, guid: 399a33bc15942634f9f956f57d62931f, type: 3}

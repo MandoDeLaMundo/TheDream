@@ -22,3 +22,7 @@ MonoBehaviour:
   hitEffect: {fileID: 0}
   shootSound: []
   shootSoundVol: 0
+  spellCheck: 1
+  spellManual: 
+  pickup: {fileID: 8530042751684896022, guid: 12e65437c438dd543aa8cddd42cdbd37, type: 3}
+  sprite: {fileID: 21300000, guid: fb5fefa89ac57c846963508ff0077c5b, type: 3}

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9156339864299126494}
   - component: {fileID: 4651415518575965351}
   m_Layer: 0
-  m_Name: Wand_Fire
+  m_Name: Pickup_Wand_Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

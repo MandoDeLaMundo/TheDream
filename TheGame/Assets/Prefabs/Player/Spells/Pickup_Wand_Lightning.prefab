@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3597846671711242079}
   - component: {fileID: 2687096068790765576}
   m_Layer: 0
-  m_Name: Wand_Lightning
+  m_Name: Pickup_Wand_Lightning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
