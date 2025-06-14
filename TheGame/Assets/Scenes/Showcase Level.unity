@@ -13493,22 +13493,42 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 770058292637326067, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3588955208627178392, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
-    - target: {fileID: 3737422282485817401, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 5573340100446005675, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
+      propertyPath: Dialogue.Array.size
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6389349711666219554, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
-      propertyPath: m_text
-      value: This is the Description
+    - target: {fileID: 5573340100446005675, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
+      propertyPath: 'Dialogue.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 9f3d09a3f8456494eacf432abb0a8112, type: 2}
+    - target: {fileID: 5573340100446005675, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
+      propertyPath: FairySpawnerList.Array.size
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5573340100446005675, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
+      propertyPath: FairyTriggerList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5573340100446005675, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
+      propertyPath: dialogueStatsList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5573340100446005675, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
+      propertyPath: 'FairySpawnerList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 3197840847752307182}
+    - target: {fileID: 5573340100446005675, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
+      propertyPath: 'FairyTriggerList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 3197840847752307182}
+    - target: {fileID: 5573340100446005675, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
+      propertyPath: 'dialogueStatsList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 9f3d09a3f8456494eacf432abb0a8112, type: 2}
     - target: {fileID: 6784114218888903061, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -13895,7 +13915,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4858bc7d3873be54fbb82a1c051460ba, type: 3}
---- !u!1001 &6505275696073414523
+--- !u!4 &3048018844332112516 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1627394391720961752, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
+  m_PrefabInstance: {fileID: 3950293243194903683}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3197840847752307182 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7060722792169140798, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
+  m_PrefabInstance: {fileID: 3950293243194903683}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3950293243194903683
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -13903,55 +13933,59 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 37193007878448755, guid: ec6f2b4b72496484290e6b65c0c01b2f, type: 3}
+    - target: {fileID: 2173358242022842524, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
       propertyPath: m_LocalPosition.x
       value: -16.64893
       objectReference: {fileID: 0}
-    - target: {fileID: 37193007878448755, guid: ec6f2b4b72496484290e6b65c0c01b2f, type: 3}
+    - target: {fileID: 2173358242022842524, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
       propertyPath: m_LocalPosition.y
       value: -2.2596579
       objectReference: {fileID: 0}
-    - target: {fileID: 37193007878448755, guid: ec6f2b4b72496484290e6b65c0c01b2f, type: 3}
+    - target: {fileID: 2173358242022842524, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 27.383526
+      value: 24.89
       objectReference: {fileID: 0}
-    - target: {fileID: 37193007878448755, guid: ec6f2b4b72496484290e6b65c0c01b2f, type: 3}
+    - target: {fileID: 2173358242022842524, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.37652346
       objectReference: {fileID: 0}
-    - target: {fileID: 37193007878448755, guid: ec6f2b4b72496484290e6b65c0c01b2f, type: 3}
+    - target: {fileID: 2173358242022842524, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 37193007878448755, guid: ec6f2b4b72496484290e6b65c0c01b2f, type: 3}
+    - target: {fileID: 2173358242022842524, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
       propertyPath: m_LocalRotation.y
       value: -0.9264071
       objectReference: {fileID: 0}
-    - target: {fileID: 37193007878448755, guid: ec6f2b4b72496484290e6b65c0c01b2f, type: 3}
+    - target: {fileID: 2173358242022842524, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 37193007878448755, guid: ec6f2b4b72496484290e6b65c0c01b2f, type: 3}
+    - target: {fileID: 2173358242022842524, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 37193007878448755, guid: ec6f2b4b72496484290e6b65c0c01b2f, type: 3}
+    - target: {fileID: 2173358242022842524, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -135.763
       objectReference: {fileID: 0}
-    - target: {fileID: 37193007878448755, guid: ec6f2b4b72496484290e6b65c0c01b2f, type: 3}
+    - target: {fileID: 2173358242022842524, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9119068240158142060, guid: ec6f2b4b72496484290e6b65c0c01b2f, type: 3}
+    - target: {fileID: 2892893203185761600, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
+      propertyPath: 'spawnPos.Array.data[0]'
+      value: 
+      objectReference: {fileID: 3048018844332112516}
+    - target: {fileID: 7555960384420180019, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
       propertyPath: m_Name
-      value: Fairy Trigger
+      value: Fairy Spawner
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ec6f2b4b72496484290e6b65c0c01b2f, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -13979,4 +14013,4 @@ SceneRoots:
   - {fileID: 1687733175}
   - {fileID: 2246771622066762934}
   - {fileID: 1382086892883493613}
-  - {fileID: 6505275696073414523}
+  - {fileID: 3950293243194903683}

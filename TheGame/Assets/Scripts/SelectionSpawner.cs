@@ -4,9 +4,15 @@ using UnityEngine.UI;
 
 public class SelectionSpawner : MonoBehaviour
 {
+    public static SelectionSpawner instance;
     enum spawntype { Everything, Fairy }
     [SerializeField] spawntype type;
     [SerializeField] List<spawnStats> spawnList = new List<spawnStats>();
+
+    public List<string> dialogue;
+    int dialogueCount;
+    [SerializeField] GameObject FairySpawner;
+
     [SerializeField] GameObject Fairy;
     GameObject cloneFairy;
     GameObject spawnObject;
@@ -33,18 +39,20 @@ public class SelectionSpawner : MonoBehaviour
 
     void Start()
     {
+        instance = this;
         if (spawnList != null && type == spawntype.Everything)
         {
             spawnObject = spawnList[objectListPos].pickup;
 
             if (spawnList[objectListPos].sprite != null)
                 image.sprite = spawnList[objectListPos].sprite;
+
+            leftButtonFilled.SetActive(true);
+            leftButtonHole.SetActive(false);
+            rightButtonFilled.SetActive(true);
+            rightButtonHole.SetActive(false);
         }
 
-        leftButtonFilled.SetActive(true);
-        leftButtonHole.SetActive(false);
-        rightButtonFilled.SetActive(true);
-        rightButtonHole.SetActive(false);
     }
     // Update is called once per frame
     void Update()
@@ -52,42 +60,59 @@ public class SelectionSpawner : MonoBehaviour
         buttonTimer += Time.deltaTime;
         if (playerInTrigger)
         {
-            if (Input.GetButtonDown("Interact") && type == spawntype.Everything)
+            if (type == spawntype.Everything)
             {
-                startSpawner = true;
+                if (Input.GetButtonDown("Interact") && type == spawntype.Everything)
+                {
+                    startSpawner = true;
+                }
+
+                if (Input.GetKeyDown("q"))
+                {
+                    playerController.instance.enabled = true;
+                }
+
+                if (buttonTimer >= buttonTime)
+                    if (leftButtonFilled.activeSelf == false || rightButtonFilled.activeSelf == false)
+                    {
+                        leftButtonFilled.SetActive(true);
+                        leftButtonHole.SetActive(false);
+                        rightButtonFilled.SetActive(true);
+                        rightButtonHole.SetActive(false);
+                        buttonTimer = 0;
+                    }
             }
 
-            if (spawnCount < numToSpawn && type == spawntype.Fairy)
+            if (type == spawntype.Fairy)
             {
-                spawn();
-                //gameManager.instance.DisplayDialogue();
+                if (spawnCount < numToSpawn)
+                {
+                    spawn();
+                    gameManager.instance.DisplayDialogue(dialogue[dialogueCount]);
+                    dialogueCount++;
+                }
+
+                if (Input.GetButtonDown("Submit") && dialogueCount < dialogue.Count)
+                {
+                    gameManager.instance.DisplayDialogue(dialogue[dialogueCount]);
+                    dialogueCount++;
+                }
+                else if (Input.GetButtonDown("Submit") && dialogueCount == dialogue.Count)
+                {
+                    playerController.instance.enabled = true;
+                    Destroy(cloneFairy);
+                    gameManager.instance.HideDialogue();
+                    gameEventManager.instance.EventOff(FairySpawner);
+                    dialogueCount = 0;
+                }
             }
 
-            spawnTimer += Time.deltaTime;
+                spawnTimer += Time.deltaTime;
             if (spawnTimer >= spawnRate && spawnCount < numToSpawn && startSpawner)
             {
                 spawn();
             }
             selectEverything();
-
-            if (Input.GetKeyDown("q"))
-            {
-                playerController.instance.enabled = true;
-                if (type == spawntype.Fairy)
-                {
-                    Destroy(cloneFairy);
-                    gameManager.instance.HideDialogue();
-                }
-            }
-
-            if (buttonTimer >= buttonTime && leftButtonFilled.activeSelf == false || buttonTimer >= buttonTime && rightButtonFilled.activeSelf == false)
-            {
-                leftButtonFilled.SetActive(true);
-                leftButtonHole.SetActive(false);
-                rightButtonFilled.SetActive(true);
-                rightButtonHole.SetActive(false);
-                buttonTimer = 0;
-            }
         }
         else
         {
@@ -153,6 +178,7 @@ public class SelectionSpawner : MonoBehaviour
     void spawn()
     {
         int arrayPos = Random.Range(0, spawnPos.Length);
+
         if (type == spawntype.Everything)
         {
             Instantiate(spawnObject, spawnPos[arrayPos].position, spawnPos[arrayPos].rotation);
