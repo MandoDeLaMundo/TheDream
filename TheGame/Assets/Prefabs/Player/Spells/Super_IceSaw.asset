@@ -22,5 +22,5 @@ MonoBehaviour:
   hitEffect: {fileID: 0}
   shootSound: []
   shootSoundVol: 0
-  spellCheck: 0
+  spellCheck: 1
   spellManual: 

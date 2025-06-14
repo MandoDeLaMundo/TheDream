@@ -5183,7 +5183,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8972306230675620541
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13329,6 +13329,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: GamEventManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8412416067561281717, guid: 859e80d624e67b94cb55ef091c28759d, type: 3}
+      propertyPath: FairyTriggerList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8412416067561281717, guid: 859e80d624e67b94cb55ef091c28759d, type: 3}
+      propertyPath: dialogueStatsList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8412416067561281717, guid: 859e80d624e67b94cb55ef091c28759d, type: 3}
+      propertyPath: 'dialogueStatsList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 9f3d09a3f8456494eacf432abb0a8112, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 5902623243468087924, guid: 859e80d624e67b94cb55ef091c28759d, type: 3}

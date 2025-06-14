@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 {
@@ -16,9 +17,25 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     [SerializeField] int HP;
     int HPOrig;
+    [SerializeField] float healingCooldown;
+    public int healingnum;
+    int healingnumOrig;
+    public int numofhealpotions;
+    float healTimer;
 
     [SerializeField] int Mana;
     int ManaOrig;
+    [SerializeField] int manaCost;
+    [SerializeField] float manaCoolDownRate;
+    [SerializeField] float manaRegenRate;
+    float manaRegenTimer;
+    public int numofmanapotions;
+    float manaCooldownTimer;
+
+    [SerializeField] int Oxygen;
+    int OxygenOrig;
+    [SerializeField] Transform WaterPos;
+    [SerializeField] LayerMask waterLayer;
 
     [SerializeField] float speed;
     float origSpeed;
@@ -36,13 +53,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     [SerializeField] int shootDist;
     float shootTimer;
     int spellListPos;
-
-    [SerializeField] int manaCost;
-    [SerializeField] float manaCoolDownRate;
-    [SerializeField] float manaRegenRate;
-    float manaRegenTimer;
-    public int numofmanapotions;
-    float manaCooldownTimer;
+    public bool canShoot = true;
 
     [SerializeField] bool isTeleportingRaycast;
     [SerializeField] float teleportRate;
@@ -54,12 +65,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     int jumpCount;
     int origJump;
     Vector3 playerVel;
-
-    [SerializeField] float healingCooldown;
-    public int healingnum;
-    int healingnumOrig;
-    public int numofhealpotions;
-    float healTimer;
 
     int baconcount;
     int beewaxcount;
@@ -91,12 +96,13 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         gameManager.instance.DisplayDescription(startupDialogue);
         HPOrig = HP;
         ManaOrig = Mana;
+        OxygenOrig = Oxygen;
         origSpeed = speed;
         origJump = jumpForce;
 
 
         healingnumOrig = healingnum;
-        gameManager.instance.UpdatePlayerMaxHPMPCount(HP, Mana);
+        gameManager.instance.UpdatePlayerMaxHPMPOXCount(HP, Mana, Oxygen);
         gameManager.instance.UpdatePotionCount(numofhealpotions, numofmanapotions);
         updatePlayerUI();
         if (spellList.Count > 0)
@@ -106,20 +112,11 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     // Update is called once per frame
     void Update()
     {
-        //if (choice == shootchoice.shootraycast)
-        //{
-        //Debug.Log(transform.position);
-
-        //Debug.DrawRay(shootPos.position, Camera.main.transform.forward * shootDist, Color.red);
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
-        //}
         if (isTeleportingRaycast)
         {
             Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * teleportDist, Color.blue);
         }
-
-        //   if (controller.transform.position.y < 0)
-        //      TakeDMG(100);
 
         Movement();
         sprint();
@@ -163,7 +160,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             if (choice == shootchoice.teleportraycast)
                 teleportbyclick();
             if (choice == shootchoice.spellList && spellList.Count > 0 && Mana >= manaCost)
-                shootSpell();
+                shootSpell(canShoot);
         }
         if (Input.GetKey("f"))
         {
@@ -176,6 +173,20 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         if (manaCooldownTimer >= manaCoolDownRate && Mana < ManaOrig)
         {
             ManaRegen();
+        }
+
+        Debug.DrawRay(WaterPos.position, WaterPos.transform.forward * 3f, Color.cyan);
+
+        RaycastHit hit;
+        if (Physics.Raycast(WaterPos.position, WaterPos.transform.forward, out hit, 3f, waterLayer, QueryTriggerInteraction.Collide))
+        {
+            gameManager.instance.playerOxygenBar.SetActive(true);
+            Debug.Log("Hit: " + hit.collider.name);
+        }
+        else
+        {
+            gameManager.instance.playerOxygenBar.SetActive(false);
+
         }
 
         //if (Input.GetKey("b"))
@@ -245,8 +256,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
         {
-
-            //Debug.Log(hit.collider.name);
             IDamage dmg = hit.collider.GetComponent<IDamage>();
 
             if (dmg != null)
@@ -256,31 +265,39 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         }
     }
 
-    void shootSpell()
+    void shootSpell(bool _canShoot)
     {
-
-        shootTimer = 0;
-        manaCooldownTimer = 0;
-
-        Mana -= manaCost;
-        gameManager.instance.UpdatePlayerMPCount(-manaCost);
-        updatePlayerUI();
-        if (spellList[spellListPos].name != "Teleport Spell")
+        if (_canShoot)
         {
-            Ray ray = new Ray(mainCam.transform.position, mainCam.transform.forward);
-            if (Physics.Raycast(ray, out RaycastHit hit, 1000f))
+            shootTimer = 0;
+            manaCooldownTimer = 0;
+
+            Mana -= manaCost;
+            gameManager.instance.UpdatePlayerMPCount(-manaCost);
+            updatePlayerUI();
+            if (spellList[spellListPos].name != "Teleport Spell" && spellList[spellListPos].name != "Super_FireBall")
             {
-                Vector3 targetPoint = hit.point;
-                Vector3 shootDirection = (targetPoint - shootPos.position).normalized;
+                Ray ray = new Ray(mainCam.transform.position, mainCam.transform.forward);
+                if (Physics.Raycast(ray, out RaycastHit hit, 1000f))
+                {
+                    Vector3 targetPoint = hit.point;
+                    Vector3 shootDirection = (targetPoint - shootPos.position).normalized;
 
-                Instantiate(spell, shootPos.position, Quaternion.LookRotation(shootDirection));
-                if (spellList[spellListPos].hitEffect != null)
-                    Instantiate(spellList[spellListPos].hitEffect, shootPos.position, Quaternion.LookRotation(shootDirection));
+                    Instantiate(spell, shootPos.position, Quaternion.LookRotation(shootDirection));
+                    if (spellList[spellListPos].hitEffect != null)
+                        Instantiate(spellList[spellListPos].hitEffect, shootPos.position, Quaternion.LookRotation(shootDirection));
+                }
             }
-        }
-        else
-        {
-            Teleport();
+            else if (spellList[spellListPos].name == "Super_FireBall")
+            {
+                Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+                if (spellList[spellListPos].hitEffect != null)
+                    Instantiate(spellList[spellListPos].hitEffect, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+            }
+            else
+            {
+                Teleport();
+            }
         }
     }
 
@@ -421,6 +438,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     {
         gameManager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
         gameManager.instance.playerManaBar.fillAmount = (float)Mana / ManaOrig;
+        gameManager.instance.playerOxygenBarFiller.fillAmount = (float)Oxygen / OxygenOrig;
     }
 
     void selectSpell()
