@@ -119,25 +119,30 @@ public class Damage : MonoBehaviour
 	{
 		if (other.isTrigger)
 		{
-			return;
+            return;
 		}
 		IDamage dmg = other.GetComponent<IDamage>();
 		if (dmg != null && type == damagetype.DOT)
 		{
 			if (!isDamaging)
 			{
-				StartCoroutine(damageOther(dmg));
-			}
+                StartCoroutine(damageOther(dmg));
+            }
+        }
+    }
 
-		}
+    private void OnTriggerExit(Collider other)
+	{
+		isDamaging = false;
 	}
 
-	void Explode()
+    void Explode()
 	{
 		Debug.Log("Explosion Trigger");
 		isExploded = true;
 		speed = 0;
         rb.linearVelocity = transform.forward * speed;
+		rb.useGravity = false;
         explosionArea.SetActive(true);
 		GetComponent<MeshRenderer>().enabled = false;
 		GetComponent<Collider>().enabled = false;

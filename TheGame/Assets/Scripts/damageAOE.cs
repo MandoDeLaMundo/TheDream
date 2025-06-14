@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,7 +19,12 @@ public class damageAOE : MonoBehaviour
             dmg.TakeDMG(damageAmount);
             damagedTick.Add(dmg);
         }
+        Cooldown();
+        Destroy(gameObject, 0.3f);
+    }
+    IEnumerator Cooldown()
+    {
+        yield return new WaitForSecondsRealtime(1);
         GetComponent<MeshRenderer>().enabled = false;
-        Destroy(gameObject, 2);
     }
 }
