@@ -284,4 +284,20 @@ public class gameManager : MonoBehaviour
             menuActive.SetActive(true);
         }
     }
+
+    public void PlayGame()
+    {
+
+    }
+
+    public void QuitGame()
+    {
+                Application.Quit();
+        Debug.Log("Quit Game");
+    }
+
+    public void Options()
+    {
+
+    }
 }
