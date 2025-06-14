@@ -5,8 +5,11 @@ public class TriggerBox : MonoBehaviour
 {
     enum triggertype {root, silent, debuff}
     [SerializeField] triggertype type;
+
     [SerializeField] GameObject objectModel;
+
     [SerializeField] ParticleSystem particleVFX;
+
     [SerializeField] float rootDuration;
     [SerializeField] float silentDuration;
 
@@ -34,6 +37,7 @@ public class TriggerBox : MonoBehaviour
             {
                 proc = true;
                 StartCoroutine(RootPlayer());
+                StartCoroutine(SilentPlayer());
             }
         }
     }
@@ -53,10 +57,11 @@ public class TriggerBox : MonoBehaviour
         playerController.instance.controller.enabled = true;
         objectModel.SetActive(false);
     }
-    IEnumerator Silent()
+    IEnumerator SilentPlayer()
     {
-
+        yield return new WaitForSeconds(5);
+        playerController.instance.canShoot = false;
         yield return new WaitForSeconds(silentDuration);
-
+        playerController.instance.canShoot = true;
     }
 }
