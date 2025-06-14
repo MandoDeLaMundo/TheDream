@@ -9,7 +9,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     public static playerController instance;
 
     public CharacterController controller;
-    [SerializeField] Camera mainCam;
+    public Camera mainCam;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator anim;
     [SerializeField] LayerMask ignoreLayer;

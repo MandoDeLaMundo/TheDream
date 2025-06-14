@@ -52,7 +52,6 @@ public class SelectionSpawner : MonoBehaviour
             rightButtonFilled.SetActive(true);
             rightButtonHole.SetActive(false);
         }
-
     }
     // Update is called once per frame
     void Update()
@@ -123,13 +122,14 @@ public class SelectionSpawner : MonoBehaviour
                 else if (Input.GetButtonDown("Submit") && dialogueCount == dialogue.Count)
                 {
                     playerController.instance.enabled = true;
+                    playerController.instance.mainCam.gameObject.GetComponent<cameraController>().enabled = true;
                     Destroy(cloneFairy);
                     gameManager.instance.HideDialogue();
                     gameEventManager.instance.EventOff(FairySpawner);
                     dialogueCount = 0;
                 }
             }
-            else if(type == spawntype.Fairy && dialogue.Count == 0)
+            else if (type == spawntype.Fairy && dialogue.Count == 0)
             {
                 playerController.instance.enabled = true;
             }
@@ -160,6 +160,7 @@ public class SelectionSpawner : MonoBehaviour
             }
 
             playerInTrigger = true;
+            playerController.instance.mainCam.gameObject.GetComponent<cameraController>().enabled = false;
             playerController.instance.enabled = false;
         }
     }
