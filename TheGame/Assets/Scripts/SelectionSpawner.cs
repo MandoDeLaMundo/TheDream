@@ -40,7 +40,7 @@ public class SelectionSpawner : MonoBehaviour
     void Start()
     {
         instance = this;
-        if (spawnList != null && type == spawntype.Enemies && type == spawntype.PickUps)
+        if (spawnList != null && type == spawntype.Enemies || type == spawntype.PickUps)
         {
             spawnObject = spawnList[objectListPos].pickup;
 
@@ -106,7 +106,7 @@ public class SelectionSpawner : MonoBehaviour
                     }
             }
 
-            if (type == spawntype.Fairy)
+            if (type == spawntype.Fairy && dialogue.Count != 0)
             {
                 if (spawnCount < numToSpawn)
                 {
@@ -129,8 +129,12 @@ public class SelectionSpawner : MonoBehaviour
                     dialogueCount = 0;
                 }
             }
+            else if(type == spawntype.Fairy && dialogue.Count == 0)
+            {
+                playerController.instance.enabled = true;
+            }
 
-                spawnTimer += Time.deltaTime;
+            spawnTimer += Time.deltaTime;
             if (spawnTimer >= spawnRate && spawnCount < numToSpawn && startSpawner)
             {
                 spawn();
@@ -149,8 +153,11 @@ public class SelectionSpawner : MonoBehaviour
         IInteraction interaction = other.GetComponent<IInteraction>();
         if (interaction != null)
         {
-            if (type == spawntype.Enemies)
+            if (type == spawntype.Enemies || type == spawntype.PickUps)
+            {
+                Debug.Log("Canvas active");
                 Canvas.SetActive(true);
+            }
 
             playerInTrigger = true;
             playerController.instance.enabled = false;
@@ -162,8 +169,11 @@ public class SelectionSpawner : MonoBehaviour
         IInteraction interaction = other.GetComponent<IInteraction>();
         if (interaction != null)
         {
-            if (type == spawntype.Enemies)
+            if (type == spawntype.Enemies || type == spawntype.PickUps)
+            {
+                Debug.Log("Canvas inactive");
                 Canvas.SetActive(false);
+            }
 
             playerInTrigger = false;
         }
@@ -171,7 +181,7 @@ public class SelectionSpawner : MonoBehaviour
 
     void selectEverything()
     {
-        if (type == spawntype.Enemies)
+        if (type == spawntype.Enemies || type == spawntype.PickUps)
         {
             if (Input.GetKeyDown("right") && objectListPos < spawnList.Count - 1)
             {
@@ -202,7 +212,7 @@ public class SelectionSpawner : MonoBehaviour
     {
         int arrayPos = Random.Range(0, spawnPos.Length);
 
-        if (type == spawntype.Enemies && type == spawntype.PickUps)
+        if (type == spawntype.Enemies || type == spawntype.PickUps)
         {
             Instantiate(spawnObject, spawnPos[arrayPos].position, spawnPos[arrayPos].rotation);
         }

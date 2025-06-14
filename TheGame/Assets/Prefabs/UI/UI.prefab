@@ -13316,11 +13316,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8412416067561281717, guid: 859e80d624e67b94cb55ef091c28759d, type: 3}
       propertyPath: FairyTriggerList.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8412416067561281717, guid: 859e80d624e67b94cb55ef091c28759d, type: 3}
       propertyPath: dialogueStatsList.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8412416067561281717, guid: 859e80d624e67b94cb55ef091c28759d, type: 3}
       propertyPath: 'dialogueStatsList.Array.data[0]'

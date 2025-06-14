@@ -31,8 +31,7 @@ Transform:
   m_LocalPosition: {x: -9.806155, y: 2.3221579, z: -4.4769025}
   m_LocalScale: {x: 2, y: 0.25, z: 2}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 9029926806467791030}
+  m_Children: []
   m_Father: {fileID: 2173358242022842524}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5582539118014877988
@@ -245,12 +244,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7060722792169140798}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.7118023, z: -0, w: 0.7023799}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.49999982, y: 4, z: 0.49999982}
+  m_LocalRotation: {x: -0, y: 0.3826828, z: -0, w: 0.92387974}
+  m_LocalPosition: {x: -9.806155, y: 2.3221579, z: -4.4769025}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4232875439800001096}
+  m_Father: {fileID: 2173358242022842524}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &8934312484256956317
 BoxCollider:
@@ -285,7 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 067c35fbc7207e54486ea8592bea770e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
+  type: 2
   spawnList: []
   dialogue: []
   FairySpawner: {fileID: 7060722792169140798}
@@ -293,7 +292,7 @@ MonoBehaviour:
   numToSpawn: 1
   spawnRate: 3
   spawnPos:
-  - {fileID: 0}
+  - {fileID: 1627394391720961752}
   Canvas: {fileID: 0}
   image: {fileID: 0}
   leftButtonFilled: {fileID: 0}
@@ -331,6 +330,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 9029926806467791030}
   - {fileID: 1627394391720961752}
   - {fileID: 4232875439800001096}
   m_Father: {fileID: 0}

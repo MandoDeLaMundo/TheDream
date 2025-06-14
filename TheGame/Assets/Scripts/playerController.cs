@@ -27,10 +27,10 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     int ManaOrig;
     [SerializeField] int manaCost;
     [SerializeField] float manaCoolDownRate;
+    float manaCooldownTimer;
     [SerializeField] float manaRegenRate;
     float manaRegenTimer;
     public int numofmanapotions;
-    float manaCooldownTimer;
 
     [SerializeField] int Oxygen;
     int OxygenOrig;
@@ -39,8 +39,10 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     [SerializeField] float speed;
     float origSpeed;
-
     [SerializeField] int sprintMod;
+    bool inMud = false;
+    bool canSprint = true;
+
     enum shootchoice { shootraycast, spellList, teleportraycast }
     [SerializeField] shootchoice choice;
     [SerializeField] List<spellStats> spellList = new List<spellStats>();
@@ -68,8 +70,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     int baconcount;
     int beewaxcount;
     int mushroomscount;
-    bool inMud = false;
-    bool canSprint = true;
 
     [SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] audStep;
