@@ -661,7 +661,7 @@ MonoBehaviour:
   playerOXCountText: {fileID: 825295132958742897}
   playerOXMaxText: {fileID: 1842271703348992675}
   playerOxygenBar: {fileID: 5579789160003978662}
-  playerOxygenBarFiller: {fileID: 5460597305613106049}
+  playerOxygenBarFiller: {fileID: 7819874309826013842}
   bossHPCountText: {fileID: 6577761957036552257}
   bossHPMaxText: {fileID: 6695678834624336584}
   baconCountText: {fileID: 5572917854405633967}
@@ -3059,7 +3059,7 @@ MonoBehaviour:
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 1
+  m_FillMethod: 4
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -4965,10 +4965,10 @@ RectTransform:
   - {fileID: 4036599810929196223}
   - {fileID: 7122981407473657754}
   - {fileID: 7212133137959604579}
+  - {fileID: 8028239951208123866}
   - {fileID: 2524339915867066006}
   - {fileID: 3690309588440969219}
   - {fileID: 481907347142456033}
-  - {fileID: 8028239951208123866}
   - {fileID: 3730676113857344687}
   - {fileID: 5174449740972579838}
   - {fileID: 8856634129145188179}
@@ -14116,6 +14116,10 @@ PrefabInstance:
     - target: {fileID: 2608681428062821736, guid: 859e80d624e67b94cb55ef091c28759d, type: 3}
       propertyPath: m_Name
       value: GamEventManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5664754806724130225, guid: 859e80d624e67b94cb55ef091c28759d, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8412416067561281717, guid: 859e80d624e67b94cb55ef091c28759d, type: 3}
       propertyPath: FairyTriggerList.Array.size

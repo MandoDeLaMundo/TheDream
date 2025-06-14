@@ -259,8 +259,6 @@ public class gameManager : MonoBehaviour
         baconGoalText.text = baconGoal.ToString("F0");
         beesWaxGoalText.text = beesWaxGoal.ToString("F0");
         mushroomGoalText.text = mushroomGoal.ToString("F0");
-
-
     }
 
     private void CheckIngredientGoals()

@@ -87,6 +87,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     bool isPlayingStep;
     Coroutine co;
 
+    bool test;
+
     Vector3 moveDir;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -98,7 +100,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         OxygenOrig = Oxygen;
         origSpeed = speed;
         origJump = jumpForce;
-
+        test = true;
         healingnumOrig = healingnum;
         gameManager.instance.UpdatePlayerMaxHPMPOXCount(HP, Mana, Oxygen);
         gameManager.instance.UpdatePotionCount(numofhealpotions, numofmanapotions);
@@ -128,6 +130,14 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
         if (Mana != ManaOrig)
             manaCooldownTimer += Time.deltaTime;
+
+        if (test && Oxygen == OxygenOrig)
+        {
+            Oxygen -= 5;
+            gameManager.instance.UpdatePlayerOXCount(-5);
+            updatePlayerUI();
+            test = false;
+        }
 
         if (controller.isGrounded)
         {
