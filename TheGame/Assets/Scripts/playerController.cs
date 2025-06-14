@@ -32,8 +32,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     float manaRegenTimer;
     public int numofmanapotions;
 
-    [SerializeField] int Oxygen;
-    int OxygenOrig;
+    public int Oxygen;
+    public int OxygenOrig;
     [SerializeField] Transform WaterPos;
     [SerializeField] LayerMask waterLayer;
 
@@ -98,7 +98,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         OxygenOrig = Oxygen;
         origSpeed = speed;
         origJump = jumpForce;
-
 
         healingnumOrig = healingnum;
         gameManager.instance.UpdatePlayerMaxHPMPOXCount(HP, Mana, Oxygen);
