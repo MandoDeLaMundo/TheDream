@@ -286,7 +286,7 @@ Transform:
   m_GameObject: {fileID: 1639791263099738274}
   serializedVersion: 2
   m_LocalRotation: {x: -0.2587955, y: 0.68301195, z: 0.003450118, w: 0.6830137}
-  m_LocalPosition: {x: -8.09, y: 4.05, z: -2.82}
+  m_LocalPosition: {x: -6.7227297, y: 2.7596579, z: -1.5852907}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -468,12 +468,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3112297936719942330}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.3826828, z: -0, w: 0.92387974}
-  m_LocalPosition: {x: -9.806156, y: 2.3221579, z: -4.476903}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0.7118023, z: -0, w: 0.7023799}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.49999982, y: 4, z: 0.49999982}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 9120936701677166402}
+  m_Father: {fileID: 9133761845524080792}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1543730958472312181
 BoxCollider:
@@ -508,16 +508,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 067c35fbc7207e54486ea8592bea770e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
   spawnList:
   - {fileID: 11400000, guid: 2a0855e655479874faaf4076ecca3b41, type: 2}
   - {fileID: 11400000, guid: 983f302ab2f478943ba58a001ae7ec7b, type: 2}
   - {fileID: 11400000, guid: d66ba5dd60734ee458c8718e54df2888, type: 2}
   - {fileID: 11400000, guid: 9115e1f1975955d49a0c8238bbee3b96, type: 2}
   - {fileID: 11400000, guid: 2879a3e7d02ff1f4f9717aae54fef5e7, type: 2}
-  dialogue: []
-  FairySpawner: {fileID: 0}
-  Fairy: {fileID: 0}
   numToSpawn: 1
   spawnRate: 3
   spawnPos:
@@ -634,7 +630,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7597112523311896908}
   - {fileID: 3250655311056439760}
   - {fileID: 9133761845524080792}
   - {fileID: 5854773015545434414}
@@ -750,7 +745,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Item Selctor
+  m_text: Item Selector
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1139,6 +1134,7 @@ Transform:
   m_LocalScale: {x: 2, y: 0.25, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7597112523311896908}
   - {fileID: 541114773379253588}
   m_Father: {fileID: 9120936701677166402}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

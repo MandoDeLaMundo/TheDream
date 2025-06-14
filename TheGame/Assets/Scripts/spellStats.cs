@@ -15,6 +15,6 @@ public class spellStats : ScriptableObject
     public AudioClip[] shootSound;
     [Range(0, 1)] public float shootSoundVol;
 
-    public bool spellCheck;
-    public string spellManual;
+    public bool spellCheck; //Armando is public
+    public string spellManual; //Tristian is private
 }

@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c063d3ca52213fd479c1393124783dd0, type: 3}
-  m_Name: W1 Encounter2
+  m_Script: {fileID: 11500000, guid: 5aadde711143cf24f86d97c6a7636986, type: 3}
+  m_Name: EnemySpawn1_Boar
   m_EditorClassIdentifier: 
-  dialogue:
-  - '[Fairy: HOW DARE YOU! I will make you pay. You will not mistreat my creatures!
-    ]'
-  trigger: 1
+  pickup: {fileID: 6190965845547561936, guid: aecbe61f6729f224eabf5c506ca6e050, type: 3}
+  sprite: {fileID: 0}

@@ -78,7 +78,7 @@ TrailRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Time: 5
-  m_PreviewTimeScale: 1
+  m_PreviewTimeScale: 0.1
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -321,6 +321,8 @@ MonoBehaviour:
   knockBackDistance: 0
   knockBackSpeed: 0
   knockbackDelay: 0
+  maxBounce: 0
+  bounceRange: 0
   explosionArea: {fileID: 4266772375598545637}
 --- !u!33 &286852086730160532
 MeshFilter:
