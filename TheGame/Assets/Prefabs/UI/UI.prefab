@@ -653,9 +653,15 @@ MonoBehaviour:
   menuLose: {fileID: 6957917382940176448}
   gameGoalCountText: {fileID: 0}
   playerHPCountText: {fileID: 2846767165154119022}
-  playerMPCountText: {fileID: 5057636615132544739}
   playerHPMaxText: {fileID: 8173875777187942896}
+  playerHPBar: {fileID: 32407602855164953}
+  playerMPCountText: {fileID: 5057636615132544739}
   playerMPMaxText: {fileID: 7069091624557669300}
+  playerManaBar: {fileID: 4673183477635988495}
+  playerOXCountText: {fileID: 825295132958742897}
+  playerOXMaxText: {fileID: 1842271703348992675}
+  playerOxygenBar: {fileID: 5579789160003978662}
+  playerOxygenBarFiller: {fileID: 5460597305613106049}
   bossHPCountText: {fileID: 6577761957036552257}
   bossHPMaxText: {fileID: 6695678834624336584}
   baconCountText: {fileID: 5572917854405633967}
@@ -667,10 +673,8 @@ MonoBehaviour:
   beesWaxGoalText: {fileID: 6461101487252379927}
   mushroomGoalText: {fileID: 6504139577423112059}
   playerDamageScreen: {fileID: 4860545966578125805}
-  playerHPBar: {fileID: 32407602855164953}
   player: {fileID: 0}
   playerScript: {fileID: 0}
-  playerManaBar: {fileID: 4673183477635988495}
   textBox: {fileID: 770058292637326067}
   textDescription: {fileID: 6389349711666219554}
   DialogueBox: {fileID: 3737422282485817401}
@@ -7676,7 +7680,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2524339915867066006
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8074,7 +8078,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8856634129145188179}
-  - component: {fileID: 541130022069205931}
   - component: {fileID: 6787797554762821165}
   m_Layer: 5
   m_Name: CraftingSystem
@@ -8106,24 +8109,6 @@ RectTransform:
   m_AnchoredPosition: {x: -320, y: 278}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &541130022069205931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5741884048972669712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0981f1769708d6342b663568a785681f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  craftActive: {fileID: 0}
-  craftHeal: {fileID: 63197873044233034}
-  craftMana: {fileID: 7376852581496063506}
-  potionActive: {fileID: 0}
-  potionHeal: {fileID: 5723737516235211365}
-  potionMana: {fileID: 0}
 --- !u!114 &6787797554762821165
 MonoBehaviour:
   m_ObjectHideFlags: 0

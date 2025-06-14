@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class SelectionSpawner : MonoBehaviour
 {
     public static SelectionSpawner instance;
-    enum spawntype { Everything, Fairy }
+    enum spawntype { Enemies, PickUps, Fairy }
     [SerializeField] spawntype type;
     [SerializeField] List<spawnStats> spawnList = new List<spawnStats>();
 
@@ -40,7 +40,7 @@ public class SelectionSpawner : MonoBehaviour
     void Start()
     {
         instance = this;
-        if (spawnList != null && type == spawntype.Everything)
+        if (spawnList != null && type == spawntype.Enemies && type == spawntype.PickUps)
         {
             spawnObject = spawnList[objectListPos].pickup;
 
@@ -60,11 +60,34 @@ public class SelectionSpawner : MonoBehaviour
         buttonTimer += Time.deltaTime;
         if (playerInTrigger)
         {
-            if (type == spawntype.Everything)
+            if (type == spawntype.Enemies)
             {
-                if (Input.GetButtonDown("Interact") && type == spawntype.Everything)
+                if (Input.GetButtonDown("Interact"))
                 {
                     startSpawner = true;
+                }
+
+                if (Input.GetKeyDown("q"))
+                {
+                    playerController.instance.enabled = true;
+                }
+
+                if (buttonTimer >= buttonTime)
+                    if (leftButtonFilled.activeSelf == false || rightButtonFilled.activeSelf == false)
+                    {
+                        leftButtonFilled.SetActive(true);
+                        leftButtonHole.SetActive(false);
+                        rightButtonFilled.SetActive(true);
+                        rightButtonHole.SetActive(false);
+                        buttonTimer = 0;
+                    }
+            }
+
+            if (type == spawntype.PickUps)
+            {
+                if (Input.GetButtonDown("Interact"))
+                {
+                    spawn();
                 }
 
                 if (Input.GetKeyDown("q"))
@@ -126,7 +149,7 @@ public class SelectionSpawner : MonoBehaviour
         IInteraction interaction = other.GetComponent<IInteraction>();
         if (interaction != null)
         {
-            if (type == spawntype.Everything)
+            if (type == spawntype.Enemies)
                 Canvas.SetActive(true);
 
             playerInTrigger = true;
@@ -139,7 +162,7 @@ public class SelectionSpawner : MonoBehaviour
         IInteraction interaction = other.GetComponent<IInteraction>();
         if (interaction != null)
         {
-            if (type == spawntype.Everything)
+            if (type == spawntype.Enemies)
                 Canvas.SetActive(false);
 
             playerInTrigger = false;
@@ -148,7 +171,7 @@ public class SelectionSpawner : MonoBehaviour
 
     void selectEverything()
     {
-        if (type == spawntype.Everything)
+        if (type == spawntype.Enemies)
         {
             if (Input.GetKeyDown("right") && objectListPos < spawnList.Count - 1)
             {
@@ -179,7 +202,7 @@ public class SelectionSpawner : MonoBehaviour
     {
         int arrayPos = Random.Range(0, spawnPos.Length);
 
-        if (type == spawntype.Everything)
+        if (type == spawntype.Enemies && type == spawntype.PickUps)
         {
             Instantiate(spawnObject, spawnPos[arrayPos].position, spawnPos[arrayPos].rotation);
         }

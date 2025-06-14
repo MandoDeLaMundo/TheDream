@@ -14,15 +14,18 @@ public class gameEventManager : MonoBehaviour
     void Awake()
     {
         instance = this;
-        for (; ListPos < dialogueStatsList.Count; )
+        if (dialogueStatsList != null)
         {
-            for (int index = 0; index < dialogueStatsList[ListPos].dialogue.Count; index++)
+            for (; ListPos < dialogueStatsList.Count;)
             {
-                FairyTriggerList[ListPos].GetComponent<SelectionSpawner>().dialogue.Add(dialogueStatsList[ListPos].dialogue[index]);
+                for (int index = 0; index < dialogueStatsList[ListPos].dialogue.Count; index++)
+                {
+                    FairyTriggerList[ListPos].GetComponent<SelectionSpawner>().dialogue.Add(dialogueStatsList[ListPos].dialogue[index]);
+                }
+                ListPos++;
             }
-            ListPos++;
+            ListPos = 0;
         }
-        ListPos = 0;
     }
 
     public void EventOff(GameObject Spawner)

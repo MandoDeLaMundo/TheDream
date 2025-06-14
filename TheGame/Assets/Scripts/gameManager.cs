@@ -144,7 +144,6 @@ public class gameManager : MonoBehaviour
         isPaused = true;
         Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.None;
-
     }
 
     public void HideDescription()
@@ -165,7 +164,6 @@ public class gameManager : MonoBehaviour
         isPaused = true;
         Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.None;
-
     }
 
     public void HideDialogue()
@@ -275,7 +273,6 @@ public class gameManager : MonoBehaviour
     public void UpdateMonsterEgg(bool hasEgg)
     {
         hasMonsterEgg = hasEgg;
-
     }
 
     public void GameGoalMonsterEgg()

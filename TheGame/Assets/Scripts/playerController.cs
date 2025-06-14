@@ -41,7 +41,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     float origSpeed;
 
     [SerializeField] int sprintMod;
-
     enum shootchoice { shootraycast, spellList, teleportraycast }
     [SerializeField] shootchoice choice;
     [SerializeField] List<spellStats> spellList = new List<spellStats>();
@@ -175,19 +174,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             ManaRegen();
         }
 
-        Debug.DrawRay(WaterPos.position, WaterPos.transform.forward * 3f, Color.cyan);
-
-        RaycastHit hit;
-        if (Physics.Raycast(WaterPos.position, WaterPos.transform.forward, out hit, 3f, waterLayer, QueryTriggerInteraction.Collide))
-        {
-            gameManager.instance.playerOxygenBar.SetActive(true);
-            Debug.Log("Hit: " + hit.collider.name);
-        }
-        else
-        {
-            gameManager.instance.playerOxygenBar.SetActive(false);
-
-        }
 
         //if (Input.GetKey("b"))
         //{
