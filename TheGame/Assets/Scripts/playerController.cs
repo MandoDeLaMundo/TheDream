@@ -85,6 +85,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     bool isSprinting;
     bool isPlayingStep;
+    bool isShielding = false;
     Coroutine co;
 
     bool test;
@@ -183,17 +184,18 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             ManaRegen();
         }
 
-
-        //if (Input.GetKey("b"))
-        //{
-        //    shield.SetActive(true);
-        //Debug.Log(manaCost);
-        //    Mana -= manaCost;
-        //}
-        //else
-        //{
-        //    shield.SetActive(false);
-        //}
+        
+        if (Input.GetButtonDown("Shield"))
+        {
+            isShielding = !isShielding;
+            shield.SetActive(isShielding);
+            Debug.Log(manaCost);
+            if (isShielding == true)
+            {
+                Mana -= manaCost;
+            }
+        }
+        
 
         selectSpell();
 
