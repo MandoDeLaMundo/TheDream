@@ -653,9 +653,15 @@ MonoBehaviour:
   menuLose: {fileID: 6957917382940176448}
   gameGoalCountText: {fileID: 0}
   playerHPCountText: {fileID: 2846767165154119022}
-  playerMPCountText: {fileID: 5057636615132544739}
   playerHPMaxText: {fileID: 8173875777187942896}
+  playerHPBar: {fileID: 32407602855164953}
+  playerMPCountText: {fileID: 5057636615132544739}
   playerMPMaxText: {fileID: 7069091624557669300}
+  playerManaBar: {fileID: 4673183477635988495}
+  playerOXCountText: {fileID: 825295132958742897}
+  playerOXMaxText: {fileID: 1842271703348992675}
+  playerOxygenBar: {fileID: 5579789160003978662}
+  playerOxygenBarFiller: {fileID: 5460597305613106049}
   bossHPCountText: {fileID: 6577761957036552257}
   bossHPMaxText: {fileID: 6695678834624336584}
   baconCountText: {fileID: 5572917854405633967}
@@ -667,10 +673,8 @@ MonoBehaviour:
   beesWaxGoalText: {fileID: 6461101487252379927}
   mushroomGoalText: {fileID: 6504139577423112059}
   playerDamageScreen: {fileID: 4860545966578125805}
-  playerHPBar: {fileID: 32407602855164953}
   player: {fileID: 0}
   playerScript: {fileID: 0}
-  playerManaBar: {fileID: 4673183477635988495}
   textBox: {fileID: 770058292637326067}
   textDescription: {fileID: 6389349711666219554}
   DialogueBox: {fileID: 3737422282485817401}
@@ -4730,6 +4734,7 @@ RectTransform:
   - {fileID: 7719820796932390106}
   - {fileID: 2747277923510789306}
   - {fileID: 8363836786003377323}
+  - {fileID: 4348752931421953624}
   - {fileID: 3030616169351108911}
   - {fileID: 312304969634613281}
   - {fileID: 4670892458180303660}
@@ -7675,7 +7680,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2524339915867066006
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8073,7 +8078,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8856634129145188179}
-  - component: {fileID: 541130022069205931}
   - component: {fileID: 6787797554762821165}
   m_Layer: 5
   m_Name: CraftingSystem
@@ -8105,24 +8109,6 @@ RectTransform:
   m_AnchoredPosition: {x: -320, y: 278}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &541130022069205931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5741884048972669712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0981f1769708d6342b663568a785681f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  craftActive: {fileID: 0}
-  craftHeal: {fileID: 63197873044233034}
-  craftMana: {fileID: 7376852581496063506}
-  potionActive: {fileID: 0}
-  potionHeal: {fileID: 5723737516235211365}
-  potionMana: {fileID: 0}
 --- !u!114 &6787797554762821165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10252,7 +10238,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: bdshkahfkadhskfhkasdhfhasdfjasduihfiukahdskhfkasdkfhasdkjfkjahsdkjfhkashdkjfhakdsjhfkjhasdkjhfkjhdsakjfhkasffsdafads
+  m_text: This is the Description
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -13276,3 +13262,79 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1001 &4172194304309162270
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6784114218888903061}
+    m_Modifications:
+    - target: {fileID: 414123758779461446, guid: 859e80d624e67b94cb55ef091c28759d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -973.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 414123758779461446, guid: 859e80d624e67b94cb55ef091c28759d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -542.25964
+      objectReference: {fileID: 0}
+    - target: {fileID: 414123758779461446, guid: 859e80d624e67b94cb55ef091c28759d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 22.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 414123758779461446, guid: 859e80d624e67b94cb55ef091c28759d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.37652346
+      objectReference: {fileID: 0}
+    - target: {fileID: 414123758779461446, guid: 859e80d624e67b94cb55ef091c28759d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 414123758779461446, guid: 859e80d624e67b94cb55ef091c28759d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.9264071
+      objectReference: {fileID: 0}
+    - target: {fileID: 414123758779461446, guid: 859e80d624e67b94cb55ef091c28759d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 414123758779461446, guid: 859e80d624e67b94cb55ef091c28759d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 414123758779461446, guid: 859e80d624e67b94cb55ef091c28759d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -135.763
+      objectReference: {fileID: 0}
+    - target: {fileID: 414123758779461446, guid: 859e80d624e67b94cb55ef091c28759d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2608681428062821736, guid: 859e80d624e67b94cb55ef091c28759d, type: 3}
+      propertyPath: m_Name
+      value: GamEventManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8412416067561281717, guid: 859e80d624e67b94cb55ef091c28759d, type: 3}
+      propertyPath: FairyTriggerList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8412416067561281717, guid: 859e80d624e67b94cb55ef091c28759d, type: 3}
+      propertyPath: dialogueStatsList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8412416067561281717, guid: 859e80d624e67b94cb55ef091c28759d, type: 3}
+      propertyPath: 'dialogueStatsList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 9f3d09a3f8456494eacf432abb0a8112, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 5902623243468087924, guid: 859e80d624e67b94cb55ef091c28759d, type: 3}
+    - {fileID: 5330488954471864332, guid: 859e80d624e67b94cb55ef091c28759d, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 859e80d624e67b94cb55ef091c28759d, type: 3}
+--- !u!4 &4348752931421953624 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 414123758779461446, guid: 859e80d624e67b94cb55ef091c28759d, type: 3}
+  m_PrefabInstance: {fileID: 4172194304309162270}
+  m_PrefabAsset: {fileID: 0}
