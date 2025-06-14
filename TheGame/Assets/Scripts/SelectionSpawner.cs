@@ -155,7 +155,6 @@ public class SelectionSpawner : MonoBehaviour
         {
             if (type == spawntype.Enemies || type == spawntype.PickUps)
             {
-                Debug.Log("Canvas active");
                 Canvas.SetActive(true);
             }
 
@@ -172,7 +171,6 @@ public class SelectionSpawner : MonoBehaviour
         {
             if (type == spawntype.Enemies || type == spawntype.PickUps)
             {
-                Debug.Log("Canvas inactive");
                 Canvas.SetActive(false);
             }
 
