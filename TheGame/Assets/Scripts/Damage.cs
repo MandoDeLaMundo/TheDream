@@ -112,7 +112,7 @@ public class Damage : MonoBehaviour
 				Destroy(gameObject);
 			}
         }
-
+		
     }
 
 	private void OnTriggerStay(Collider other)
