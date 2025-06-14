@@ -17,7 +17,6 @@ public class TriggerBox : MonoBehaviour
 
     float oxygenTimer;
 
-    bool geyserPush;
     bool proc;
     void Start()
     {
@@ -101,7 +100,6 @@ public class TriggerBox : MonoBehaviour
     }
     IEnumerator PlayerKnockBack(Transform playerPosition)
     {
-        geyserPush = false;
         Vector3 direction = Vector3.up;
         float move = 0f;
         while (move < geyserStrength)
