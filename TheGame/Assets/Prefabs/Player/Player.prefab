@@ -51,7 +51,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1901461990055869878
 Transform:
   m_ObjectHideFlags: 0
@@ -67,7 +67,6 @@ Transform:
   m_Children:
   - {fileID: 2288383127976024690}
   - {fileID: 5750040449539626320}
-  - {fileID: 8326175348014781393}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 177.93, z: 0}
 --- !u!114 &5934466673113150788
@@ -83,7 +82,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 3944378243251323118}
-  mainCam: {fileID: 4139840839149938585}
   agent: {fileID: 0}
   anim: {fileID: 0}
   ignoreLayer:
@@ -91,20 +89,7 @@ MonoBehaviour:
     m_Bits: 8
   animTransSpeed: 0
   HP: 10
-  healingCooldown: 0.5
-  healingnum: 5
-  numofhealpotions: 0
   Mana: 10
-  manaCost: 0
-  manaCoolDownRate: 2
-  manaRegenRate: 0.1
-  numofmanapotions: 0
-  Oxygen: 10
-  OxygenOrig: 0
-  WaterPos: {fileID: 8326175348014781393}
-  waterLayer:
-    serializedVersion: 2
-    m_Bits: 16
   speed: 5
   sprintMod: 2
   choice: 1
@@ -115,13 +100,19 @@ MonoBehaviour:
   shootDamage: 1
   shootRate: 0.25
   shootDist: 150
-  canShoot: 1
+  manaCost: 0
+  manaCoolDownRate: 2
+  manaRegenRate: 0.1
+  numofmanapotions: 0
   isTeleportingRaycast: 0
   teleportRate: 2
   teleportDist: 15
   jumpMax: 2
   jumpForce: 12
   Gravity: 35
+  healingCooldown: 0.5
+  healingnum: 5
+  numofhealpotions: 0
   aud: {fileID: 1038565525389119075}
   audStep:
   - {fileID: 8300000, guid: c744498b192e5bc4faa13f0440861ab1, type: 3}
@@ -147,7 +138,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d642b4be86c400c4987eefd6db87631c, type: 3}
   - {fileID: 8300000, guid: ea034ca4f786b0b438f7be1dbb6d4424, type: 3}
   audHurtVol: 1
-  shield: {fileID: 5517583260277432333}
+  shield: {fileID: 0}
   startupDialogue: I want an omelet for breakfast, I hope I can find an egg in this
     dungeon!
 --- !u!33 &4531356348622312624
@@ -325,37 +316,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &3466596141076649207
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8326175348014781393}
-  m_Layer: 3
-  m_Name: Water Pos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8326175348014781393
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3466596141076649207}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1901461990055869878}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5517583260277432333
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,7 +429,7 @@ SphereCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 7935
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
