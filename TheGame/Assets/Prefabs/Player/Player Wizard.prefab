@@ -712,7 +712,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6102249918370417236}
-  - component: {fileID: 4958875843018377022}
+  - component: {fileID: 567282985548721719}
   - component: {fileID: 8951174746900345208}
   - component: {fileID: 636491748014205516}
   - component: {fileID: 1329189323170539887}
@@ -722,7 +722,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6102249918370417236
 Transform:
   m_ObjectHideFlags: 0
@@ -737,12 +737,13 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4472765997356283682}
+  - {fileID: 1815614166995294703}
   - {fileID: 685835036591112419}
   - {fileID: 2333631415124861548}
   - {fileID: 4714314409244027761}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4958875843018377022
+--- !u!114 &567282985548721719
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -755,6 +756,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 636491748014205516}
+  mainCam: {fileID: 6639311137780996620}
   agent: {fileID: 0}
   anim: {fileID: 8951174746900345208}
   ignoreLayer:
@@ -763,6 +765,17 @@ MonoBehaviour:
   animTransSpeed: 0
   HP: 10
   Mana: 10
+  manaCost: 0
+  shieldManaCost: 0
+  manaCoolDownRate: 2
+  manaRegenRate: 0.1
+  numofmanapotions: 0
+  Oxygen: 0
+  OxygenOrig: 0
+  WaterPos: {fileID: 1815614166995294703}
+  waterLayer:
+    serializedVersion: 2
+    m_Bits: 16
   speed: 5
   sprintMod: 2
   choice: 1
@@ -773,12 +786,11 @@ MonoBehaviour:
   spell: {fileID: 0}
   shootPos: {fileID: 2068290404957403179}
   shootDamage: 1
-  shootRate: 0.25
   shootDist: 150
-  manaCost: 0
-  manaCoolDownRate: 2
-  manaRegenRate: 0.1
-  numofmanapotions: 0
+  shootRate: 0.25
+  shield: {fileID: 0}
+  shieldBubble: {fileID: 0}
+  shieldRate: 0
   isTeleportingRaycast: 0
   teleportRate: 2
   teleportDist: 15
@@ -813,7 +825,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d642b4be86c400c4987eefd6db87631c, type: 3}
   - {fileID: 8300000, guid: ea034ca4f786b0b438f7be1dbb6d4424, type: 3}
   audHurtVol: 1
-  shield: {fileID: 0}
   startupDialogue: I want an omelet for breakfast, I hope I can find an egg in this
     dungeon!
 --- !u!95 &8951174746900345208
@@ -1555,6 +1566,37 @@ Transform:
   m_Children:
   - {fileID: 6584164375327431160}
   m_Father: {fileID: 8501750243083326917}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5756594339386665767
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1815614166995294703}
+  m_Layer: 3
+  m_Name: Water Pos (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1815614166995294703
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5756594339386665767}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.99983686, z: -0, w: 0.018063271}
+  m_LocalPosition: {x: 0, y: 1.468, z: 0.04}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6102249918370417236}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5794596936565106713
 GameObject:

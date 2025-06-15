@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1901461990055869878}
-  - component: {fileID: 5934466673113150788}
+  - component: {fileID: 7427404398149037457}
   - component: {fileID: 4531356348622312624}
   - component: {fileID: 5703075595090464316}
   - component: {fileID: 3944378243251323118}
@@ -51,7 +51,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1901461990055869878
 Transform:
   m_ObjectHideFlags: 0
@@ -69,7 +69,7 @@ Transform:
   - {fileID: 5750040449539626320}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 177.93, z: 0}
---- !u!114 &5934466673113150788
+--- !u!114 &7427404398149037457
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -82,6 +82,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 3944378243251323118}
+  mainCam: {fileID: 4139840839149938585}
   agent: {fileID: 0}
   anim: {fileID: 0}
   ignoreLayer:
@@ -90,6 +91,17 @@ MonoBehaviour:
   animTransSpeed: 0
   HP: 10
   Mana: 10
+  manaCost: 0
+  shieldManaCost: 0
+  manaCoolDownRate: 2
+  manaRegenRate: 0.1
+  numofmanapotions: 0
+  Oxygen: 10
+  OxygenOrig: 0
+  WaterPos: {fileID: 0}
+  waterLayer:
+    serializedVersion: 2
+    m_Bits: 16
   speed: 5
   sprintMod: 2
   choice: 1
@@ -98,12 +110,11 @@ MonoBehaviour:
   spell: {fileID: 0}
   shootPos: {fileID: 3579017854613924312}
   shootDamage: 1
-  shootRate: 0.25
   shootDist: 150
-  manaCost: 0
-  manaCoolDownRate: 2
-  manaRegenRate: 0.1
-  numofmanapotions: 0
+  shootRate: 0.25
+  shield: {fileID: 0}
+  shieldBubble: {fileID: 5517583260277432333}
+  shieldRate: 0
   isTeleportingRaycast: 0
   teleportRate: 2
   teleportDist: 15
@@ -138,7 +149,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d642b4be86c400c4987eefd6db87631c, type: 3}
   - {fileID: 8300000, guid: ea034ca4f786b0b438f7be1dbb6d4424, type: 3}
   audHurtVol: 1
-  shield: {fileID: 0}
   startupDialogue: I want an omelet for breakfast, I hope I can find an egg in this
     dungeon!
 --- !u!33 &4531356348622312624

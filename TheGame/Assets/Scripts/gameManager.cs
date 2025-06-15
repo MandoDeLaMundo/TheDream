@@ -277,9 +277,6 @@ public class gameManager : MonoBehaviour
         {
             mushroomGoalText.text = mushroomGoal.ToString("F0");
         }
-        
-
-
     }
 
     private void CheckIngredientGoals()
