@@ -14,9 +14,9 @@ public class SelectionSpawner : MonoBehaviour
     public List<string> dialogue;
     int dialogueCount;
     [SerializeField] GameObject FairySpawner;
-
     [SerializeField] GameObject Fairy;
     GameObject cloneFairy;
+
     GameObject spawnObject;
     [SerializeField] int numToSpawn;
     [SerializeField] int spawnRate;
@@ -130,7 +130,7 @@ public class SelectionSpawner : MonoBehaviour
                     playerController.instance.mainCam.gameObject.GetComponent<cameraController>().enabled = true;
                     Destroy(cloneFairy);
                     gameManager.instance.HideDialogue();
-                    //gameEventManager.instance.EventOff(FairySpawner);
+                    gameEventManager.instance.EventOff(FairySpawner);
                     dialogueCount = 0;
                 }
             }

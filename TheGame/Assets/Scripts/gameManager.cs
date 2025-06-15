@@ -42,8 +42,8 @@ public class gameManager : MonoBehaviour
     int playerOXCountOrig;
     int playerOXMaxOrig;
 
-
     public GameObject playerDamageScreen;
+    public GameObject playerStunScreen;
 	public GameObject player;
 	public playerController playerScript;
 	public GameObject textBox;
@@ -54,7 +54,6 @@ public class gameManager : MonoBehaviour
 	public int baconGoalPI;
 	public int beesWaxGoalPI;
 	public int mushroomGoalPI;
-
 
     public bool isPaused;
 
