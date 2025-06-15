@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:TheGame/Assets/Materials/Pristine.mat.meta
+guid: cdba4cf8221c996418d78b00dcfe2e0f
+========
+guid: 18e35e865b08b114cb19b71e940b8411
+>>>>>>>> safety:TheGame/Assets/HDRPDefaultResources/HDRenderPipelineGlobalSettings 1.asset.meta
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -6,38 +6,17 @@ using Unity.VisualScripting;
 
 public class gameManager : MonoBehaviour
 {
-    public static gameManager instance;
+	public static gameManager instance;
 
-    [SerializeField] GameObject menuActive;
-    [SerializeField] GameObject menuPause;
-    [SerializeField] GameObject menuWin;
-    [SerializeField] GameObject menuLose;
-    [SerializeField] TMP_Text gameGoalCountText;
-
-    [SerializeField] TMP_Text playerHPCountText;
-    [SerializeField] TMP_Text playerHPMaxText;
-    public Image playerHPBar;
-    int playerHPCountOrig;
-    int playerHPMaxOrig;
-
-    [SerializeField] TMP_Text playerMPCountText;
-    [SerializeField] TMP_Text playerMPMaxText;
-    public Image playerManaBar;
-    int playerMPCountOrig;
-    int playerMPMaxOrig;
-    
-    [SerializeField] TMP_Text playerOXCountText;
-    [SerializeField] TMP_Text playerOXMaxText;
-    public GameObject playerOxygenBar;
-    public Image playerOxygenBarFiller;
-    int playerOXCountOrig;
-    int playerOXMaxOrig;
-
+	[SerializeField] GameObject menuActive;
+	[SerializeField] GameObject menuPause;
+	[SerializeField] GameObject menuWin;
+	[SerializeField] GameObject menuLose;
+	[SerializeField] TMP_Text gameGoalCountText;
     [SerializeField] TMP_Text bossHPCountText;
     [SerializeField] TMP_Text bossHPMaxText;
-
     [SerializeField] TMP_Text baconCountText;
-    [SerializeField] TMP_Text beesWaxCountText;
+	[SerializeField] TMP_Text beesWaxCountText;
     [SerializeField] TMP_Text mushroomCountText;
     [SerializeField] TMP_Text healpotionText;
     [SerializeField] TMP_Text manapotionText;
@@ -45,24 +24,44 @@ public class gameManager : MonoBehaviour
     [SerializeField] TMP_Text beesWaxGoalText;
     [SerializeField] TMP_Text mushroomGoalText;
 
+    [SerializeField] TMP_Text playerHPCountText; 
+	[SerializeField] TMP_Text playerHPMaxText; 
+	public Image playerHPBar;
+	int playerHPCountOrig; 
+	int playerHPMaxOrig;
+
+    [SerializeField] TMP_Text playerMPCountText; 
+	[SerializeField] TMP_Text playerMPMaxText;
+    public Image playerManaBar;
+	int playerMPCountOrig;
+	int playerMPMaxOrig;
+
+    [SerializeField] TMP_Text playerOXCountText;
+    [SerializeField] TMP_Text playerOXMaxText;
+    public Image playerOxygenBarFiller;
+    int playerOXCountOrig;
+    int playerOXMaxOrig;
+
+
     public GameObject playerDamageScreen;
-    public GameObject player;
-    public playerController playerScript;
-    public GameObject textBox;
-    public TMP_Text textDescription;
-    public GameObject DialogueBox;
-    public TMP_Text DialogueDescription;
-    public Image bossHPBar;
-    public int baconGoalPI;
-    public int beesWaxGoalPI;
-    public int mushroomGoalPI;
+	public GameObject player;
+	public playerController playerScript;
+	public GameObject textBox;
+	public TMP_Text textDescription;
+	public GameObject DialogueBox;
+	public TMP_Text DialogueDescription;
+	public Image bossHPBar; 
+	public int baconGoalPI;
+	public int beesWaxGoalPI;
+	public int mushroomGoalPI;
+
 
     public bool isPaused;
 
-    float timeScaleOrig;
-    int gameGoalCount;
+	float timeScaleOrig;
+	int gameGoalCount;
     int bossHPCountOrig;
-    int bossHPMaxOrig;
+	int bossHPMaxOrig;
     int healpotionCountOrig;
     int manapotionCountOrig;
     int baconCount;
@@ -73,22 +72,23 @@ public class gameManager : MonoBehaviour
     int mushroomGoal;
 
     bool hasMonsterEgg = false;
-    bool hasEnoughBacon = false;
+	bool hasEnoughBacon = false;
     bool hasEnoughBeesWax = false;
-    bool hasEnoughMushroom = false;
+	bool hasEnoughMushroom = false;
+	 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Awake()
-    {
-        instance = this;
-        player = GameObject.FindWithTag("Player");
-        playerScript = player.GetComponent<playerController>();
-        timeScaleOrig = Time.timeScale;
+	// Start is called once before the first execution of Update after the MonoBehaviour is created
+	void Awake()
+	{
+		instance = this;
+		player = GameObject.FindWithTag("Player");
+		playerScript = player.GetComponent<playerController>();
+		timeScaleOrig = Time.timeScale;
 
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        UpdateIngredientGoal(baconGoalPI, beesWaxGoalPI, mushroomGoalPI);
-    }
+		Cursor.visible = false;
+		Cursor.lockState = CursorLockMode.Locked;
+		UpdateIngredientGoal(baconGoalPI, beesWaxGoalPI, mushroomGoalPI);
+	}
 
     // Update is called once per frame
     void Update()
@@ -99,7 +99,12 @@ public class gameManager : MonoBehaviour
             {
                 StatePause();
                 menuActive = menuPause;
-                menuActive.SetActive(isPaused);
+                
+                if(menuActive != null)
+                {
+                    menuActive.SetActive(isPaused);
+                }
+                    
             }
             else if (menuActive == menuPause)
                 StateUnpause();
@@ -256,11 +261,19 @@ public class gameManager : MonoBehaviour
         beesWaxGoal = beesWaxAmount;
         mushroomGoal = mushroomAmount;
 
-        baconGoalText.text = baconGoal.ToString("F0");
-        beesWaxGoalText.text = beesWaxGoal.ToString("F0");
-        mushroomGoalText.text = mushroomGoal.ToString("F0");
-
-
+        if (baconGoalText != null)
+        {
+            baconGoalText.text = baconGoal.ToString("F0");
+        }
+        if (beesWaxGoalText != null)
+        {
+            beesWaxGoalText.text = beesWaxGoal.ToString("F0");
+        }
+        
+        if (mushroomGoalText != null)
+        {
+            mushroomGoalText.text = mushroomGoal.ToString("F0");
+        }
     }
 
     private void CheckIngredientGoals()
@@ -283,5 +296,21 @@ public class gameManager : MonoBehaviour
             menuActive = menuWin;
             menuActive.SetActive(true);
         }
+    }
+
+    public void PlayGame()
+    {
+
+    }
+
+    public void QuitGame()
+    {
+                Application.Quit();
+        Debug.Log("Quit Game");
+    }
+
+    public void Options()
+    {
+
     }
 }

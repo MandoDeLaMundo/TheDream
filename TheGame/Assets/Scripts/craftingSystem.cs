@@ -18,7 +18,6 @@ public class craftingSystem : MonoBehaviour
     void Awake()
     {
         instance = this;
-
         craftActive = craftHeal;
         craftActive.SetActive(true);
 
@@ -33,33 +32,27 @@ public class craftingSystem : MonoBehaviour
     {
         if (Input.GetKeyDown("r"))
         {
-            if (IsHealPotion)
+            if (craftActive == craftHeal && potionActive == potionHeal)
             {
                 craftActive.SetActive(false);
                 craftActive = craftMana;
                 craftActive.SetActive(true);
                 IsHealPotion = false;
                 IsManaPotion = true;
-                if (potionActive != null)
-                {
-                    potionActive.SetActive(false);
-                    potionActive = potionMana;
-                    potionActive.SetActive(true);
-                }
+                potionActive.SetActive(false);
+                potionActive = potionMana;
+                potionActive.SetActive(true);
             }
-            else if (IsManaPotion)
+            else if (craftActive == craftMana && potionActive == potionMana)
             {
                 craftActive.SetActive(false);
                 craftActive = craftHeal;
                 craftActive.SetActive(true);
                 IsHealPotion = true;
                 IsManaPotion = false;
-                if (potionActive != null)
-                {
-                    potionActive.SetActive(false);
-                    potionActive = potionHeal;
-                    potionActive.SetActive(true);
-                }
+                potionActive.SetActive(false);
+                potionActive = potionHeal;
+                potionActive.SetActive(true);
             }
         }
     }

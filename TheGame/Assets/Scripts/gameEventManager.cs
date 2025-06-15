@@ -14,7 +14,7 @@ public class gameEventManager : MonoBehaviour
     void Awake()
     {
         instance = this;
-        if (dialogueStatsList != null)
+        if (dialogueStatsList != null && FairyTriggerList != null)
         {
             for (; ListPos < dialogueStatsList.Count;)
             {

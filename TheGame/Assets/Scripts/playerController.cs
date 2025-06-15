@@ -9,7 +9,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     public static playerController instance;
 
     public CharacterController controller;
-    [SerializeField] Camera mainCam;
+    public Camera mainCam;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator anim;
     [SerializeField] LayerMask ignoreLayer;
@@ -26,21 +26,24 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     [SerializeField] int Mana;
     int ManaOrig;
     [SerializeField] int manaCost;
+    [SerializeField] int shieldManaCost;
     [SerializeField] float manaCoolDownRate;
+    float manaCooldownTimer;
     [SerializeField] float manaRegenRate;
     float manaRegenTimer;
     public int numofmanapotions;
-    float manaCooldownTimer;
 
-    [SerializeField] int Oxygen;
-    int OxygenOrig;
+    public int Oxygen;
+    public int OxygenOrig;
     [SerializeField] Transform WaterPos;
     [SerializeField] LayerMask waterLayer;
 
     [SerializeField] float speed;
     float origSpeed;
-
     [SerializeField] int sprintMod;
+    bool inMud = false;
+    bool canSprint = true;
+
     enum shootchoice { shootraycast, spellList, teleportraycast }
     [SerializeField] shootchoice choice;
     [SerializeField] List<spellStats> spellList = new List<spellStats>();
@@ -48,11 +51,16 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     [SerializeField] GameObject spell;
     [SerializeField] Transform shootPos;
     [SerializeField] int shootDamage;
-    [SerializeField] float shootRate;
     [SerializeField] int shootDist;
+    [SerializeField] float shootRate;
     float shootTimer;
     int spellListPos;
     public bool canShoot = true;
+
+    [SerializeField] GameObject shield;
+    [SerializeField] GameObject shieldBubble;
+    [SerializeField] float shieldRate;
+    float shieldTimer;
 
     [SerializeField] bool isTeleportingRaycast;
     [SerializeField] float teleportRate;
@@ -68,8 +76,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     int baconcount;
     int beewaxcount;
     int mushroomscount;
-    bool inMud = false;
-    bool canSprint = true;
 
     [SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] audStep;
@@ -79,13 +85,14 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     [SerializeField] AudioClip[] audHurt;
     [Range(0, 1)][SerializeField] float audHurtVol;
 
-    [SerializeField] GameObject shield;
-
     public string startupDialogue;
 
     bool isSprinting;
     bool isPlayingStep;
+    bool isShielding = false;
     Coroutine co;
+
+    bool test;
 
     Vector3 moveDir;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -98,8 +105,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         OxygenOrig = Oxygen;
         origSpeed = speed;
         origJump = jumpForce;
-
-
+        test = true;
         healingnumOrig = healingnum;
         gameManager.instance.UpdatePlayerMaxHPMPOXCount(HP, Mana, Oxygen);
         gameManager.instance.UpdatePotionCount(numofhealpotions, numofmanapotions);
@@ -129,6 +135,14 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
         if (Mana != ManaOrig)
             manaCooldownTimer += Time.deltaTime;
+
+        if (test)
+        {
+            Oxygen -= 5;
+            gameManager.instance.UpdatePlayerOXCount(-5);
+            updatePlayerUI();
+            test = false;
+        }
 
         if (controller.isGrounded)
         {
@@ -173,18 +187,22 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         {
             ManaRegen();
         }
+        if (Input.GetButtonDown("Shield") && shield != null)
+        {
+            isShielding = !isShielding;
+        }
 
-
-        //if (Input.GetKey("b"))
-        //{
-        //    shield.SetActive(true);
-        //Debug.Log(manaCost);
-        //    Mana -= manaCost;
-        //}
-        //else
-        //{
-        //    shield.SetActive(false);
-        //}
+        if (isShielding && Mana > 0)
+        {
+            shieldTimer += Time.deltaTime;
+            Shield();
+        }
+        else
+        {
+            isShielding = false;
+            shieldBubble.SetActive(isShielding);
+            shieldTimer = 0;
+        }
 
         selectSpell();
 
@@ -197,6 +215,19 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         float animSpeedCur = anim.GetFloat("Speed");
 
         anim.SetFloat("Speed", Mathf.Lerp(animSpeedCur, agentSpeedCur, Time.deltaTime * animTransSpeed));
+    }
+
+    void Shield()
+    {
+        shield.SetActive(isShielding);
+        shieldBubble.SetActive(isShielding);
+        if (shieldTimer >= shieldRate)
+        {
+            Mana -= shieldManaCost;
+            gameManager.instance.UpdatePlayerMPCount(-1);
+            updatePlayerUI();
+            shieldTimer = 0;
+        }
     }
 
     void jump()
@@ -377,7 +408,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             updatePlayerUI();
             manaRegenTimer = 0;
         }
-        if (Mana == ManaOrig || Input.GetButton("Fire1"))
+        if (Mana == ManaOrig || Input.GetButton("Fire1") || shieldTimer > 0)
         {
             manaCooldownTimer = 0;
         }
@@ -459,10 +490,19 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     {
         if (spell.spellCheck)
         {
-            spellList.Add(spell);
-            spellListPos = spellList.Count - 1;
+            if (spell.name != "Shield")
+            {
+                spellList.Add(spell);
+                spellListPos = spellList.Count - 1;
 
-            changeSpell();
+                changeSpell();
+            }
+            else //shield values
+            {
+                shield = spell.model;
+                shieldManaCost = spell.manaCost;
+                shieldRate = spell.shootRate;
+            }
             gameManager.instance.DisplayDescription(spell.spellManual);
         }
     }

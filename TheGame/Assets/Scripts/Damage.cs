@@ -22,7 +22,9 @@ public class Damage : MonoBehaviour
 	bool canKnockBack = true;
 	bool isExploded = false;
 
-	Transform lockEnemy;
+    int bounceCount;
+	HashSet<Transform> bounceEnemies = new HashSet<Transform>();
+	Transform curEnemy;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -30,7 +32,7 @@ public class Damage : MonoBehaviour
 		if (type == damagetype.moving || type == damagetype.homing || type == damagetype.AOE)
 		{
 			Destroy(gameObject, destroyTime);
-			if (type == damagetype.moving || type == damagetype.AOE || type == damagetype.homing)
+			if (type == damagetype.moving || type == damagetype.AOE)
 			{
 				rb.linearVelocity = transform.forward * speed;
 			}
@@ -40,23 +42,12 @@ public class Damage : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-        if (type == damagetype.homing && lockEnemy != null)
-        {
-            Debug.Log("Come");
-            Vector3 direction = (lockEnemy.position - transform.position).normalized;
-            Vector3 rotate = Vector3.Cross(transform.forward, direction);
-            rb.angularVelocity = rotate * speed * Time.deltaTime;
-            rb.linearVelocity = transform.forward * speed;
-        }
-        else 
-        {
-			if (type == damagetype.homing)
-			{
-				Debug.Log("Detection fail");
-				rb.linearVelocity = transform.forward * speed;
-			}
-        }
-    }
+		if (type == damagetype.homing)
+		{
+			rb.linearVelocity = (gameManager.instance.transform.position - transform.position).normalized * speed * Time.deltaTime;
+		}
+		
+	}
 
 	private void OnTriggerEnter(Collider other)
 	{
@@ -71,12 +62,12 @@ public class Damage : MonoBehaviour
 
 		IDamage dmg = other.GetComponent<IDamage>();
 
-		if (dmg != null && (type == damagetype.moving || type == damagetype.stationary))
+		if (dmg != null && (type == damagetype.moving || type == damagetype.stationary || type == damagetype.homing))
 		{
 			dmg.TakeDMG(damageAmount);
 		}
 
-		if (type == damagetype.moving)
+		if (type == damagetype.moving || type == damagetype.homing)
 		{
 			Destroy(gameObject);
 		}
@@ -96,47 +87,27 @@ public class Damage : MonoBehaviour
             }
             Explode();
         }
-		if(type == damagetype.homing && other.CompareTag("Enemy"))
-		{
-			Debug.Log("Homing trigger");
-			if (lockEnemy == null)
-			{
-				lockEnemy = other.transform;
-			}
-			if (lockEnemy != null)
-			{
-				if (dmg != null)
-				{
-					dmg.TakeDMG(damageAmount);
-				}
-				Destroy(gameObject);
-			}
-        }
-		
+
     }
 
 	private void OnTriggerStay(Collider other)
 	{
 		if (other.isTrigger)
 		{
-            return;
+			return;
 		}
 		IDamage dmg = other.GetComponent<IDamage>();
 		if (dmg != null && type == damagetype.DOT)
 		{
 			if (!isDamaging)
 			{
-                StartCoroutine(damageOther(dmg));
-            }
-        }
-    }
+				StartCoroutine(damageOther(dmg));
+			}
 
-    private void OnTriggerExit(Collider other)
-	{
-		isDamaging = false;
+		}
 	}
 
-    void Explode()
+	void Explode()
 	{
 		Debug.Log("Explosion Trigger");
 		isExploded = true;
@@ -146,7 +117,7 @@ public class Damage : MonoBehaviour
         explosionArea.SetActive(true);
 		GetComponent<MeshRenderer>().enabled = false;
 		GetComponent<Collider>().enabled = false;
-		Destroy(gameObject, destroyTime);	
+		Destroy(gameObject, destroyTime);
 	}
 	IEnumerator damageOther(IDamage d)
 	{
@@ -174,6 +145,6 @@ public class Damage : MonoBehaviour
 		canKnockBack = false;
 		yield return new WaitForSeconds (knockbackDelay);
 		canKnockBack = true;
-	}	
+	}
 }
 
