@@ -516,6 +516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 067c35fbc7207e54486ea8592bea770e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 1
   spawnList:
   - {fileID: 11400000, guid: 9a785c42687f1414680e7ddb1c3df42e, type: 2}
   - {fileID: 11400000, guid: d0d5f62d6d5f2274faa944a3800eb817, type: 2}

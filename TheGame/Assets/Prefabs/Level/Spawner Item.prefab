@@ -508,6 +508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 067c35fbc7207e54486ea8592bea770e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 1
   spawnList:
   - {fileID: 11400000, guid: 2a0855e655479874faaf4076ecca3b41, type: 2}
   - {fileID: 11400000, guid: 983f302ab2f478943ba58a001ae7ec7b, type: 2}

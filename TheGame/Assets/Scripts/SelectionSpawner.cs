@@ -130,7 +130,7 @@ public class SelectionSpawner : MonoBehaviour
                     playerController.instance.mainCam.gameObject.GetComponent<cameraController>().enabled = true;
                     Destroy(cloneFairy);
                     gameManager.instance.HideDialogue();
-                    //gameEventManager.instance.EventOff(FairySpawner);
+                    gameEventManager.instance.EventOff(FairySpawner);
                     dialogueCount = 0;
                 }
             }
