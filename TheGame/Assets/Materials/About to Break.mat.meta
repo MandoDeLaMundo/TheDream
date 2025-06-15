@@ -1,8 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:TheGame/Assets/Materials/About to Break.mat.meta
 guid: da82dad061f6f8e42b8cdba081584cd4
 NativeFormatImporter:
+========
+guid: 92a925cb6ffdf6948ac88960b5a4cc1b
+DefaultImporter:
+>>>>>>>> safety:TheGame/Assets/Scenes/TitleMenu.unity.meta
   externalObjects: {}
-  mainObjectFileID: 2100000
   userData: 
   assetBundleName: 
   assetBundleVariant: 

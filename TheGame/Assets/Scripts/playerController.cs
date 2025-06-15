@@ -2,12 +2,14 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 {
     public static playerController instance;
 
     public CharacterController controller;
+    public Camera mainCam;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator anim;
     [SerializeField] LayerMask ignoreLayer;
@@ -15,14 +17,32 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     [SerializeField] int HP;
     int HPOrig;
+    [SerializeField] float healingCooldown;
+    public int healingnum;
+    int healingnumOrig;
+    public int numofhealpotions;
+    float healTimer;
 
     [SerializeField] int Mana;
     int ManaOrig;
+    [SerializeField] int manaCost;
+    [SerializeField] int shieldManaCost;
+    [SerializeField] float manaCoolDownRate;
+    float manaCooldownTimer;
+    [SerializeField] float manaRegenRate;
+    float manaRegenTimer;
+    public int numofmanapotions;
+
+    public int Oxygen;
+    public int OxygenOrig;
+    [SerializeField] Transform WaterPos;
+    [SerializeField] LayerMask waterLayer;
 
     [SerializeField] float speed;
     float origSpeed;
-
     [SerializeField] int sprintMod;
+    bool inMud = false;
+    bool canSprint = true;
 
     enum shootchoice { shootraycast, spellList, teleportraycast }
     [SerializeField] shootchoice choice;
@@ -31,17 +51,16 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     [SerializeField] GameObject spell;
     [SerializeField] Transform shootPos;
     [SerializeField] int shootDamage;
-    [SerializeField] float shootRate;
     [SerializeField] int shootDist;
+    [SerializeField] float shootRate;
     float shootTimer;
     int spellListPos;
+    public bool canShoot = true;
 
-    [SerializeField] int manaCost;
-    [SerializeField] float manaCoolDownRate;
-    [SerializeField] float manaRegenRate;
-    float manaRegenTimer;
-    public int numofmanapotions;
-    float manaCooldownTimer;
+    [SerializeField] GameObject shield;
+    [SerializeField] GameObject shieldBubble;
+    [SerializeField] float shieldRate;
+    float shieldTimer;
 
     [SerializeField] bool isTeleportingRaycast;
     [SerializeField] float teleportRate;
@@ -54,17 +73,9 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     int origJump;
     Vector3 playerVel;
 
-    [SerializeField] float healingCooldown;
-    public int healingnum;
-    int healingnumOrig;
-    public int numofhealpotions;
-    float healTimer;
-
     int baconcount;
     int beewaxcount;
     int mushroomscount;
-    bool inMud = false;
-    bool canSprint = true;
 
     [SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] audStep;
@@ -74,13 +85,14 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     [SerializeField] AudioClip[] audHurt;
     [Range(0, 1)][SerializeField] float audHurtVol;
 
-    [SerializeField] GameObject shield;
-
     public string startupDialogue;
 
     bool isSprinting;
     bool isPlayingStep;
+    bool isShielding = false;
     Coroutine co;
+
+    bool test;
 
     Vector3 moveDir;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -90,12 +102,12 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         gameManager.instance.DisplayDescription(startupDialogue);
         HPOrig = HP;
         ManaOrig = Mana;
+        OxygenOrig = Oxygen;
         origSpeed = speed;
         origJump = jumpForce;
-
-
+        test = true;
         healingnumOrig = healingnum;
-        gameManager.instance.UpdatePlayerMaxHPMPCount(HP, Mana);
+        gameManager.instance.UpdatePlayerMaxHPMPOXCount(HP, Mana, Oxygen);
         gameManager.instance.UpdatePotionCount(numofhealpotions, numofmanapotions);
         updatePlayerUI();
         if (spellList.Count > 0)
@@ -105,19 +117,11 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     // Update is called once per frame
     void Update()
     {
-        //if (choice == shootchoice.shootraycast)
-        //{
-        //Debug.Log(transform.position);
-        Debug.DrawRay(shootPos.position, Camera.main.transform.forward * shootDist, Color.red);
         Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.red);
-        //}
         if (isTeleportingRaycast)
         {
             Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * teleportDist, Color.blue);
         }
-
-        //   if (controller.transform.position.y < 0)
-        //      TakeDMG(100);
 
         Movement();
         sprint();
@@ -126,12 +130,19 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     void Movement()
     {
         //setAnimPara();
-
         shootTimer += Time.deltaTime;
         healTimer += Time.deltaTime;
 
         if (Mana != ManaOrig)
             manaCooldownTimer += Time.deltaTime;
+
+        if (test)
+        {
+            Oxygen -= 5;
+            gameManager.instance.UpdatePlayerOXCount(-5);
+            updatePlayerUI();
+            test = false;
+        }
 
         if (controller.isGrounded)
         {
@@ -145,13 +156,13 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
         moveDir = (Input.GetAxis("Horizontal") * transform.right) + (Input.GetAxis("Vertical") * transform.forward);
 
-        if(controller.enabled == true)
-        controller.Move(moveDir * speed * Time.deltaTime);
+        if (controller.enabled == true)
+            controller.Move(moveDir * speed * Time.deltaTime);
 
         jump();
 
-        if(controller.enabled == true)
-        controller.Move(playerVel * Time.deltaTime);
+        if (controller.enabled == true)
+            controller.Move(playerVel * Time.deltaTime);
 
         playerVel.y -= Gravity * Time.deltaTime;
 
@@ -162,7 +173,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             if (choice == shootchoice.teleportraycast)
                 teleportbyclick();
             if (choice == shootchoice.spellList && spellList.Count > 0 && Mana >= manaCost)
-                shootSpell();
+                shootSpell(canShoot);
         }
         if (Input.GetKey("f"))
         {
@@ -176,17 +187,22 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         {
             ManaRegen();
         }
+        if (Input.GetButtonDown("Shield") && shield != null)
+        {
+            isShielding = !isShielding;
+        }
 
-        //if (Input.GetKey("b"))
-        //{
-        //    shield.SetActive(true);
-        //Debug.Log(manaCost);
-        //    Mana -= manaCost;
-        //}
-        //else
-        //{
-        //    shield.SetActive(false);
-        //}
+        if (isShielding && Mana > 0)
+        {
+            shieldTimer += Time.deltaTime;
+            Shield();
+        }
+        else
+        {
+            isShielding = false;
+            shieldBubble.SetActive(isShielding);
+            shieldTimer = 0;
+        }
 
         selectSpell();
 
@@ -199,6 +215,19 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         float animSpeedCur = anim.GetFloat("Speed");
 
         anim.SetFloat("Speed", Mathf.Lerp(animSpeedCur, agentSpeedCur, Time.deltaTime * animTransSpeed));
+    }
+
+    void Shield()
+    {
+        shield.SetActive(isShielding);
+        shieldBubble.SetActive(isShielding);
+        if (shieldTimer >= shieldRate)
+        {
+            Mana -= shieldManaCost;
+            gameManager.instance.UpdatePlayerMPCount(-1);
+            updatePlayerUI();
+            shieldTimer = 0;
+        }
     }
 
     void jump()
@@ -244,8 +273,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
         {
-
-            //Debug.Log(hit.collider.name);
             IDamage dmg = hit.collider.GetComponent<IDamage>();
 
             if (dmg != null)
@@ -255,24 +282,39 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         }
     }
 
-    void shootSpell()
+    void shootSpell(bool _canShoot)
     {
-
-        shootTimer = 0;
-        manaCooldownTimer = 0;
-
-        Mana -= manaCost;
-        gameManager.instance.UpdatePlayerMPCount(-manaCost);
-        updatePlayerUI();
-        if (spellList[spellListPos].name != "Teleport Spell")
+        if (_canShoot)
         {
-            Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
-            if (spellList[spellListPos].hitEffect != null)
-                Instantiate(spellList[spellListPos].hitEffect, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
-        }
-        else
-        {
-            Teleport();
+            shootTimer = 0;
+            manaCooldownTimer = 0;
+
+            Mana -= manaCost;
+            gameManager.instance.UpdatePlayerMPCount(-manaCost);
+            updatePlayerUI();
+            if (spellList[spellListPos].name != "Teleport Spell" && spellList[spellListPos].name != "Super_FireBall")
+            {
+                Ray ray = new Ray(mainCam.transform.position, mainCam.transform.forward);
+                if (Physics.Raycast(ray, out RaycastHit hit, 1000f))
+                {
+                    Vector3 targetPoint = hit.point;
+                    Vector3 shootDirection = (targetPoint - shootPos.position).normalized;
+
+                    Instantiate(spell, shootPos.position, Quaternion.LookRotation(shootDirection));
+                    if (spellList[spellListPos].hitEffect != null)
+                        Instantiate(spellList[spellListPos].hitEffect, shootPos.position, Quaternion.LookRotation(shootDirection));
+                }
+            }
+            else if (spellList[spellListPos].name == "Super_FireBall")
+            {
+                Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+                if (spellList[spellListPos].hitEffect != null)
+                    Instantiate(spellList[spellListPos].hitEffect, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+            }
+            else
+            {
+                Teleport();
+            }
         }
     }
 
@@ -366,7 +408,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             updatePlayerUI();
             manaRegenTimer = 0;
         }
-        if (Mana == ManaOrig || Input.GetButton("Fire1"))
+        if (Mana == ManaOrig || Input.GetButton("Fire1") || shieldTimer > 0)
         {
             manaCooldownTimer = 0;
         }
@@ -413,6 +455,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     {
         gameManager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
         gameManager.instance.playerManaBar.fillAmount = (float)Mana / ManaOrig;
+        gameManager.instance.playerOxygenBarFiller.fillAmount = (float)Oxygen / OxygenOrig;
     }
 
     void selectSpell()
@@ -447,10 +490,19 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     {
         if (spell.spellCheck)
         {
-            spellList.Add(spell);
-            spellListPos = spellList.Count - 1;
+            if (spell.name != "Shield")
+            {
+                spellList.Add(spell);
+                spellListPos = spellList.Count - 1;
 
-            changeSpell();
+                changeSpell();
+            }
+            else //shield values
+            {
+                shield = spell.model;
+                shieldManaCost = spell.manaCost;
+                shieldRate = spell.shootRate;
+            }
             gameManager.instance.DisplayDescription(spell.spellManual);
         }
     }

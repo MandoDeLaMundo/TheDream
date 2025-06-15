@@ -15,7 +15,7 @@ MonoBehaviour:
   model: {fileID: 3054856218429342167, guid: 0406c061b3e2ec1458aeadecb0648f52, type: 3}
   spellProjectile: {fileID: 0}
   shootDMG: 1
-  shootRate: 0
+  shootRate: 2
   shootDist: 1
   manaCost: 0
   spellRadius: 0
