@@ -20,6 +20,7 @@ public class gameEventManager : MonoBehaviour
             {
                 for (int index = 0; index < dialogueStatsList[ListPos].dialogue.Count; index++)
                 {
+                    // Main issue is forgeting to put triggers not the spawners
                     FairyTriggerList[ListPos].GetComponent<SelectionSpawner>().dialogue.Add(dialogueStatsList[ListPos].dialogue[index]);
                 }
                 ListPos++;
