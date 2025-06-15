@@ -13,8 +13,7 @@ public class Damage : MonoBehaviour
 	[SerializeField] int speed;
 	[SerializeField] float destroyTime;
 	[SerializeField] int contactDMGAmount;
-	[SerializeField] float knockBackDistance;
-	[SerializeField] float knockBackSpeed;
+	[SerializeField] float knockBackStrength;
 	[SerializeField] float knockbackDelay;
 	[SerializeField] GameObject explosionArea;
 
@@ -132,9 +131,9 @@ public class Damage : MonoBehaviour
 		canKnockBack = false;
 		Vector3 direction = (playerPosition.position - transform.position).normalized;
 		float move = 0f;
-		while (move < knockBackDistance)
+		while (move < knockBackStrength)
 		{
-			float range = knockBackSpeed * Time.deltaTime;
+			float range = (knockBackStrength * 3) * Time.deltaTime;
 			playerPosition.Translate(direction * range, Space.World);
 			move += range;
 			yield return null;
