@@ -1,16 +1,50 @@
+using System.Collections;
 using UnityEngine;
 
-public class DeadState : MonoBehaviour
+public class DeadState : IState
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    EnemyBase enemy;
+    float destroyDelay = 2f;
+
+    public DeadState(EnemyBase _enemy)
     {
-        
+        enemy = _enemy;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Enter()
     {
-        
+        if (enemy.agent) enemy.agent.isStopped = true;
+        // if (enemy.anim) enemy.anim.SetTrigger("Die");
+
+        DropItem();
+
+        //enemy.StartCoroutine(DelayedDestroy());
+
+    }
+
+    public void Update()
+    {
+        // Wait for animation, then destroy/disable object
+        Object.Destroy(enemy.gameObject);
+    }
+
+    public void Exit()
+    {
+        // Leave empty - dead enemies don't come back
+    }
+
+    void DropItem()
+    {
+        if (enemy.dropItemPrefab)
+        {
+            Object.Instantiate(enemy.dropItemPrefab, enemy.lootPos.position, Quaternion.identity);
+        }
+    }
+
+    IEnumerator DelayedDestroy()
+    {
+        yield return new WaitForSeconds(destroyDelay);
+
+        Object.Destroy(enemy.dropItemPrefab);
     }
 }

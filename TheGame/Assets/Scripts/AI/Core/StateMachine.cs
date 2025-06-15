@@ -1,16 +1,28 @@
 using UnityEngine;
 
-public class StateMachine : MonoBehaviour
+public class StateMachine
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private IState currentState;
+
+    public IState CurrentState => currentState;
+
+        public void ChangeState(IState newState)
     {
-        
+        if (newState == currentState) return;
+
+        //Debug.Log($"Switching from {currentState?.GetType().Name} to {newState.GetType().Name}");
+
+        currentState?.Exit();
+        //  ^^^ Shorthand for
+        // if (currentState != null)
+        //      currentState.Exit();
+
+        currentState = newState;
+        currentState.Enter();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        
+        currentState?.Update();
     }
 }

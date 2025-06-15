@@ -273,7 +273,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
         {
-            IDamage dmg = hit.collider.GetComponent<IDamage>();
+            IDamage dmg = hit.collider.GetComponentInParent<IDamage>();
 
             if (dmg != null)
             {
