@@ -84,22 +84,28 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
     void Update()
     {
         stateMachine.Update();
+
+        enemyHP.transform.rotation = gameManager.instance.player.transform.rotation;
     }
 
     public virtual void TakeDMG(int amount)
     {
+        Debug.Log($"{gameObject.name} TakeDMG called with amount {amount}");
         health -= amount;
         UpdateEnemyUI();
-        agent.SetDestination(gameManager.instance.player.transform.position);
+        Debug.Log("UI has been updated");
 
         if (health <= 0)
         {
             stateMachine.ChangeState(new DeadState(this));
+            return;
         }
 
-        else
+        StartCoroutine(FlashRed());
+
+        if (!(stateMachine.CurrentState is ChaseState || stateMachine.CurrentState is AttackState))
         {
-            StartCoroutine(FlashRed());
+            stateMachine.ChangeState(new ChaseState(this));
         }
     }
 
@@ -149,6 +155,10 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
         if (hpBar != null)
         {
             hpBar.fillAmount = (float)health / healthOrig;
-        }    
+        }
+        else
+        {
+            Debug.LogWarning($"{gameObject.name} hpBar is null");
+        }
     }
 }
