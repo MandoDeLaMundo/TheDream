@@ -13,10 +13,6 @@ public class gameManager : MonoBehaviour
 	[SerializeField] GameObject menuWin;
 	[SerializeField] GameObject menuLose;
 	[SerializeField] TMP_Text gameGoalCountText;
-    [SerializeField] TMP_Text playerHPCountText; 
-    [SerializeField] TMP_Text playerMPCountText; 
-	[SerializeField] TMP_Text playerHPMaxText; 
-	[SerializeField] TMP_Text playerMPMaxText;
     [SerializeField] TMP_Text bossHPCountText;
     [SerializeField] TMP_Text bossHPMaxText;
     [SerializeField] TMP_Text baconCountText;
@@ -27,13 +23,29 @@ public class gameManager : MonoBehaviour
     [SerializeField] TMP_Text baconGoalText;
     [SerializeField] TMP_Text beesWaxGoalText;
     [SerializeField] TMP_Text mushroomGoalText;
-    
+
+    [SerializeField] TMP_Text playerHPCountText; 
+	[SerializeField] TMP_Text playerHPMaxText; 
+	public Image playerHPBar;
+	int playerHPCountOrig; 
+	int playerHPMaxOrig;
+
+    [SerializeField] TMP_Text playerMPCountText; 
+	[SerializeField] TMP_Text playerMPMaxText;
+    public Image playerManaBar;
+	int playerMPCountOrig;
+	int playerMPMaxOrig;
+
+    [SerializeField] TMP_Text playerOXCountText;
+    [SerializeField] TMP_Text playerOXMaxText;
+    public Image playerOxygenBarFiller;
+    int playerOXCountOrig;
+    int playerOXMaxOrig;
+
 
     public GameObject playerDamageScreen;
-	public Image playerHPBar;
 	public GameObject player;
 	public playerController playerScript;
-    public Image playerManaBar;
 	public GameObject textBox;
 	public TMP_Text textDescription;
 	public GameObject DialogueBox;
@@ -48,10 +60,6 @@ public class gameManager : MonoBehaviour
 
 	float timeScaleOrig;
 	int gameGoalCount;
-	int playerHPCountOrig; 
-	int playerMPCountOrig;
-	int playerHPMaxOrig;  
-	int playerMPMaxOrig;
     int bossHPCountOrig;
 	int bossHPMaxOrig;
     int healpotionCountOrig;
