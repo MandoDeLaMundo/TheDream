@@ -458,7 +458,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
 
         StartCoroutine(flashDamageScreen());
-        StartCoroutine(PostInvulnerable());
+        //StartCoroutine(PostInvulnerable());
 
 
         if (HP <= 0)
@@ -500,8 +500,12 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         spellModel.GetComponent<MeshFilter>().sharedMesh = spellList[spellListPos].model.GetComponent<MeshFilter>().sharedMesh;
         spellModel.GetComponent<MeshRenderer>().sharedMaterial = spellList[spellListPos].model.GetComponent<MeshRenderer>().sharedMaterial;
 
+        gameManager.instance.MainSpell.sprite = spellList[spellListPos].sprite;
+
         spell = spellList[spellListPos].spellProjectile;
     }
+
+    void HotBar() { }
 
     public void GetSpellStats(spellStats spell)
     {

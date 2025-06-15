@@ -42,6 +42,13 @@ public class gameManager : MonoBehaviour
     int playerOXCountOrig;
     int playerOXMaxOrig;
 
+    public Image MainSpell;
+    public Image SpellOne;
+    public Image SpellTwo;
+    public Image SpellThree;
+    public Image SpellFour;
+    public Image SpellFive;
+
     public GameObject playerDamageScreen;
     public GameObject playerStunScreen;
 	public GameObject player;
