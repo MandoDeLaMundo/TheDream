@@ -945,7 +945,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -320, y: 278}
+  m_AnchoredPosition: {x: -320, y: 283}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8255639732462728752
@@ -7713,16 +7713,6 @@ MonoBehaviour:
   menuWin: {fileID: 6838310205374196277}
   menuLose: {fileID: 3326214369910321856}
   gameGoalCountText: {fileID: 0}
-  playerHPCountText: {fileID: 3976314956673693929}
-  playerHPMaxText: {fileID: 312644707448013610}
-  playerHPBar: {fileID: 1156104883900385590}
-  playerMPCountText: {fileID: 3276792027468238860}
-  playerMPMaxText: {fileID: 8158222067148602531}
-  playerManaBar: {fileID: 6857951268444226116}
-  playerOXCountText: {fileID: 5381223039005850010}
-  playerOXMaxText: {fileID: 7678028387191096676}
-  playerOxygenBar: {fileID: 2648398277507372499}
-  playerOxygenBarFiller: {fileID: 2555161954173320445}
   bossHPCountText: {fileID: 3826681903940907734}
   bossHPMaxText: {fileID: 7676366744179897686}
   baconCountText: {fileID: 963692945310334485}
@@ -7733,7 +7723,17 @@ MonoBehaviour:
   baconGoalText: {fileID: 4349926288803295282}
   beesWaxGoalText: {fileID: 5916106024450731264}
   mushroomGoalText: {fileID: 2587925602728548193}
+  playerHPCountText: {fileID: 3976314956673693929}
+  playerHPMaxText: {fileID: 312644707448013610}
+  playerHPBar: {fileID: 1156104883900385590}
+  playerMPCountText: {fileID: 3276792027468238860}
+  playerMPMaxText: {fileID: 8158222067148602531}
+  playerManaBar: {fileID: 6857951268444226116}
+  playerOXCountText: {fileID: 5381223039005850010}
+  playerOXMaxText: {fileID: 7678028387191096676}
+  playerOxygenBarFiller: {fileID: 2555161954173320445}
   playerDamageScreen: {fileID: 7213729203587888733}
+  playerStunScreen: {fileID: 6860677732032846978}
   player: {fileID: 0}
   playerScript: {fileID: 0}
   textBox: {fileID: 2351790740840836176}
@@ -10698,6 +10698,81 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &6860677732032846978
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7509043439661502196}
+  - component: {fileID: 2839844601329454077}
+  - component: {fileID: 2639910405633168648}
+  m_Layer: 5
+  m_Name: Yelllow Flash Screen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &7509043439661502196
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6860677732032846978}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7686955477975542978}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1920, y: 1080}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &2839844601329454077
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6860677732032846978}
+  m_CullTransparentMesh: 1
+--- !u!114 &2639910405633168648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6860677732032846978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0.9150696, b: 0, a: 0.20784314}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &6889160130930063260
 GameObject:
   m_ObjectHideFlags: 0
@@ -10809,6 +10884,7 @@ RectTransform:
   - {fileID: 7286227879403077915}
   - {fileID: 6841965532503502987}
   - {fileID: 6500024876700388144}
+  - {fileID: 7509043439661502196}
   - {fileID: 8506962638790458899}
   - {fileID: 7047879732971415526}
   - {fileID: 6487761747188841877}
@@ -11790,8 +11866,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e013bc3994939d47bc7e513cc28255a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueStatsList: []
-  FairyTriggerList: []
+  dialogueStatsList:
+  - {fileID: 11400000, guid: b1b825747b92ea5478d2835c27029999, type: 2}
+  - {fileID: 11400000, guid: 179c9da5b76c6604286cce5d0c204d3a, type: 2}
+  FairyTriggerList:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &7820872521573395022
 GameObject:
   m_ObjectHideFlags: 0
