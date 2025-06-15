@@ -82,7 +82,10 @@ public class gameManager : MonoBehaviour
     {
         instance = this;
         player = GameObject.FindWithTag("Player");
-        playerScript = player.GetComponent<playerController>();
+        if (player != null)
+        {
+            playerScript = player.GetComponent<playerController>();
+        }
         timeScaleOrig = Time.timeScale;
 
         Cursor.visible = false;
@@ -99,7 +102,12 @@ public class gameManager : MonoBehaviour
             {
                 StatePause();
                 menuActive = menuPause;
-                menuActive.SetActive(isPaused);
+                
+                if(menuActive != null)
+                {
+                    menuActive.SetActive(isPaused);
+                }
+                    
             }
             else if (menuActive == menuPause)
                 StateUnpause();
@@ -256,9 +264,20 @@ public class gameManager : MonoBehaviour
         beesWaxGoal = beesWaxAmount;
         mushroomGoal = mushroomAmount;
 
-        baconGoalText.text = baconGoal.ToString("F0");
-        beesWaxGoalText.text = beesWaxGoal.ToString("F0");
-        mushroomGoalText.text = mushroomGoal.ToString("F0");
+        if (baconGoalText != null)
+        {
+            baconGoalText.text = baconGoal.ToString("F0");
+        }
+        if (beesWaxGoalText != null)
+        {
+            beesWaxGoalText.text = beesWaxGoal.ToString("F0");
+        }
+        
+        if (mushroomGoalText != null)
+        {
+            mushroomGoalText.text = mushroomGoal.ToString("F0");
+        }
+        
 
 
     }
