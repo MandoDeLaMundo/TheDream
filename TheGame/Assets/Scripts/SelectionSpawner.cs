@@ -8,6 +8,8 @@ public class SelectionSpawner : MonoBehaviour
     enum spawntype { Enemies, PickUps, Fairy }
     [SerializeField] spawntype type;
     [SerializeField] List<spawnStats> spawnList = new List<spawnStats>();
+    [SerializeField] List<spellStats> spellList = new List<spellStats>();
+    [SerializeField] List<itemStats> itemList = new List<itemStats>();
 
     public List<string> dialogue;
     int dialogueCount;
@@ -43,6 +45,7 @@ public class SelectionSpawner : MonoBehaviour
         if (spawnList != null && type == spawntype.Enemies || type == spawntype.PickUps)
         {
             spawnObject = spawnList[objectListPos].pickup;
+            //spawnObject = spellList[objectListPos].model;
 
             if (spawnList[objectListPos].sprite != null)
                 image.sprite = spawnList[objectListPos].sprite;
@@ -69,6 +72,7 @@ public class SelectionSpawner : MonoBehaviour
                 if (Input.GetKeyDown("q"))
                 {
                     playerController.instance.enabled = true;
+                    playerController.instance.mainCam.gameObject.GetComponent<cameraController>().enabled = true;
                 }
 
                 if (buttonTimer >= buttonTime)
@@ -92,6 +96,7 @@ public class SelectionSpawner : MonoBehaviour
                 if (Input.GetKeyDown("q"))
                 {
                     playerController.instance.enabled = true;
+                    playerController.instance.mainCam.gameObject.GetComponent<cameraController>().enabled = true;
                 }
 
                 if (buttonTimer >= buttonTime)

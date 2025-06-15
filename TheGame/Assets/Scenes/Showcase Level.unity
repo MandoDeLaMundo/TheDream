@@ -4076,11 +4076,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2004295532068628637, guid: 2abb40dbeae0a8a43933331548fef4d3, type: 3}
   m_PrefabInstance: {fileID: 641540534}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &664357108 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6102249918370417236, guid: b74a37d8f026c2641a7b93a4ceaa88ab, type: 3}
-  m_PrefabInstance: {fileID: 1397115626}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &717238060 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2004295532068628637, guid: 2abb40dbeae0a8a43933331548fef4d3, type: 3}
@@ -7665,37 +7660,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2004295532068628637, guid: 2abb40dbeae0a8a43933331548fef4d3, type: 3}
   m_PrefabInstance: {fileID: 904648140}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1065922421
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1065922422}
-  m_Layer: 3
-  m_Name: Water Pos (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1065922422
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1065922421}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.99983686, z: -0, w: 0.018063271}
-  m_LocalPosition: {x: 0, y: 1.468, z: 0.04}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 664357108}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1074345591
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11041,18 +11005,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Wizard
       objectReference: {fileID: 0}
-    - target: {fileID: 3074450609331110259, guid: b74a37d8f026c2641a7b93a4ceaa88ab, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4958875843018377022, guid: b74a37d8f026c2641a7b93a4ceaa88ab, type: 3}
-      propertyPath: WaterPos
-      value: 
-      objectReference: {fileID: 1065922422}
-    - target: {fileID: 4958875843018377022, guid: b74a37d8f026c2641a7b93a4ceaa88ab, type: 3}
-      propertyPath: waterLayer.m_Bits
-      value: 16
-      objectReference: {fileID: 0}
     - target: {fileID: 6102249918370417236, guid: b74a37d8f026c2641a7b93a4ceaa88ab, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -11095,10 +11047,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 6102249918370417236, guid: b74a37d8f026c2641a7b93a4ceaa88ab, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 1065922422}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b74a37d8f026c2641a7b93a4ceaa88ab, type: 3}
 --- !u!4 &1404654237 stripped
@@ -13016,10 +12965,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawner Spell
       objectReference: {fileID: 0}
-    - target: {fileID: 1776434985284771547, guid: 6a9e106b7cc727a4797f1d60c29bb34f, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14262,7 +14207,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7819874309826013842, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
       propertyPath: m_FillMethod
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7819874309826013842, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
       propertyPath: m_FillOrigin
@@ -14556,10 +14501,6 @@ PrefabInstance:
     - target: {fileID: 3240927230701807391, guid: 4858bc7d3873be54fbb82a1c051460ba, type: 3}
       propertyPath: m_Name
       value: Spawner Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 3240927230701807391, guid: 4858bc7d3873be54fbb82a1c051460ba, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5082358170329757623, guid: 4858bc7d3873be54fbb82a1c051460ba, type: 3}
       propertyPath: m_LocalPosition.x

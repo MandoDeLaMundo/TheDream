@@ -524,6 +524,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9b588507a7dc7e44aa2e13e8a7b65fa3, type: 2}
   - {fileID: 11400000, guid: 584e38ada7ed112449e55d9464f56bf3, type: 2}
   - {fileID: 11400000, guid: 95cee464f03601b4796a40b64a1b9af0, type: 2}
+  - {fileID: 11400000, guid: de8e25e854298bc44879c2d47b274e06, type: 2}
+  spellList: []
+  itemList: []
   dialogue: []
   FairySpawner: {fileID: 0}
   Fairy: {fileID: 0}

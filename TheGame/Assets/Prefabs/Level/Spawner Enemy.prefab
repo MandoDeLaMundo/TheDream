@@ -1044,6 +1044,8 @@ MonoBehaviour:
   type: 0
   spawnList:
   - {fileID: 11400000, guid: 3821d377e1ef27e448db80111ceaf902, type: 2}
+  spellList: []
+  itemList: []
   dialogue: []
   FairySpawner: {fileID: 0}
   Fairy: {fileID: 0}

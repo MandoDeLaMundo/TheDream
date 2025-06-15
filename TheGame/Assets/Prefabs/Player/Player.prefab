@@ -96,6 +96,7 @@ MonoBehaviour:
   numofhealpotions: 0
   Mana: 10
   manaCost: 0
+  shieldManaCost: 0
   manaCoolDownRate: 2
   manaRegenRate: 0.1
   numofmanapotions: 0
@@ -113,9 +114,12 @@ MonoBehaviour:
   spell: {fileID: 0}
   shootPos: {fileID: 3579017854613924312}
   shootDamage: 1
-  shootRate: 0.25
   shootDist: 150
+  shootRate: 0.25
   canShoot: 1
+  shield: {fileID: 0}
+  shieldBubble: {fileID: 5517583260277432333}
+  shieldRate: 0
   isTeleportingRaycast: 0
   teleportRate: 2
   teleportDist: 15
@@ -147,7 +151,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d642b4be86c400c4987eefd6db87631c, type: 3}
   - {fileID: 8300000, guid: ea034ca4f786b0b438f7be1dbb6d4424, type: 3}
   audHurtVol: 1
-  shield: {fileID: 5517583260277432333}
   startupDialogue: I want an omelet for breakfast, I hope I can find an egg in this
     dungeon!
 --- !u!33 &4531356348622312624
