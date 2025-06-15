@@ -224,7 +224,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         if (shieldTimer >= shieldRate)
         {
             Mana -= shieldManaCost;
-            gameManager.instance.UpdatePlayerMPCount(-1);
+            gameManager.instance.UpdatePlayerMPCount(-shieldManaCost); 
             updatePlayerUI();
             shieldTimer = 0;
         }
