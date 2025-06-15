@@ -129,8 +129,7 @@ MonoBehaviour:
   speed: 0
   destroyTime: 0
   contactDMGAmount: 0
-  knockBackDistance: 0
-  knockBackSpeed: 0
+  knockBackStrength: 0
   knockbackDelay: 0
   explosionArea: {fileID: 0}
 --- !u!1 &8319551319419056288
@@ -255,8 +254,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 000a52e787f674c4999929da7d3fe799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0
   objectModel: {fileID: 5505574848138431801}
   particleVFX: {fileID: 129028284031568534}
+  oxygenRegen: 0
+  rootDuration: 0
+  silentDuration: 0
+  geyserStrength: 0
 --- !u!1001 &2335521406927599933
 PrefabInstance:
   m_ObjectHideFlags: 0
