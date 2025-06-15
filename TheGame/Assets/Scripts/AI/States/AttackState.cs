@@ -1,16 +1,28 @@
 using UnityEngine;
 
-public class AttackState : MonoBehaviour
+public class AttackState : IState
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private readonly EnemyBase enemy;
+
+    public AttackState(EnemyBase _enemy)
     {
-        
+        enemy = _enemy;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Enter()
     {
-        
+        // Play attack animation
+        // Deal damage after delay?
+    }
+
+    public void Update()
+    {
+        // if player out of range
+        //      enemy.stateMachine.changestate(new chasestate(enemy))
+    }
+
+    public void Exit()
+    {
+        // Reset attack cooldown
     }
 }

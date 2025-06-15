@@ -1,16 +1,42 @@
 using UnityEngine;
+using UnityEngine.AI;
 
-public class EnemyBase : MonoBehaviour
+public abstract class EnemyBase : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [Header("Enemy Stats")]
+    [SerializeField] protected int health;
+    [SerializeField] protected int speed;
+
+    [Header("AI Settings")]
+
+    protected StateMachine stateMachine;
+    public StateMachine StateMachine => stateMachine;
+    // ^^^ Shorthand for 
+    // public StateMachine StateMachine
+    //      { get { return stateMachine; } }
+
+    public NavMeshAgent agent { get; private set; }
+    // public Animator animator { get; private set; }
+
+    protected virtual void Awake()
     {
-        
+        stateMachine = new StateMachine();
+
+        agent = GetComponent<NavMeshAgent>();
+        // animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    protected virtual void Start()
     {
-        
+        stateMachine.ChangeState(new IdleState(this, idleDuration));
     }
+
+    protected virtual void Update()
+    {
+        stateMachine.Update();
+    }
+
+    public abstract void TakeDMG(int amount);
+
+    public float IdleTime => IdleTime;
 }

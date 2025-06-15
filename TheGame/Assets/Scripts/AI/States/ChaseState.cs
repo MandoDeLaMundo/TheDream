@@ -1,16 +1,29 @@
 using UnityEngine;
 
-public class ChaseState : MonoBehaviour
+public class ChaseState : IState
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private readonly EnemyBase enemy;
+    
+    public ChaseState(EnemyBase _enemy)
     {
-        
+        enemy = _enemy;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Enter()
     {
-        
+        // Play chase animation
+        // Set target
+    }
+
+    public void Update()
+    {
+        // Move toward player
+        // if distance to player < attack range
+        //   enemy.stateMachine.ChangeState(new AttackState(enemy))
+    }
+
+    public void Exit()
+    {
+        // Stop movement if needed
     }
 }

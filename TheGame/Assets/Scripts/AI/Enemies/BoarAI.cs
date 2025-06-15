@@ -1,16 +1,22 @@
 using UnityEngine;
 
-public class BoarAI : MonoBehaviour
+public class BoarAI : EnemyBase
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [Header("Boar AI Settings")]
+    [SerializeField] public float idleTime;
+
+    protected override void Awake()
     {
-        
+        base.Awake();
+        stateMachine = new StateMachine();
+        stateMachine.ChangeState(new IdleState(this, idleTime));
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void TakeDMG(int amount)
     {
-        
+        health -= amount;
+        if (health <= 0)
+            stateMachine.ChangeState(new DeadState(this));
     }
+
 }
