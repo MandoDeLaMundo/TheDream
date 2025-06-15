@@ -94,8 +94,12 @@ public class gameManager : MonoBehaviour
 				menuActive.SetActive(isPaused);
 			}
 			else if (menuActive == menuPause)
-				StateUnpause();
-		}
+                }
+                    
+            }
+            else if (menuActive == menuPause)
+                StateUnpause();
+        }
 
 		if (Input.GetKey("q"))
 		{
@@ -108,7 +112,6 @@ public class gameManager : MonoBehaviour
 		isPaused = !isPaused;
 		Time.timeScale = 0;
 		Cursor.visible = true;
-		Cursor.lockState = CursorLockMode.None;
 	}
 
 	public void StateUnpause()
@@ -219,9 +222,20 @@ public class gameManager : MonoBehaviour
 		beesWaxGoal = beesWaxAmount;
 		mushroomGoal = mushroomAmount;
 
-		baconGoalText.text = baconGoal.ToString("F0");
-		beesWaxGoalText.text = beesWaxGoal.ToString("F0");
-		mushroomGoalText.text = mushroomGoal.ToString("F0");
+        if (baconGoalText != null)
+        {
+            baconGoalText.text = baconGoal.ToString("F0");
+        }
+        if (beesWaxGoalText != null)
+        {
+            beesWaxGoalText.text = beesWaxGoal.ToString("F0");
+        }
+        
+        if (mushroomGoalText != null)
+        {
+            mushroomGoalText.text = mushroomGoal.ToString("F0");
+        }
+        
 
 		
 	}
