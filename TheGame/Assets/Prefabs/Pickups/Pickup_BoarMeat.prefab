@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8405581482308921290}
   - component: {fileID: 6403050237368557091}
   - component: {fileID: 6723041176470689664}
-  - component: {fileID: 6060561330082449549}
+  - component: {fileID: 7676837486458125750}
   m_Layer: 11
   m_Name: Pickup_BoarMeat
   m_TagString: Untagged
@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3037396062109890694}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
@@ -126,8 +126,8 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 2359270312232893737, guid: aa6d8eb78f512584fb30a98c7d3fb86a, type: 3}
---- !u!65 &6060561330082449549
-BoxCollider:
+--- !u!135 &7676837486458125750
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -145,5 +145,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.29431447, y: 0.11393272, z: 0.17655471}
+  m_Radius: 0.25
   m_Center: {x: 0, y: 0.05841976, z: -0.00006137788}

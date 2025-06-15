@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
 using UnityEngine.UI;
+
 public class EnemyAI : MonoBehaviour, IDamage
 {
     [SerializeField] Renderer model;
@@ -11,7 +12,11 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Collider weaponCol;
     [SerializeField] Transform LootPos;
     int HPOrig;
-    [SerializeField] Image hpBar;
+
+    // This is so that the HP bar can rotate with the player
+    public Image enemyHP;
+    // This is so that the enemy health goes down when damaged
+    public Image hpBar;
 
     [SerializeField] GameObject dropItemPrefab;
     [SerializeField] Rigidbody rb;
@@ -21,7 +26,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] int FOV;
     [SerializeField] int roamDist;
     [SerializeField] int roamPauseTime;
-    [SerializeField] int animTranSpeed;
+    [SerializeField] int animTransSpeed;
 
     [SerializeField] Transform shootPos;
     [SerializeField] GameObject projectile;
@@ -75,6 +80,9 @@ public class EnemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
+        if (anim != null)
+            setAnimPara();
+
         meleeTimer += Time.deltaTime;
         shootTimer += Time.deltaTime;
 
@@ -100,22 +108,21 @@ public class EnemyAI : MonoBehaviour, IDamage
                 faceTarget3D();
             }
             checkRoam();
-            //  if (playerDir.magnitude <= meleeDistance && meleeTimer >= meleeRate)
-            //  {
-            //      attackPlayer();
-            // }
-
-            //  if (playerDir.magnitude > meleeDistance && shootTimer >= shootRate)
-            // {
-            //     shootPlayer();
-            //  }
         }
         else if (!isSentry)
         {
             checkRoam();
         }
 
+        enemyHP.transform.rotation = gameManager.instance.player.transform.rotation;
+    }
 
+    void setAnimPara()
+    {
+        float agentSpeedCur = agent.velocity.normalized.magnitude;
+        float animSpeedCur = anim.GetFloat("Speed");
+
+        anim.SetFloat("Speed", Mathf.Lerp(animSpeedCur, agentSpeedCur, Time.deltaTime * animTransSpeed));
     }
 
     void faceTarget3D()
@@ -150,16 +157,17 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         Vector3 directionToPlayer = gameManager.instance.player.transform.position - headPos.position;
         Vector3 horizontalDir = new Vector3(directionToPlayer.x, 0, directionToPlayer.z);
+
+        playerDir = (gameManager.instance.player.transform.position - headPos.position);
         angleToPlayer = Vector3.Angle(horizontalDir, transform.forward);
 
-        // Debug.DrawRay(headPos.position, horizontalDir, Color.yellow);    
+        Debug.DrawRay(headPos.position, horizontalDir, Color.yellow);
         RaycastHit hit;
         if (Physics.Raycast(headPos.position, directionToPlayer, out hit))
         {
             if (angleToPlayer <= FOV && hit.collider.CompareTag("Player"))
             {
-                agent.stoppingDistance = stoppingDistOrig;
-
+                agent.SetDestination(gameManager.instance.player.transform.position);
 
                 if (playerDir.magnitude <= meleeDistance && meleeTimer >= meleeRate)
                 {
@@ -170,27 +178,28 @@ public class EnemyAI : MonoBehaviour, IDamage
                 {
                     shootPlayer();
                 }
+
+                agent.stoppingDistance = stoppingDistOrig;
                 return true;
             }
         }
-
 
         agent.stoppingDistance = 0;
         return false;
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("Collision detected with: " + collision.collider.name);
-        if (collision.collider.CompareTag("Player"))
-        {
-            IDamage dmg = collision.collider.GetComponent<IDamage>();
-            if (dmg != null)
-            {
-                dmg.TakeDMG(rangeDmgAmount);
-            }
-        }
-    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    Debug.Log("Collision detected with: " + collision.collider.name);
+    //    if (collision.collider.CompareTag("Player"))
+    //    {
+    //        IDamage dmg = collision.collider.GetComponent<IDamage>();
+    //        if (dmg != null)
+    //        {
+    //            dmg.TakeDMG(rangeDmgAmount);
+    //        }
+    //    }
+    //}
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -210,49 +219,27 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void DropItem()
     {
-        if (dropItemPrefab == null) return;
-
-        Vector3 spawnOrigin = transform.position + Vector3.up * 1f;
-        RaycastHit hit;
-
-        if (Physics.Raycast(spawnOrigin, Vector3.down, out hit, 10f))
-        {
-            Vector3 groundPoint = hit.point;
-            Instantiate(dropItemPrefab, groundPoint, Quaternion.identity);
-        }
-        else
-        {
-            Instantiate(dropItemPrefab,LootPos.position, Quaternion.identity);
-        }
+        if (dropItemPrefab != null)
+            Instantiate(dropItemPrefab, LootPos.position, Quaternion.identity);
     }
 
     public void TakeDMG(int amount)
     {
-        // Debug.Log($"{gameObject.name} was hit. Damage: {amount}");
-
         HP -= amount;
         updateEnemyUI();
-
-        // Debug.Log($"New HP: {HP}");
-
 
         agent.SetDestination(gameManager.instance.player.transform.position);
 
         if (HP <= 0)
         {
-            // Debug.Log("Enemy should die now");
-            // gameManager.instance.UpdateGameGoal(-1);
-
             DropItem();
-
             Destroy(gameObject);
         }
+
         else
         {
-            // Debug.Log("Flashing red");
             StartCoroutine(flashRed());
         }
-        // Debug.Log($"{gameObject.name} took {amount} damage. HP = {HP}/{HPOrig}");
     }
 
     IEnumerator flashRed()
@@ -276,6 +263,8 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     private void shootPlayer()
     {
+        //anim.SetTrigger("Shoot");
+
         shootTimer = 0;
         if (projectile != null)
         {

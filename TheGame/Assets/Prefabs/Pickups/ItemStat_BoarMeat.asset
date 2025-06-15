@@ -18,3 +18,7 @@ MonoBehaviour:
     make bacon with this, perfect for my omelet! Although, the monster seemed to
     move oddly...
   healFactor: 0
+  ManaFactor: 0
+  firstTime: 1
+  pickup: {fileID: 3037396062109890694, guid: ae5102f2b4aaefb409179477d8402f12, type: 3}
+  sprite: {fileID: 21300000, guid: 732a43f4e0424b04fbd7b177fa4f64c8, type: 3}

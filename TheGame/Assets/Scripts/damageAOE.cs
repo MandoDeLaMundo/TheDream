@@ -8,7 +8,7 @@ public class damageAOE : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         IDamage dmg = other.GetComponent<IDamage>();
-        Debug.Log("AOE dmg trigger");
+        //Debug.Log("AOE dmg trigger");
         if (damagedTick.Contains(dmg))
         {
             return;
@@ -18,6 +18,7 @@ public class damageAOE : MonoBehaviour
             dmg.TakeDMG(damageAmount);
             damagedTick.Add(dmg);
         }
-
+        GetComponent<MeshRenderer>().enabled = false;
+        Destroy(gameObject, 2);
     }
 }

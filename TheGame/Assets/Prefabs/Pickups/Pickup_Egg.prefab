@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7730909910390474513}
   - component: {fileID: 9006805396059754473}
   - component: {fileID: 573394420668162896}
-  - component: {fileID: 10418195156012385}
+  - component: {fileID: 8922002022358668887}
   m_Layer: 11
   m_Name: Pickup_Egg
   m_TagString: Untagged
@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1634457089981656779}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
@@ -126,8 +126,8 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 7109708741784996638, guid: 3aa7d5fa50409204e90b00203f8c9855, type: 3}
---- !u!65 &10418195156012385
-BoxCollider:
+--- !u!135 &8922002022358668887
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -145,5 +145,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.0981051, y: 0.13170533, z: 0.09810512}
+  m_Radius: 0.15
   m_Center: {x: -0.000000009313226, y: 0.066303246, z: 0.0000000055879354}

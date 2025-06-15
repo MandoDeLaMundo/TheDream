@@ -1,12 +1,17 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.AI;
 
 public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 {
-    [SerializeField] CharacterController controller;
-    //[SerializeField] Animator anim;
+    public static playerController instance;
+
+    public CharacterController controller;
+    [SerializeField] NavMeshAgent agent;
+    [SerializeField] Animator anim;
     [SerializeField] LayerMask ignoreLayer;
+    [SerializeField] int animTransSpeed;
 
     [SerializeField] int HP;
     int HPOrig;
@@ -14,8 +19,11 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     [SerializeField] int Mana;
     int ManaOrig;
 
-    [SerializeField] int speed;
+    [SerializeField] float speed;
+    float origSpeed;
+
     [SerializeField] int sprintMod;
+
     enum shootchoice { shootraycast, spellList, teleportraycast }
     [SerializeField] shootchoice choice;
     [SerializeField] List<spellStats> spellList = new List<spellStats>();
@@ -32,6 +40,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     [SerializeField] float manaCoolDownRate;
     [SerializeField] float manaRegenRate;
     float manaRegenTimer;
+    public int numofmanapotions;
     float manaCooldownTimer;
 
     [SerializeField] bool isTeleportingRaycast;
@@ -42,6 +51,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     [SerializeField] int jumpForce;
     [SerializeField] int Gravity;
     int jumpCount;
+    int origJump;
     Vector3 playerVel;
 
     [SerializeField] float healingCooldown;
@@ -53,13 +63,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     int baconcount;
     int beewaxcount;
     int mushroomscount;
-    int baconMax;
-    int beewaxMax;
-    int mushroomsMax;
-    bool baconFirstTime;
-    bool beewaxFirstTime;
-    bool mushroomsFirstTime;
-    bool healpotionFirstTime;
+    bool inMud = false;
+    bool canSprint = true;
 
     [SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] audStep;
@@ -81,14 +86,18 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        instance = this;
         gameManager.instance.DisplayDescription(startupDialogue);
         HPOrig = HP;
         ManaOrig = Mana;
+        origSpeed = speed;
+        origJump = jumpForce;
+
+
         healingnumOrig = healingnum;
         gameManager.instance.UpdatePlayerMaxHPMPCount(HP, Mana);
-        gameManager.instance.UpdatePotionCount(numofhealpotions);
+        gameManager.instance.UpdatePotionCount(numofhealpotions, numofmanapotions);
         updatePlayerUI();
-        FirstTime();
         if (spellList.Count > 0)
             changeSpell();
     }
@@ -107,8 +116,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * teleportDist, Color.blue);
         }
 
-        if (controller.transform.position.y < 0)
-            TakeDMG(100);
+        //   if (controller.transform.position.y < 0)
+        //      TakeDMG(100);
 
         Movement();
         sprint();
@@ -116,6 +125,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     void Movement()
     {
+        //setAnimPara();
+
         shootTimer += Time.deltaTime;
         healTimer += Time.deltaTime;
 
@@ -134,11 +145,14 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
         moveDir = (Input.GetAxis("Horizontal") * transform.right) + (Input.GetAxis("Vertical") * transform.forward);
 
+        if(controller.enabled == true)
         controller.Move(moveDir * speed * Time.deltaTime);
 
         jump();
 
+        if(controller.enabled == true)
         controller.Move(playerVel * Time.deltaTime);
+
         playerVel.y -= Gravity * Time.deltaTime;
 
         if (Input.GetButton("Fire1") && shootTimer >= shootRate)
@@ -150,36 +164,41 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             if (choice == shootchoice.spellList && spellList.Count > 0 && Mana >= manaCost)
                 shootSpell();
         }
-
-        if (Input.GetKey("r") && HP < HPOrig && healTimer > healingCooldown)
+        if (Input.GetKey("f"))
         {
-            Heal();
+            PotionUsed();
         }
-        if (Input.GetKey("c") && beewaxcount > 0 && mushroomscount > 0 && healTimer > healingCooldown)
+        if (Input.GetKey("c"))
         {
             CraftPotion();
         }
-        if (manaCooldownTimer >= manaCoolDownRate)
+        if (manaCooldownTimer >= manaCoolDownRate && Mana < ManaOrig)
         {
             ManaRegen();
         }
 
-        if (Input.GetKey("b"))
-        {
-            if (Input.GetKeyDown("b"))
-            {
-                shield.SetActive(true);
-                Mana -= manaCost;
-            }
-            else
-            {
-                shield.SetActive(false);
-            }
-        }
+        //if (Input.GetKey("b"))
+        //{
+        //    shield.SetActive(true);
+        //Debug.Log(manaCost);
+        //    Mana -= manaCost;
+        //}
+        //else
+        //{
+        //    shield.SetActive(false);
+        //}
 
         selectSpell();
 
         gameManager.instance.UpdateIngredientCount(baconcount, beewaxcount, mushroomscount);
+    }
+
+    void setAnimPara()
+    {
+        float agentSpeedCur = agent.velocity.normalized.magnitude;
+        float animSpeedCur = anim.GetFloat("Speed");
+
+        anim.SetFloat("Speed", Mathf.Lerp(animSpeedCur, agentSpeedCur, Time.deltaTime * animTransSpeed));
     }
 
     void jump()
@@ -194,15 +213,26 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     void sprint()
     {
-        if (Input.GetButtonDown("Sprint"))
+        if (!canSprint)
+        {
+            if (isSprinting)
+            {
+                speed = origSpeed;
+                isSprinting = false;
+            }
+            return;
+        }
+        if (Input.GetButtonDown("Sprint") && !isSprinting)
         {
             //speed += sprintMod;
-            speed *= sprintMod;
+            speed = origSpeed * sprintMod;
+            isSprinting = true;
         }
-        if (Input.GetButtonUp("Sprint"))
+        else if (Input.GetButtonUp("Sprint") && isSprinting)
         {
             //speed -= sprintMod;
-            speed /= sprintMod;
+            speed = origSpeed;
+            isSprinting = false;
         }
     }
 
@@ -246,6 +276,18 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         }
     }
 
+    void PotionUsed()
+    {
+        if (craftingSystem.instance.IsHPPotion() && HP < HPOrig && healTimer > healingCooldown)
+        {
+            Heal();
+        }
+        else if (craftingSystem.instance.IsMPPotion())
+        {
+            ManaPotion();
+        }
+    }
+
     void Heal()
     {
         if (numofhealpotions > 0)
@@ -266,18 +308,52 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
             updatePlayerUI();
             numofhealpotions--;
-            gameManager.instance.UpdatePotionCount(-1);
+            gameManager.instance.UpdatePotionCount(-1, 0);
+        }
+    }
+
+    void ManaPotion()
+    {
+        if (numofmanapotions > 0)
+        {
+            Mana += healingnum;
+            if (Mana > ManaOrig)
+            {
+                healingnum = healingnum + (ManaOrig - Mana);
+                gameManager.instance.UpdatePlayerMPCount(healingnum);
+                Mana = ManaOrig;
+                healingnum = healingnumOrig;
+            }
+            else
+            {
+                gameManager.instance.UpdatePlayerMPCount(healingnum);
+            }
+            healTimer = 0;
+
+            updatePlayerUI();
+            numofmanapotions--;
+            gameManager.instance.UpdatePotionCount(0, -1);
         }
     }
 
     void CraftPotion()
     {
-        numofhealpotions++;
-        gameManager.instance.UpdatePotionCount(1);
-        beewaxcount--;
-        mushroomscount--;
+        if (craftingSystem.instance.IsHPPotion() && beewaxcount > 0 && mushroomscount > 0 && healTimer > healingCooldown)
+        {
+            numofhealpotions++;
+            gameManager.instance.UpdatePotionCount(1, 0);
+            beewaxcount--;
+            mushroomscount--;
 
-        healTimer = 0;
+            healTimer = 0;
+        }
+        else if (craftingSystem.instance.IsMPPotion() && baconcount > 0 && mushroomscount > 0)
+        {
+            numofmanapotions++;
+            gameManager.instance.UpdatePotionCount(0, 1);
+            baconcount--;
+            mushroomscount--;
+        }
     }
 
     void ManaRegen()
@@ -316,16 +392,19 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     public void TakeDMG(int amount)
     {
-        aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
-        HP -= amount;
-        gameManager.instance.UpdatePlayerHPCount(-amount);
-        updatePlayerUI();
+        if (!Cheatmanager.instance.IsInvulnerable())
+        {
+            aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
+            HP -= amount;
+            gameManager.instance.UpdatePlayerHPCount(-amount);
+            updatePlayerUI();
+        }
         StartCoroutine(flashDamageScreen());
 
 
         if (HP <= 0)
         {
-            //anim.SetTrigger("HP");
+            anim.SetTrigger("HP");
             gameManager.instance.YouLose();
         }
     }
@@ -376,14 +455,19 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         }
     }
 
+    bool SpellInventoryCheck()
+    {
+        return true;
+    }
+
     public void GetItemStats(itemStats item)
     {
         if (item.itemName == "Boar Meat")
         {
-            if (baconFirstTime)
+            if (item.firstTime)
             {
                 gameManager.instance.DisplayDescription(item.itemDescription);
-                baconFirstTime = false;
+                item.firstTime = false;
                 baconcount += 1;
             }
             else
@@ -391,11 +475,11 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         }
         else if (item.itemName == "Bee Wax")
         {
-            if (beewaxFirstTime)
+            if (item.firstTime)
             {
 
                 gameManager.instance.DisplayDescription(item.itemDescription);
-                beewaxFirstTime = false;
+                item.firstTime = false;
                 beewaxcount += 1;
             }
             else
@@ -403,10 +487,10 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         }
         else if (item.itemName == "Mushroom")
         {
-            if (mushroomsFirstTime)
+            if (item.firstTime)
             {
                 gameManager.instance.DisplayDescription(item.itemDescription);
-                mushroomsFirstTime = false;
+                item.firstTime = false;
                 mushroomscount += 1;
             }
             else
@@ -414,17 +498,32 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         }
         else if (item.itemName == "Health Potion")
         {
-            if (healpotionFirstTime)
+            if (item.firstTime)
             {
                 gameManager.instance.DisplayDescription(item.itemDescription);
-                healpotionFirstTime = false;
+                item.firstTime = false;
                 numofhealpotions += 1;
-                gameManager.instance.UpdatePotionCount(1);
+                gameManager.instance.UpdatePotionCount(1, 0);
             }
             else
             {
                 numofhealpotions += 1;
-                gameManager.instance.UpdatePotionCount(1);
+                gameManager.instance.UpdatePotionCount(1, 0);
+            }
+        }
+        else if (item.itemName == "Mana Potion")
+        {
+            if (item.firstTime)
+            {
+                gameManager.instance.DisplayDescription(item.itemDescription);
+                item.firstTime = false;
+                numofmanapotions += 1;
+                gameManager.instance.UpdatePotionCount(0, 1);
+            }
+            else
+            {
+                numofhealpotions += 1;
+                gameManager.instance.UpdatePotionCount(0, 1);
             }
         }
         else if (item.itemName == "Boss Egg")
@@ -463,11 +562,34 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         isPlayingStep = false;
     }
 
-    void FirstTime()
+    public void EnterMud()
     {
-        baconFirstTime = true;
-        beewaxFirstTime = true;
-        mushroomsFirstTime = true;
-        healpotionFirstTime = true;
+        if (inMud) return;
+
+        if (isSprinting)
+        {
+            speed = origSpeed;
+            isSprinting = false;
+        }
+
+
+        origSpeed = Mathf.Max(1, speed / 2);
+        speed = origSpeed;
+        jumpForce = Mathf.Max(1, jumpForce / 2);
+
+        canSprint = false;
+        inMud = true;
+    }
+
+    public void ExitMud()
+    {
+        if (!inMud) return;
+
+        origSpeed *= 2;
+        speed = origSpeed;
+        jumpForce = origJump;
+
+        canSprint = true;
+        inMud = false;
     }
 }
