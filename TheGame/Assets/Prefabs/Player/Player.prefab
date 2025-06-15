@@ -100,6 +100,7 @@ MonoBehaviour:
   manaRegenRate: 0.1
   numofmanapotions: 0
   Oxygen: 10
+  OxygenOrig: 0
   WaterPos: {fileID: 8326175348014781393}
   waterLayer:
     serializedVersion: 2
@@ -146,7 +147,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d642b4be86c400c4987eefd6db87631c, type: 3}
   - {fileID: 8300000, guid: ea034ca4f786b0b438f7be1dbb6d4424, type: 3}
   audHurtVol: 1
-  shield: {fileID: 0}
+  shield: {fileID: 5517583260277432333}
   startupDialogue: I want an omelet for breakfast, I hope I can find an egg in this
     dungeon!
 --- !u!33 &4531356348622312624
@@ -468,7 +469,7 @@ SphereCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 7935
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
