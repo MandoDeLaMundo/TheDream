@@ -26,7 +26,7 @@ public class AttackState : IState
             return;
         }
 
-        float distanceToPlayer = Vecter3.Distance(enemy.transform.position, gameManager.instance.player.transform.position);
+        float distanceToPlayer = Vector3.Distance(enemy.transform.position, gameManager.instance.player.transform.position);
 
         FaceTarget();
 
@@ -59,7 +59,7 @@ public class AttackState : IState
         {
             // enemy.anim.SetTrigger("Attack");
             enemy.isAttacking = true;
-            enemy.AttackType();
+            enemy.Attack();
             enemy.StartCoroutine(ResetAttackCooldown(enemy.meleeRate));
         }
         else

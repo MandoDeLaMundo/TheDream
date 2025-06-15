@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public abstract class EnemyBase : MonoBehaviour, IDamage
@@ -23,7 +23,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
     [SerializeField] public GameObject dropItemPrefab;
     public Image enemyHP;
     public Image hpBar;
-    public Color colorOrig;
+    Color colorOrig;
 
     [Header("Enemy Stats")]
     [SerializeField] public int health;
@@ -33,9 +33,6 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
     [SerializeField] public float meleeRate;
     public int meleeDmgAmt;
     public float meleeRange;
-    public float angleToPlayer;
-    public float shootTimer;
-    public float roamTimer;
     public bool isAttacking;
     public AttackType attackType;
     int healthOrig;
@@ -48,7 +45,10 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
     [SerializeField] public int animTransSpeed;
     public Vector3 playerDir;
     public Vector3 startingPos;
+    public float angleToPlayer;
     public float stoppingDistOrig;
+    public float shootTimer;
+    public float roamTimer;
     public bool playerInRange;
 
     public StateMachine stateMachine;
@@ -124,16 +124,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
         return false;
     }
 
-
-    void DropItem()
-    {
-        if (dropItemPrefab)
-        {
-            Instantiate(dropItemPrefab, lootPos.position, Quaternion.identity);
-        }
-    }
-
-    void Shoot()
+    public void Shoot()
     {
         if (projectile)
         {
@@ -142,7 +133,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
         }
     }
 
-    void Attack()
+    public void Attack()
     {
         gameManager.instance.player.GetComponent<playerController>().TakeDMG(meleeDmgAmt);
     }

@@ -828,7 +828,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 195aa7bd956a477428842fc997d40fcc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1294,9 +1294,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 679fc8a212a54014592eb8d0868688f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
-  speed: 3
-  idleDuration: 3
+  model: {fileID: 1926424143336510196}
+  agent: {fileID: 3156456618433236474}
+  anim: {fileID: 0}
+  headPos: {fileID: 46792528764480899}
+  lootPos: {fileID: 8185753454369235784}
+  weaponCol: {fileID: 0}
+  dropItemPrefab: {fileID: 3037396062109890694, guid: ae5102f2b4aaefb409179477d8402f12, type: 3}
+  colorOrig: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 0}
+  health: 5
+  shootPos: {fileID: 0}
+  projectile: {fileID: 0}
+  shootRate: 0
+  angleToPlayer: 30
+  shootTimer: 0
+  roamTimer: 2
+  meleeRange: 3
+  isAttacking: 0
+  attackType: 0
+  faceTargetSpeed: 2
+  FOV: 30
+  roamDist: 5
+  roamPauseTime: 2
+  animTransSpeed: 0
+  playerDir: {x: 0, y: 0, z: 0}
+  startingPos: {x: 0, y: 0, z: 0}
+  stoppingDistOrig: 0
+  playerInRange: 0
+  idleTime: 0
 --- !u!224 &7121581834296426743
 RectTransform:
   m_ObjectHideFlags: 0
