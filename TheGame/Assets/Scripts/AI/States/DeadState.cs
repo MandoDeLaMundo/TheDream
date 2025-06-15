@@ -25,6 +25,7 @@ public class DeadState : IState
     public void Update()
     {
         // Wait for animation, then destroy/disable object
+        Object.Destroy(enemy.gameObject);
     }
 
     public void Exit()
