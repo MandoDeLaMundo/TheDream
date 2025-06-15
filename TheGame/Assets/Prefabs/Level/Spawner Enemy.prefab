@@ -1042,7 +1042,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  spawnList: []
+  spawnList:
+  - {fileID: 11400000, guid: 786feba972888eb4a993dca83893464f, type: 2}
   spellList: []
   itemList: []
   dialogue: []
