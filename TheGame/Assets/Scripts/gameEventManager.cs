@@ -1,11 +1,11 @@
-using UnityEngine;
-using System.Collections.Generic;
+//using UnityEngine;
+//using System.Collections.Generic;
 
 //public class gameEventManager : MonoBehaviour
 //{
 //    public static gameEventManager instance;
 
-//    //[SerializeField] List<DialogueStats> dialogueStatsList = new List<DialogueStats>();
+//    [SerializeField] List<DialogueStats> dialogueStatsList = new List<DialogueStats>();
 //    [SerializeField] List<GameObject> FairyTriggerList = new List<GameObject>();
 
 //    int ListPos = 0;
