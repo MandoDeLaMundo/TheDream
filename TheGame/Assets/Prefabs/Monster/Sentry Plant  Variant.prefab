@@ -85,15 +85,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 633489640592457639, guid: e0fdd0b8ac201894b8ada06f451e85fa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.1768913
+      value: 16.3319
       objectReference: {fileID: 0}
     - target: {fileID: 633489640592457639, guid: e0fdd0b8ac201894b8ada06f451e85fa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 9.249998
       objectReference: {fileID: 0}
     - target: {fileID: 633489640592457639, guid: e0fdd0b8ac201894b8ada06f451e85fa, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 30.080292
+      value: 41.972675
       objectReference: {fileID: 0}
     - target: {fileID: 633489640592457639, guid: e0fdd0b8ac201894b8ada06f451e85fa, type: 3}
       propertyPath: m_LocalRotation.w
@@ -139,10 +139,6 @@ PrefabInstance:
       propertyPath: hpBar
       value: 
       objectReference: {fileID: 6523636162170844616}
-    - target: {fileID: 6485139680886695291, guid: e0fdd0b8ac201894b8ada06f451e85fa, type: 3}
-      propertyPath: isSentry
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6485139680886695291, guid: e0fdd0b8ac201894b8ada06f451e85fa, type: 3}
       propertyPath: healthBarUI
       value: 
