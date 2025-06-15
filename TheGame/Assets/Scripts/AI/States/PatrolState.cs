@@ -1,12 +1,11 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PatrolState : IState
 {
-    private readonly EnemyBase enemy;
-
-    Vector3 destination;
-
-    bool playerInRange;
+    EnemyBase enemy;
+    float roamTimer;
+    private Vector3 roamPoint;
 
     public PatrolState(EnemyBase _enemy)
     {
@@ -15,23 +14,36 @@ public class PatrolState : IState
 
     public void Enter()
     {
-        Debug.Log($"{enemy.name} entering Patrol State.");
-
-        // Set random target or waypoint
-
-        //enemy.agent.SetDestination( destination );
-        //enemy.animator.Play("Walk");
+        SetNewRoamPoint();
     }
     public void Update()
     {
-        // Move toward target
-        if (enemy.agent.remainingDistance < 0.0f)
-            enemy.StateMachine.ChangeState(new IdleState(enemy, enemy.IdleTime));
-        // if player is seen:
-        // enemy.stateMachine.ChangeState(new ChaseState(enemy))
+        if (enemy.CanSeePlayer())
+        {
+            enemy.stateMachine.ChangeState(new ChaseState(enemy));
+            return;
+        }
+
+        if (enemy.agent.remainingDistance < 0.1f)
+        {
+            roamTimer += Time.deltaTime;
+            if (roamTimer >= enemy.roamPauseTime)
+            {
+                SetNewRoamPoint() ;
+                roamTimer = 0f;
+            }
+        }
     }
     public void Exit() 
     {
-        Debug.Log($"{enemy.name} exiting Patrol State.");
+
+    }
+
+    void SetNewRoamPoint()
+    {
+        Vector3 randPos = Random.insideUnitSphere * enemy.roamDist + enemy.startingPos;
+        NavMesh.SamplePosition(randPos, out NavMeshHit hit, enemy.roamDist, NavMesh.AllAreas);
+        roamPoint = hit.position;
+        enemy.agent.SetDestination(roamPoint);
     }
 }

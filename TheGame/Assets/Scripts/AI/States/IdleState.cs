@@ -1,38 +1,38 @@
-using JetBrains.Annotations;
 using UnityEngine;
 
 public class IdleState : IState
 {
-    private readonly EnemyBase enemy;
-    public float idleTime;
-    public float timer;
+    EnemyBase enemy;
+    float timer;
 
-    public IdleState(EnemyBase _enemy, float _idleDuration)
+    public IdleState(EnemyBase _enemy)
     {
         enemy = _enemy;
-        idleTime = _idleDuration;
     }
 
     public void Enter()
-    {
-        timer = 0f;
-        // mEnemy.Animator.Play("Idle");
+    { 
         enemy.agent.isStopped = true;
-        Debug.Log($"{enemy.name} entered Idle State.");
+        timer = 0;
     }
 
     public void Update()
     {
         timer += Time.deltaTime;
 
-        if (timer >= idleTime)
+        if (enemy.playerInRange)
         {
-            enemy.StateMachine.ChangeState(new PatrolState(enemy));
+            enemy.stateMachine.ChangeState(new ChaseState(enemy));
+        }
+
+        else if (timer >= enemy.roamPauseTime)
+        {
+            enemy.stateMachine.ChangeState(new PatrolState(enemy));
         }
     }
 
     public void Exit()
     {
-        Debug.Log($"{enemy.name} exiting Idle State.");
+        enemy.agent.isStopped = false;
     }
 }
