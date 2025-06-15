@@ -43,6 +43,7 @@ public class gameManager : MonoBehaviour
     int playerOXMaxOrig;
 
     public GameObject playerDamageScreen;
+    public GameObject playerStunScreen;
 	public GameObject player;
 	public playerController playerScript;
 	public GameObject textBox;
