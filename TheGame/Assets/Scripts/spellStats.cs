@@ -5,7 +5,7 @@ public class spellStats : ScriptableObject
 {
     public GameObject model;
     public GameObject spellProjectile;
-    [Range(0, 20)] public int shootDMG;
+    [Range(1, 20)] public int shootDMG;
     [Range(0.0f, 25.0f)] public float shootRate;
     [Range(1, 1000)] public int shootDist;
     [Range(0, 200)] public int manaCost;

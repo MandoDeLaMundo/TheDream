@@ -6,6 +6,13 @@ public class Shield : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
-        Destroy(other.gameObject);
+        if (CompareTag("EnemyProjectile"))
+        {
+            Destroy(other.gameObject);
+        }
+        else
+        {
+            return;
+        }
     }
 }
