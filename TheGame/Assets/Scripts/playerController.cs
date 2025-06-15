@@ -442,7 +442,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     {
         if (canTakeDam)
         {
-            if (!Cheatmanager.instance.GetIsInvulnerable())
+            if (!Cheatmanager.instance.IsInvulnerable())
             {
                 aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
                 HP -= amount;
