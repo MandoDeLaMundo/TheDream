@@ -22,6 +22,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     int healingnumOrig;
     public int numofhealpotions;
     float healTimer;
+    public bool canTakeDam = true;
 
     [SerializeField] int Mana;
     int ManaOrig;
@@ -439,15 +440,25 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     public void TakeDMG(int amount)
     {
-        if (!Cheatmanager.instance.IsInvulnerable())
+        if (canTakeDam)
         {
-            aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
-            HP -= amount;
-            gameManager.instance.UpdatePlayerHPCount(-amount);
-            updatePlayerUI();
+            if (!Cheatmanager.instance.IsInvulnerable())
+            {
+                aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
+                HP -= amount;
+                gameManager.instance.UpdatePlayerHPCount(-amount);
+                updatePlayerUI();
+                StartCoroutine(Stunned());
+            }
         }
+        else
+        {
+
+        }
+
+
         StartCoroutine(flashDamageScreen());
-        StartCoroutine(Stunned());
+        StartCoroutine(PostInvulnerable());
 
 
         if (HP <= 0)
@@ -629,6 +640,13 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         gameManager.instance.playerStunScreen.SetActive(false);
         canMove = true;
         canShoot = true;
+    }
+
+    IEnumerator PostInvulnerable()
+    {
+        canTakeDam = false;
+        yield return new WaitForSeconds(2f);
+        canTakeDam = true;
     }
 
     public void EnterMud()
