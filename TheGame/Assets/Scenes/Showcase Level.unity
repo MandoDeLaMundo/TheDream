@@ -14109,22 +14109,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2149757930517736566, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3588955208627178392, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
-    - target: {fileID: 5460597305613106049, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
-      propertyPath: m_Type
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5573340100446005675, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
-      propertyPath: 'FairyTriggerList.Array.data[0]'
-      value: 
-      objectReference: {fileID: 3197840847752307182}
     - target: {fileID: 6784114218888903061, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -14204,22 +14192,6 @@ PrefabInstance:
     - target: {fileID: 6784114218888903061, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819874309826013842, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
-      propertyPath: m_FillMethod
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819874309826013842, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
-      propertyPath: m_FillOrigin
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7819874309826013842, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
-      propertyPath: m_PreserveAspect
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8706441398684782626, guid: d1c88402b7bbfb246b03b7e02149ef0e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14429,18 +14401,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 126861323824121507, guid: f70f5f05ac7e8d342802fcace5baf569, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3250655311056439760, guid: f70f5f05ac7e8d342802fcace5baf569, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -8.09
-      objectReference: {fileID: 0}
-    - target: {fileID: 3250655311056439760, guid: f70f5f05ac7e8d342802fcace5baf569, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -2.82
-      objectReference: {fileID: 0}
     - target: {fileID: 3502089489226185604, guid: f70f5f05ac7e8d342802fcace5baf569, type: 3}
       propertyPath: m_Name
       value: Spawner Item
@@ -14547,16 +14507,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4858bc7d3873be54fbb82a1c051460ba, type: 3}
---- !u!4 &3048018844332112516 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1627394391720961752, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
-  m_PrefabInstance: {fileID: 3950293243194903683}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &3197840847752307182 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7060722792169140798, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
-  m_PrefabInstance: {fileID: 3950293243194903683}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3950293243194903683
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14605,14 +14555,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2892893203185761600, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
-      propertyPath: type
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2892893203185761600, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
-      propertyPath: 'spawnPos.Array.data[0]'
-      value: 
-      objectReference: {fileID: 3048018844332112516}
     - target: {fileID: 7555960384420180019, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
       propertyPath: m_Name
       value: Fairy Spawner
