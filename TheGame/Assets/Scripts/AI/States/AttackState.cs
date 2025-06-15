@@ -51,45 +51,57 @@ public class AttackState : IState
     {
         enemy.agent.isStopped = false;
         enemy.isAttacking = false;
+        enemy.meleeTimer = 0f;
+        enemy.shootTimer = 0f;
     }
 
     void HandleMelee(float distanceToPlayer)
     {
-        if (distanceToPlayer <= enemy.meleeRange && !enemy.isAttacking)
+        if (distanceToPlayer <= enemy.meleeRange && enemy.meleeTimer >= enemy.meleeRate)
         {
             // enemy.anim.SetTrigger("Attack");
-            enemy.isAttacking = true;
-            enemy.Attack();
-            enemy.StartCoroutine(ResetAttackCooldown(enemy.meleeRate));
+            Attack();
         }
-        else
+        
+        if (distanceToPlayer > enemy.meleeRange + 0.5f)
         {
             enemy.stateMachine.ChangeState(new ChaseState(enemy));
         }
+
+        enemy.meleeTimer += Time.deltaTime;
     }
 
     void HandleRanged()
     {
-        if (!enemy.isAttacking)
+        if (enemy.playerInRange && enemy.shootTimer >= enemy.shootRate)
         {
-            enemy.isAttacking = true;
-            enemy.Shoot();
-            enemy.StartCoroutine(ResetAttackCooldown(enemy.shootRate));
+            Shoot();
         }
 
         enemy.shootTimer += Time.deltaTime;
     }
 
-    IEnumerator ResetAttackCooldown(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        enemy.isAttacking = false;
-    }
 
     void FaceTarget()
     {
         Vector3 lookDir = (gameManager.instance.player.transform.position - enemy.transform.position).normalized;
         Quaternion rot = Quaternion.LookRotation(new Vector3(lookDir.x, enemy.transform.position.y, lookDir.z));
         enemy.transform.rotation = Quaternion.Lerp(enemy.transform.rotation, rot, Time.deltaTime * enemy.faceTargetSpeed);
+    }
+
+    public void Shoot()
+    {
+        enemy.shootTimer = 0;
+        if (enemy.projectile)
+        {
+            Vector3 playerDir = (gameManager.instance.player.transform.position - enemy.shootPos.position).normalized;
+            Object.Instantiate(enemy.projectile, enemy.shootPos.position, Quaternion.LookRotation(playerDir));
+        }
+    }
+
+    public void Attack()
+    {
+        enemy.meleeTimer = 0;
+        gameManager.instance.player.GetComponent<playerController>().TakeDMG(enemy.meleeDmgAmt);
     }
 }

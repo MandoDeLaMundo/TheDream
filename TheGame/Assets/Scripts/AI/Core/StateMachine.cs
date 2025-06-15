@@ -6,6 +6,10 @@ public class StateMachine
 
         public void ChangeState(IState newState)
     {
+        if (newState == currentState) return;
+
+        Debug.Log($"Switching from {currentState?.GetType().Name} to {newState.GetType().Name}");
+
         currentState?.Exit();
         //  ^^^ Shorthand for
         // if (currentState != null)

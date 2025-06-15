@@ -48,17 +48,34 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
     public float angleToPlayer;
     public float stoppingDistOrig;
     public float shootTimer;
+    public float meleeTimer;
     public float roamTimer;
     public bool playerInRange;
 
-    public StateMachine stateMachine;
+    public StateMachine stateMachine = new StateMachine();
 
     void Start()
     {
+        if (!agent)
+        {
+            agent = GetComponent<NavMeshAgent>();
+        }
+        if (!model)
+        {
+            model = GetComponentInChildren<Renderer>();
+        }
+        if (!anim)
+        { 
+            anim = GetComponentInChildren<Animator>();
+            //Debug.Log("Assigned Animator: " + anim);
+        }
+
         colorOrig = model.material.color;
+
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
         healthOrig = health;
+
         UpdateEnemyUI();
 
         stateMachine.ChangeState(new IdleState(this));
@@ -72,6 +89,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
     public virtual void TakeDMG(int amount)
     {
         health -= amount;
+        UpdateEnemyUI();
         agent.SetDestination(gameManager.instance.player.transform.position);
 
         if (health <= 0)
@@ -87,6 +105,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
 
     IEnumerator FlashRed()
     {
+        Debug.Log("CoRoutine Started");
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.05f);
         model.material.color = colorOrig;
@@ -114,29 +133,16 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
         playerDir = gameManager.instance.player.transform.position - headPos.position;
         angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
 
-        if (angleToPlayer <= FOV)
+        if (angleToPlayer > FOV) return false;
+
+        if (Physics.Raycast(headPos.position, playerDir, out RaycastHit hit))
         {
-            if (Physics.Raycast(headPos.position, playerDir, out RaycastHit hit))
-            {
-                return hit.collider.CompareTag("Player");
-            }
+            return hit.collider.CompareTag("Player");
         }
+
         return false;
     }
 
-    public void Shoot()
-    {
-        if (projectile)
-        {
-            Vector3 playerDir = (gameManager.instance.player.transform.position - shootPos.position).normalized;
-            Instantiate(projectile, shootPos.position, Quaternion.LookRotation(playerDir));
-        }
-    }
-
-    public void Attack()
-    {
-        gameManager.instance.player.GetComponent<playerController>().TakeDMG(meleeDmgAmt);
-    }
 
     void UpdateEnemyUI()
     {

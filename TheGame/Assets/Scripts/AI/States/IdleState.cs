@@ -11,16 +11,22 @@ public class IdleState : IState
     }
 
     public void Enter()
-    { 
-        enemy.agent.isStopped = true;
+    {
         timer = 0;
+        if (enemy.agent)
+        {
+            enemy.agent.ResetPath();
+            enemy.agent.isStopped = true;
+        }
+
+        // Play Idle animation
     }
 
     public void Update()
     {
         timer += Time.deltaTime;
 
-        if (enemy.playerInRange)
+        if (enemy.playerInRange && enemy.CanSeePlayer())
         {
             enemy.stateMachine.ChangeState(new ChaseState(enemy));
         }
@@ -33,6 +39,9 @@ public class IdleState : IState
 
     public void Exit()
     {
-        enemy.agent.isStopped = false;
+        if (enemy.agent)
+        {
+            enemy.agent.isStopped = false;
+        }
     }
 }

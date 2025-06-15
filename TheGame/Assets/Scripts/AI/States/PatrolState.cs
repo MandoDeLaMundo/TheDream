@@ -5,7 +5,7 @@ public class PatrolState : IState
 {
     EnemyBase enemy;
     float roamTimer;
-    private Vector3 roamPoint;
+    Vector3 roamPoint;
 
     public PatrolState(EnemyBase _enemy)
     {
@@ -14,36 +14,51 @@ public class PatrolState : IState
 
     public void Enter()
     {
+        roamTimer = 0;
+        enemy.agent.stoppingDistance = 0;
         SetNewRoamPoint();
     }
+
     public void Update()
     {
-        if (enemy.CanSeePlayer())
+        if (enemy.CanSeePlayer() && enemy.playerInRange)
         {
             enemy.stateMachine.ChangeState(new ChaseState(enemy));
             return;
         }
 
-        if (enemy.agent.remainingDistance < 0.1f)
+        if (!enemy.agent.pathPending && enemy.agent.remainingDistance < 0.01f)
         {
             roamTimer += Time.deltaTime;
+
             if (roamTimer >= enemy.roamPauseTime)
             {
-                SetNewRoamPoint() ;
-                roamTimer = 0f;
+                enemy.stateMachine.ChangeState(new IdleState(enemy));
             }
         }
     }
     public void Exit() 
     {
-
+        roamTimer = 0;
     }
 
     void SetNewRoamPoint()
     {
-        Vector3 randPos = Random.insideUnitSphere * enemy.roamDist + enemy.startingPos;
-        NavMesh.SamplePosition(randPos, out NavMeshHit hit, enemy.roamDist, NavMesh.AllAreas);
-        roamPoint = hit.position;
-        enemy.agent.SetDestination(roamPoint);
+        Vector3 randPos = Random.insideUnitSphere * enemy.roamDist;
+        randPos.y = 0f;
+        randPos += enemy.startingPos;
+
+        if (NavMesh.SamplePosition(randPos, out NavMeshHit hit, enemy.roamDist, 1))
+        {
+            roamPoint = hit.position;
+            if (Vector3.Distance(enemy.transform.position, roamPoint) > 0.5f)
+            {
+                enemy.agent.SetDestination(roamPoint);
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"{enemy.name} could not find a valid roam point.");
+        }
     }
 }
