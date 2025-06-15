@@ -290,7 +290,7 @@ MonoBehaviour:
   itemList: []
   dialogue: []
   FairySpawner: {fileID: 7060722792169140798}
-  Fairy: {fileID: 8251089637326223200, guid: b3d8acf021e03544d9e2d18409ba79c4, type: 3}
+  Fairy: {fileID: 4674044000932177267, guid: b3d8acf021e03544d9e2d18409ba79c4, type: 3}
   numToSpawn: 1
   spawnRate: 3
   spawnPos:

@@ -524,6 +524,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9b588507a7dc7e44aa2e13e8a7b65fa3, type: 2}
   - {fileID: 11400000, guid: 584e38ada7ed112449e55d9464f56bf3, type: 2}
   - {fileID: 11400000, guid: 95cee464f03601b4796a40b64a1b9af0, type: 2}
+  - {fileID: 11400000, guid: 786feba972888eb4a993dca83893464f, type: 2}
   spellList: []
   itemList: []
   dialogue: []
