@@ -62,7 +62,7 @@ public class TriggerBox : MonoBehaviour
             {
                 particleVFX.Play();
             }
-            if (playerController.instance.Oxygen != playerController.instance.OxygenOrig)
+            if (playerController.instance.Oxygen < playerController.instance.OxygenOrig)
             {
                 OxygenRegen();
             }

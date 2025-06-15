@@ -48,6 +48,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     [SerializeField] float shootRate;
     float shootTimer;
     int spellListPos;
+    public bool canShoot;
 
     [SerializeField] GameObject shield;
     [SerializeField] GameObject shieldBubble;
@@ -174,7 +175,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
         playerVel.y -= Gravity * Time.deltaTime;
 
-        if (Input.GetButton("Fire1") && shootTimer >= shootRate)
+        if (Input.GetButton("Fire1") && shootTimer >= shootRate && canShoot)
         {
             if (choice == shootchoice.shootraycast)
                 shoot();
