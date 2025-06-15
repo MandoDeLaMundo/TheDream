@@ -14507,6 +14507,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2892893203185761600, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
+      propertyPath: Fairy
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7555960384420180019, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
       propertyPath: m_Name
       value: Fairy Spawner
