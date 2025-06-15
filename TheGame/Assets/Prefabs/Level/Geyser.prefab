@@ -127,7 +127,7 @@ MonoBehaviour:
   type: 3
   objectModel: {fileID: 7014237262515337482}
   particleVFX: {fileID: 8220019780910530942}
-  oxygenRegen: 0
+  oxygenRegen: 2
   rootDuration: 0
   silentDuration: 0
   geyserStrength: 2
