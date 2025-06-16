@@ -67,7 +67,6 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
         if (!anim)
         { 
             anim = GetComponentInChildren<Animator>();
-            //Debug.Log("Assigned Animator: " + anim);
         }
 
         colorOrig = model.material.color;
@@ -90,10 +89,8 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
 
     public virtual void TakeDMG(int amount)
     {
-        Debug.Log($"{gameObject.name} TakeDMG called with amount {amount}");
         health -= amount;
         UpdateEnemyUI();
-        Debug.Log("UI has been updated");
 
         if (health <= 0)
         {
@@ -111,7 +108,6 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
 
     IEnumerator FlashRed()
     {
-        Debug.Log("CoRoutine Started");
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.05f);
         model.material.color = colorOrig;
@@ -156,9 +152,6 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
         {
             hpBar.fillAmount = (float)health / healthOrig;
         }
-        else
-        {
-            Debug.LogWarning($"{gameObject.name} hpBar is null");
-        }
+
     }
 }
