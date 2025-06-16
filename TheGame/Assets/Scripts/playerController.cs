@@ -56,7 +56,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     enum shootchoice { shootraycast, spellList, teleportraycast }
     [Header("Shooting")]
     [SerializeField] shootchoice choice;
-    [SerializeField] List<spellStats> spellList = new List<spellStats>();
+    public List<spellStats> spellList = new List<spellStats>();
     [SerializeField] GameObject spellModel;
     [SerializeField] GameObject spell;
     [SerializeField] Transform shootPos;
@@ -64,7 +64,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     [SerializeField] int shootDist;
     [SerializeField] float shootRate;
     float shootTimer;
-    int spellListPos;
+    public int spellListPos;
     public bool canShoot = true;
 
     [Header("Shield")]
@@ -507,7 +507,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         spell = spellList[spellListPos].spellProjectile;
     }
 
-    void HotBar(int spell)
+    public void HotBar(int spell)
     {
         switch (spell)
         {
@@ -554,7 +554,16 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
                 shieldRate = spell.shootRate;
                 spell.spellCheck = false;
             }
-            gameManager.instance.DisplayDescription(spell.spellManual);
+            if (!Cheatmanager.instance.DescriptionCheat)
+                gameManager.instance.DisplayDescription(spell.spellManual);
+        }
+        if (Cheatmanager.instance.spellCheat == true)
+        {
+            spellList.Add(spell);
+            spellListPos = spellList.Count - 1;
+
+            changeSpell();
+            spell.spellCheck = false;
         }
     }
 
@@ -567,72 +576,36 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     {
         if (item.itemName == "Boar Meat")
         {
-            if (item.firstTime)
-            {
-                gameManager.instance.DisplayDescription(item.itemDescription);
-                item.firstTime = false;
-                ingredents.baconCount += 1;
-            }
-            else
-                ingredents.baconCount += 1;
+            ingredents.baconCount += 1;
         }
         else if (item.itemName == "Bee Wax")
         {
-            if (item.firstTime)
-            {
-
-                gameManager.instance.DisplayDescription(item.itemDescription);
-                item.firstTime = false;
-                ingredents.beewaxCount += 1;
-            }
-            else
-                ingredents.beewaxCount += 1;
+            ingredents.beewaxCount += 1;
         }
         else if (item.itemName == "Mushroom")
         {
-            if (item.firstTime)
-            {
-                gameManager.instance.DisplayDescription(item.itemDescription);
-                item.firstTime = false;
-                ingredents.mushroomCount += 1;
-            }
-            else
-                ingredents.mushroomCount += 1;
+            ingredents.mushroomCount += 1;
         }
         else if (item.itemName == "Health Potion")
         {
-            if (item.firstTime)
-            {
-                gameManager.instance.DisplayDescription(item.itemDescription);
-                item.firstTime = false;
-                numofhealpotions += 1;
-                gameManager.instance.UpdatePotionCount(1, 0);
-            }
-            else
-            {
-                numofhealpotions += 1;
-                gameManager.instance.UpdatePotionCount(1, 0);
-            }
+            numofhealpotions += 1;
+            gameManager.instance.UpdatePotionCount(1, 0);
         }
         else if (item.itemName == "Mana Potion")
         {
-            if (item.firstTime)
-            {
-                gameManager.instance.DisplayDescription(item.itemDescription);
-                item.firstTime = false;
-                numofmanapotions += 1;
-                gameManager.instance.UpdatePotionCount(0, 1);
-            }
-            else
-            {
-                numofhealpotions += 1;
-                gameManager.instance.UpdatePotionCount(0, 1);
-            }
+            numofhealpotions += 1;
+            gameManager.instance.UpdatePotionCount(0, 1);
         }
         else if (item.itemName == "Boss Egg")
         {
             gameManager.instance.UpdateMonsterEgg(true);
             gameManager.instance.GameGoalMonsterEgg();
+        }
+
+        if (item.firstTime && Cheatmanager.instance.DescriptionCheat == false)
+        {
+            gameManager.instance.DisplayDescription(item.itemDescription);
+            item.firstTime = false;
         }
     }
 
