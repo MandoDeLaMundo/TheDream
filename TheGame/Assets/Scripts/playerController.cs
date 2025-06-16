@@ -299,7 +299,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             Mana -= manaCost;
             gameManager.instance.UpdatePlayerMPCount(-manaCost);
             updatePlayerUI();
-            if (spellList[spellListPos].name != "Teleport Spell" && spellList[spellListPos].name != "Super_FireBall")
+            if (spellList[spellListPos].name != "Spell7_Teleport Spell" && spellList[spellListPos].name != "Spell2_Super_FireBall")
             {
                 Ray ray = new Ray(mainCam.transform.position, mainCam.transform.forward);
                 if (Physics.Raycast(ray, out RaycastHit hit, 1000f))
@@ -312,7 +312,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
                         Instantiate(spellList[spellListPos].hitEffect, shootPos.position, Quaternion.LookRotation(shootDirection));
                 }
             }
-            else if (spellList[spellListPos].name == "Super_FireBall")
+            else if (spellList[spellListPos].name == "Spell2_Super_FireBall")
             {
                 Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
                 if (spellList[spellListPos].hitEffect != null)
