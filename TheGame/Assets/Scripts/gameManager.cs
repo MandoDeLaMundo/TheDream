@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Security.Cryptography.X509Certificates;
 using Unity.VisualScripting;
+using System.Collections.Generic;
 
 public class gameManager : MonoBehaviour
 {
@@ -48,6 +49,7 @@ public class gameManager : MonoBehaviour
     public Image SpellThree;
     public Image SpellFour;
     public Image SpellFive;
+    [SerializeField] List<spellStats> Spell = new List<spellStats>();
 
     public GameObject playerDamageScreen;
     public GameObject playerStunScreen;
@@ -96,6 +98,7 @@ public class gameManager : MonoBehaviour
 
 		Cursor.visible = false;
 		Cursor.lockState = CursorLockMode.Locked;
+        SpellCheck();
 		UpdateIngredientGoal(baconGoalPI, beesWaxGoalPI, mushroomGoalPI);
 	}
 
@@ -305,6 +308,12 @@ public class gameManager : MonoBehaviour
             menuActive = menuWin;
             menuActive.SetActive(true);
         }
+    }
+
+    void SpellCheck()
+    {
+        for(int i = 0; i < Spell.Count; i++)
+            Spell[i].spellCheck = true;
     }
 
 }

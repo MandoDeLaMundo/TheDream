@@ -488,6 +488,25 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             spellListPos--;
             changeSpell();
         }
+        if (Input.anyKeyDown)
+        {
+            for (int i = 0; i <= 6; i++)
+            {
+                KeyCode key = KeyCode.Alpha0 + i;
+
+                if (Input.GetKeyDown(key) && spellListPos < spellList.Count && spellList.Count != 1)
+                {
+                    int spellpos = i - 1;
+                    Debug.Log("spell pos" + spellListPos);
+                    Debug.Log("spell count" + spellList.Count);
+                    Debug.Log("Key preesed" + key);
+                    Debug.Log("i" + i);
+                    spellListPos = spellpos;
+                    changeSpell();
+
+                }
+            }
+        }
     }
 
     void changeSpell()
@@ -544,12 +563,14 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
                 spellListPos = spellList.Count - 1;
 
                 changeSpell();
+                spell.spellCheck = false;
             }
             else //shield values
             {
                 shield = spell.model;
                 shieldManaCost = spell.manaCost;
                 shieldRate = spell.shootRate;
+                spell.spellCheck = false;
             }
             gameManager.instance.DisplayDescription(spell.spellManual);
         }
