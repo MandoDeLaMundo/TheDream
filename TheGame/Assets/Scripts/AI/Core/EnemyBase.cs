@@ -35,7 +35,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
     public float meleeRange;
     public bool isAttacking;
     public AttackType attackType;
-    int healthOrig;
+    [HideInInspector] int healthOrig;
 
     [Header("AI Settings")]
     [SerializeField] public int faceTargetSpeed;
@@ -43,14 +43,14 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
     [SerializeField] public int roamDist;
     [SerializeField] public int roamPauseTime;
     [SerializeField] public int animTransSpeed;
-    public Vector3 playerDir;
-    public Vector3 startingPos;
-    public float angleToPlayer;
-    public float stoppingDistOrig;
-    public float shootTimer;
-    public float meleeTimer;
-    public float roamTimer;
-    public bool playerInRange;
+    [HideInInspector] public Vector3 playerDir;
+    [HideInInspector] public Vector3 startingPos;
+    [HideInInspector] public float angleToPlayer;
+    [HideInInspector] public float stoppingDistOrig;
+    [HideInInspector] public float shootTimer;
+    [HideInInspector] public float meleeTimer;
+    [HideInInspector] public float roamTimer;
+    [HideInInspector] public bool playerInRange;
 
     public StateMachine stateMachine = new StateMachine();
 
@@ -113,7 +113,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
         model.material.color = colorOrig;
     }
 
-    void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {

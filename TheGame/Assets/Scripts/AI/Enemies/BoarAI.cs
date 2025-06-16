@@ -1,8 +1,7 @@
 using UnityEngine;
 
-public class BoarAI : EnemyBase
+public class BoarAI : ChargingEnemy
 {
-
     public override void TakeDMG(int amount)
     {
         base.TakeDMG(amount);

@@ -54,6 +54,15 @@ public class ChaseState : IState
             _ => false
         };
 
+        if (enemy is ChargingEnemy chargingEnemy)
+        {
+            if (chargingEnemy.canCharge && Vector3.Distance(enemy.transform.position, gameManager.instance.player.transform.position) <= chargingEnemy.chargeRange)
+            {
+                enemy.stateMachine.ChangeState(new ChargeState(chargingEnemy));
+                return;
+            }
+        }
+
         if (shouldAttack)
         {
             enemy.stateMachine.ChangeState(new AttackState(enemy));
