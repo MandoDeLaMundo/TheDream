@@ -952,6 +952,14 @@ PrefabInstance:
       propertyPath: shield
       value: 
       objectReference: {fileID: 1187134636}
+    - target: {fileID: 7427404398149037457, guid: 7df180d1f5585a1408de42c6f3ef5dd2, type: 3}
+      propertyPath: shieldRate
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7427404398149037457, guid: 7df180d1f5585a1408de42c6f3ef5dd2, type: 3}
+      propertyPath: isTeleportingRaycast
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

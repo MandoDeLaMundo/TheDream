@@ -7,13 +7,11 @@ public class Door : MonoBehaviour
     [SerializeField] string text;
     //[SerializeField] bool destroyDoorOn;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         

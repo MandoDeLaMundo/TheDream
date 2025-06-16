@@ -4,16 +4,21 @@ using System.Collections.Generic;
 public class TriggerBox : MonoBehaviour
 {
     enum triggertype { none, root, silent, debuff, geyser }
-    [SerializeField] triggertype type;
 
     [SerializeField] GameObject objectModel;
 
     [SerializeField] ParticleSystem particleVFX;
 
-    [SerializeField] float oxygenRegen;
+    [Header("Types")]
+    [SerializeField] triggertype type;
+
+    [Header("Debuff")]
     [SerializeField] float rootDuration;
     [SerializeField] float silentDuration;
+
+    [Header("Geyser")]
     [SerializeField] float geyserStrength;
+    [SerializeField] float oxygenRegen;
 
     float oxygenTimer;
 

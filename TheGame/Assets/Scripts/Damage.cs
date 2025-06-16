@@ -5,18 +5,25 @@ using System.Collections.Generic;
 public class Damage : MonoBehaviour
 {
 	enum damagetype { moving, stationary, DOT, homing, contact, AOE}
-	[SerializeField] damagetype type;
-	[SerializeField] Rigidbody rb;
+
+    [Header("Types")]
+    [SerializeField] damagetype type;
 
 	[SerializeField] int damageAmount;
 	[SerializeField] int damageRate;
 	[SerializeField] int speed;
 	[SerializeField] float destroyTime;
-	[SerializeField] int contactDMGAmount;
+
+    [Header("Contact")]
+    [SerializeField] int contactDMGAmount;
 	[SerializeField] float knockBackStrength;
 	[SerializeField] float knockbackDelay;
-	[SerializeField] GameObject explosionArea;
 
+    [Header("AOE")]
+    [SerializeField] GameObject explosionArea;
+
+    [Header("")]
+    [SerializeField] Rigidbody rb;
     bool isDamaging;
 	bool canKnockBack = true;
 	bool isExploded = false;
