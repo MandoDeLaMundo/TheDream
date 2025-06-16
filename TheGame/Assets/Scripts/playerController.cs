@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
+using Unity.VisualScripting;
 
 public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 {
@@ -458,7 +459,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
 
         StartCoroutine(flashDamageScreen());
-        StartCoroutine(PostInvulnerable());
+        //StartCoroutine(PostInvulnerable());
 
 
         if (HP <= 0)
@@ -500,7 +501,37 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         spellModel.GetComponent<MeshFilter>().sharedMesh = spellList[spellListPos].model.GetComponent<MeshFilter>().sharedMesh;
         spellModel.GetComponent<MeshRenderer>().sharedMaterial = spellList[spellListPos].model.GetComponent<MeshRenderer>().sharedMaterial;
 
+        HotBar(spellListPos);
+
         spell = spellList[spellListPos].spellProjectile;
+    }
+
+    void HotBar(int spell)
+    {
+        switch (spell)
+        {
+            case 0:
+                gameManager.instance.SpellOne.sprite = spellList[spell].sprite;
+                gameManager.instance.MainSpell.sprite = spellList[spell].sprite;
+                break;
+            case 1:
+                gameManager.instance.SpellTwo.sprite = spellList[spell].sprite;
+                gameManager.instance.MainSpell.sprite = spellList[spell].sprite;
+                break;
+            case 2:
+                gameManager.instance.SpellThree.sprite = spellList[spell].sprite;
+                gameManager.instance.MainSpell.sprite = spellList[spell].sprite;
+                break;
+            case 3:
+                gameManager.instance.SpellFour.sprite = spellList[spell].sprite;
+                gameManager.instance.MainSpell.sprite = spellList[spell].sprite;
+                break;
+            case 4:
+                gameManager.instance.SpellFive.sprite = spellList[spell].sprite;
+                gameManager.instance.MainSpell.sprite = spellList[spell].sprite;
+                break;
+
+        }
     }
 
     public void GetSpellStats(spellStats spell)

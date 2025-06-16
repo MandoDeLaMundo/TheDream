@@ -24,3 +24,4 @@ MonoBehaviour:
   shootSoundVol: 0
   spellCheck: 1
   spellManual: 
+  sprite: {fileID: 21300000, guid: f09c71608944ab2439404abe6670f3d9, type: 3}

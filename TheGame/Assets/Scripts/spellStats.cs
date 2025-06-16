@@ -17,4 +17,5 @@ public class spellStats : ScriptableObject
 
     public bool spellCheck; //Armando is public
     public string spellManual; //Tristian is private
+    public Sprite sprite;
 }
