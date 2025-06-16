@@ -12,4 +12,23 @@ public class MainMenu : MonoBehaviour
     {
 
     }
+
+    public GameObject credits;
+    public GameObject x;
+
+    public void CreditsMenu()
+    {
+        if (credits.activeInHierarchy == false)
+            credits.SetActive(true);
+        else
+            credits.SetActive(false);
+    }
+
+    public void exitCreditsMenu()
+    {
+        if (credits.activeInHierarchy == true)
+            credits.SetActive(false);
+        else
+            credits.SetActive(true);
+    }
 }
