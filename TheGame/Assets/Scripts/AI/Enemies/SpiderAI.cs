@@ -1,16 +1,9 @@
 using UnityEngine;
 
-public class SpiderAI : MonoBehaviour
+public class SpiderAI : EnemyBase
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public override void TakeDMG(int amount)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        base.TakeDMG(amount);
     }
 }

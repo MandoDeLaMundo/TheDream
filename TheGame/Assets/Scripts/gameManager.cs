@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Security.Cryptography.X509Certificates;
 using Unity.VisualScripting;
+using System.Collections.Generic;
 
 public class gameManager : MonoBehaviour
 {
@@ -41,6 +42,14 @@ public class gameManager : MonoBehaviour
     public Image playerOxygenBarFiller;
     int playerOXCountOrig;
     int playerOXMaxOrig;
+
+    public Image MainSpell;
+    public Image SpellOne;
+    public Image SpellTwo;
+    public Image SpellThree;
+    public Image SpellFour;
+    public Image SpellFive;
+    [SerializeField] List<spellStats> Spell = new List<spellStats>();
 
     public GameObject playerDamageScreen;
     public GameObject playerStunScreen;
@@ -81,11 +90,15 @@ public class gameManager : MonoBehaviour
 	{
 		instance = this;
 		player = GameObject.FindWithTag("Player");
-		playerScript = player.GetComponent<playerController>();
+        if (player != null)
+        {
+            playerScript = player.GetComponent<playerController>();
+        }
 		timeScaleOrig = Time.timeScale;
 
 		Cursor.visible = false;
 		Cursor.lockState = CursorLockMode.Locked;
+        SpellCheck();
 		UpdateIngredientGoal(baconGoalPI, beesWaxGoalPI, mushroomGoalPI);
 	}
 
@@ -297,19 +310,10 @@ public class gameManager : MonoBehaviour
         }
     }
 
-    public void PlayGame()
+    void SpellCheck()
     {
-
+        for(int i = 0; i < Spell.Count; i++)
+            Spell[i].spellCheck = true;
     }
 
-    public void QuitGame()
-    {
-                Application.Quit();
-        Debug.Log("Quit Game");
-    }
-
-    public void Options()
-    {
-
-    }
 }

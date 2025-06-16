@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
+using Unity.VisualScripting;
 
 public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 {
@@ -442,10 +443,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     {
         if (canTakeDam)
         {
-            Debug.Log("TakeDMG");
             if (!Cheatmanager.instance.IsInvulnerable())
             {
-                Debug.Log("Damage");
                 aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
                 HP -= amount;
                 gameManager.instance.UpdatePlayerHPCount(-amount);
@@ -460,12 +459,11 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
 
         StartCoroutine(flashDamageScreen());
-     //   StartCoroutine(PostInvulnerable());
+        //StartCoroutine(PostInvulnerable());
 
 
         if (HP <= 0)
         {
-            Debug.Log("Hp = 0");
             anim.SetTrigger("HP");
             gameManager.instance.YouLose();
         }
@@ -490,6 +488,25 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             spellListPos--;
             changeSpell();
         }
+        if (Input.anyKeyDown)
+        {
+            for (int i = 0; i <= 6; i++)
+            {
+                KeyCode key = KeyCode.Alpha0 + i;
+
+                if (Input.GetKeyDown(key) && spellListPos < spellList.Count && spellList.Count != 1)
+                {
+                    int spellpos = i - 1;
+                    Debug.Log("spell pos" + spellListPos);
+                    Debug.Log("spell count" + spellList.Count);
+                    Debug.Log("Key preesed" + key);
+                    Debug.Log("i" + i);
+                    spellListPos = spellpos;
+                    changeSpell();
+
+                }
+            }
+        }
     }
 
     void changeSpell()
@@ -503,7 +520,37 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         spellModel.GetComponent<MeshFilter>().sharedMesh = spellList[spellListPos].model.GetComponent<MeshFilter>().sharedMesh;
         spellModel.GetComponent<MeshRenderer>().sharedMaterial = spellList[spellListPos].model.GetComponent<MeshRenderer>().sharedMaterial;
 
+        HotBar(spellListPos);
+
         spell = spellList[spellListPos].spellProjectile;
+    }
+
+    void HotBar(int spell)
+    {
+        switch (spell)
+        {
+            case 0:
+                gameManager.instance.SpellOne.sprite = spellList[spell].sprite;
+                gameManager.instance.MainSpell.sprite = spellList[spell].sprite;
+                break;
+            case 1:
+                gameManager.instance.SpellTwo.sprite = spellList[spell].sprite;
+                gameManager.instance.MainSpell.sprite = spellList[spell].sprite;
+                break;
+            case 2:
+                gameManager.instance.SpellThree.sprite = spellList[spell].sprite;
+                gameManager.instance.MainSpell.sprite = spellList[spell].sprite;
+                break;
+            case 3:
+                gameManager.instance.SpellFour.sprite = spellList[spell].sprite;
+                gameManager.instance.MainSpell.sprite = spellList[spell].sprite;
+                break;
+            case 4:
+                gameManager.instance.SpellFive.sprite = spellList[spell].sprite;
+                gameManager.instance.MainSpell.sprite = spellList[spell].sprite;
+                break;
+
+        }
     }
 
     public void GetSpellStats(spellStats spell)
@@ -516,12 +563,14 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
                 spellListPos = spellList.Count - 1;
 
                 changeSpell();
+                spell.spellCheck = false;
             }
             else //shield values
             {
                 shield = spell.model;
                 shieldManaCost = spell.manaCost;
                 shieldRate = spell.shootRate;
+                spell.spellCheck = false;
             }
             gameManager.instance.DisplayDescription(spell.spellManual);
         }
