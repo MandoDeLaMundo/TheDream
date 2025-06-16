@@ -35,9 +35,11 @@ public class AttackState : IState
             case EnemyBase.AttackType.Melee:
                 HandleMelee(distanceToPlayer);
                 break;
+
             case EnemyBase.AttackType.Ranged:
                 HandleRanged();
                 break;
+
             case EnemyBase.AttackType.Hybrid:
                 if (distanceToPlayer <= enemy.meleeRange)
                     HandleMelee(distanceToPlayer);
@@ -57,15 +59,18 @@ public class AttackState : IState
 
     void HandleMelee(float distanceToPlayer)
     {
-        if (distanceToPlayer <= enemy.meleeRange && enemy.meleeTimer >= enemy.meleeRate)
-        {
-            // enemy.anim.SetTrigger("Attack");
-            Attack();
-        }
-        
         if (distanceToPlayer > enemy.meleeRange + 0.5f)
         {
+            enemy.agent.isStopped = false;
             enemy.stateMachine.ChangeState(new ChaseState(enemy));
+            return;
+        }
+        
+        if (enemy.meleeTimer >= enemy.meleeRate)
+        {
+            enemy.meleeTimer = 0f;
+            gameManager.instance.player.GetComponent<playerController>()?.TakeDMG(enemy.meleeDmgAmt);
+            // TODO: enemy.anim.SetTrigger("MeleeAttack");
         }
 
         enemy.meleeTimer += Time.deltaTime;
@@ -75,7 +80,10 @@ public class AttackState : IState
     {
         if (enemy.playerInRange && enemy.shootTimer >= enemy.shootRate)
         {
-            Shoot();
+            enemy.shootTimer = 0f;
+            Vector3 playerDir = (gameManager.instance.player.transform.position - enemy.shootPos.position).normalized;
+            Object.Instantiate(enemy.projectile, enemy.shootPos.position, Quaternion.LookRotation(playerDir));
+            // TODO: enemy.anim.SetTrigger("Shoot");
         }
 
         enemy.shootTimer += Time.deltaTime;
@@ -85,23 +93,9 @@ public class AttackState : IState
     void FaceTarget()
     {
         Vector3 lookDir = (gameManager.instance.player.transform.position - enemy.transform.position).normalized;
-        Quaternion rot = Quaternion.LookRotation(new Vector3(lookDir.x, enemy.transform.position.y, lookDir.z));
-        enemy.transform.rotation = Quaternion.Lerp(enemy.transform.rotation, rot, Time.deltaTime * enemy.faceTargetSpeed);
-    }
+        lookDir.y = 0;
 
-    public void Shoot()
-    {
-        enemy.shootTimer = 0;
-        if (enemy.projectile)
-        {
-            Vector3 playerDir = (gameManager.instance.player.transform.position - enemy.shootPos.position).normalized;
-            Object.Instantiate(enemy.projectile, enemy.shootPos.position, Quaternion.LookRotation(playerDir));
-        }
-    }
-
-    public void Attack()
-    {
-        enemy.meleeTimer = 0;
-        gameManager.instance.player.GetComponent<playerController>().TakeDMG(enemy.meleeDmgAmt);
+        Quaternion rot = Quaternion.LookRotation(lookDir);
+        enemy.transform.rotation = Quaternion.RotateTowards(enemy.transform.rotation, rot, Time.deltaTime * enemy.faceTargetSpeed);
     }
 }

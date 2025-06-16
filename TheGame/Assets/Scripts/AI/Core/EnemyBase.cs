@@ -35,7 +35,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
     public float meleeRange;
     public bool isAttacking;
     public AttackType attackType;
-    int healthOrig;
+    [HideInInspector] int healthOrig;
 
     [Header("AI Settings")]
     [SerializeField] public int faceTargetSpeed;
@@ -43,14 +43,14 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
     [SerializeField] public int roamDist;
     [SerializeField] public int roamPauseTime;
     [SerializeField] public int animTransSpeed;
-    public Vector3 playerDir;
-    public Vector3 startingPos;
-    public float angleToPlayer;
-    public float stoppingDistOrig;
-    public float shootTimer;
-    public float meleeTimer;
-    public float roamTimer;
-    public bool playerInRange;
+    [HideInInspector] public Vector3 playerDir;
+    [HideInInspector] public Vector3 startingPos;
+    [HideInInspector] public float angleToPlayer;
+    [HideInInspector] public float stoppingDistOrig;
+    [HideInInspector] public float shootTimer;
+    [HideInInspector] public float meleeTimer;
+    [HideInInspector] public float roamTimer;
+    [HideInInspector] public bool playerInRange;
 
     public StateMachine stateMachine = new StateMachine();
 
@@ -67,7 +67,6 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
         if (!anim)
         { 
             anim = GetComponentInChildren<Animator>();
-            //Debug.Log("Assigned Animator: " + anim);
         }
 
         colorOrig = model.material.color;
@@ -90,10 +89,8 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
 
     public virtual void TakeDMG(int amount)
     {
-        Debug.Log($"{gameObject.name} TakeDMG called with amount {amount}");
         health -= amount;
         UpdateEnemyUI();
-        Debug.Log("UI has been updated");
 
         if (health <= 0)
         {
@@ -111,13 +108,12 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
 
     IEnumerator FlashRed()
     {
-        Debug.Log("CoRoutine Started");
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.05f);
         model.material.color = colorOrig;
     }
 
-    void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
@@ -156,9 +152,6 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
         {
             hpBar.fillAmount = (float)health / healthOrig;
         }
-        else
-        {
-            Debug.LogWarning($"{gameObject.name} hpBar is null");
-        }
+
     }
 }

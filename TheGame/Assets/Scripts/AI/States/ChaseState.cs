@@ -15,6 +15,7 @@ public class ChaseState : IState
     {
         losePlayerTimer = 0f;
         enemy.agent.stoppingDistance = enemy.stoppingDistOrig;
+        enemy.agent.isStopped = false;
     }
 
     public void Update()
@@ -34,12 +35,35 @@ public class ChaseState : IState
         }
 
         Vector3 playerPos = gameManager.instance.player.transform.position;
-        if (Vector3.Distance(enemy.agent.destination, playerPos) > 1f)
+        if (Vector3.Distance(enemy.agent.destination, playerPos) > enemy.meleeRange)
         {
-            enemy.agent.SetDestination(playerPos);
+            if (enemy.agent.destination != playerPos)
+                enemy.agent.SetDestination(playerPos);
+
+            enemy.agent.isStopped = false;
         }
 
-        if (enemy.agent.remainingDistance <= enemy.meleeRange)
+        float distanceToPlayer = Vector3.Distance(enemy.transform.position, playerPos);
+
+            // The following is shorthand versions of bool switch case conditions. It's called a C# expression-based switch
+        bool shouldAttack = enemy.attackType switch
+        {
+            EnemyBase.AttackType.Melee => distanceToPlayer <= enemy.meleeRange,
+            EnemyBase.AttackType.Ranged => enemy.playerInRange,
+            EnemyBase.AttackType.Hybrid => distanceToPlayer <= enemy.meleeRange || enemy.playerInRange,
+            _ => false
+        };
+
+        if (enemy is ChargingEnemy chargingEnemy)
+        {
+            if (chargingEnemy.canCharge && Vector3.Distance(enemy.transform.position, gameManager.instance.player.transform.position) <= chargingEnemy.chargeRange)
+            {
+                enemy.stateMachine.ChangeState(new ChargeState(chargingEnemy));
+                return;
+            }
+        }
+
+        if (shouldAttack)
         {
             enemy.stateMachine.ChangeState(new AttackState(enemy));
         }
