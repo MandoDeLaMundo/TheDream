@@ -88,7 +88,10 @@ public class gameManager : MonoBehaviour
 	{
 		instance = this;
 		player = GameObject.FindWithTag("Player");
-		playerScript = player.GetComponent<playerController>();
+        if (player != null)
+        {
+            playerScript = player.GetComponent<playerController>();
+        }
 		timeScaleOrig = Time.timeScale;
 
 		Cursor.visible = false;
@@ -304,19 +307,4 @@ public class gameManager : MonoBehaviour
         }
     }
 
-    public void PlayGame()
-    {
-
-    }
-
-    public void QuitGame()
-    {
-                Application.Quit();
-        Debug.Log("Quit Game");
-    }
-
-    public void Options()
-    {
-
-    }
 }
