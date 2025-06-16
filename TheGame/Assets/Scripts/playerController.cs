@@ -464,7 +464,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
         if (HP <= 0)
         {
-            anim.SetTrigger("HP");
+            //anim.SetTrigger("HP");
             gameManager.instance.YouLose();
         }
     }
