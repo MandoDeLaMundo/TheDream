@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4679952212bcb7c48b6fd9f89c05547d, type: 3}
-  m_Name: Super_LightningBone
+  m_Name: Spell6_Super_IceSaw
   m_EditorClassIdentifier: 
-  model: {fileID: 4417435450986619218, guid: 0d0ae09fa98635e4e8435fc1a1fc72c7, type: 3}
-  spellProjectile: {fileID: 3749515074666461166, guid: 8050d5cc44e91fc469f497359c3382ab, type: 3}
+  model: {fileID: 3676379699232972619, guid: 340f8fecb7a9daa4bb72c4d06454e3c6, type: 3}
+  spellProjectile: {fileID: 3749515074666461166, guid: 37186984fa0c2694f87dc32d80232d8d, type: 3}
   shootDMG: 5
-  shootRate: 0.5
-  shootDist: 15
-  manaCost: 1
-  spellRadius: 20
+  shootRate: 4.25
+  shootDist: 55
+  manaCost: 2
+  spellRadius: 0
   hitEffect: {fileID: 0}
   shootSound: []
   shootSoundVol: 0
   spellCheck: 1
   spellManual: 
-  pickup: {fileID: 8530042751684896022, guid: 12e65437c438dd543aa8cddd42cdbd37, type: 3}
-  sprite: {fileID: 21300000, guid: fb5fefa89ac57c846963508ff0077c5b, type: 3}
+  pickup: {fileID: 8813011081889499721, guid: d84026e8e3505cf41a72f7a87e73f6b3, type: 3}
+  sprite: {fileID: 21300000, guid: 3c25a042749a8f4419145d720286ab7d, type: 3}

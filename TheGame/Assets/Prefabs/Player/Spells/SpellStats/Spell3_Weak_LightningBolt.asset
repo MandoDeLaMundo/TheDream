@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4679952212bcb7c48b6fd9f89c05547d, type: 3}
-  m_Name: Weak_IceBolt
+  m_Name: Spell3_Weak_LightningBolt
   m_EditorClassIdentifier: 
-  model: {fileID: 6262986123301899059, guid: 8e26553eb7bc8f84e87ad5cbe258d7a2, type: 3}
-  spellProjectile: {fileID: 3461775368703754523, guid: 481127b6fe2938f4da694c091457ff4d, type: 3}
+  model: {fileID: 2548421307829038991, guid: a976c1b6e1a7097458bb2765bcb0ab4d, type: 3}
+  spellProjectile: {fileID: 6211368091158433607, guid: 9eb1dc2bff3568444a216f62f458e6fb, type: 3}
   shootDMG: 1
   shootRate: 1
   shootDist: 10
@@ -24,5 +24,5 @@ MonoBehaviour:
   shootSoundVol: 0
   spellCheck: 1
   spellManual: 
-  pickup: {fileID: 7520428267672629110, guid: 9e0e3cf3f3a590746aab6322c573ca83, type: 3}
-  sprite: {fileID: 21300000, guid: 49b9a053f532f9a43971e77a3f66595a, type: 3}
+  pickup: {fileID: 2569411990736249603, guid: dfd381ce45b2b694c806117b852fe81f, type: 3}
+  sprite: {fileID: 21300000, guid: 37edb101dc1fc7d43acfe09203fc670d, type: 3}

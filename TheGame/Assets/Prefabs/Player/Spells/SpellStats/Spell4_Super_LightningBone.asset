@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4679952212bcb7c48b6fd9f89c05547d, type: 3}
-  m_Name: Weak_LightningBolt
+  m_Name: Spell4_Super_LightningBone
   m_EditorClassIdentifier: 
-  model: {fileID: 2548421307829038991, guid: a976c1b6e1a7097458bb2765bcb0ab4d, type: 3}
-  spellProjectile: {fileID: 6211368091158433607, guid: 9eb1dc2bff3568444a216f62f458e6fb, type: 3}
-  shootDMG: 1
-  shootRate: 1
-  shootDist: 10
+  model: {fileID: 4417435450986619218, guid: 0d0ae09fa98635e4e8435fc1a1fc72c7, type: 3}
+  spellProjectile: {fileID: 3749515074666461166, guid: 8050d5cc44e91fc469f497359c3382ab, type: 3}
+  shootDMG: 5
+  shootRate: 0.5
+  shootDist: 15
   manaCost: 1
-  spellRadius: 0
+  spellRadius: 20
   hitEffect: {fileID: 0}
   shootSound: []
   shootSoundVol: 0
   spellCheck: 1
   spellManual: 
-  pickup: {fileID: 2569411990736249603, guid: dfd381ce45b2b694c806117b852fe81f, type: 3}
-  sprite: {fileID: 21300000, guid: 37edb101dc1fc7d43acfe09203fc670d, type: 3}
+  pickup: {fileID: 8530042751684896022, guid: 12e65437c438dd543aa8cddd42cdbd37, type: 3}
+  sprite: {fileID: 21300000, guid: fb5fefa89ac57c846963508ff0077c5b, type: 3}
