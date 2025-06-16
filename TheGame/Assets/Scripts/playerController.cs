@@ -442,8 +442,10 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     {
         if (canTakeDam)
         {
+            Debug.Log("TakeDMG");
             if (!Cheatmanager.instance.IsInvulnerable())
             {
+                Debug.Log("Damage");
                 aud.PlayOneShot(audHurt[Random.Range(0, audHurt.Length)], audHurtVol);
                 HP -= amount;
                 gameManager.instance.UpdatePlayerHPCount(-amount);
@@ -458,11 +460,12 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
 
         StartCoroutine(flashDamageScreen());
-        StartCoroutine(PostInvulnerable());
+     //   StartCoroutine(PostInvulnerable());
 
 
         if (HP <= 0)
         {
+            Debug.Log("Hp = 0");
             anim.SetTrigger("HP");
             gameManager.instance.YouLose();
         }
