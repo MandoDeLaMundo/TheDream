@@ -42,6 +42,13 @@ public class gameManager : MonoBehaviour
     int playerOXCountOrig;
     int playerOXMaxOrig;
 
+    public Image MainSpell;
+    public Image SpellOne;
+    public Image SpellTwo;
+    public Image SpellThree;
+    public Image SpellFour;
+    public Image SpellFive;
+
     public GameObject playerDamageScreen;
     public GameObject playerStunScreen;
 	public GameObject player;
@@ -81,7 +88,10 @@ public class gameManager : MonoBehaviour
 	{
 		instance = this;
 		player = GameObject.FindWithTag("Player");
-		playerScript = player.GetComponent<playerController>();
+        if (player != null)
+        {
+            playerScript = player.GetComponent<playerController>();
+        }
 		timeScaleOrig = Time.timeScale;
 
 		Cursor.visible = false;
@@ -297,19 +307,4 @@ public class gameManager : MonoBehaviour
         }
     }
 
-    public void PlayGame()
-    {
-
-    }
-
-    public void QuitGame()
-    {
-                Application.Quit();
-        Debug.Log("Quit Game");
-    }
-
-    public void Options()
-    {
-
-    }
 }
