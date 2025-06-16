@@ -4957,7 +4957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32f2f564b76da8b4f8918ba971a9f1cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 4
   objectModel: {fileID: 694005713004250993}
   particleVFX: {fileID: 6549054825133196573}
   oxygenRegen: 2
