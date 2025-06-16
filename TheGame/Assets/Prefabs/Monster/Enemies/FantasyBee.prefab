@@ -221,12 +221,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1168164168244862830}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94da58ea378255947b518f960784e043, type: 3}
+  m_Script: {fileID: 11500000, guid: c99b968ea6c376b42af4738c99309de1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 6314089405389354730}
   agent: {fileID: 7578308124583720461}
-  anim: {fileID: 209438276433941596}
+  anim: {fileID: 0}
   headPos: {fileID: 1495835948174725066}
   lootPos: {fileID: 2091757361059953452}
   weaponCol: {fileID: 0}
@@ -239,7 +239,7 @@ MonoBehaviour:
   shootRate: 0
   meleeRate: 1
   meleeDmgAmt: 1
-  meleeRange: 5
+  meleeRange: 3
   isAttacking: 0
   attackType: 0
   faceTargetSpeed: 15

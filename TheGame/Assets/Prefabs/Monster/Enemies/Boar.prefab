@@ -84,10 +84,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5089134685164194254}
-  - component: {fileID: 4891022586247652238}
-  - component: {fileID: 2754807476475178365}
   - component: {fileID: 2557216960556687604}
   - component: {fileID: 2091626438058785457}
+  - component: {fileID: 4891022586247652238}
+  - component: {fileID: 2754807476475178365}
   - component: {fileID: 1153794112522934549}
   - component: {fileID: 8532322503401459922}
   - component: {fileID: 6635497598963776014}
@@ -117,6 +117,80 @@ Transform:
   - {fileID: 6322046973410619214}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!195 &2557216960556687604
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3288092488759638632}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 3
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 0
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &2091626438058785457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3288092488759638632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74f0d51d5762d51429171bb7070b9140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  model: {fileID: 2754807476475178365}
+  agent: {fileID: 2557216960556687604}
+  anim: {fileID: 0}
+  headPos: {fileID: 7028370440570355352}
+  lootPos: {fileID: 5448017894344178}
+  weaponCol: {fileID: 0}
+  dropItemPrefab: {fileID: 3037396062109890694, guid: ae5102f2b4aaefb409179477d8402f12, type: 3}
+  enemyHP: {fileID: 7357713957008901379}
+  hpBar: {fileID: 8585654596586120287}
+  health: 5
+  shootPos: {fileID: 0}
+  projectile: {fileID: 0}
+  shootRate: 0
+  meleeRate: 1
+  meleeDmgAmt: 1
+  meleeRange: 5
+  isAttacking: 0
+  attackType: 0
+  faceTargetSpeed: 15
+  FOV: 120
+  roamDist: 20
+  roamPauseTime: 2
+  animTransSpeed: 0
+  playerDir: {x: 0, y: 0, z: 0}
+  startingPos: {x: 0, y: 0, z: 0}
+  angleToPlayer: 0
+  stoppingDistOrig: 0
+  shootTimer: 0
+  meleeTimer: 0
+  roamTimer: 0
+  playerInRange: 0
+  chargeRange: 10
+  chargeSpeed: 10
+  chargeDuration: 2
+  chargeCooldown: 2
+  chargeDamage: 3
+  chargeCollider: {fileID: 136981832516568141}
+  canCharge: 1
+  isCharging: 0
+  hitPlayerDuringCharge: 0
 --- !u!33 &4891022586247652238
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -170,80 +244,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!195 &2557216960556687604
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3288092488759638632}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 3
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 0
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 1
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
---- !u!114 &2091626438058785457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3288092488759638632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 679fc8a212a54014592eb8d0868688f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  model: {fileID: 2754807476475178365}
-  agent: {fileID: 2557216960556687604}
-  anim: {fileID: 0}
-  headPos: {fileID: 7028370440570355352}
-  lootPos: {fileID: 5448017894344178}
-  weaponCol: {fileID: 0}
-  dropItemPrefab: {fileID: 3037396062109890694, guid: ae5102f2b4aaefb409179477d8402f12, type: 3}
-  enemyHP: {fileID: 7357713957008901379}
-  hpBar: {fileID: 8585654596586120287}
-  health: 5
-  shootPos: {fileID: 0}
-  projectile: {fileID: 0}
-  shootRate: 0
-  meleeRate: 1
-  meleeDmgAmt: 1
-  meleeRange: 3
-  isAttacking: 0
-  attackType: 0
-  faceTargetSpeed: 15
-  FOV: 120
-  roamDist: 20
-  roamPauseTime: 2
-  animTransSpeed: 0
-  playerDir: {x: 0, y: 0, z: 0}
-  startingPos: {x: 0, y: 0, z: 0}
-  angleToPlayer: 0
-  stoppingDistOrig: 0
-  shootTimer: 0
-  meleeTimer: 0
-  roamTimer: 0
-  playerInRange: 0
-  chargeRange: 10
-  chargeSpeed: 10
-  chargeDuration: 2
-  chargeCooldown: 3
-  chargeDamage: 3
-  chargeCollider: {fileID: 136981832516568141}
-  canCharge: 1
-  isCharging: 0
-  hitPlayerDuringCharge: 0
 --- !u!54 &1153794112522934549
 Rigidbody:
   m_ObjectHideFlags: 0
