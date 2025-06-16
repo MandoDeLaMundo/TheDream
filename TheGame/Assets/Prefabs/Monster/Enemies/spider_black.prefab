@@ -802,7 +802,7 @@ Transform:
   m_GameObject: {fileID: 3983372767451402241}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.011, y: 1.013, z: 1.5}
+  m_LocalPosition: {x: -0.011, y: 1.013, z: 0.95000076}
   m_LocalScale: {x: 0.26343, y: 0.26343, z: 0.26343}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1015,7 +1015,7 @@ GameObject:
   - component: {fileID: 5719425363744303910}
   m_Layer: 0
   m_Name: spider_black
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1072,7 +1072,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4486282791511447159}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e03bb2971e2004b4f9b27b706b3e28c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ecf7306c5a03f747a9f494e2ef89995, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 1444294190648121161}
@@ -1084,15 +1084,15 @@ MonoBehaviour:
   dropItemPrefab: {fileID: 1970931541226843332, guid: 3cf9838fbfeed584fb5575a337d6ab00, type: 3}
   enemyHP: {fileID: 3405124197501430314}
   hpBar: {fileID: 4505720399764342878}
-  health: 3
+  health: 5
   shootPos: {fileID: 589842119711285168}
   projectile: {fileID: 3831039740292043157, guid: e7d7b9097e3975d49a2381b8d6e2c171, type: 3}
   shootRate: 1
   meleeRate: 1
   meleeDmgAmt: 1
-  meleeRange: 3
+  meleeRange: 1
   isAttacking: 0
-  attackType: 1
+  attackType: 2
   faceTargetSpeed: 15
   FOV: 120
   roamDist: 20
@@ -1119,7 +1119,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
