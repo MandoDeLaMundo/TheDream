@@ -974,6 +974,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sentry Plant  Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 8103980495179980380, guid: 415607606782ca44688236ff86f0c48e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8480144875665055069, guid: 415607606782ca44688236ff86f0c48e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 23.443481

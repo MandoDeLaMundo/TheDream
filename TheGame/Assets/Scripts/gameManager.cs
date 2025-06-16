@@ -9,10 +9,13 @@ public class gameManager : MonoBehaviour
 {
 	public static gameManager instance;
 
+    [Header("Menus")]
 	[SerializeField] GameObject menuActive;
 	[SerializeField] GameObject menuPause;
 	[SerializeField] GameObject menuWin;
 	[SerializeField] GameObject menuLose;
+
+    [Header("Texts")]
 	[SerializeField] TMP_Text gameGoalCountText;
     [SerializeField] TMP_Text bossHPCountText;
     [SerializeField] TMP_Text bossHPMaxText;
@@ -25,40 +28,50 @@ public class gameManager : MonoBehaviour
     [SerializeField] TMP_Text beesWaxGoalText;
     [SerializeField] TMP_Text mushroomGoalText;
 
+    [Header("Player Health")]
     [SerializeField] TMP_Text playerHPCountText; 
 	[SerializeField] TMP_Text playerHPMaxText; 
 	public Image playerHPBar;
 	int playerHPCountOrig; 
 	int playerHPMaxOrig;
 
+    [Header("Player Mana")]
     [SerializeField] TMP_Text playerMPCountText; 
 	[SerializeField] TMP_Text playerMPMaxText;
     public Image playerManaBar;
 	int playerMPCountOrig;
 	int playerMPMaxOrig;
 
+    [Header("Player Oxgyen")]
     [SerializeField] TMP_Text playerOXCountText;
     [SerializeField] TMP_Text playerOXMaxText;
     public Image playerOxygenBarFiller;
     int playerOXCountOrig;
     int playerOXMaxOrig;
 
+    [Header("HotBar")]
     public Image MainSpell;
     public Image SpellOne;
     public Image SpellTwo;
     public Image SpellThree;
     public Image SpellFour;
     public Image SpellFive;
-    [SerializeField] List<spellStats> Spell = new List<spellStats>();
+    List<spellStats> Spell = new List<spellStats>();
 
-    public GameObject playerDamageScreen;
-    public GameObject playerStunScreen;
-	public GameObject player;
-	public playerController playerScript;
+    [Header("Description")]
 	public GameObject textBox;
 	public TMP_Text textDescription;
+
+    [Header("Dialogue")]
 	public GameObject DialogueBox;
 	public TMP_Text DialogueDescription;
+
+    [Header("Screens")]
+    public GameObject playerDamageScreen;
+    public GameObject playerStunScreen;
+
+	public GameObject player;
+	public playerController playerScript;
 	public Image bossHPBar; 
 	public int baconGoalPI;
 	public int beesWaxGoalPI;

@@ -4,10 +4,12 @@ public class craftingSystem : MonoBehaviour
 {
     public static craftingSystem instance;
 
+    [Header("Crafting Display")]
     [SerializeField] GameObject craftActive;
     [SerializeField] GameObject craftHeal;
     [SerializeField] GameObject craftMana;
 
+    [Header("Potion Display")]
     [SerializeField] GameObject potionActive;
     [SerializeField] GameObject potionHeal;
     [SerializeField] GameObject potionMana;

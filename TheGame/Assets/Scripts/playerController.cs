@@ -9,6 +9,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 {
     public static playerController instance;
 
+    [Header("Player")]
     public CharacterController controller;
     public Camera mainCam;
     [SerializeField] NavMeshAgent agent;
@@ -16,6 +17,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     [SerializeField] LayerMask ignoreLayer;
     [SerializeField] int animTransSpeed;
 
+    [Header("Health")]
     [SerializeField] int HP;
     int HPOrig;
     [SerializeField] float healingCooldown;
@@ -25,6 +27,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     float healTimer;
     public bool canTakeDam = true;
 
+    [Header("Mana")]
     [SerializeField] int Mana;
     int ManaOrig;
     [SerializeField] int manaCost;
@@ -35,11 +38,13 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     float manaRegenTimer;
     public int numofmanapotions;
 
+    [Header("Oxygen")]
     public int Oxygen;
     public int OxygenOrig;
     [SerializeField] Transform WaterPos;
     [SerializeField] LayerMask waterLayer;
 
+    [Header("Movement")]
     [SerializeField] float speed;
     float origSpeed;
     [SerializeField] int sprintMod;
@@ -48,6 +53,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     public bool canMove = true;
 
     enum shootchoice { shootraycast, spellList, teleportraycast }
+    [Header("Shooting")]
     [SerializeField] shootchoice choice;
     [SerializeField] List<spellStats> spellList = new List<spellStats>();
     [SerializeField] GameObject spellModel;
@@ -60,6 +66,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     int spellListPos;
     public bool canShoot = true;
 
+    [Header("Shield")]
     [SerializeField] GameObject shield;
     [SerializeField] GameObject shieldBubble;
     [SerializeField] float shieldRate;
@@ -69,6 +76,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     [SerializeField] float teleportRate;
     [SerializeField] int teleportDist;
 
+    [Header("Jump")]
     [SerializeField] int jumpMax;
     [SerializeField] int jumpForce;
     [SerializeField] int Gravity;
@@ -80,6 +88,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     int beewaxcount;
     int mushroomscount;
 
+    [Header("Audio")]
     [SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] audStep;
     [Range(0, 1)][SerializeField] float audStepVol;
