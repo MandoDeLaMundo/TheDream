@@ -4,16 +4,21 @@ using System.Collections.Generic;
 public class TriggerBox : MonoBehaviour
 {
     enum triggertype { none, root, silent, debuff, geyser }
-    [SerializeField] triggertype type;
 
     [SerializeField] GameObject objectModel;
 
     [SerializeField] ParticleSystem particleVFX;
 
-    [SerializeField] float oxygenRegen;
+    [Header("Types")]
+    [SerializeField] triggertype type;
+
+    [Header("Debuff")]
     [SerializeField] float rootDuration;
     [SerializeField] float silentDuration;
+
+    [Header("Geyser")]
     [SerializeField] float geyserStrength;
+    [SerializeField] float oxygenRegen;
 
     float oxygenTimer;
 
@@ -50,6 +55,22 @@ public class TriggerBox : MonoBehaviour
             {
                 proc = true;
                 StartCoroutine(RootPlayer());
+            }
+        }
+        if (!proc && type == triggertype.root)
+        {
+            if (other.CompareTag("Player"))
+            {
+                proc = true;
+                StartCoroutine(RootPlayer());
+            }
+        }
+        if (!proc && type == triggertype.silent)
+        {
+            if (other.CompareTag("Player"))
+            {
+                proc = true;
+                StartCoroutine(SilentPlayer());
             }
         }
     }
@@ -93,10 +114,14 @@ public class TriggerBox : MonoBehaviour
     }
     IEnumerator SilentPlayer()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         playerController.instance.canShoot = false;
         yield return new WaitForSeconds(silentDuration);
         playerController.instance.canShoot = true;
+        if (type == triggertype.silent)
+        {
+            objectModel.SetActive(false);
+        }
     }
     IEnumerator PlayerKnockBack(Transform playerPosition)
     {
