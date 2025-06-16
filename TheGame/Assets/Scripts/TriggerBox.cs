@@ -52,6 +52,22 @@ public class TriggerBox : MonoBehaviour
                 StartCoroutine(RootPlayer());
             }
         }
+        if (!proc && type == triggertype.root)
+        {
+            if (other.CompareTag("Player"))
+            {
+                proc = true;
+                StartCoroutine(RootPlayer());
+            }
+        }
+        if (!proc && type == triggertype.silent)
+        {
+            if (other.CompareTag("Player"))
+            {
+                proc = true;
+                StartCoroutine(SilentPlayer());
+            }
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -93,10 +109,14 @@ public class TriggerBox : MonoBehaviour
     }
     IEnumerator SilentPlayer()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         playerController.instance.canShoot = false;
         yield return new WaitForSeconds(silentDuration);
         playerController.instance.canShoot = true;
+        if (type == triggertype.silent)
+        {
+            objectModel.SetActive(false);
+        }
     }
     IEnumerator PlayerKnockBack(Transform playerPosition)
     {

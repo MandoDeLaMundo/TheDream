@@ -5,7 +5,7 @@ public class spellStats : ScriptableObject
 {
     public GameObject model;
     public GameObject spellProjectile;
-    [Range(1, 20)] public int shootDMG;
+    [Range(0, 20)] public int shootDMG;
     [Range(0.0f, 25.0f)] public float shootRate;
     [Range(1, 1000)] public int shootDist;
     [Range(0, 200)] public int manaCost;
@@ -15,7 +15,7 @@ public class spellStats : ScriptableObject
     public AudioClip[] shootSound;
     [Range(0, 1)] public float shootSoundVol;
 
-    public bool spellCheck; //Armando is public
-    public string spellManual; //Tristian is private
+    public bool spellCheck; 
+    public string spellManual; 
     public Sprite sprite;
 }
