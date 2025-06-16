@@ -1,8 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Security.Cryptography.X509Certificates;
-using Unity.VisualScripting;
 using System.Collections.Generic;
 
 public class gameManager : MonoBehaviour
@@ -56,7 +54,8 @@ public class gameManager : MonoBehaviour
     public Image SpellThree;
     public Image SpellFour;
     public Image SpellFive;
-    List<spellStats> Spell = new List<spellStats>();
+    [SerializeField] List<spellStats> Spell = new List<spellStats>();
+    [SerializeField] List<itemStats> items = new List<itemStats>();
 
     [Header("Description")]
 	public GameObject textBox;
@@ -96,10 +95,12 @@ public class gameManager : MonoBehaviour
 	bool hasEnoughBacon = false;
     bool hasEnoughBeesWax = false;
 	bool hasEnoughMushroom = false;
-	 
 
-	// Start is called once before the first execution of Update after the MonoBehaviour is created
-	void Awake()
+    [SerializeField] Ingredents ingredents;
+
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Awake()
 	{
 		instance = this;
 		player = GameObject.FindWithTag("Player");
@@ -111,7 +112,8 @@ public class gameManager : MonoBehaviour
 
 		Cursor.visible = false;
 		Cursor.lockState = CursorLockMode.Locked;
-        SpellCheck();
+        PickUpCheck();
+        IngredentReset();
 		UpdateIngredientGoal(baconGoalPI, beesWaxGoalPI, mushroomGoalPI);
 	}
 
@@ -323,10 +325,18 @@ public class gameManager : MonoBehaviour
         }
     }
 
-    void SpellCheck()
+    void PickUpCheck()
     {
         for(int i = 0; i < Spell.Count; i++)
             Spell[i].spellCheck = true;
+        for(int i = 0; i < items.Count; i++)
+            items[i].firstTime = true;
     }
 
+    void IngredentReset()
+    {
+        ingredents.beewaxCount = 0;
+        ingredents.baconCount = 0;
+        ingredents.mushroomCount = 0;
+    }
 }

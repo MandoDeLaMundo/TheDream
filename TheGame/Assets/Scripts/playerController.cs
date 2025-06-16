@@ -16,6 +16,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     [SerializeField] Animator anim;
     [SerializeField] LayerMask ignoreLayer;
     [SerializeField] int animTransSpeed;
+    [SerializeField] Ingredents ingredents;
 
     [Header("Health")]
     [SerializeField] int HP;
@@ -195,10 +196,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         {
             PotionUsed();
         }
-        if (Input.GetKey("c"))
-        {
-            CraftPotion();
-        }
         if (manaCooldownTimer >= manaCoolDownRate && Mana < ManaOrig)
         {
             ManaRegen();
@@ -222,7 +219,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
         selectSpell();
 
-        gameManager.instance.UpdateIngredientCount(baconcount, beewaxcount, mushroomscount);
+        gameManager.instance.UpdateIngredientCount(ingredents.baconCount, ingredents.beewaxCount, ingredents.mushroomCount);
     }
 
     void setAnimPara()
@@ -391,26 +388,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             updatePlayerUI();
             numofmanapotions--;
             gameManager.instance.UpdatePotionCount(0, -1);
-        }
-    }
-
-    void CraftPotion()
-    {
-        if (craftingSystem.instance.IsHPPotion() && beewaxcount > 0 && mushroomscount > 0 && healTimer > healingCooldown)
-        {
-            numofhealpotions++;
-            gameManager.instance.UpdatePotionCount(1, 0);
-            beewaxcount--;
-            mushroomscount--;
-
-            healTimer = 0;
-        }
-        else if (craftingSystem.instance.IsMPPotion() && baconcount > 0 && mushroomscount > 0)
-        {
-            numofmanapotions++;
-            gameManager.instance.UpdatePotionCount(0, 1);
-            baconcount--;
-            mushroomscount--;
         }
     }
 
@@ -598,10 +575,10 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             {
                 gameManager.instance.DisplayDescription(item.itemDescription);
                 item.firstTime = false;
-                baconcount += 1;
+                ingredents.baconCount += 1;
             }
             else
-                baconcount += 1;
+                ingredents.baconCount += 1;
         }
         else if (item.itemName == "Bee Wax")
         {
@@ -610,10 +587,10 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
                 gameManager.instance.DisplayDescription(item.itemDescription);
                 item.firstTime = false;
-                beewaxcount += 1;
+                ingredents.beewaxCount += 1;
             }
             else
-                beewaxcount += 1;
+                ingredents.beewaxCount += 1;
         }
         else if (item.itemName == "Mushroom")
         {
@@ -621,10 +598,10 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             {
                 gameManager.instance.DisplayDescription(item.itemDescription);
                 item.firstTime = false;
-                mushroomscount += 1;
+                ingredents.mushroomCount += 1;
             }
             else
-                mushroomscount += 1;
+                ingredents.mushroomCount += 1;
         }
         else if (item.itemName == "Health Potion")
         {
