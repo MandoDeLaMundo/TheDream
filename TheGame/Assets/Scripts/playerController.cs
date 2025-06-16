@@ -85,10 +85,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     int origJump;
     Vector3 playerVel;
 
-    int baconcount;
-    int beewaxcount;
-    int mushroomscount;
-
     [Header("Audio")]
     [SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] audStep;
