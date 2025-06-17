@@ -109,10 +109,14 @@ public class Cheatmanager : MonoBehaviour
                     if (invulnerable)
                     {
                         invulnerable = false;
+                        gameManager.instance.GodMode.SetActive(false);
+                        gameManager.instance.NormalMode.SetActive(true);
                     }
                     else
                     {
                         invulnerable = true;
+                        gameManager.instance.GodMode.SetActive(true);
+                        gameManager.instance.NormalMode.SetActive(false);
                     }
                     curIndex = 0;
                 }

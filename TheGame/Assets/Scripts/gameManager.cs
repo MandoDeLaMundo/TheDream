@@ -69,6 +69,9 @@ public class gameManager : MonoBehaviour
     public GameObject playerDamageScreen;
     public GameObject playerStunScreen;
 
+    public GameObject GodMode;
+    public GameObject NormalMode;
+
 	public GameObject player;
 	public playerController playerScript;
 	public Image bossHPBar; 

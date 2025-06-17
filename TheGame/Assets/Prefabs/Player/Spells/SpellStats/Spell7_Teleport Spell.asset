@@ -26,5 +26,4 @@ MonoBehaviour:
   spellManual: For some reason when I pick this "Wand" up. It disappears from my
     view but I can feel the power of teleporting where ever I want to go. I wonder
     if I can "scroll" through my spells...
-  pickup: {fileID: 5017834780979802642, guid: ddb0691f0cd84b14da67306d3d67427e, type: 3}
   sprite: {fileID: 0}
