@@ -211,7 +211,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         {
             ManaRegen();
         }
-        if (Input.GetButtonDown("Shield") && shield != null)
+        if (Input.GetButtonDown("Shield") && shield != null && gameManager.instance.Shield.sprite != null)
         {
             isShielding = !isShielding;
         }
@@ -567,10 +567,13 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
                 shieldManaCost = spell.manaCost;
                 shieldRate = spell.shootRate;
                 spell.spellCheck = false;
+
+                gameManager.instance.Shield.sprite = spell.sprite;
+                gameManager.instance.ShieldObj.SetActive(true);
+
             } // who watching?
             else
             {
-                Debug.Log("Teleport pass check");
                 gameManager.instance.TeleportSlot.sprite = spell.sprite;
                 teleportRate = spell.shootRate;
 
