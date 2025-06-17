@@ -307,6 +307,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebfc4cb64e9ed3643b2088730f7aca7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  credits: {fileID: 0}
+  x: {fileID: 0}
 --- !u!114 &91798656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,19 +351,22 @@ MonoBehaviour:
   SpellThree: {fileID: 0}
   SpellFour: {fileID: 0}
   SpellFive: {fileID: 0}
-  playerDamageScreen: {fileID: 0}
-  playerStunScreen: {fileID: 0}
-  player: {fileID: 0}
-  playerScript: {fileID: 0}
+  Spell: []
+  items: []
   textBox: {fileID: 0}
   textDescription: {fileID: 0}
   DialogueBox: {fileID: 0}
   DialogueDescription: {fileID: 0}
+  playerDamageScreen: {fileID: 0}
+  playerStunScreen: {fileID: 0}
+  player: {fileID: 0}
+  playerScript: {fileID: 0}
   bossHPBar: {fileID: 0}
   baconGoalPI: 0
   beesWaxGoalPI: 0
   mushroomGoalPI: 0
   isPaused: 0
+  ingredents: {fileID: 0}
 --- !u!114 &91798657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2448,7 +2453,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1160853934
 Transform:
   m_ObjectHideFlags: 0
@@ -4121,19 +4126,22 @@ MonoBehaviour:
   SpellThree: {fileID: 0}
   SpellFour: {fileID: 0}
   SpellFive: {fileID: 0}
-  playerDamageScreen: {fileID: 0}
-  playerStunScreen: {fileID: 0}
-  player: {fileID: 0}
-  playerScript: {fileID: 0}
+  Spell: []
+  items: []
   textBox: {fileID: 0}
   textDescription: {fileID: 0}
   DialogueBox: {fileID: 0}
   DialogueDescription: {fileID: 0}
+  playerDamageScreen: {fileID: 0}
+  playerStunScreen: {fileID: 0}
+  player: {fileID: 0}
+  playerScript: {fileID: 0}
   bossHPBar: {fileID: 0}
   baconGoalPI: 0
   beesWaxGoalPI: 0
   mushroomGoalPI: 0
   isPaused: 0
+  ingredents: {fileID: 0}
 --- !u!114 &2103008146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4176,19 +4184,22 @@ MonoBehaviour:
   SpellThree: {fileID: 0}
   SpellFour: {fileID: 0}
   SpellFive: {fileID: 0}
-  playerDamageScreen: {fileID: 0}
-  playerStunScreen: {fileID: 0}
-  player: {fileID: 0}
-  playerScript: {fileID: 0}
+  Spell: []
+  items: []
   textBox: {fileID: 0}
   textDescription: {fileID: 0}
   DialogueBox: {fileID: 0}
   DialogueDescription: {fileID: 0}
+  playerDamageScreen: {fileID: 0}
+  playerStunScreen: {fileID: 0}
+  player: {fileID: 0}
+  playerScript: {fileID: 0}
   bossHPBar: {fileID: 0}
   baconGoalPI: 0
   beesWaxGoalPI: 0
   mushroomGoalPI: 0
   isPaused: 0
+  ingredents: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
