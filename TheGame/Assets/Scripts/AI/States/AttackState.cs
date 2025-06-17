@@ -19,6 +19,7 @@ public class AttackState : IState
 
     public void Update()
     {
+        Debug.Log("Attack State Updating");
         if (!enemy.CanSeePlayer())
         {
             enemy.agent.isStopped = false;
@@ -96,6 +97,6 @@ public class AttackState : IState
         lookDir.y = 0;
 
         Quaternion rot = Quaternion.LookRotation(lookDir);
-        enemy.transform.rotation = Quaternion.RotateTowards(enemy.transform.rotation, rot, Time.deltaTime * enemy.faceTargetSpeed);
+        enemy.transform.rotation = Quaternion.Lerp(enemy.transform.rotation, rot, Time.deltaTime * enemy.faceTargetSpeed);
     }
 }

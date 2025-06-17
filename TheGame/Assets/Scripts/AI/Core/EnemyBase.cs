@@ -33,8 +33,8 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
     [SerializeField] public float meleeRate;
     public int meleeDmgAmt;
     public float meleeRange;
-    public bool isAttacking;
     public AttackType attackType;
+    [HideInInspector] public bool isAttacking;
     [HideInInspector] int healthOrig;
 
     [Header("AI Settings")]
