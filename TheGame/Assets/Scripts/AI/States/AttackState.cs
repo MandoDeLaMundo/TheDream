@@ -19,6 +19,9 @@ public class AttackState : IState
 
     public void Update()
     {
+        if (enemy.shootTimer == enemy.shootRate)
+            enemy.CanShoot = true;
+
         if (!enemy.CanSeePlayer() || !enemy.playerInRange)
         {
             enemy.agent.isStopped = false;
@@ -84,6 +87,12 @@ public class AttackState : IState
             Vector3 playerDir = (gameManager.instance.player.transform.position - enemy.shootPos.position).normalized;
             Object.Instantiate(enemy.projectile, enemy.shootPos.position, Quaternion.LookRotation(playerDir));
             // TODO: enemy.anim.SetTrigger("Shoot");
+
+            if (enemy.attackType == EnemyBase.AttackType.Hybrid)
+            {
+                enemy.CanShoot = false;
+                enemy.stateMachine.ChangeState(new ChaseState(enemy));
+            }
         }
 
         enemy.shootTimer += Time.deltaTime;

@@ -35,6 +35,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
     public float meleeRange;
     public AttackType attackType;
     [HideInInspector] public bool isAttacking;
+    [HideInInspector] public bool CanShoot;
     [HideInInspector] int healthOrig;
 
     [Header("AI Settings")]
@@ -57,23 +58,19 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
     void Start()
     {
         if (!agent)
-        {
             agent = GetComponent<NavMeshAgent>();
-        }
         if (!model)
-        {
             model = GetComponentInChildren<Renderer>();
-        }
         if (!anim)
-        { 
             anim = GetComponentInChildren<Animator>();
-        }
 
         colorOrig = model.material.color;
 
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
         healthOrig = health;
+
+        CanShoot = true;
 
         UpdateEnemyUI();
 
