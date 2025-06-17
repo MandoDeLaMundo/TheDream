@@ -98,6 +98,7 @@ public class Cheatmanager : MonoBehaviour
 
                         playerController.instance.spellList.Clear();
                         playerController.instance.spellListPos = 0;
+                        spellCheat = false;
                     }
                     else
                     {

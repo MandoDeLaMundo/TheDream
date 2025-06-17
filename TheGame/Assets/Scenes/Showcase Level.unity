@@ -28834,6 +28834,14 @@ PrefabInstance:
       propertyPath: 'FairyTriggerList.Array.data[1]'
       value: 
       objectReference: {fileID: 800789304}
+    - target: {fileID: 1560754970186811761, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -49.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3188811006818453412, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6911230452717452533, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
       propertyPath: m_Name
       value: UI New
@@ -28919,7 +28927,15 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1178049102289622881, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
+    - {fileID: 1017562311307627438, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
+    - {fileID: 7014853060736497846, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
+    - {fileID: 4085534335607516075, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
+    - {fileID: 6714177183873888655, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
+    - {fileID: 1202677057172027639, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
+    - {fileID: 6879183977596264236, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
+    - {fileID: 7281534583947756168, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}

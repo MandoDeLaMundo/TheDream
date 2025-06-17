@@ -76,7 +76,10 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     [SerializeField] bool isTeleportingRaycast;
     [SerializeField] float teleportRate;
+    float TeleportTimer;
     [SerializeField] int teleportDist;
+    [SerializeField] GameObject TeleportModel;
+    [SerializeField] GameObject spellTeleport;
 
     [Header("Jump")]
     [SerializeField] int jumpMax;
@@ -147,6 +150,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         //setAnimPara();
         shootTimer += Time.deltaTime;
         healTimer += Time.deltaTime;
+        TeleportTimer += Time.deltaTime;
 
         if (Mana != ManaOrig)
             manaCooldownTimer += Time.deltaTime;
@@ -193,6 +197,11 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
                 teleportbyclick();
             if (choice == shootchoice.spellList && spellList.Count > 0 && Mana >= manaCost)
                 shootSpell(canShoot);
+        }
+        if (Input.GetButton("Fire2") && TeleportTimer >= teleportRate && spellTeleport != null)
+        {
+            Teleport();
+            TeleportTimer = 0;
         }
         if (Input.GetKey("f"))
         {
@@ -325,10 +334,10 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
                 if (spellList[spellListPos].hitEffect != null)
                     Instantiate(spellList[spellListPos].hitEffect, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
             }
-            else
-            {
-                Teleport();
-            }
+            //else
+            //{
+            //    Teleport();
+            //}
         }
     }
 
@@ -544,7 +553,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     {
         if (spell.spellCheck)
         {
-            if (spell.name != "Shield")
+            if (spell.name != "Spell8_Shield" && spell.name != "Spell7_Teleport Spell")
             {
                 spellList.Add(spell);
                 spellListPos = spellList.Count - 1;
@@ -552,12 +561,24 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
                 changeSpell();
                 spell.spellCheck = false;
             }
-            else //shield values
+            else if (spell.name == "Spell8_Shield") //shield values
             {
                 shield = spell.model;
                 shieldManaCost = spell.manaCost;
                 shieldRate = spell.shootRate;
                 spell.spellCheck = false;
+            } // who watching?
+            else
+            {
+                Debug.Log("Teleport pass check");
+                gameManager.instance.TeleportSlot.sprite = spell.sprite;
+                teleportRate = spell.shootRate;
+
+                TeleportModel.GetComponent<MeshFilter>().sharedMesh = spell.model.GetComponent<MeshFilter>().sharedMesh;
+                TeleportModel.GetComponent<MeshRenderer>().sharedMaterial = spell.model.GetComponent<MeshRenderer>().sharedMaterial;
+
+                spellTeleport = spell.spellProjectile;
+                gameManager.instance.TeleportObj.SetActive(true);
             }
             if (!Cheatmanager.instance.DescriptionCheat)
                 gameManager.instance.DisplayDescription(spell.spellManual);
@@ -616,7 +637,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     void Teleport()
     {
-        GameObject teleproj = Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+        GameObject teleproj = Instantiate(spellTeleport, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
         teleproj.GetComponent<Teleport>().player = gameObject;
         teleproj.GetComponent<Teleport>().playercon = controller;
     }

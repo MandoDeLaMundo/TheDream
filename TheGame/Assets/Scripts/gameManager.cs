@@ -57,6 +57,11 @@ public class gameManager : MonoBehaviour
     [SerializeField] List<spellStats> Spell = new List<spellStats>();
     [SerializeField] List<itemStats> items = new List<itemStats>();
 
+    public GameObject TeleportObj;
+    public Image TeleportSlot;
+    public GameObject ShieldObj;
+    public Image Shield;
+
     [Header("Description")]
     public GameObject textBox;
     public TMP_Text textDescription;
@@ -257,7 +262,7 @@ public class gameManager : MonoBehaviour
         playerOXMaxOrig += oxAmount;
         playerOXMaxText.text = playerOXMaxOrig.ToString("F0");
     }
-
+    
     public void UpdateBossHPCount(int amount)
     {
         bossHPCountOrig += amount;
