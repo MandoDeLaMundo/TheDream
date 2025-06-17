@@ -28842,22 +28842,6 @@ PrefabInstance:
       propertyPath: 'FairyTriggerList.Array.data[1]'
       value: 
       objectReference: {fileID: 800789304}
-    - target: {fileID: 3430640582819137625, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5275292862901301116, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -26.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5865650401798370793, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
-      propertyPath: m_text
-      value: God Mode
-      objectReference: {fileID: 0}
-    - target: {fileID: 5865650401798370793, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
-      propertyPath: m_margin.z
-      value: -49.658325
-      objectReference: {fileID: 0}
     - target: {fileID: 6911230452717452533, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
       propertyPath: m_Name
       value: UI New
@@ -28941,10 +28925,6 @@ PrefabInstance:
     - target: {fileID: 7686955477975542978, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8308949787637736891, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
