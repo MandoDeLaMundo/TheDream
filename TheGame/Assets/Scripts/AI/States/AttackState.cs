@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class AttackState : IState
 {
-    private readonly EnemyBase enemy;
+    EnemyBase enemy;
 
     public AttackState(EnemyBase _enemy)
     {
@@ -19,8 +19,7 @@ public class AttackState : IState
 
     public void Update()
     {
-        Debug.Log("Attack State Updating");
-        if (!enemy.CanSeePlayer())
+        if (!enemy.CanSeePlayer() || !enemy.playerInRange)
         {
             enemy.agent.isStopped = false;
             enemy.stateMachine.ChangeState(new PatrolState(enemy));
