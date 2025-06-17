@@ -5,20 +5,20 @@ using System.Collections.Generic;
 
 public class gameManager : MonoBehaviour
 {
-	public static gameManager instance;
+    public static gameManager instance;
 
     [Header("Menus")]
-	[SerializeField] GameObject menuActive;
-	[SerializeField] GameObject menuPause;
-	[SerializeField] GameObject menuWin;
-	[SerializeField] GameObject menuLose;
+    [SerializeField] GameObject menuActive;
+    [SerializeField] GameObject menuPause;
+    [SerializeField] GameObject menuWin;
+    [SerializeField] GameObject menuLose;
 
     [Header("Texts")]
-	[SerializeField] TMP_Text gameGoalCountText;
+    [SerializeField] TMP_Text gameGoalCountText;
     [SerializeField] TMP_Text bossHPCountText;
     [SerializeField] TMP_Text bossHPMaxText;
     [SerializeField] TMP_Text baconCountText;
-	[SerializeField] TMP_Text beesWaxCountText;
+    [SerializeField] TMP_Text beesWaxCountText;
     [SerializeField] TMP_Text mushroomCountText;
     [SerializeField] TMP_Text healpotionText;
     [SerializeField] TMP_Text manapotionText;
@@ -27,18 +27,18 @@ public class gameManager : MonoBehaviour
     [SerializeField] TMP_Text mushroomGoalText;
 
     [Header("Player Health")]
-    [SerializeField] TMP_Text playerHPCountText; 
-	[SerializeField] TMP_Text playerHPMaxText; 
-	public Image playerHPBar;
-	int playerHPCountOrig; 
-	int playerHPMaxOrig;
+    [SerializeField] TMP_Text playerHPCountText;
+    [SerializeField] TMP_Text playerHPMaxText;
+    public Image playerHPBar;
+    int playerHPCountOrig;
+    int playerHPMaxOrig;
 
     [Header("Player Mana")]
-    [SerializeField] TMP_Text playerMPCountText; 
-	[SerializeField] TMP_Text playerMPMaxText;
+    [SerializeField] TMP_Text playerMPCountText;
+    [SerializeField] TMP_Text playerMPMaxText;
     public Image playerManaBar;
-	int playerMPCountOrig;
-	int playerMPMaxOrig;
+    int playerMPCountOrig;
+    int playerMPMaxOrig;
 
     [Header("Player Oxgyen")]
     [SerializeField] TMP_Text playerOXCountText;
@@ -58,30 +58,33 @@ public class gameManager : MonoBehaviour
     [SerializeField] List<itemStats> items = new List<itemStats>();
 
     [Header("Description")]
-	public GameObject textBox;
-	public TMP_Text textDescription;
+    public GameObject textBox;
+    public TMP_Text textDescription;
 
     [Header("Dialogue")]
-	public GameObject DialogueBox;
-	public TMP_Text DialogueDescription;
+    public GameObject DialogueBox;
+    public TMP_Text DialogueDescription;
 
     [Header("Screens")]
     public GameObject playerDamageScreen;
     public GameObject playerStunScreen;
 
-	public GameObject player;
-	public playerController playerScript;
-	public Image bossHPBar; 
-	public int baconGoalPI;
-	public int beesWaxGoalPI;
-	public int mushroomGoalPI;
+    public GameObject GodMode;
+    public GameObject NormalMode;
+
+    public GameObject player;
+    public playerController playerScript;
+    public Image bossHPBar;
+    public int baconGoalPI;
+    public int beesWaxGoalPI;
+    public int mushroomGoalPI;
 
     public bool isPaused;
 
-	float timeScaleOrig;
-	int gameGoalCount;
+    float timeScaleOrig;
+    int gameGoalCount;
     int bossHPCountOrig;
-	int bossHPMaxOrig;
+    int bossHPMaxOrig;
     int healpotionCountOrig;
     int manapotionCountOrig;
     int baconCount;
@@ -92,30 +95,30 @@ public class gameManager : MonoBehaviour
     int mushroomGoal;
 
     bool hasMonsterEgg = false;
-	bool hasEnoughBacon = false;
+    bool hasEnoughBacon = false;
     bool hasEnoughBeesWax = false;
-	bool hasEnoughMushroom = false;
+    bool hasEnoughMushroom = false;
 
     [SerializeField] Ingredents ingredents;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
-	{
-		instance = this;
-		player = GameObject.FindWithTag("Player");
+    {
+        instance = this;
+        player = GameObject.FindWithTag("Player");
         if (player != null)
         {
             playerScript = player.GetComponent<playerController>();
         }
-		timeScaleOrig = Time.timeScale;
+        timeScaleOrig = Time.timeScale;
 
-		Cursor.visible = false;
-		Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         PickUpCheck();
         IngredentReset();
-		UpdateIngredientGoal(baconGoalPI, beesWaxGoalPI, mushroomGoalPI);
-	}
+        UpdateIngredientGoal(baconGoalPI, beesWaxGoalPI, mushroomGoalPI);
+    }
 
     // Update is called once per frame
     void Update()
@@ -126,12 +129,12 @@ public class gameManager : MonoBehaviour
             {
                 StatePause();
                 menuActive = menuPause;
-                
-                if(menuActive != null)
+
+                if (menuActive != null)
                 {
                     menuActive.SetActive(isPaused);
                 }
-                    
+
             }
             else if (menuActive == menuPause)
                 StateUnpause();
@@ -250,7 +253,7 @@ public class gameManager : MonoBehaviour
 
         playerMPMaxOrig += mpAmount;
         playerMPMaxText.text = playerMPMaxOrig.ToString("F0");
-        
+
         playerOXMaxOrig += oxAmount;
         playerOXMaxText.text = playerOXMaxOrig.ToString("F0");
     }
@@ -296,7 +299,7 @@ public class gameManager : MonoBehaviour
         {
             beesWaxGoalText.text = beesWaxGoal.ToString("F0");
         }
-        
+
         if (mushroomGoalText != null)
         {
             mushroomGoalText.text = mushroomGoal.ToString("F0");
@@ -327,16 +330,19 @@ public class gameManager : MonoBehaviour
 
     void PickUpCheck()
     {
-        for(int i = 0; i < Spell.Count; i++)
+        for (int i = 0; i < Spell.Count; i++)
             Spell[i].spellCheck = true;
-        for(int i = 0; i < items.Count; i++)
+        for (int i = 0; i < items.Count; i++)
             items[i].firstTime = true;
     }
 
     void IngredentReset()
     {
-        ingredents.beewaxCount = 0;
-        ingredents.baconCount = 0;
-        ingredents.mushroomCount = 0;
+        if (ingredents != null)
+        {
+            ingredents.beewaxCount = 0;
+            ingredents.baconCount = 0;
+            ingredents.mushroomCount = 0;
+        }
     }
 }
