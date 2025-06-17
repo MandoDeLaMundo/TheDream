@@ -46,12 +46,13 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     [SerializeField] LayerMask waterLayer;
 
     [Header("Movement")]
-    [SerializeField] float speed;
-    float origSpeed;
+    public float speed;
+    public float origSpeed;
     [SerializeField] int sprintMod;
     bool inMud = false;
     bool canSprint = true;
     public bool canMove = true;
+    [SerializeField] int superSpeed;
 
     enum shootchoice { shootraycast, spellList, teleportraycast }
     [Header("Shooting")]
@@ -134,6 +135,11 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
         Movement();
         sprint();
+
+        if (Cheatmanager.instance.SpeedCheat)
+        {
+            speed = origSpeed * superSpeed;
+        }
     }
 
     void Movement()
@@ -200,7 +206,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         {
             isShielding = !isShielding;
         }
-
         if (isShielding && Mana > 0)
         {
             shieldTimer += Time.deltaTime;

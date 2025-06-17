@@ -13,19 +13,23 @@ public class Cheatmanager : MonoBehaviour
     public bool spellCheat;
 
     public bool DescriptionCheat;
+    public bool SpeedCheat;
 
     private KeyCode[] invulnerablecheatCode =
     {
+        KeyCode.I,
+        KeyCode.N,
         KeyCode.V,
         KeyCode.U,
         KeyCode.N
     };
     private KeyCode[] allSpellCheatCode =
     {
-        KeyCode.S,
-        KeyCode.P,
-        KeyCode.E,
-        KeyCode.L
+        KeyCode.M,
+        KeyCode.A,
+        KeyCode.G,
+        KeyCode.I,
+        KeyCode.C
     };
     private KeyCode[] DescriptionBoxCheatCode =
     {
@@ -34,6 +38,14 @@ public class Cheatmanager : MonoBehaviour
         KeyCode.S,
         KeyCode.C,
         KeyCode.T,
+    };
+    private KeyCode[] SuperSpeedCheatCode =
+    {
+        KeyCode.S,
+        KeyCode.U,
+        KeyCode.P,
+        KeyCode.E,
+        KeyCode.R,
     };
 
     private int curIndex = 0;
@@ -117,6 +129,25 @@ public class Cheatmanager : MonoBehaviour
                         invulnerable = true;
                         gameManager.instance.GodMode.SetActive(true);
                         gameManager.instance.NormalMode.SetActive(false);
+                    }
+                    curIndex = 0;
+                }
+            }
+            else if (Input.GetKeyDown(SuperSpeedCheatCode[curIndex]))
+            {
+                curIndex++;
+                Debug.Log("In speed cheat");
+                if (curIndex >= SuperSpeedCheatCode.Length)
+                {
+                    if (SpeedCheat)
+                    {
+                        SpeedCheat = false;
+                        playerController.instance.speed = playerController.instance.origSpeed;
+                    }
+                    else
+                    {
+                        Debug.Log("Speed cheat");
+                        SpeedCheat = true;
                     }
                     curIndex = 0;
                 }
