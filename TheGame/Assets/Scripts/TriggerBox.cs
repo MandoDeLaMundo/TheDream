@@ -3,17 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 public class TriggerBox : MonoBehaviour
 {
-    enum triggertype { root, silent, debuff, geyser }
-    [SerializeField] triggertype type;
+    enum triggertype { none, root, silent, debuff, geyser }
 
     [SerializeField] GameObject objectModel;
 
     [SerializeField] ParticleSystem particleVFX;
 
-    [SerializeField] float oxygenRegen;
+    [Header("Types")]
+    [SerializeField] triggertype type;
+
+    [Header("Debuff")]
     [SerializeField] float rootDuration;
     [SerializeField] float silentDuration;
+
+    [Header("Geyser")]
     [SerializeField] float geyserStrength;
+    [SerializeField] float oxygenRegen;
 
     float oxygenTimer;
 
@@ -52,6 +57,22 @@ public class TriggerBox : MonoBehaviour
                 StartCoroutine(RootPlayer());
             }
         }
+        if (!proc && type == triggertype.root)
+        {
+            if (other.CompareTag("Player"))
+            {
+                proc = true;
+                StartCoroutine(RootPlayer());
+            }
+        }
+        if (!proc && type == triggertype.silent)
+        {
+            if (other.CompareTag("Player"))
+            {
+                proc = true;
+                StartCoroutine(SilentPlayer());
+            }
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -74,7 +95,7 @@ public class TriggerBox : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (type == triggertype.debuff || type == triggertype.root || type == triggertype.silent)
+        if (type == triggertype.debuff || type == triggertype.root || type == triggertype.silent || type== triggertype.none)
         {
             objectModel.SetActive(false);
         }
@@ -85,7 +106,7 @@ public class TriggerBox : MonoBehaviour
     }
     IEnumerator RootPlayer()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         playerController.instance.controller.enabled = false;
         yield return new WaitForSeconds(rootDuration);
         playerController.instance.controller.enabled = true;
@@ -93,10 +114,14 @@ public class TriggerBox : MonoBehaviour
     }
     IEnumerator SilentPlayer()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         playerController.instance.canShoot = false;
         yield return new WaitForSeconds(silentDuration);
         playerController.instance.canShoot = true;
+        if (type == triggertype.silent)
+        {
+            objectModel.SetActive(false);
+        }
     }
     IEnumerator PlayerKnockBack(Transform playerPosition)
     {

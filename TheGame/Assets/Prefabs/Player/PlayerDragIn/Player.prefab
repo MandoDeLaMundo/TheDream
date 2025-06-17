@@ -90,10 +90,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   animTransSpeed: 0
+  ingredents: {fileID: 11400000, guid: 8a2453d5c2004404fa7c439fd221ff39, type: 2}
   HP: 10
   healingCooldown: 0.5
   healingnum: 5
   numofhealpotions: 0
+  canTakeDam: 1
   Mana: 10
   manaCost: 0
   shieldManaCost: 0
@@ -107,7 +109,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16
   speed: 5
+  origSpeed: 0
   sprintMod: 2
+  canMove: 1
+  superSpeed: 20
   choice: 1
   spellList: []
   spellModel: {fileID: 6218788031528793982}
@@ -116,6 +121,7 @@ MonoBehaviour:
   shootDamage: 1
   shootDist: 150
   shootRate: 0.25
+  spellListPos: 0
   canShoot: 1
   shield: {fileID: 0}
   shieldBubble: {fileID: 5517583260277432333}
@@ -137,12 +143,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6e584bd2a71f2ea44b5f3e605a1124b6, type: 3}
   - {fileID: 8300000, guid: 0f51d202e1a8229418b7dae24d6d058c, type: 3}
   - {fileID: 8300000, guid: 52c37dd61023a604ca29ce977e0a8f13, type: 3}
-  audStepVol: 0.5
+  audStepVol: 0.25
   audJump:
   - {fileID: 8300000, guid: 9c437e7f9a1b88d4ab98b6c660b85067, type: 3}
   - {fileID: 8300000, guid: 953eabefa04c1174f9c8bda164c98add, type: 3}
   - {fileID: 8300000, guid: 5eeb6cb8a57f1164f93dbc2dcbf6183f, type: 3}
-  audJumpVol: 1
+  audJumpVol: 0.5
   audHurt:
   - {fileID: 8300000, guid: 7fd4ad6b7527d4b46a469375722b8d0b, type: 3}
   - {fileID: 8300000, guid: aa98c201ecd3e6243b60e5713b01d9c0, type: 3}
@@ -150,7 +156,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f799e246b19c41449b525e5ed5e9f545, type: 3}
   - {fileID: 8300000, guid: d642b4be86c400c4987eefd6db87631c, type: 3}
   - {fileID: 8300000, guid: ea034ca4f786b0b438f7be1dbb6d4424, type: 3}
-  audHurtVol: 1
+  audHurtVol: 0.5
   startupDialogue: I want an omelet for breakfast, I hope I can find an egg in this
     dungeon!
 --- !u!33 &4531356348622312624
@@ -764,6 +770,10 @@ PrefabInstance:
     - target: {fileID: 8989948592340520878, guid: 48c426c079ccc2a4fa0987e67ad77d50, type: 3}
       propertyPath: m_Name
       value: Minimap Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 8989948592340520878, guid: 48c426c079ccc2a4fa0987e67ad77d50, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

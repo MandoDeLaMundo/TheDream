@@ -6,23 +6,27 @@ public class SelectionSpawner : MonoBehaviour
 {
     public static SelectionSpawner instance;
     enum spawntype { Enemies, PickUps, Fairy }
+    [Header("Type Lists")]
     [SerializeField] spawntype type;
     [SerializeField] List<spawnStats> spawnList = new List<spawnStats>();
     [SerializeField] List<spellStats> spellList = new List<spellStats>();
     [SerializeField] List<itemStats> itemList = new List<itemStats>();
 
+    [Header("Fairy")]
     public List<string> dialogue;
     int dialogueCount;
     [SerializeField] GameObject FairySpawner;
     [SerializeField] GameObject Fairy;
     GameObject cloneFairy;
 
+    [Header("Spawner")]
     GameObject spawnObject;
     [SerializeField] int numToSpawn;
     [SerializeField] int spawnRate;
     [SerializeField] Transform[] spawnPos;
     int objectListPos = 0;
 
+    [Header("Selector Display")]
     [SerializeField] GameObject Canvas;
     [SerializeField] Image image;
 

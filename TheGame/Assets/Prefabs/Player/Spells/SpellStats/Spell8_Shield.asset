@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4679952212bcb7c48b6fd9f89c05547d, type: 3}
-  m_Name: Shield
+  m_Name: Spell8_Shield
   m_EditorClassIdentifier: 
   model: {fileID: 3054856218429342167, guid: 0406c061b3e2ec1458aeadecb0648f52, type: 3}
   spellProjectile: {fileID: 0}
-  shootDMG: 1
+  shootDMG: 0
   shootRate: 2
   shootDist: 1
   manaCost: 1
@@ -22,6 +22,6 @@ MonoBehaviour:
   hitEffect: {fileID: 1432503776327017652, guid: ccf28ea29cf499744ac31bab90073aba, type: 3}
   shootSound: []
   shootSoundVol: 0
-  spellCheck: 1
-  spellManual: 
+  spellCheck: 0
+  spellManual: A kinetic bubble that will friend zone your foes projectile!!
   sprite: {fileID: 21300000, guid: f09c71608944ab2439404abe6670f3d9, type: 3}

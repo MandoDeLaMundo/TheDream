@@ -9,13 +9,16 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 {
     public static playerController instance;
 
+    [Header("Player")]
     public CharacterController controller;
     public Camera mainCam;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator anim;
     [SerializeField] LayerMask ignoreLayer;
     [SerializeField] int animTransSpeed;
+    [SerializeField] Ingredents ingredents;
 
+    [Header("Health")]
     [SerializeField] int HP;
     int HPOrig;
     [SerializeField] float healingCooldown;
@@ -25,6 +28,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     float healTimer;
     public bool canTakeDam = true;
 
+    [Header("Mana")]
     [SerializeField] int Mana;
     int ManaOrig;
     [SerializeField] int manaCost;
@@ -35,21 +39,25 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     float manaRegenTimer;
     public int numofmanapotions;
 
+    [Header("Oxygen")]
     public int Oxygen;
     public int OxygenOrig;
     [SerializeField] Transform WaterPos;
     [SerializeField] LayerMask waterLayer;
 
-    [SerializeField] float speed;
-    float origSpeed;
+    [Header("Movement")]
+    public float speed;
+    public float origSpeed;
     [SerializeField] int sprintMod;
     bool inMud = false;
     bool canSprint = true;
     public bool canMove = true;
+    [SerializeField] int superSpeed;
 
     enum shootchoice { shootraycast, spellList, teleportraycast }
+    [Header("Shooting")]
     [SerializeField] shootchoice choice;
-    [SerializeField] List<spellStats> spellList = new List<spellStats>();
+    public List<spellStats> spellList = new List<spellStats>();
     [SerializeField] GameObject spellModel;
     [SerializeField] GameObject spell;
     [SerializeField] Transform shootPos;
@@ -57,9 +65,10 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     [SerializeField] int shootDist;
     [SerializeField] float shootRate;
     float shootTimer;
-    int spellListPos;
+    public int spellListPos;
     public bool canShoot = true;
 
+    [Header("Shield")]
     [SerializeField] GameObject shield;
     [SerializeField] GameObject shieldBubble;
     [SerializeField] float shieldRate;
@@ -69,6 +78,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     [SerializeField] float teleportRate;
     [SerializeField] int teleportDist;
 
+    [Header("Jump")]
     [SerializeField] int jumpMax;
     [SerializeField] int jumpForce;
     [SerializeField] int Gravity;
@@ -76,10 +86,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     int origJump;
     Vector3 playerVel;
 
-    int baconcount;
-    int beewaxcount;
-    int mushroomscount;
-
+    [Header("Audio")]
     [SerializeField] AudioSource aud;
     [SerializeField] AudioClip[] audStep;
     [Range(0, 1)][SerializeField] float audStepVol;
@@ -128,6 +135,11 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
         Movement();
         sprint();
+
+        if (Cheatmanager.instance.SpeedCheat)
+        {
+            speed = origSpeed * superSpeed;
+        }
     }
 
     void Movement()
@@ -186,10 +198,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         {
             PotionUsed();
         }
-        if (Input.GetKey("c"))
-        {
-            CraftPotion();
-        }
         if (manaCooldownTimer >= manaCoolDownRate && Mana < ManaOrig)
         {
             ManaRegen();
@@ -198,7 +206,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         {
             isShielding = !isShielding;
         }
-
         if (isShielding && Mana > 0)
         {
             shieldTimer += Time.deltaTime;
@@ -213,7 +220,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
         selectSpell();
 
-        gameManager.instance.UpdateIngredientCount(baconcount, beewaxcount, mushroomscount);
+        gameManager.instance.UpdateIngredientCount(ingredents.baconCount, ingredents.beewaxCount, ingredents.mushroomCount);
     }
 
     void setAnimPara()
@@ -299,7 +306,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             Mana -= manaCost;
             gameManager.instance.UpdatePlayerMPCount(-manaCost);
             updatePlayerUI();
-            if (spellList[spellListPos].name != "Teleport Spell" && spellList[spellListPos].name != "Super_FireBall")
+            if (spellList[spellListPos].name != "Spell7_Teleport Spell" && spellList[spellListPos].name != "Spell2_Super_FireBall")
             {
                 Ray ray = new Ray(mainCam.transform.position, mainCam.transform.forward);
                 if (Physics.Raycast(ray, out RaycastHit hit, 1000f))
@@ -312,7 +319,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
                         Instantiate(spellList[spellListPos].hitEffect, shootPos.position, Quaternion.LookRotation(shootDirection));
                 }
             }
-            else if (spellList[spellListPos].name == "Super_FireBall")
+            else if (spellList[spellListPos].name == "Spell2_Super_FireBall")
             {
                 Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
                 if (spellList[spellListPos].hitEffect != null)
@@ -382,26 +389,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             updatePlayerUI();
             numofmanapotions--;
             gameManager.instance.UpdatePotionCount(0, -1);
-        }
-    }
-
-    void CraftPotion()
-    {
-        if (craftingSystem.instance.IsHPPotion() && beewaxcount > 0 && mushroomscount > 0 && healTimer > healingCooldown)
-        {
-            numofhealpotions++;
-            gameManager.instance.UpdatePotionCount(1, 0);
-            beewaxcount--;
-            mushroomscount--;
-
-            healTimer = 0;
-        }
-        else if (craftingSystem.instance.IsMPPotion() && baconcount > 0 && mushroomscount > 0)
-        {
-            numofmanapotions++;
-            gameManager.instance.UpdatePotionCount(0, 1);
-            baconcount--;
-            mushroomscount--;
         }
     }
 
@@ -525,7 +512,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         spell = spellList[spellListPos].spellProjectile;
     }
 
-    void HotBar(int spell)
+    public void HotBar(int spell)
     {
         switch (spell)
         {
@@ -572,7 +559,16 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
                 shieldRate = spell.shootRate;
                 spell.spellCheck = false;
             }
-            gameManager.instance.DisplayDescription(spell.spellManual);
+            if (!Cheatmanager.instance.DescriptionCheat)
+                gameManager.instance.DisplayDescription(spell.spellManual);
+        }
+        if (Cheatmanager.instance.spellCheat == true)
+        {
+            spellList.Add(spell);
+            spellListPos = spellList.Count - 1;
+
+            changeSpell();
+            spell.spellCheck = false;
         }
     }
 
@@ -585,72 +581,36 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     {
         if (item.itemName == "Boar Meat")
         {
-            if (item.firstTime)
-            {
-                gameManager.instance.DisplayDescription(item.itemDescription);
-                item.firstTime = false;
-                baconcount += 1;
-            }
-            else
-                baconcount += 1;
+            ingredents.baconCount += 1;
         }
         else if (item.itemName == "Bee Wax")
         {
-            if (item.firstTime)
-            {
-
-                gameManager.instance.DisplayDescription(item.itemDescription);
-                item.firstTime = false;
-                beewaxcount += 1;
-            }
-            else
-                beewaxcount += 1;
+            ingredents.beewaxCount += 1;
         }
         else if (item.itemName == "Mushroom")
         {
-            if (item.firstTime)
-            {
-                gameManager.instance.DisplayDescription(item.itemDescription);
-                item.firstTime = false;
-                mushroomscount += 1;
-            }
-            else
-                mushroomscount += 1;
+            ingredents.mushroomCount += 1;
         }
         else if (item.itemName == "Health Potion")
         {
-            if (item.firstTime)
-            {
-                gameManager.instance.DisplayDescription(item.itemDescription);
-                item.firstTime = false;
-                numofhealpotions += 1;
-                gameManager.instance.UpdatePotionCount(1, 0);
-            }
-            else
-            {
-                numofhealpotions += 1;
-                gameManager.instance.UpdatePotionCount(1, 0);
-            }
+            numofhealpotions += 1;
+            gameManager.instance.UpdatePotionCount(1, 0);
         }
         else if (item.itemName == "Mana Potion")
         {
-            if (item.firstTime)
-            {
-                gameManager.instance.DisplayDescription(item.itemDescription);
-                item.firstTime = false;
-                numofmanapotions += 1;
-                gameManager.instance.UpdatePotionCount(0, 1);
-            }
-            else
-            {
-                numofhealpotions += 1;
-                gameManager.instance.UpdatePotionCount(0, 1);
-            }
+            numofhealpotions += 1;
+            gameManager.instance.UpdatePotionCount(0, 1);
         }
         else if (item.itemName == "Boss Egg")
         {
             gameManager.instance.UpdateMonsterEgg(true);
             gameManager.instance.GameGoalMonsterEgg();
+        }
+
+        if (item.firstTime && Cheatmanager.instance.DescriptionCheat == false)
+        {
+            gameManager.instance.DisplayDescription(item.itemDescription);
+            item.firstTime = false;
         }
     }
 
