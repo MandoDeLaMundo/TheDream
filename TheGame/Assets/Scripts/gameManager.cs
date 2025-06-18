@@ -12,6 +12,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
+    public GameObject Inventory;
 
     [Header("Texts")]
     [SerializeField] TMP_Text gameGoalCountText;
@@ -55,7 +56,7 @@ public class gameManager : MonoBehaviour
     public Image SpellFour;
     public Image SpellFive;
     [SerializeField] List<spellStats> Spell = new List<spellStats>();
-    [SerializeField] List<itemStats> items = new List<itemStats>();
+    public List<itemStats> items = new List<itemStats>();
 
     public GameObject TeleportObj;
     public Image TeleportSlot;
@@ -104,8 +105,6 @@ public class gameManager : MonoBehaviour
     bool hasEnoughBeesWax = false;
     bool hasEnoughMushroom = false;
 
-    [SerializeField] Ingredents ingredents;
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -121,7 +120,7 @@ public class gameManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         PickUpCheck();
-        IngredentReset();
+        InventoryReset();
         UpdateIngredientGoal(baconGoalPI, beesWaxGoalPI, mushroomGoalPI);
     }
 
@@ -137,12 +136,28 @@ public class gameManager : MonoBehaviour
 
                 if (menuActive != null)
                 {
-                    menuActive.SetActive(isPaused);
+                    menuActive.SetActive(true);
                 }
 
             }
             else if (menuActive == menuPause)
                 StateUnpause();
+        }
+
+        if (playerController.instance.IsInventory)
+        {
+            if (menuActive != menuPause)
+            {
+                if(playerController.instance.PauseGameInInventory)
+                StatePause();
+
+                menuActive = Inventory;
+                menuActive.SetActive(true);
+            }
+            else
+            {
+                playerController.instance.IsInventory = false;
+            }
         }
 
         if (Input.GetKey("q"))
@@ -262,7 +277,7 @@ public class gameManager : MonoBehaviour
         playerOXMaxOrig += oxAmount;
         playerOXMaxText.text = playerOXMaxOrig.ToString("F0");
     }
-    
+
     public void UpdateBossHPCount(int amount)
     {
         bossHPCountOrig += amount;
@@ -341,13 +356,11 @@ public class gameManager : MonoBehaviour
             items[i].firstTime = true;
     }
 
-    void IngredentReset()
+    void InventoryReset()
     {
-        if (ingredents != null)
+        for(int i = 0; i < items.Count; i++)
         {
-            ingredents.beewaxCount = 0;
-            ingredents.baconCount = 0;
-            ingredents.mushroomCount = 0;
+            items[i].Count = 0;
         }
     }
 }
