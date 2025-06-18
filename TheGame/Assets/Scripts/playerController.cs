@@ -17,6 +17,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     [SerializeField] Animator anim;
     [SerializeField] LayerMask ignoreLayer;
     [SerializeField] int animTransSpeed;
+
     [SerializeField] ItemCount ingredents;
 
     [Header("Health")]
@@ -127,7 +128,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         IsInventory = false;
         healingnumOrig = healingnum;
         gameManager.instance.UpdatePlayerMaxHPMPOXCount(HP, Mana, Oxygen);
-        gameManager.instance.UpdatePotionCount(numofhealpotions, numofmanapotions);
         updatePlayerUI();
         if (spellList.Count > 0)
             changeSpell();
@@ -391,8 +391,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             healTimer = 0;
 
             updatePlayerUI();
-            numofhealpotions--;
-            gameManager.instance.UpdatePotionCount(-1, 0);
+            ingredents.HealthPotion--;
+            gameManager.instance.UpdatePotionCount();
         }
     }
 
@@ -415,8 +415,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             healTimer = 0;
 
             updatePlayerUI();
-            numofmanapotions--;
-            gameManager.instance.UpdatePotionCount(0, -1);
+            ingredents.ManaPotion--;
+            gameManager.instance.UpdatePotionCount();
         }
     }
 
@@ -622,6 +622,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     public void GetItemStats(itemStats item)
     {
+        //switch(item.itemName)
         if (item.itemName == "Bee Wax")
         {
             ingredents.beewaxCount++;

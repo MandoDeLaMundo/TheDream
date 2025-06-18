@@ -153,12 +153,16 @@ public class InventorySystem : MonoBehaviour
             }
             else if (inventoryStats[i].itemName == "Health Potion")
             {
-                inventoryStats[i].Count = ingredents.HealthPotion;
+                gameManager.instance.UpdatePotionCount();
             }
             else if (inventoryStats[i].itemName == "Mana Potion")
             {
-                inventoryStats[i].Count = ingredents.ManaPotion;
+                gameManager.instance.UpdatePotionCount();
             }
+            //else if (inventoryStats[i].itemName == "Health Potion" || inventoryStats[i].itemName == "Mana Potion")
+            //{
+            //    gameManager.instance.UpdatePotionCount();
+            //}
             //else if (inventoryStats[i].name == "Health Potion")
             //{
 
