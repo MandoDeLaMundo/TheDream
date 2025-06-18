@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class AttackState : IState
 {
-    private readonly EnemyBase enemy;
+    EnemyBase enemy;
 
     public AttackState(EnemyBase _enemy)
     {
@@ -19,7 +19,10 @@ public class AttackState : IState
 
     public void Update()
     {
-        if (!enemy.CanSeePlayer())
+        if (enemy.shootTimer == enemy.shootRate)
+            enemy.CanShoot = true;
+
+        if (!enemy.CanSeePlayer() || !enemy.playerInRange)
         {
             enemy.agent.isStopped = false;
             enemy.stateMachine.ChangeState(new PatrolState(enemy));
@@ -84,6 +87,12 @@ public class AttackState : IState
             Vector3 playerDir = (gameManager.instance.player.transform.position - enemy.shootPos.position).normalized;
             Object.Instantiate(enemy.projectile, enemy.shootPos.position, Quaternion.LookRotation(playerDir));
             // TODO: enemy.anim.SetTrigger("Shoot");
+
+            if (enemy.attackType == EnemyBase.AttackType.Hybrid)
+            {
+                enemy.CanShoot = false;
+                enemy.stateMachine.ChangeState(new ChaseState(enemy));
+            }
         }
 
         enemy.shootTimer += Time.deltaTime;
@@ -96,6 +105,6 @@ public class AttackState : IState
         lookDir.y = 0;
 
         Quaternion rot = Quaternion.LookRotation(lookDir);
-        enemy.transform.rotation = Quaternion.RotateTowards(enemy.transform.rotation, rot, Time.deltaTime * enemy.faceTargetSpeed);
+        enemy.transform.rotation = Quaternion.Lerp(enemy.transform.rotation, rot, Time.deltaTime * enemy.faceTargetSpeed);
     }
 }
