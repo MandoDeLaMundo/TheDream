@@ -149,6 +149,5 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
         {
             hpBar.fillAmount = (float)health / healthOrig;
         }
-
     }
 }
