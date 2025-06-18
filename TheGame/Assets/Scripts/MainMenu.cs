@@ -3,7 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-  public void PlayGame()
+    public GameObject credits;
+    public GameObject x;
+    public void PlayGame()
   {
     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
   }
@@ -13,8 +15,20 @@ public class MainMenu : MonoBehaviour
 
     }
 
-    public GameObject credits;
-    public GameObject x;
+    public void PlayLv1()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void PlayLv2()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+    }
+
+    public void PlayLv3()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
+    }
 
     public void CreditsMenu()
     {

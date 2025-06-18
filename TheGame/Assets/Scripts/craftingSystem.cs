@@ -1,19 +1,36 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class craftingSystem : MonoBehaviour
 {
     public static craftingSystem instance;
 
+    [Header("Crafting Display")]
     [SerializeField] GameObject craftActive;
     [SerializeField] GameObject craftHeal;
     [SerializeField] GameObject craftMana;
 
+    [Header("Potion Display")]
     [SerializeField] GameObject potionActive;
     [SerializeField] GameObject potionHeal;
     [SerializeField] GameObject potionMana;
 
+    [Header("Ingredents Display")]
+    [SerializeField] Image ingredentOne;
+    [SerializeField] Image ingredentTwo;
+    [SerializeField] Image result;
+
+    [Header("Recipes")]
+    [SerializeField] List<Recipes> recipes = new List<Recipes>();
+    [SerializeField] ItemCount ingredents;
+
+
+    int recipePos;
     bool IsHealPotion;
     bool IsManaPotion;
+    [SerializeField] float healingCooldown;
+    float healTimer;
 
     void Awake()
     {
@@ -26,35 +43,87 @@ public class craftingSystem : MonoBehaviour
 
         IsHealPotion = true;
         IsManaPotion = false;
+
+        ingredentOne.GetComponent<Image>().sprite = recipes[recipePos].ingredentsOne;
+        ingredentTwo.GetComponent<Image>().sprite = recipes[recipePos].ingredentsTwo;
+        result.GetComponent<Image>().sprite = recipes[recipePos].result;
+        recipePos = 1;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown("r"))
+        healTimer += Time.deltaTime;
+        if (playerController.instance.IsInventory)
         {
-            if (craftActive == craftHeal && potionActive == potionHeal)
+            if (Input.GetKeyDown("r"))
             {
-                craftActive.SetActive(false);
-                craftActive = craftMana;
-                craftActive.SetActive(true);
-                IsHealPotion = false;
-                IsManaPotion = true;
-                potionActive.SetActive(false);
-                potionActive = potionMana;
-                potionActive.SetActive(true);
+                if (recipePos < recipes.Count)
+                {
+                    SetCraft();
+                    recipePos++;
+                }
+                if (recipePos >= recipes.Count)
+                {
+                    recipePos = 0;
+                }
             }
-            else if (craftActive == craftMana && potionActive == potionMana)
+            if (Input.GetKey("c"))
             {
-                craftActive.SetActive(false);
-                craftActive = craftHeal;
-                craftActive.SetActive(true);
-                IsHealPotion = true;
-                IsManaPotion = false;
-                potionActive.SetActive(false);
-                potionActive = potionHeal;
-                potionActive.SetActive(true);
+                CraftPotion();
             }
         }
+    }
+
+    void SetCraft()
+    {
+        if (recipes[recipePos] != null)
+        {
+            ingredentOne.GetComponent<Image>().sprite = recipes[recipePos].ingredentsOne;
+            ingredentTwo.GetComponent<Image>().sprite = recipes[recipePos].ingredentsTwo;
+            result.GetComponent<Image>().sprite = recipes[recipePos].result;
+            switch (recipePos)
+            {
+                case 0:
+                    IsHealPotion = true;
+                    IsManaPotion = false;
+
+
+                    break;
+                case 1:
+                    IsHealPotion = false;
+                    IsManaPotion = true;
+
+                    break;
+                case 2:
+                    IsHealPotion = false;
+                    IsManaPotion = false;
+
+                    break;
+            }
+        }
+    }
+
+    void CraftPotion()
+    {
+        if (IsHPPotion() && ingredents.beewaxCount > 0 && ingredents.mushroomCount > 0 && healTimer > healingCooldown)
+        {
+            ingredents.HealthPotion++;
+            ingredents.beewaxCount--;
+            ingredents.mushroomCount--;
+
+            gameManager.instance.UpdatePotionCount(1, 0);
+
+            healTimer = 0;
+        }
+        else if (IsMPPotion() && ingredents.beewaxCount > 0 && ingredents.baconCount > 0)
+        {
+            ingredents.ManaPotion++;
+            ingredents.beewaxCount--;
+            ingredents.baconCount--;
+
+            gameManager.instance.UpdatePotionCount(0, 1);
+        }
+        InventorySystem.instance.VerifyCount();
     }
 
     public bool IsHPPotion()

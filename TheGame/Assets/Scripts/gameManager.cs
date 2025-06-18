@@ -1,23 +1,25 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Security.Cryptography.X509Certificates;
-using Unity.VisualScripting;
 using System.Collections.Generic;
 
 public class gameManager : MonoBehaviour
 {
-	public static gameManager instance;
+    public static gameManager instance;
 
-	[SerializeField] GameObject menuActive;
-	[SerializeField] GameObject menuPause;
-	[SerializeField] GameObject menuWin;
-	[SerializeField] GameObject menuLose;
-	[SerializeField] TMP_Text gameGoalCountText;
+    [Header("Menus")]
+    [SerializeField] GameObject menuActive;
+    [SerializeField] GameObject menuPause;
+    [SerializeField] GameObject menuWin;
+    [SerializeField] GameObject menuLose;
+    public GameObject Inventory;
+
+    [Header("Texts")]
+    [SerializeField] TMP_Text gameGoalCountText;
     [SerializeField] TMP_Text bossHPCountText;
     [SerializeField] TMP_Text bossHPMaxText;
     [SerializeField] TMP_Text baconCountText;
-	[SerializeField] TMP_Text beesWaxCountText;
+    [SerializeField] TMP_Text beesWaxCountText;
     [SerializeField] TMP_Text mushroomCountText;
     [SerializeField] TMP_Text healpotionText;
     [SerializeField] TMP_Text manapotionText;
@@ -25,24 +27,28 @@ public class gameManager : MonoBehaviour
     [SerializeField] TMP_Text beesWaxGoalText;
     [SerializeField] TMP_Text mushroomGoalText;
 
-    [SerializeField] TMP_Text playerHPCountText; 
-	[SerializeField] TMP_Text playerHPMaxText; 
-	public Image playerHPBar;
-	int playerHPCountOrig; 
-	int playerHPMaxOrig;
+    [Header("Player Health")]
+    [SerializeField] TMP_Text playerHPCountText;
+    [SerializeField] TMP_Text playerHPMaxText;
+    public Image playerHPBar;
+    int playerHPCountOrig;
+    int playerHPMaxOrig;
 
-    [SerializeField] TMP_Text playerMPCountText; 
-	[SerializeField] TMP_Text playerMPMaxText;
+    [Header("Player Mana")]
+    [SerializeField] TMP_Text playerMPCountText;
+    [SerializeField] TMP_Text playerMPMaxText;
     public Image playerManaBar;
-	int playerMPCountOrig;
-	int playerMPMaxOrig;
+    int playerMPCountOrig;
+    int playerMPMaxOrig;
 
+    [Header("Player Oxgyen")]
     [SerializeField] TMP_Text playerOXCountText;
     [SerializeField] TMP_Text playerOXMaxText;
     public Image playerOxygenBarFiller;
     int playerOXCountOrig;
     int playerOXMaxOrig;
 
+    [Header("HotBar")]
     public Image MainSpell;
     public Image SpellOne;
     public Image SpellTwo;
@@ -50,26 +56,41 @@ public class gameManager : MonoBehaviour
     public Image SpellFour;
     public Image SpellFive;
     [SerializeField] List<spellStats> Spell = new List<spellStats>();
+    public List<itemStats> items = new List<itemStats>();
 
+    public GameObject TeleportObj;
+    public Image TeleportSlot;
+    public GameObject ShieldObj;
+    public Image Shield;
+
+    [Header("Description")]
+    public GameObject textBox;
+    public TMP_Text textDescription;
+
+    [Header("Dialogue")]
+    public GameObject DialogueBox;
+    public TMP_Text DialogueDescription;
+
+    [Header("Screens")]
     public GameObject playerDamageScreen;
     public GameObject playerStunScreen;
-	public GameObject player;
-	public playerController playerScript;
-	public GameObject textBox;
-	public TMP_Text textDescription;
-	public GameObject DialogueBox;
-	public TMP_Text DialogueDescription;
-	public Image bossHPBar; 
-	public int baconGoalPI;
-	public int beesWaxGoalPI;
-	public int mushroomGoalPI;
+
+    public GameObject GodMode;
+    public GameObject NormalMode;
+
+    public GameObject player;
+    public playerController playerScript;
+    public Image bossHPBar;
+    public int baconGoalPI;
+    public int beesWaxGoalPI;
+    public int mushroomGoalPI;
 
     public bool isPaused;
 
-	float timeScaleOrig;
-	int gameGoalCount;
+    float timeScaleOrig;
+    int gameGoalCount;
     int bossHPCountOrig;
-	int bossHPMaxOrig;
+    int bossHPMaxOrig;
     int healpotionCountOrig;
     int manapotionCountOrig;
     int baconCount;
@@ -80,27 +101,28 @@ public class gameManager : MonoBehaviour
     int mushroomGoal;
 
     bool hasMonsterEgg = false;
-	bool hasEnoughBacon = false;
+    bool hasEnoughBacon = false;
     bool hasEnoughBeesWax = false;
-	bool hasEnoughMushroom = false;
-	 
+    bool hasEnoughMushroom = false;
 
-	// Start is called once before the first execution of Update after the MonoBehaviour is created
-	void Awake()
-	{
-		instance = this;
-		player = GameObject.FindWithTag("Player");
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Awake()
+    {
+        instance = this;
+        player = GameObject.FindWithTag("Player");
         if (player != null)
         {
             playerScript = player.GetComponent<playerController>();
         }
-		timeScaleOrig = Time.timeScale;
+        timeScaleOrig = Time.timeScale;
 
-		Cursor.visible = false;
-		Cursor.lockState = CursorLockMode.Locked;
-        SpellCheck();
-		UpdateIngredientGoal(baconGoalPI, beesWaxGoalPI, mushroomGoalPI);
-	}
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        PickUpCheck();
+        InventoryReset();
+        UpdateIngredientGoal(baconGoalPI, beesWaxGoalPI, mushroomGoalPI);
+    }
 
     // Update is called once per frame
     void Update()
@@ -111,15 +133,31 @@ public class gameManager : MonoBehaviour
             {
                 StatePause();
                 menuActive = menuPause;
-                
-                if(menuActive != null)
+
+                if (menuActive != null)
                 {
-                    menuActive.SetActive(isPaused);
+                    menuActive.SetActive(true);
                 }
-                    
+
             }
             else if (menuActive == menuPause)
                 StateUnpause();
+        }
+
+        if (playerController.instance.IsInventory)
+        {
+            if (menuActive != menuPause)
+            {
+                if(playerController.instance.PauseGameInInventory)
+                StatePause();
+
+                menuActive = Inventory;
+                menuActive.SetActive(true);
+            }
+            else
+            {
+                playerController.instance.IsInventory = false;
+            }
         }
 
         if (Input.GetKey("q"))
@@ -235,7 +273,7 @@ public class gameManager : MonoBehaviour
 
         playerMPMaxOrig += mpAmount;
         playerMPMaxText.text = playerMPMaxOrig.ToString("F0");
-        
+
         playerOXMaxOrig += oxAmount;
         playerOXMaxText.text = playerOXMaxOrig.ToString("F0");
     }
@@ -281,7 +319,7 @@ public class gameManager : MonoBehaviour
         {
             beesWaxGoalText.text = beesWaxGoal.ToString("F0");
         }
-        
+
         if (mushroomGoalText != null)
         {
             mushroomGoalText.text = mushroomGoal.ToString("F0");
@@ -310,10 +348,19 @@ public class gameManager : MonoBehaviour
         }
     }
 
-    void SpellCheck()
+    void PickUpCheck()
     {
-        for(int i = 0; i < Spell.Count; i++)
+        for (int i = 0; i < Spell.Count; i++)
             Spell[i].spellCheck = true;
+        for (int i = 0; i < items.Count; i++)
+            items[i].firstTime = true;
     }
 
+    void InventoryReset()
+    {
+        for(int i = 0; i < items.Count; i++)
+        {
+            items[i].Count = 0;
+        }
+    }
 }
