@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime;
 
 public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 {
@@ -16,7 +17,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     [SerializeField] Animator anim;
     [SerializeField] LayerMask ignoreLayer;
     [SerializeField] int animTransSpeed;
-    [SerializeField] Ingredents ingredents;
+    [SerializeField] ItemCount ingredents;
 
     [Header("Health")]
     [SerializeField] int HP;
@@ -76,7 +77,10 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     [SerializeField] bool isTeleportingRaycast;
     [SerializeField] float teleportRate;
+    float TeleportTimer;
     [SerializeField] int teleportDist;
+    [SerializeField] GameObject TeleportModel;
+    [SerializeField] GameObject spellTeleport;
 
     [Header("Jump")]
     [SerializeField] int jumpMax;
@@ -97,6 +101,10 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     public string startupDialogue;
 
+    int InventoryPos = 0;
+    public bool IsInventory;
+    public bool PauseGameInInventory;
+
     bool isSprinting;
     bool isPlayingStep;
     bool isShielding = false;
@@ -116,6 +124,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         origSpeed = speed;
         origJump = jumpForce;
         test = true;
+        IsInventory = false;
         healingnumOrig = healingnum;
         gameManager.instance.UpdatePlayerMaxHPMPOXCount(HP, Mana, Oxygen);
         gameManager.instance.UpdatePotionCount(numofhealpotions, numofmanapotions);
@@ -147,6 +156,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         //setAnimPara();
         shootTimer += Time.deltaTime;
         healTimer += Time.deltaTime;
+        TeleportTimer += Time.deltaTime;
 
         if (Mana != ManaOrig)
             manaCooldownTimer += Time.deltaTime;
@@ -194,6 +204,11 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             if (choice == shootchoice.spellList && spellList.Count > 0 && Mana >= manaCost)
                 shootSpell(canShoot);
         }
+        if (Input.GetButton("Fire2") && TeleportTimer >= teleportRate && spellTeleport != null)
+        {
+            Teleport();
+            TeleportTimer = 0;
+        }
         if (Input.GetKey("f"))
         {
             PotionUsed();
@@ -202,7 +217,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         {
             ManaRegen();
         }
-        if (Input.GetButtonDown("Shield") && shield != null)
+        if (Input.GetButtonDown("Shield") && shield != null && gameManager.instance.Shield.sprite != null)
         {
             isShielding = !isShielding;
         }
@@ -210,6 +225,11 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         {
             shieldTimer += Time.deltaTime;
             Shield();
+        }
+        if (Input.GetButtonDown("Inventory"))
+        {
+            IsInventory = !IsInventory;
+            Inventory();
         }
         else
         {
@@ -241,6 +261,14 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             gameManager.instance.UpdatePlayerMPCount(-shieldManaCost);
             updatePlayerUI();
             shieldTimer = 0;
+        }
+    }
+
+    void Inventory()
+    {
+        if (IsInventory == false)
+        {
+            gameManager.instance.StateUnpause();
         }
     }
 
@@ -325,10 +353,10 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
                 if (spellList[spellListPos].hitEffect != null)
                     Instantiate(spellList[spellListPos].hitEffect, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
             }
-            else
-            {
-                Teleport();
-            }
+            //else
+            //{
+            //    Teleport();
+            //}
         }
     }
 
@@ -544,7 +572,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     {
         if (spell.spellCheck)
         {
-            if (spell.name != "Shield")
+            if (spell.name != "Spell8_Shield" && spell.name != "Spell7_Teleport Spell")
             {
                 spellList.Add(spell);
                 spellListPos = spellList.Count - 1;
@@ -552,12 +580,27 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
                 changeSpell();
                 spell.spellCheck = false;
             }
-            else //shield values
+            else if (spell.name == "Spell8_Shield") //shield values
             {
                 shield = spell.model;
                 shieldManaCost = spell.manaCost;
                 shieldRate = spell.shootRate;
                 spell.spellCheck = false;
+
+                gameManager.instance.Shield.sprite = spell.sprite;
+                gameManager.instance.ShieldObj.SetActive(true);
+
+            } // who watching?
+            else
+            {
+                gameManager.instance.TeleportSlot.sprite = spell.sprite;
+                teleportRate = spell.shootRate;
+
+                TeleportModel.GetComponent<MeshFilter>().sharedMesh = spell.model.GetComponent<MeshFilter>().sharedMesh;
+                TeleportModel.GetComponent<MeshRenderer>().sharedMaterial = spell.model.GetComponent<MeshRenderer>().sharedMaterial;
+
+                spellTeleport = spell.spellProjectile;
+                gameManager.instance.TeleportObj.SetActive(true);
             }
             if (!Cheatmanager.instance.DescriptionCheat)
                 gameManager.instance.DisplayDescription(spell.spellManual);
@@ -579,29 +622,28 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     public void GetItemStats(itemStats item)
     {
-        if (item.itemName == "Boar Meat")
+        if (item.itemName == "Bee Wax")
         {
-            ingredents.baconCount += 1;
+            ingredents.beewaxCount++;
         }
-        else if (item.itemName == "Bee Wax")
+        else if (item.itemName == "Boar Meat")
         {
-            ingredents.beewaxCount += 1;
+            ingredents.baconCount++;
         }
         else if (item.itemName == "Mushroom")
         {
-            ingredents.mushroomCount += 1;
+            ingredents.mushroomCount++;
         }
         else if (item.itemName == "Health Potion")
         {
-            numofhealpotions += 1;
-            gameManager.instance.UpdatePotionCount(1, 0);
+            ingredents.HealthPotion++;
         }
         else if (item.itemName == "Mana Potion")
         {
-            numofhealpotions += 1;
-            gameManager.instance.UpdatePotionCount(0, 1);
+            ingredents.ManaPotion++;
         }
-        else if (item.itemName == "Boss Egg")
+
+        if (item.itemName == "Boss Egg")
         {
             gameManager.instance.UpdateMonsterEgg(true);
             gameManager.instance.GameGoalMonsterEgg();
@@ -612,11 +654,24 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             gameManager.instance.DisplayDescription(item.itemDescription);
             item.firstTime = false;
         }
+
+        if (InventorySystem.instance.inventoryStats.Count <= gameManager.instance.items.Count && !InventorySystem.instance.inventoryStats.Contains(item))
+        {
+            InventorySystem.instance.inventoryStats.Add(item);
+            item.Count++;
+            InventorySystem.instance.StoredInventory(InventoryPos);
+            InventoryPos++;
+        }
+        else
+        {
+            item.Count++;
+        }
+        InventorySystem.instance.VerifyCount();
     }
 
     void Teleport()
     {
-        GameObject teleproj = Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
+        GameObject teleproj = Instantiate(spellTeleport, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
         teleproj.GetComponent<Teleport>().player = gameObject;
         teleproj.GetComponent<Teleport>().playercon = controller;
     }

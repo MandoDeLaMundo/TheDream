@@ -63,17 +63,14 @@ public class Cheatmanager : MonoBehaviour
             if (Input.GetKeyDown(DescriptionBoxCheatCode[curIndex]))
             {
                 curIndex++;
-                Debug.Log("In Description cheat");
                 if (curIndex >= DescriptionBoxCheatCode.Length)
                 {
                     if (DescriptionCheat)
                     {
-                        Debug.Log("Description Cheat off");
                         DescriptionCheat = false;
                     }
                     else
                     {
-                        Debug.Log("Description Cheat on");
                         DescriptionCheat = true;
                     }
                     curIndex = 0;
@@ -82,12 +79,10 @@ public class Cheatmanager : MonoBehaviour
             else if (Input.GetKeyDown(allSpellCheatCode[curIndex]))
             {
                 curIndex++;
-                Debug.Log("In Spell cheat");
                 if (curIndex >= allSpellCheatCode.Length)
                 {
                     if (spellCheat)
                     {
-                        Debug.Log("Spell Cheat off");
 
                         gameManager.instance.MainSpell.sprite = null;
                         gameManager.instance.SpellOne.sprite = null;
@@ -98,10 +93,10 @@ public class Cheatmanager : MonoBehaviour
 
                         playerController.instance.spellList.Clear();
                         playerController.instance.spellListPos = 0;
+                        spellCheat = false;
                     }
                     else
                     {
-                        Debug.Log("Spell Cheat");
                         for (int index = 0; index < ListAllSpells.Count; index++)
                         {
                             spellCheat = true;
@@ -115,7 +110,6 @@ public class Cheatmanager : MonoBehaviour
             else if (Input.GetKeyDown(invulnerablecheatCode[curIndex]))
             {
                 curIndex++;
-                Debug.Log("In Invun cheat");
                 if (curIndex >= invulnerablecheatCode.Length)
                 {
                     if (invulnerable)
@@ -136,7 +130,6 @@ public class Cheatmanager : MonoBehaviour
             else if (Input.GetKeyDown(SuperSpeedCheatCode[curIndex]))
             {
                 curIndex++;
-                Debug.Log("In speed cheat");
                 if (curIndex >= SuperSpeedCheatCode.Length)
                 {
                     if (SpeedCheat)
@@ -146,7 +139,6 @@ public class Cheatmanager : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("Speed cheat");
                         SpeedCheat = true;
                     }
                     curIndex = 0;

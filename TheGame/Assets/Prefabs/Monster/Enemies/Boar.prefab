@@ -167,9 +167,9 @@ MonoBehaviour:
   meleeRate: 1
   meleeDmgAmt: 1
   meleeRange: 5
-  isAttacking: 0
   attackType: 0
-  faceTargetSpeed: 15
+  isAttacking: 0
+  faceTargetSpeed: 45
   FOV: 120
   roamDist: 20
   roamPauseTime: 2

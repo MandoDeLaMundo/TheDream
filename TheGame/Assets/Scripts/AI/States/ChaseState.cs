@@ -45,13 +45,24 @@ public class ChaseState : IState
 
         float distanceToPlayer = Vector3.Distance(enemy.transform.position, playerPos);
 
-            // The following is shorthand versions of bool switch case conditions. It's called a C# expression-based switch
-        bool shouldAttack = enemy.attackType switch
+        bool shouldAttack = false;
+
+        switch (enemy.attackType)
         {
-            EnemyBase.AttackType.Melee => distanceToPlayer <= enemy.meleeRange,
-            EnemyBase.AttackType.Ranged => enemy.playerInRange,
-            EnemyBase.AttackType.Hybrid => distanceToPlayer <= enemy.meleeRange || enemy.playerInRange,
-            _ => false
+            case EnemyBase.AttackType.Melee:
+                if (distanceToPlayer <= enemy.meleeRange)
+                    shouldAttack = true;
+                break;
+            case EnemyBase.AttackType.Ranged:
+                if (enemy.playerInRange)
+                    shouldAttack = true;
+                break;
+            case EnemyBase.AttackType.Hybrid:
+                if (enemy.playerInRange && enemy.CanShoot)
+                    shouldAttack = true;
+                else if (distanceToPlayer <= enemy.meleeRange)
+                    shouldAttack = true;
+                break;
         };
 
         if (enemy is ChargingEnemy chargingEnemy)
