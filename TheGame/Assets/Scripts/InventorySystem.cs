@@ -35,9 +35,13 @@ public class InventorySystem : MonoBehaviour
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Awake()
+    private void Awake()
     {
-        instance = this;
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject); // or log a warning
+
         RowOne.SetActive(false);
         RowTwo.SetActive(false);
         Inventory.SetActive(false);

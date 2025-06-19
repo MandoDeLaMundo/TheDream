@@ -38,9 +38,6 @@ public class craftingSystem : MonoBehaviour
         craftActive = craftHeal;
         craftActive.SetActive(true);
 
-        potionActive = potionHeal;
-        potionActive.SetActive(true);
-
         IsHealPotion = true;
         IsManaPotion = false;
 

@@ -129,6 +129,7 @@ public class gameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         PickUpCheck();
         InventoryReset();
+        UpdatePotionCount();
         UpdateIngredientGoal(baconGoalPI, beesWaxGoalPI, mushroomGoalPI);
     }
 

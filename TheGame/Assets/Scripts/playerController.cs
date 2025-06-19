@@ -19,6 +19,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     [SerializeField] int animTransSpeed;
 
     [SerializeField] ItemCount ingredents;
+    [SerializeField] ListsTracker listsTracker;
 
     [Header("Health")]
     [SerializeField] int HP;
@@ -522,6 +523,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
                 }
             }
         }
+        listsTracker.spellListPos = spellListPos;
     }
 
     void changeSpell()
@@ -535,37 +537,19 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         spellModel.GetComponent<MeshFilter>().sharedMesh = spellList[spellListPos].model.GetComponent<MeshFilter>().sharedMesh;
         spellModel.GetComponent<MeshRenderer>().sharedMaterial = spellList[spellListPos].model.GetComponent<MeshRenderer>().sharedMaterial;
 
-        HotBar(spellListPos);
+        if (spellList[spellListPos] != null)
+            listsTracker.spellList.Add(spellList[spellListPos]);
+
+        if (DisplayHotBar.instance == null)
+        {
+            Debug.LogError("DisplayHotBar.instance is null!");
+        }
+        else
+        {
+            DisplayHotBar.instance.HotBar(spellListPos);
+        }
 
         spell = spellList[spellListPos].spellProjectile;
-    }
-
-    public void HotBar(int spell)
-    {
-        switch (spell)
-        {
-            case 0:
-                gameManager.instance.SpellOne.sprite = spellList[spell].sprite;
-                gameManager.instance.MainSpell.sprite = spellList[spell].sprite;
-                break;
-            case 1:
-                gameManager.instance.SpellTwo.sprite = spellList[spell].sprite;
-                gameManager.instance.MainSpell.sprite = spellList[spell].sprite;
-                break;
-            case 2:
-                gameManager.instance.SpellThree.sprite = spellList[spell].sprite;
-                gameManager.instance.MainSpell.sprite = spellList[spell].sprite;
-                break;
-            case 3:
-                gameManager.instance.SpellFour.sprite = spellList[spell].sprite;
-                gameManager.instance.MainSpell.sprite = spellList[spell].sprite;
-                break;
-            case 4:
-                gameManager.instance.SpellFive.sprite = spellList[spell].sprite;
-                gameManager.instance.MainSpell.sprite = spellList[spell].sprite;
-                break;
-
-        }
     }
 
     public void GetSpellStats(spellStats spell)
@@ -656,9 +640,17 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             item.firstTime = false;
         }
 
+        
         if (InventorySystem.instance.inventoryStats.Count <= gameManager.instance.items.Count && !InventorySystem.instance.inventoryStats.Contains(item))
         {
-            InventorySystem.instance.inventoryStats.Add(item);
+            if (InventorySystem.instance == null)
+            {
+                Debug.LogError("InventorySystem.instance is null!");
+            }
+            else
+            {
+                InventorySystem.instance.inventoryStats.Add(item);
+            }
             item.Count++;
             InventorySystem.instance.StoredInventory(InventoryPos);
             InventoryPos++;
