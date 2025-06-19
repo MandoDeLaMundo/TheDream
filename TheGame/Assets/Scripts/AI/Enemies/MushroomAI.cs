@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MushroomAI : EnemyBase
+public class MushroomAI : CowardEnemy
 {
     
 }

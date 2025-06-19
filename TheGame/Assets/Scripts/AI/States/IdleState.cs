@@ -28,6 +28,11 @@ public class IdleState : IState
 
         if (enemy.playerInRange && enemy.CanSeePlayer())
         {
+            if (enemy is CowardEnemy cowardEnemy)
+            {
+                enemy.stateMachine.ChangeState(new AttackState(cowardEnemy));
+            }
+
             enemy.stateMachine.ChangeState(new ChaseState(enemy));
         }
 
