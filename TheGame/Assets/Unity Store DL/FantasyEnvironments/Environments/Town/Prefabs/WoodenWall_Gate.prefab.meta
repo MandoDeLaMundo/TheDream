@@ -1,8 +1,10 @@
 fileFormatVersion: 2
-guid: 6030d4ecea42c4a4a8df94e0e7854f90
+guid: b79b83d11a775684889f7af98f7d3284
+labels:
+- Architecture
 NativeFormatImporter:
   externalObjects: {}
-  mainObjectFileID: 8574412962073106934
+  mainObjectFileID: 100100000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -11,5 +13,5 @@ AssetOrigin:
   productId: 103573
   packageName: Fantasy landscape
   packageVersion: 2.0
-  assetPath: Assets/FantasyEnvironments/Environments/TerrainLayers/layer_ground_grass.terrainlayer
+  assetPath: Assets/FantasyEnvironments/Environments/Town/Prefabs/WoodenWall_Gate.prefab
   uploadId: 647578

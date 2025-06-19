@@ -1,8 +1,10 @@
 fileFormatVersion: 2
-guid: 44c91ff670f3f3a4baa73d3d6b595aa3
+guid: 4047ab01be7298e4e827f73bf31ba088
+labels:
+- Architecture
 NativeFormatImporter:
   externalObjects: {}
-  mainObjectFileID: 8574412962073106934
+  mainObjectFileID: 100100000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -11,5 +13,5 @@ AssetOrigin:
   productId: 103573
   packageName: Fantasy landscape
   packageVersion: 2.0
-  assetPath: Assets/FantasyEnvironments/Environments/TerrainLayers/layer_ground_road.terrainlayer
+  assetPath: Assets/FantasyEnvironments/Environments/Town/Prefabs/TownGate.prefab
   uploadId: 647578
