@@ -17,7 +17,9 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     [SerializeField] Animator anim;
     [SerializeField] LayerMask ignoreLayer;
     [SerializeField] int animTransSpeed;
+
     [SerializeField] ItemCount ingredents;
+    [SerializeField] ListsTracker listsTracker;
 
     [Header("Health")]
     [SerializeField] int HP;
@@ -127,7 +129,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         IsInventory = false;
         healingnumOrig = healingnum;
         gameManager.instance.UpdatePlayerMaxHPMPOXCount(HP, Mana, Oxygen);
-        gameManager.instance.UpdatePotionCount(numofhealpotions, numofmanapotions);
         updatePlayerUI();
         if (spellList.Count > 0)
             changeSpell();
@@ -391,8 +392,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             healTimer = 0;
 
             updatePlayerUI();
-            numofhealpotions--;
-            gameManager.instance.UpdatePotionCount(-1, 0);
+            ingredents.HealthPotion--;
+            gameManager.instance.UpdatePotionCount();
         }
     }
 
@@ -415,8 +416,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             healTimer = 0;
 
             updatePlayerUI();
-            numofmanapotions--;
-            gameManager.instance.UpdatePotionCount(0, -1);
+            ingredents.ManaPotion--;
+            gameManager.instance.UpdatePotionCount();
         }
     }
 
@@ -522,6 +523,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
                 }
             }
         }
+        listsTracker.spellListPos = spellListPos;
     }
 
     void changeSpell()
@@ -535,37 +537,19 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         spellModel.GetComponent<MeshFilter>().sharedMesh = spellList[spellListPos].model.GetComponent<MeshFilter>().sharedMesh;
         spellModel.GetComponent<MeshRenderer>().sharedMaterial = spellList[spellListPos].model.GetComponent<MeshRenderer>().sharedMaterial;
 
-        HotBar(spellListPos);
+        if (spellList[spellListPos] != null)
+            listsTracker.spellList.Add(spellList[spellListPos]);
+
+        if (DisplayHotBar.instance == null)
+        {
+            Debug.LogError("DisplayHotBar.instance is null!");
+        }
+        else
+        {
+            DisplayHotBar.instance.HotBar(spellListPos);
+        }
 
         spell = spellList[spellListPos].spellProjectile;
-    }
-
-    public void HotBar(int spell)
-    {
-        switch (spell)
-        {
-            case 0:
-                gameManager.instance.SpellOne.sprite = spellList[spell].sprite;
-                gameManager.instance.MainSpell.sprite = spellList[spell].sprite;
-                break;
-            case 1:
-                gameManager.instance.SpellTwo.sprite = spellList[spell].sprite;
-                gameManager.instance.MainSpell.sprite = spellList[spell].sprite;
-                break;
-            case 2:
-                gameManager.instance.SpellThree.sprite = spellList[spell].sprite;
-                gameManager.instance.MainSpell.sprite = spellList[spell].sprite;
-                break;
-            case 3:
-                gameManager.instance.SpellFour.sprite = spellList[spell].sprite;
-                gameManager.instance.MainSpell.sprite = spellList[spell].sprite;
-                break;
-            case 4:
-                gameManager.instance.SpellFive.sprite = spellList[spell].sprite;
-                gameManager.instance.MainSpell.sprite = spellList[spell].sprite;
-                break;
-
-        }
     }
 
     public void GetSpellStats(spellStats spell)
@@ -622,6 +606,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     public void GetItemStats(itemStats item)
     {
+        //switch(item.itemName)
         if (item.itemName == "Bee Wax")
         {
             ingredents.beewaxCount++;
@@ -655,8 +640,10 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             item.firstTime = false;
         }
 
+
         if (InventorySystem.instance.inventoryStats.Count <= gameManager.instance.items.Count && !InventorySystem.instance.inventoryStats.Contains(item))
         {
+
             InventorySystem.instance.inventoryStats.Add(item);
             item.Count++;
             InventorySystem.instance.StoredInventory(InventoryPos);
