@@ -1,10 +1,13 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class FleeState : IState
 {
     CowardEnemy enemy;
     float attackCooldown;
     float attackTimer;
+    float fleeTimer;
+    float fleeInterval = 0.5f;
 
     public FleeState(CowardEnemy _enemy)
     {
@@ -14,12 +17,22 @@ public class FleeState : IState
 
     public void Enter()
     {
+        enemy.agent.isStopped = false;
         enemy.agent.speed *= 2;
+        fleeTimer = 0f;
+
+        SetNewFleeDestination();
     }
 
     public void Update()
     {
         attackTimer += Time.deltaTime;
+        fleeTimer += Time.deltaTime;
+
+        if (!enemy.playerInRange && !enemy.CanSeePlayer())
+        {
+            enemy.stateMachine.ChangeState(new IdleState(enemy));
+        }
 
         if (enemy.CanShoot && attackTimer >= attackCooldown)
         {
@@ -27,20 +40,11 @@ public class FleeState : IState
             enemy.stateMachine.ChangeState(new AttackState(enemy));
         }
 
-        else if (!enemy.CanShoot && enemy.playerInRange && enemy.CanSeePlayer())
+        if (fleeTimer >= fleeInterval)
         {
-            Vector3 direction = (enemy.transform.position - gameManager.instance.player.transform.position).normalized;
-            Vector3 newDestination = enemy.transform.position + direction * enemy.fleeDistance;
-            
-            if (enemy.agent.remainingDistance < 0.5f)
-            {
-                enemy.agent.SetDestination(newDestination);
-            }
-        }
+            SetNewFleeDestination();
+            fleeTimer = 0f;
 
-        if (!enemy.playerInRange && !enemy.CanSeePlayer())
-        {
-            enemy.stateMachine.ChangeState(new IdleState(enemy));
         }
     }
 
@@ -48,5 +52,20 @@ public class FleeState : IState
     { 
         enemy.agent.speed /= 2;
         enemy.CanShoot = true;
+    }
+
+    void SetNewFleeDestination()
+    {
+            Vector3 direction = (enemy.transform.position - gameManager.instance.player.transform.position).normalized;
+            Vector3 newDestination = enemy.transform.position + direction * enemy.fleeDistance;
+            
+            if (NavMesh.SamplePosition(newDestination, out NavMeshHit hit, enemy.fleeDistance, NavMesh.AllAreas))
+            {
+                enemy.agent.SetDestination(hit.position);
+            }
+            else
+            {
+                enemy.agent.SetDestination(newDestination);
+            }
     }
 }
