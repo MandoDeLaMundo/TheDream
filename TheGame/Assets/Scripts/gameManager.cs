@@ -21,8 +21,6 @@ public class gameManager : MonoBehaviour
     [SerializeField] TMP_Text baconCountText;
     [SerializeField] TMP_Text beesWaxCountText;
     [SerializeField] TMP_Text mushroomCountText;
-    [SerializeField] TMP_Text healpotionText;
-    [SerializeField] TMP_Text manapotionText;
     [SerializeField] TMP_Text baconGoalText;
     [SerializeField] TMP_Text beesWaxGoalText;
     [SerializeField] TMP_Text mushroomGoalText;
@@ -47,6 +45,18 @@ public class gameManager : MonoBehaviour
     public Image playerOxygenBarFiller;
     int playerOXCountOrig;
     int playerOXMaxOrig;
+
+    [Header("Potions Text")]
+    [SerializeField] TMP_Text healpotionText;
+    int healpotionCountOrig;
+    [SerializeField] TMP_Text manapotionText;
+    int manapotionCountOrig;
+    [SerializeField] TMP_Text healpotionplusText;
+    int healpotionplusCountOrig;
+    [SerializeField] TMP_Text manapotionplusText;
+    int manapotionplusCountOrig;
+
+    [SerializeField] ItemCount ItemCount;
 
     [Header("HotBar")]
     public Image MainSpell;
@@ -91,8 +101,6 @@ public class gameManager : MonoBehaviour
     int gameGoalCount;
     int bossHPCountOrig;
     int bossHPMaxOrig;
-    int healpotionCountOrig;
-    int manapotionCountOrig;
     int baconCount;
     int beesWaxCount;
     int mushroomCount;
@@ -121,6 +129,7 @@ public class gameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         PickUpCheck();
         InventoryReset();
+        UpdatePotionCount();
         UpdateIngredientGoal(baconGoalPI, beesWaxGoalPI, mushroomGoalPI);
     }
 
@@ -284,12 +293,16 @@ public class gameManager : MonoBehaviour
         bossHPCountText.text = bossHPCountOrig.ToString("F0");
     }
 
-    public void UpdatePotionCount(int heal, int mana)
+    public void UpdatePotionCount()
     {
-        healpotionCountOrig += heal;
+        healpotionCountOrig = ItemCount.HealthPotion;
         healpotionText.text = healpotionCountOrig.ToString("F0");
-        manapotionCountOrig += mana;
+        manapotionCountOrig = ItemCount.ManaPotion;
         manapotionText.text = manapotionCountOrig.ToString("F0");
+        healpotionCountOrig = ItemCount.HealPlusPotion;
+        healpotionplusText.text = healpotionplusCountOrig.ToString("F0");
+        manapotionCountOrig = ItemCount.ManaPlusPotion;
+        manapotionplusText.text = manapotionplusCountOrig.ToString("F0");
     }
 
     public void UpdateIngredientCount(int baconAmount, int beesWaxAmount, int mushroomAmount)

@@ -38,16 +38,16 @@ public class craftingSystem : MonoBehaviour
         craftActive = craftHeal;
         craftActive.SetActive(true);
 
-        potionActive = potionHeal;
-        potionActive.SetActive(true);
-
         IsHealPotion = true;
         IsManaPotion = false;
 
-        ingredentOne.GetComponent<Image>().sprite = recipes[recipePos].ingredentsOne;
-        ingredentTwo.GetComponent<Image>().sprite = recipes[recipePos].ingredentsTwo;
-        result.GetComponent<Image>().sprite = recipes[recipePos].result;
-        recipePos = 1;
+        if (recipes != null)
+        {
+            ingredentOne.GetComponent<Image>().sprite = recipes[recipePos].ingredentsOne;
+            ingredentTwo.GetComponent<Image>().sprite = recipes[recipePos].ingredentsTwo;
+            result.GetComponent<Image>().sprite = recipes[recipePos].result;
+            recipePos = 1;
+        }
     }
 
     void Update()
@@ -111,8 +111,6 @@ public class craftingSystem : MonoBehaviour
             ingredents.beewaxCount--;
             ingredents.mushroomCount--;
 
-            gameManager.instance.UpdatePotionCount(1, 0);
-
             healTimer = 0;
         }
         else if (IsMPPotion() && ingredents.beewaxCount > 0 && ingredents.baconCount > 0)
@@ -120,8 +118,6 @@ public class craftingSystem : MonoBehaviour
             ingredents.ManaPotion++;
             ingredents.beewaxCount--;
             ingredents.baconCount--;
-
-            gameManager.instance.UpdatePotionCount(0, 1);
         }
         InventorySystem.instance.VerifyCount();
     }

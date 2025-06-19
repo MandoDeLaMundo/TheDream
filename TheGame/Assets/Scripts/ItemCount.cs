@@ -11,5 +11,7 @@ public class ItemCount : ScriptableObject
     [Header("Potions Count")]
     public int HealthPotion;
     public int ManaPotion;
+    public int HealPlusPotion;
+    public int ManaPlusPotion;
 }
 
