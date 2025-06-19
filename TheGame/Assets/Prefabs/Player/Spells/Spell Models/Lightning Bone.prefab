@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1726855954963603785}
   m_Layer: 7
   m_Name: Lightning Bone
-  m_TagString: Untagged
+  m_TagString: Lightning
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,18 +50,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 5
-  rb: {fileID: 1726855954963603785}
   damageAmount: 0
   damageRate: 1
   speed: 40
   destroyTime: 5
   contactDMGAmount: 0
-  knockBackDistance: 0
-  knockBackSpeed: 0
+  knockBackStrength: 0
   knockbackDelay: 0
-  maxBounce: 0
-  bounceRange: 0
   explosionArea: {fileID: 6313717595856648607}
+  rb: {fileID: 1726855954963603785}
 --- !u!33 &8472469645794640667
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -287,15 +284,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
-  rb: {fileID: 0}
   damageAmount: 3
   damageRate: 1
   speed: 0
   destroyTime: 0
   contactDMGAmount: 0
-  knockBackDistance: 0
-  knockBackSpeed: 0
+  knockBackStrength: 0
   knockbackDelay: 0
-  maxBounce: 0
-  bounceRange: 0
   explosionArea: {fileID: 0}
+  rb: {fileID: 0}

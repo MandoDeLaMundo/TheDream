@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 public class TriggerBox : MonoBehaviour
 {
-    enum triggertype { none, root, silent, debuff, geyser }
+    enum triggertype { none, root, silent, debuff, geyser, elementShield }
 
     [SerializeField] GameObject objectModel;
 
@@ -19,6 +19,9 @@ public class TriggerBox : MonoBehaviour
     [Header("Geyser")]
     [SerializeField] float geyserStrength;
     [SerializeField] float oxygenRegen;
+
+    [Header("Element Shield")]
+    [SerializeField] private Material spellProjectileMaterial;
 
     float oxygenTimer;
 
@@ -71,6 +74,42 @@ public class TriggerBox : MonoBehaviour
             {
                 proc = true;
                 StartCoroutine(SilentPlayer());
+            }
+        }
+        if (other.CompareTag("Fire") && type == triggertype.elementShield)
+        {
+            MeshRenderer renderer = other.GetComponent<MeshRenderer>();
+            if (renderer != null)
+            {
+                Material projectileMaterial = renderer.sharedMaterial;
+                if (projectileMaterial == spellProjectileMaterial)
+                {
+                    Destroy(gameObject);
+                }
+            }
+        }
+        if (other.CompareTag("Ice") && type == triggertype.elementShield)
+        {
+            MeshRenderer renderer = other.GetComponent<MeshRenderer>();
+            if (renderer != null)
+            {
+                Material projectileMaterial = renderer.sharedMaterial;
+                if (projectileMaterial == spellProjectileMaterial)
+                {
+                    Destroy(gameObject);
+                }
+            }
+        }
+        if (other.CompareTag("Lightning") && type == triggertype.elementShield)
+        {
+            MeshRenderer renderer = other.GetComponent<MeshRenderer>();
+            if (renderer != null)
+            {
+                Material projectileMaterial = renderer.sharedMaterial;
+                if (projectileMaterial == spellProjectileMaterial)
+                {
+                    Destroy(gameObject);
+                }
             }
         }
     }

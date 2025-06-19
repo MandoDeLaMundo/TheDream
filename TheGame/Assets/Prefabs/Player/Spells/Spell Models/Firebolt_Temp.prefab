@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: -2270214607467925877}
   m_Layer: 7
   m_Name: Firebolt_Temp
-  m_TagString: Untagged
+  m_TagString: Fire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,16 +52,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  rb: {fileID: 5609082165397218280}
   damageAmount: 1
   damageRate: 0
   speed: 25
   destroyTime: 3
   contactDMGAmount: 0
-  knockBackDistance: 0
-  knockBackSpeed: 0
+  knockBackStrength: 0
   knockbackDelay: 0
   explosionArea: {fileID: 0}
+  rb: {fileID: 5609082165397218280}
 --- !u!33 &2440964203697844242
 MeshFilter:
   m_ObjectHideFlags: 0

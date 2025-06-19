@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1726855954963603785}
   m_Layer: 7
   m_Name: Ice Saw
-  m_TagString: Untagged
+  m_TagString: Ice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,18 +49,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 6
-  rb: {fileID: 1726855954963603785}
   damageAmount: 10
   damageRate: 1
   speed: 20
   destroyTime: 3
   contactDMGAmount: 0
-  knockBackDistance: 0
-  knockBackSpeed: 0
+  knockBackStrength: 0
   knockbackDelay: 0
-  maxBounce: 2
-  bounceRange: 10
   explosionArea: {fileID: 0}
+  rb: {fileID: 1726855954963603785}
 --- !u!33 &8472469645794640667
 MeshFilter:
   m_ObjectHideFlags: 0
