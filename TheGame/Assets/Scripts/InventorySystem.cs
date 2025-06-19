@@ -35,9 +35,13 @@ public class InventorySystem : MonoBehaviour
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Awake()
+    private void Awake()
     {
-        instance = this;
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject); // or log a warning
+
         RowOne.SetActive(false);
         RowTwo.SetActive(false);
         Inventory.SetActive(false);
@@ -153,12 +157,16 @@ public class InventorySystem : MonoBehaviour
             }
             else if (inventoryStats[i].itemName == "Health Potion")
             {
-                inventoryStats[i].Count = ingredents.HealthPotion;
+                gameManager.instance.UpdatePotionCount();
             }
             else if (inventoryStats[i].itemName == "Mana Potion")
             {
-                inventoryStats[i].Count = ingredents.ManaPotion;
+                gameManager.instance.UpdatePotionCount();
             }
+            //else if (inventoryStats[i].itemName == "Health Potion" || inventoryStats[i].itemName == "Mana Potion")
+            //{
+            //    gameManager.instance.UpdatePotionCount();
+            //}
             //else if (inventoryStats[i].name == "Health Potion")
             //{
 

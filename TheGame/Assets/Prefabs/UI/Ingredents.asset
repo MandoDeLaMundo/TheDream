@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51041b8e0ca8f2e408887e0067f22ae3, type: 3}
   m_Name: Ingredents
   m_EditorClassIdentifier: 
-  beewaxCount: 0
-  baconCount: 0
-  mushroomCount: 0
+  beewaxCount: 3
+  baconCount: 2
+  mushroomCount: 1
+  HealthPotion: 4
+  ManaPotion: 1
+  HealPlusPotion: 0
+  ManaPlusPotion: 0
