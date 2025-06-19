@@ -6419,6 +6419,74 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &2983581996557287186
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7302464508719308972}
+  - component: {fileID: 4930506163165789707}
+  m_Layer: 5
+  m_Name: InventoryManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7302464508719308972
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2983581996557287186}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7686955477975542978}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4930506163165789707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2983581996557287186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02ed0da297828624facc98ba91308175, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryStats: []
+  ingredents: {fileID: 11400000, guid: 8a2453d5c2004404fa7c439fd221ff39, type: 2}
+  Inventory: {fileID: 2142553354841208101}
+  RowOne: {fileID: 7479620910911785936}
+  R1SlotOne: {fileID: 5907631708857808929}
+  R1SlotTwo: {fileID: 1597622631754603432}
+  R1SlotThree: {fileID: 2471175727934783675}
+  R1SlotFour: {fileID: 5103788884242955006}
+  R1SlotFive: {fileID: 6444174106845610094}
+  R1SlotOnetext: {fileID: 7036533563914052939}
+  R1SlotTwotext: {fileID: 8692154375035507850}
+  R1SlotThreetext: {fileID: 1242299735142001502}
+  R1SlotFourtext: {fileID: 897167907422492425}
+  R1SlotFivetext: {fileID: 2450207918871075518}
+  RowTwo: {fileID: 195758275143125599}
+  R2SlotOne: {fileID: 0}
+  R2SlotTwo: {fileID: 0}
+  R2SlotThree: {fileID: 0}
+  R2SlotFour: {fileID: 0}
+  R2SlotFive: {fileID: 0}
 --- !u!1 &2992973557459439460
 GameObject:
   m_ObjectHideFlags: 0
@@ -8048,7 +8116,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3019420842739145004}
-  - component: {fileID: 3806061069002252251}
   - component: {fileID: 4969161061166020431}
   - component: {fileID: 6515917485282618358}
   m_Layer: 5
@@ -8084,40 +8151,6 @@ RectTransform:
   m_AnchoredPosition: {x: -110, y: 120}
   m_SizeDelta: {x: 210, y: 210}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &3806061069002252251
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3870532017142328943}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00e9f4dd33fe0dc47b4431fe83e7f115, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CurrentHotBar: {fileID: 0}
-  MainSpell: {fileID: 5523256374374300743}
-  OneSlots: {fileID: 3870532017142328943}
-  TwoSlots: {fileID: 4642326473876293536}
-  TwoSpellOne: {fileID: 4464593523135245934}
-  TwoSpellTwo: {fileID: 179375460473503156}
-  ThreeSlots: {fileID: 2925511864204707690}
-  ThreeSpellOne: {fileID: 5000983726051566855}
-  ThreeSpellTwo: {fileID: 8563600643373049221}
-  ThreeSpellThree: {fileID: 352434842054446827}
-  FourSlots: {fileID: 4214949448111925218}
-  FourSpellOne: {fileID: 5320948851414469215}
-  FourSpellTwo: {fileID: 4311345115353335131}
-  FourSpellThree: {fileID: 5615986130824990869}
-  FourSpellFour: {fileID: 4044262595520665650}
-  FiveSlots: {fileID: 5872230538268186885}
-  FiveSpellOne: {fileID: 8247435775873216997}
-  FiveSpellTwo: {fileID: 5255935836750911353}
-  FiveSpellThree: {fileID: 9205178163437285306}
-  FiveSpellFour: {fileID: 3213297750644010595}
-  FiveSpellFive: {fileID: 6269183879693263332}
-  listsTracker: {fileID: 11400000, guid: c026569c04ebb0e47be12351098e42fd, type: 2}
 --- !u!222 &4969161061166020431
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12099,6 +12132,76 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!1 &5905917036548968575
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7768508265970317221}
+  - component: {fileID: 3066127359866425744}
+  m_Layer: 5
+  m_Name: HotBarManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7768508265970317221
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5905917036548968575}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7686955477975542978}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3066127359866425744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5905917036548968575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00e9f4dd33fe0dc47b4431fe83e7f115, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentHotBar: {fileID: 0}
+  MainSpell: {fileID: 5523256374374300743}
+  OneSlots: {fileID: 3870532017142328943}
+  TwoSlots: {fileID: 4642326473876293536}
+  TwoSpellOne: {fileID: 4464593523135245934}
+  TwoSpellTwo: {fileID: 179375460473503156}
+  ThreeSlots: {fileID: 2925511864204707690}
+  ThreeSpellOne: {fileID: 5000983726051566855}
+  ThreeSpellTwo: {fileID: 8563600643373049221}
+  ThreeSpellThree: {fileID: 352434842054446827}
+  FourSlots: {fileID: 4214949448111925218}
+  FourSpellOne: {fileID: 5320948851414469215}
+  FourSpellTwo: {fileID: 4311345115353335131}
+  FourSpellThree: {fileID: 5615986130824990869}
+  FourSpellFour: {fileID: 4044262595520665650}
+  FiveSlots: {fileID: 5872230538268186885}
+  FiveSpellOne: {fileID: 8247435775873216997}
+  FiveSpellTwo: {fileID: 5255935836750911353}
+  FiveSpellThree: {fileID: 9205178163437285306}
+  FiveSpellFour: {fileID: 3213297750644010595}
+  FiveSpellFive: {fileID: 6269183879693263332}
+  listsTracker: {fileID: 11400000, guid: c026569c04ebb0e47be12351098e42fd, type: 2}
 --- !u!1 &5981548408522963961
 GameObject:
   m_ObjectHideFlags: 0
@@ -14372,6 +14475,8 @@ RectTransform:
   - {fileID: 5874111597313535273}
   - {fileID: 7286227879403077915}
   - {fileID: 6841965532503502987}
+  - {fileID: 7768508265970317221}
+  - {fileID: 7302464508719308972}
   - {fileID: 6500024876700388144}
   - {fileID: 7509043439661502196}
   - {fileID: 8506962638790458899}

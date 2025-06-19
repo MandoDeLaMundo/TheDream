@@ -640,17 +640,11 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             item.firstTime = false;
         }
 
-        
+
         if (InventorySystem.instance.inventoryStats.Count <= gameManager.instance.items.Count && !InventorySystem.instance.inventoryStats.Contains(item))
         {
-            if (InventorySystem.instance == null)
-            {
-                Debug.LogError("InventorySystem.instance is null!");
-            }
-            else
-            {
-                InventorySystem.instance.inventoryStats.Add(item);
-            }
+
+            InventorySystem.instance.inventoryStats.Add(item);
             item.Count++;
             InventorySystem.instance.StoredInventory(InventoryPos);
             InventoryPos++;

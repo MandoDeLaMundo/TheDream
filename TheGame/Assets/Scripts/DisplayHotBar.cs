@@ -57,152 +57,155 @@ public class DisplayHotBar : MonoBehaviour
 
     public void HotBar(int spell)
     {
-        Debug.Log(listsTracker.spellList.Count - 1);
-        switch (listsTracker.spellList.Count - 1)
+        if(spell < listsTracker.spellList.Count)
         {
-            case 0:
-                if(OneSlots != null)
-                OneSlots.SetActive(true);
-                MainSpell.sprite = listsTracker.spellList[spell].sprite;
-                TwoSpellOne.sprite = listsTracker.spellList[spell].sprite;
-                ThreeSpellOne.sprite = listsTracker.spellList[spell].sprite;
-                FourSpellOne.sprite = listsTracker.spellList[spell].sprite;
-                FiveSpellOne.sprite = listsTracker.spellList[spell].sprite;
-                break;
-            case 1:
-                if (CurrentHotBar != TwoSlots)
-                {
-                    //CurrentHotBar.SetActive(false);
-                    CurrentHotBar = TwoSlots;
-                    CurrentHotBar.SetActive(true);
+            switch (listsTracker.spellList.Count - 1)
+            {
+                case 0:
+                    if (OneSlots != null)
+                        OneSlots.SetActive(true);
+                    MainSpell.sprite = listsTracker.spellList[spell].sprite;
+                    TwoSpellOne.sprite = listsTracker.spellList[spell].sprite;
+                    ThreeSpellOne.sprite = listsTracker.spellList[spell].sprite;
+                    FourSpellOne.sprite = listsTracker.spellList[spell].sprite;
+                    FiveSpellOne.sprite = listsTracker.spellList[spell].sprite;
+                    break;
+                case 1:
+                    if (CurrentHotBar != TwoSlots)
+                    {
+                        //CurrentHotBar.SetActive(false);
+                        CurrentHotBar = TwoSlots;
+                        CurrentHotBar.SetActive(true);
 
-                }
-                switch (spell)
-                {
-                    case 0:
-                        MainSpell.sprite = listsTracker.spellList[spell].sprite;
-                        TwoSpellOne.sprite = listsTracker.spellList[spell].sprite;
-                        ThreeSpellOne.sprite = listsTracker.spellList[spell].sprite;
-                        FourSpellOne.sprite = listsTracker.spellList[spell].sprite;
-                        FiveSpellOne.sprite = listsTracker.spellList[spell].sprite;
-                        break;
-                    case 1:
-                        MainSpell.sprite = listsTracker.spellList[spell].sprite;
-                        TwoSpellTwo.sprite = listsTracker.spellList[spell].sprite;
-                        ThreeSpellTwo.sprite = listsTracker.spellList[spell].sprite;
-                        FourSpellTwo.sprite = listsTracker.spellList[spell].sprite;
-                        FiveSpellTwo.sprite = listsTracker.spellList[spell].sprite;
-                        break;
-                }
-                break;
-            case 2:
-                if (CurrentHotBar != ThreeSlots)
-                {
-                    CurrentHotBar.SetActive(false);
-                    CurrentHotBar = ThreeSlots;
-                    CurrentHotBar.SetActive(true);
-                }
-                switch (spell)
-                {
-                    case 0:
-                        MainSpell.sprite = listsTracker.spellList[spell].sprite;
-                        TwoSpellOne.sprite = listsTracker.spellList[spell].sprite;
-                        ThreeSpellOne.sprite = listsTracker.spellList[spell].sprite;
-                        FourSpellOne.sprite = listsTracker.spellList[spell].sprite;
-                        FiveSpellOne.sprite = listsTracker.spellList[spell].sprite;
-                        break;
-                    case 1:
-                        MainSpell.sprite = listsTracker.spellList[spell].sprite;
-                        TwoSpellTwo.sprite = listsTracker.spellList[spell].sprite;
-                        ThreeSpellTwo.sprite = listsTracker.spellList[spell].sprite;
-                        FourSpellTwo.sprite = listsTracker.spellList[spell].sprite;
-                        FiveSpellTwo.sprite = listsTracker.spellList[spell].sprite;
-                        break;
-                    case 2:
-                        MainSpell.sprite = listsTracker.spellList[spell].sprite;
-                        ThreeSpellThree.sprite = listsTracker.spellList[spell].sprite;
-                        FourSpellThree.sprite = listsTracker.spellList[spell].sprite;
-                        FiveSpellThree.sprite = listsTracker.spellList[spell].sprite;
-                        break;
-                }
-                break;
-            case 3:
-                if (CurrentHotBar != FourSlots)
-                {
-                    CurrentHotBar.SetActive(false);
-                    CurrentHotBar = FourSlots;
-                    CurrentHotBar.SetActive(true);
-                }
-                switch (spell)
-                {
-                    case 0:
-                        MainSpell.sprite = listsTracker.spellList[spell].sprite;
-                        TwoSpellOne.sprite = listsTracker.spellList[spell].sprite;
-                        ThreeSpellOne.sprite = listsTracker.spellList[spell].sprite;
-                        FourSpellOne.sprite = listsTracker.spellList[spell].sprite;
-                        FiveSpellOne.sprite = listsTracker.spellList[spell].sprite;
-                        break;
-                    case 1:
-                        MainSpell.sprite = listsTracker.spellList[spell].sprite;
-                        TwoSpellTwo.sprite = listsTracker.spellList[spell].sprite;
-                        ThreeSpellTwo.sprite = listsTracker.spellList[spell].sprite;
-                        FourSpellTwo.sprite = listsTracker.spellList[spell].sprite;
-                        FiveSpellTwo.sprite = listsTracker.spellList[spell].sprite;
-                        break;
-                    case 2:
-                        MainSpell.sprite = listsTracker.spellList[spell].sprite;
-                        ThreeSpellThree.sprite = listsTracker.spellList[spell].sprite;
-                        FourSpellThree.sprite = listsTracker.spellList[spell].sprite;
-                        FiveSpellThree.sprite = listsTracker.spellList[spell].sprite;
-                        break;
-                    case 3:
-                        MainSpell.sprite = listsTracker.spellList[spell].sprite;
-                        FourSpellFour.sprite = listsTracker.spellList[spell].sprite;
-                        FiveSpellFour.sprite = listsTracker.spellList[spell].sprite;
-                        break;
-                }
-                break;
-            case 4:
-                if (CurrentHotBar != FiveSlots)
-                {
-                    CurrentHotBar.SetActive(false);
-                    CurrentHotBar = FiveSlots;
-                    CurrentHotBar.SetActive(true);
-                }
-                switch (spell)
-                {
-                    case 0:
-                        MainSpell.sprite = listsTracker.spellList[spell].sprite;
-                        TwoSpellOne.sprite = listsTracker.spellList[spell].sprite;
-                        ThreeSpellOne.sprite = listsTracker.spellList[spell].sprite;
-                        FourSpellOne.sprite = listsTracker.spellList[spell].sprite;
-                        FiveSpellOne.sprite = listsTracker.spellList[spell].sprite;
-                        break;
-                    case 1:
-                        MainSpell.sprite = listsTracker.spellList[spell].sprite;
-                        TwoSpellTwo.sprite = listsTracker.spellList[spell].sprite;
-                        ThreeSpellTwo.sprite = listsTracker.spellList[spell].sprite;
-                        FourSpellTwo.sprite = listsTracker.spellList[spell].sprite;
-                        FiveSpellTwo.sprite = listsTracker.spellList[spell].sprite;
-                        break;
-                    case 2:
-                        MainSpell.sprite = listsTracker.spellList[spell].sprite;
-                        ThreeSpellThree.sprite = listsTracker.spellList[spell].sprite;
-                        FourSpellThree.sprite = listsTracker.spellList[spell].sprite;
-                        FiveSpellThree.sprite = listsTracker.spellList[spell].sprite;
-                        break;
-                    case 3:
-                        MainSpell.sprite = listsTracker.spellList[spell].sprite;
-                        FourSpellFour.sprite = listsTracker.spellList[spell].sprite;
-                        FiveSpellFour.sprite = listsTracker.spellList[spell].sprite;
-                        break;
-                    case 4:
-                        MainSpell.sprite = listsTracker.spellList[spell].sprite;
-                        FiveSpellFive.sprite = listsTracker.spellList[spell].sprite;
-                        break;
+                    }
+                    switch (spell)
+                    {
+                        case 0:
+                            MainSpell.sprite = listsTracker.spellList[spell].sprite;
+                            TwoSpellOne.sprite = listsTracker.spellList[spell].sprite;
+                            ThreeSpellOne.sprite = listsTracker.spellList[spell].sprite;
+                            FourSpellOne.sprite = listsTracker.spellList[spell].sprite;
+                            FiveSpellOne.sprite = listsTracker.spellList[spell].sprite;
+                            break;
+                        case 1:
+                            MainSpell.sprite = listsTracker.spellList[spell].sprite;
+                            TwoSpellTwo.sprite = listsTracker.spellList[spell].sprite;
+                            ThreeSpellTwo.sprite = listsTracker.spellList[spell].sprite;
+                            FourSpellTwo.sprite = listsTracker.spellList[spell].sprite;
+                            FiveSpellTwo.sprite = listsTracker.spellList[spell].sprite;
+                            break;
+                    }
+                    break;
+                case 2:
+                    if (CurrentHotBar != ThreeSlots)
+                    {
+                        CurrentHotBar.SetActive(false);
+                        CurrentHotBar = ThreeSlots;
+                        CurrentHotBar.SetActive(true);
+                    }
+                    switch (spell)
+                    {
+                        case 0:
+                            MainSpell.sprite = listsTracker.spellList[spell].sprite;
+                            TwoSpellOne.sprite = listsTracker.spellList[spell].sprite;
+                            ThreeSpellOne.sprite = listsTracker.spellList[spell].sprite;
+                            FourSpellOne.sprite = listsTracker.spellList[spell].sprite;
+                            FiveSpellOne.sprite = listsTracker.spellList[spell].sprite;
+                            break;
+                        case 1:
+                            MainSpell.sprite = listsTracker.spellList[spell].sprite;
+                            TwoSpellTwo.sprite = listsTracker.spellList[spell].sprite;
+                            ThreeSpellTwo.sprite = listsTracker.spellList[spell].sprite;
+                            FourSpellTwo.sprite = listsTracker.spellList[spell].sprite;
+                            FiveSpellTwo.sprite = listsTracker.spellList[spell].sprite;
+                            break;
+                        case 2:
+                            MainSpell.sprite = listsTracker.spellList[spell].sprite;
+                            ThreeSpellThree.sprite = listsTracker.spellList[spell].sprite;
+                            FourSpellThree.sprite = listsTracker.spellList[spell].sprite;
+                            FiveSpellThree.sprite = listsTracker.spellList[spell].sprite;
+                            break;
+                    }
+                    break;
+                case 3:
+                    if (CurrentHotBar != FourSlots)
+                    {
+                        CurrentHotBar.SetActive(false);
+                        CurrentHotBar = FourSlots;
+                        CurrentHotBar.SetActive(true);
+                    }
+                    switch (spell)
+                    {
+                        case 0:
+                            MainSpell.sprite = listsTracker.spellList[spell].sprite;
+                            TwoSpellOne.sprite = listsTracker.spellList[spell].sprite;
+                            ThreeSpellOne.sprite = listsTracker.spellList[spell].sprite;
+                            FourSpellOne.sprite = listsTracker.spellList[spell].sprite;
+                            FiveSpellOne.sprite = listsTracker.spellList[spell].sprite;
+                            break;
+                        case 1:
+                            MainSpell.sprite = listsTracker.spellList[spell].sprite;
+                            TwoSpellTwo.sprite = listsTracker.spellList[spell].sprite;
+                            ThreeSpellTwo.sprite = listsTracker.spellList[spell].sprite;
+                            FourSpellTwo.sprite = listsTracker.spellList[spell].sprite;
+                            FiveSpellTwo.sprite = listsTracker.spellList[spell].sprite;
+                            break;
+                        case 2:
+                            MainSpell.sprite = listsTracker.spellList[spell].sprite;
+                            ThreeSpellThree.sprite = listsTracker.spellList[spell].sprite;
+                            FourSpellThree.sprite = listsTracker.spellList[spell].sprite;
+                            FiveSpellThree.sprite = listsTracker.spellList[spell].sprite;
+                            break;
+                        case 3:
+                            MainSpell.sprite = listsTracker.spellList[spell].sprite;
+                            FourSpellFour.sprite = listsTracker.spellList[spell].sprite;
+                            FiveSpellFour.sprite = listsTracker.spellList[spell].sprite;
+                            break;
+                    }
+                    break;
+                case 4:
+                    if (CurrentHotBar != FiveSlots)
+                    {
+                        CurrentHotBar.SetActive(false);
+                        CurrentHotBar = FiveSlots;
+                        CurrentHotBar.SetActive(true);
+                    }
+                    switch (spell)
+                    {
+                        case 0:
+                            MainSpell.sprite = listsTracker.spellList[spell].sprite;
+                            TwoSpellOne.sprite = listsTracker.spellList[spell].sprite;
+                            ThreeSpellOne.sprite = listsTracker.spellList[spell].sprite;
+                            FourSpellOne.sprite = listsTracker.spellList[spell].sprite;
+                            FiveSpellOne.sprite = listsTracker.spellList[spell].sprite;
+                            break;
+                        case 1:
+                            MainSpell.sprite = listsTracker.spellList[spell].sprite;
+                            TwoSpellTwo.sprite = listsTracker.spellList[spell].sprite;
+                            ThreeSpellTwo.sprite = listsTracker.spellList[spell].sprite;
+                            FourSpellTwo.sprite = listsTracker.spellList[spell].sprite;
+                            FiveSpellTwo.sprite = listsTracker.spellList[spell].sprite;
+                            break;
+                        case 2:
+                            MainSpell.sprite = listsTracker.spellList[spell].sprite;
+                            ThreeSpellThree.sprite = listsTracker.spellList[spell].sprite;
+                            FourSpellThree.sprite = listsTracker.spellList[spell].sprite;
+                            FiveSpellThree.sprite = listsTracker.spellList[spell].sprite;
+                            break;
+                        case 3:
+                            MainSpell.sprite = listsTracker.spellList[spell].sprite;
+                            FourSpellFour.sprite = listsTracker.spellList[spell].sprite;
+                            FiveSpellFour.sprite = listsTracker.spellList[spell].sprite;
+                            break;
+                        case 4:
+                            MainSpell.sprite = listsTracker.spellList[spell].sprite;
+                            FiveSpellFive.sprite = listsTracker.spellList[spell].sprite;
+                            break;
 
-                }
-                break;
+                    }
+                    break;
+            }
         }
+        Debug.Log(listsTracker.spellList.Count - 1);
     }
 }
