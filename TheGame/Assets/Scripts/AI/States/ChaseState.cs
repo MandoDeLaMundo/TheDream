@@ -13,6 +13,7 @@ public class ChaseState : IState
 
     public void Enter()
     {
+        Debug.Log("I am in the chase state");
         losePlayerTimer = 0f;
         enemy.agent.stoppingDistance = enemy.stoppingDistOrig;
         enemy.agent.isStopped = false;

@@ -55,7 +55,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
 
     public StateMachine stateMachine = new StateMachine();
 
-    void Start()
+    protected virtual void Start()
     {
         if (!agent)
             agent = GetComponent<NavMeshAgent>();
