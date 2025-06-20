@@ -1111,7 +1111,7 @@ GameObject:
   - component: {fileID: 8865736877567651635}
   - component: {fileID: 7158287851781632824}
   m_Layer: 0
-  m_Name: spider_black
+  m_Name: Spider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

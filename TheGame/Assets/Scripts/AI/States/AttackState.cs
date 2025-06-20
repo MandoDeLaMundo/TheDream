@@ -24,6 +24,12 @@ public class AttackState : IState
 
         if (!enemy.CanSeePlayer() || !enemy.playerInRange)
         {
+            if (enemy is StationaryEnemy stationaryEnemy)
+            {
+                enemy.stateMachine.ChangeState(new StationaryIdleState(stationaryEnemy));
+                return;
+            }
+
             enemy.agent.isStopped = false;
             enemy.stateMachine.ChangeState(new PatrolState(enemy));
             return;
