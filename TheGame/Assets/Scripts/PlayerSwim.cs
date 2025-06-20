@@ -6,7 +6,7 @@ public class PlayerSwim : MonoBehaviour
     [SerializeField] LayerMask waterLayer;
     [SerializeField] float swimSpeed;
     [SerializeField] float verticalSwimSpeed;
-    [SerializeField] float oxygenDrainRate = 1f;
+    [SerializeField] float oxygenDrainRate;
 
     bool isInWater = false;
     playerController player;
