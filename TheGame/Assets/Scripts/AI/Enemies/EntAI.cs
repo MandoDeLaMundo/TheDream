@@ -1,16 +1,61 @@
+using System.Collections;
 using UnityEngine;
 
-public class EntAI : MonoBehaviour
+public class EntAI : EnemyBase
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [Header("Ent Mini Boss Abilities")]
+    public float vineWhipRange;
+    public float entangleCooldown;
+    public float immobilizeTimer;
+    public float warningDuration;
+    public GameObject entanglePrefab;
+    public GameObject vineWhipPrefab;
+
+    [HideInInspector] public float entangleTimer;
+
+    protected override void Update()
     {
-        
+        base.Update();
+        entangleTimer += Time.deltaTime;
     }
 
-    // Update is called once per frame
-    void Update()
+    public bool CanEntangle()
     {
-        
+        if (entangleTimer >= entangleCooldown)
+            return true;
+
+        return false;
+    }
+
+    public void ResetEntangleCooldown()
+    {
+        entangleTimer = 0f;
+    }
+
+    public void CastEntangle()
+    {
+        if (entanglePrefab)
+        {
+            GameObject entangle = Instantiate(entanglePrefab, gameManager.instance.player.transform.position, Quaternion.identity);
+
+            entangle.SetActive(false);
+            StartCoroutine(ActivateEntangle(entangle));
+        }
+
+    }
+
+    public void FireVineWhip()
+    {
+        if (vineWhipPrefab)
+        {
+            Vector3 dir = (gameManager.instance.player.transform.position - shootPos.position).normalized;
+            Instantiate(vineWhipPrefab, shootPos.position, Quaternion.LookRotation(dir));
+        }
+    }
+
+    IEnumerator ActivateEntangle(GameObject obj)
+    {
+        yield return new WaitForSeconds(warningDuration);
+        obj.SetActive(true);
     }
 }
