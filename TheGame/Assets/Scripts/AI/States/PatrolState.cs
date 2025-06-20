@@ -14,6 +14,7 @@ public class PatrolState : IState
 
     public void Enter()
     {
+        Debug.Log("I am in the patrol state");
         roamTimer = 0;
         enemy.agent.stoppingDistance = 0;
         SetNewRoamPoint();
