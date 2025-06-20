@@ -6,9 +6,4 @@ public class CowardEnemy : EnemyBase
     public float fleeDistance;
     public float fleeRange;
     [HideInInspector] public bool canAttack;
-
-    //public void FleeFromPlayer()
-    //{
-
-    //}
 }

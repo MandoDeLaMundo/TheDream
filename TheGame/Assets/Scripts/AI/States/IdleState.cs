@@ -28,15 +28,17 @@ public class IdleState : IState
 
         if (enemy.playerInRange && enemy.CanSeePlayer())
         {
-            if (enemy is CowardEnemy cowardEnemy)
+            if (enemy is CowardEnemy || enemy is StationaryEnemy)
             {
-                enemy.stateMachine.ChangeState(new AttackState(cowardEnemy));
+                enemy.stateMachine.ChangeState(new AttackState(enemy));
+                return;
             }
 
             enemy.stateMachine.ChangeState(new ChaseState(enemy));
+            return;
         }
 
-        else if (timer >= enemy.roamPauseTime)
+        else if (timer >= enemy.roamPauseTime && !(enemy is StationaryEnemy))
         {
             enemy.stateMachine.ChangeState(new PatrolState(enemy));
         }
