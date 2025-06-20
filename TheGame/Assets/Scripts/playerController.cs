@@ -523,7 +523,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
                 }
             }
         }
-        //listsTracker.spellListPos = spellListPos;
+        listsTracker.spellListPos = spellListPos;
     }
 
     void changeSpell()
