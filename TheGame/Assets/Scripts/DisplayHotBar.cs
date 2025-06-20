@@ -101,9 +101,9 @@ public class DisplayHotBar : MonoBehaviour
                 case 2:
                     if (CurrentHotBar != ThreeSlots)
                     {
-                        CurrentHotBar.SetActive(false);
+                        //CurrentHotBar.SetActive(false);
                         CurrentHotBar = ThreeSlots;
-                        CurrentHotBar.SetActive(true);
+                        //CurrentHotBar.SetActive(true);
                     }
                     switch (spell)
                     {
@@ -135,9 +135,9 @@ public class DisplayHotBar : MonoBehaviour
                 case 3:
                     if (CurrentHotBar != FourSlots)
                     {
-                        CurrentHotBar.SetActive(false);
+                        //CurrentHotBar.SetActive(false);
                         CurrentHotBar = FourSlots;
-                        CurrentHotBar.SetActive(true);
+                        //CurrentHotBar.SetActive(true);
                     }
                     switch (spell)
                     {
@@ -174,9 +174,9 @@ public class DisplayHotBar : MonoBehaviour
                 case 4:
                     if (CurrentHotBar != FiveSlots)
                     {
-                        CurrentHotBar.SetActive(false);
+                        //CurrentHotBar.SetActive(false);
                         CurrentHotBar = FiveSlots;
-                        CurrentHotBar.SetActive(true);
+                        //CurrentHotBar.SetActive(true);
                     }
                     switch (spell)
                     {
