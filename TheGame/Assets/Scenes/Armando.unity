@@ -579,14 +579,14 @@ MonoBehaviour:
   dropItemPrefab: {fileID: 9075227077817776970, guid: 0fc2845ea817d2a45a8608573e9eb5d0, type: 3}
   enemyHP: {fileID: 159571230}
   hpBar: {fileID: 159571228}
-  health: 0
+  health: 1
   shootPos: {fileID: 1381708549}
   projectile: {fileID: 6582579749444233906, guid: 56a4f0fae7c0c984e92f218afaf6c1c6, type: 3}
   shootRate: 1
   meleeRate: 1
   meleeDmgAmt: 1
-  meleeRange: 15
-  attackType: 2
+  meleeRange: 5
+  attackType: 0
   isAttacking: 0
   CanShoot: 0
   faceTargetSpeed: 45
@@ -602,6 +602,13 @@ MonoBehaviour:
   meleeTimer: 0
   roamTimer: 0
   playerInRange: 0
+  vineWhipRange: 15
+  entangleCooldown: 2
+  immobilizeTimer: 2
+  warningDuration: 2
+  entanglePrefab: {fileID: 8904007760972255349, guid: 03e47da0925a1d74facfc15f295d7ccd, type: 3}
+  vineWhipPrefab: {fileID: 6582579749444233906, guid: 56a4f0fae7c0c984e92f218afaf6c1c6, type: 3}
+  entangleTimer: 0
 --- !u!195 &862359986
 NavMeshAgent:
   m_ObjectHideFlags: 0
