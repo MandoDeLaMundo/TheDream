@@ -4,16 +4,15 @@ public class BoulderPush : MonoBehaviour
 {
     public float pushStrength = 5f;
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
+    private void OnTriggerStay(Collider other)
     {
-        if (hit.collider.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            CharacterController controller = hit.collider.GetComponent<CharacterController>();
+            CharacterController controller = other.GetComponent<CharacterController>();
             if (controller != null)
             {
-                // Calculate push direction away from boulder
-                Vector3 pushDir = hit.collider.transform.position - transform.position;
-                pushDir.y = 0; 
+                Vector3 pushDir = other.transform.position - transform.position;
+                pushDir.y = 0;
                 pushDir.Normalize();
 
                 controller.Move(pushDir * pushStrength * Time.deltaTime);
