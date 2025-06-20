@@ -19,11 +19,17 @@ public class AttackState : IState
 
     public void Update()
     {
-        if (enemy.shootTimer == enemy.shootRate)
+        if (enemy.shootTimer >= enemy.shootRate)
             enemy.CanShoot = true;
 
         if (!enemy.CanSeePlayer() || !enemy.playerInRange)
         {
+            if (enemy is StationaryEnemy stationaryEnemy)
+            {
+                enemy.stateMachine.ChangeState(new StationaryIdleState(stationaryEnemy));
+                return;
+            }
+
             enemy.agent.isStopped = false;
             enemy.stateMachine.ChangeState(new PatrolState(enemy));
             return;
@@ -83,14 +89,20 @@ public class AttackState : IState
     {
         if (enemy.playerInRange && enemy.shootTimer >= enemy.shootRate)
         {
+            enemy.CanShoot = false;
             enemy.shootTimer = 0f;
             Vector3 playerDir = (gameManager.instance.player.transform.position - enemy.shootPos.position).normalized;
             Object.Instantiate(enemy.projectile, enemy.shootPos.position, Quaternion.LookRotation(playerDir));
             // TODO: enemy.anim.SetTrigger("Shoot");
 
+            if (enemy is CowardEnemy cowardEnemy)
+            {
+                enemy.stateMachine.ChangeState(new FleeState(cowardEnemy));
+            }
+
+
             if (enemy.attackType == EnemyBase.AttackType.Hybrid)
             {
-                enemy.CanShoot = false;
                 enemy.stateMachine.ChangeState(new ChaseState(enemy));
             }
         }

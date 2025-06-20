@@ -8,12 +8,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: PotionBottom
-    second: {fileID: 2100000, guid: 47632f1b30e03d746ab19f3bd710326b, type: 2}
+    second: {fileID: 2100000, guid: a74aae08bcb90b149a378ae2a1382447, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: standardSurface1
-    second: {fileID: 2100000, guid: a58b89ce3b3412840b397367f95fa877, type: 2}
+    second: {fileID: 2100000, guid: bb0e49e61a7d42f4daae48b057ca4103, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

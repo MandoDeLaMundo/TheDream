@@ -10,6 +10,9 @@ TagManager:
   - FireBall
   - EnemyProjectile
   - NONTeleportable
+  - Fire
+  - Ice
+  - Lightning
   layers:
   - Default
   - TransparentFX

@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4511665919379058656}
+  - component: {fileID: 7173192705754102241}
   - component: {fileID: 5526081716726769597}
   - component: {fileID: 2756543246279750269}
   - component: {fileID: 200830066978146378}
   - component: {fileID: 7905611318087059978}
-  - component: {fileID: 7173192705754102241}
   - component: {fileID: 7273493174108116559}
   - component: {fileID: 6312615179051903852}
   m_Layer: 0
@@ -42,6 +42,53 @@ Transform:
   - {fileID: 5590209521708744782}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7173192705754102241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429976862743107279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa451d51e4627c34fa00d85bd9775ec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  model: {fileID: 200830066978146378}
+  agent: {fileID: 5526081716726769597}
+  anim: {fileID: 0}
+  headPos: {fileID: 2085715464459584644}
+  lootPos: {fileID: 6078317915919697521}
+  weaponCol: {fileID: 0}
+  dropItemPrefab: {fileID: 3344483719382986607, guid: 05244c67e08316645ad13781bb1540a8, type: 3}
+  enemyHP: {fileID: 6902237297284806304}
+  hpBar: {fileID: 5691789478340936369}
+  health: 1
+  shootPos: {fileID: 5590209521708744782}
+  projectile: {fileID: 8978822922218374344, guid: a9a6d5a27d1547045843cd40096173c3, type: 3}
+  shootRate: 0
+  meleeRate: 0
+  meleeDmgAmt: 0
+  meleeRange: 0
+  attackType: 1
+  isAttacking: 0
+  CanShoot: 0
+  faceTargetSpeed: 45
+  FOV: 120
+  roamDist: 10
+  roamPauseTime: 2
+  animTransSpeed: 0
+  playerDir: {x: 0, y: 0, z: 0}
+  startingPos: {x: 0, y: 0, z: 0}
+  angleToPlayer: 0
+  stoppingDistOrig: 0
+  shootTimer: 0
+  meleeTimer: 0
+  roamTimer: 0
+  playerInRange: 0
+  fleeDistance: 50
+  fleeRange: 0
+  canAttack: 0
 --- !u!195 &5526081716726769597
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -140,50 +187,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7173192705754102241
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 429976862743107279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa451d51e4627c34fa00d85bd9775ec5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  model: {fileID: 200830066978146378}
-  agent: {fileID: 5526081716726769597}
-  anim: {fileID: 0}
-  headPos: {fileID: 2085715464459584644}
-  lootPos: {fileID: 6078317915919697521}
-  weaponCol: {fileID: 0}
-  dropItemPrefab: {fileID: 3344483719382986607, guid: 05244c67e08316645ad13781bb1540a8, type: 3}
-  enemyHP: {fileID: 6902237297284806304}
-  hpBar: {fileID: 5691789478340936369}
-  health: 1
-  shootPos: {fileID: 5590209521708744782}
-  projectile: {fileID: 8978822922218374344, guid: a9a6d5a27d1547045843cd40096173c3, type: 3}
-  shootRate: 5
-  meleeRate: 0
-  meleeDmgAmt: 0
-  meleeRange: 0
-  attackType: 1
-  isAttacking: 0
-  CanShoot: 0
-  faceTargetSpeed: 45
-  FOV: 120
-  roamDist: 50
-  roamPauseTime: 2
-  animTransSpeed: 0
-  playerDir: {x: 0, y: 0, z: 0}
-  startingPos: {x: 0, y: 0, z: 0}
-  angleToPlayer: 0
-  stoppingDistOrig: 0
-  shootTimer: 0
-  meleeTimer: 0
-  roamTimer: 0
-  playerInRange: 0
 --- !u!65 &7273493174108116559
 BoxCollider:
   m_ObjectHideFlags: 0

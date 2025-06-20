@@ -523,7 +523,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
                 }
             }
         }
-        listsTracker.spellListPos = spellListPos;
+        //listsTracker.spellListPos = spellListPos;
     }
 
     void changeSpell()
@@ -536,6 +536,9 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
         spellModel.GetComponent<MeshFilter>().sharedMesh = spellList[spellListPos].model.GetComponent<MeshFilter>().sharedMesh;
         spellModel.GetComponent<MeshRenderer>().sharedMaterial = spellList[spellListPos].model.GetComponent<MeshRenderer>().sharedMaterial;
+
+        //if (spellList[spellListPos] != null)
+        //    listsTracker.spellList.Add(spellList[spellListPos]);
 
         if (DisplayHotBar.instance == null)
         {

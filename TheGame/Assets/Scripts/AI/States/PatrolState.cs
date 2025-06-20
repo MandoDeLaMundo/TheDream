@@ -23,6 +23,11 @@ public class PatrolState : IState
     {
         if (enemy.CanSeePlayer() && enemy.playerInRange)
         {
+            if (enemy is CowardEnemy cowardEnemy)
+            {
+                enemy.stateMachine.ChangeState(new FleeState(cowardEnemy));
+                return;
+            }
             enemy.stateMachine.ChangeState(new ChaseState(enemy));
             return;
         }

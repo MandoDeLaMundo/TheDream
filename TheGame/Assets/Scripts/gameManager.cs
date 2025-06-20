@@ -153,21 +153,25 @@ public class gameManager : MonoBehaviour
                 StateUnpause();
         }
 
-        if (playerController.instance.IsInventory)
+        if (playerController.instance != null && playerController.instance.IsInventory)
         {
-            if (menuActive != menuPause)
+            if (playerController.instance.IsInventory)
             {
-                if(playerController.instance.PauseGameInInventory)
-                StatePause();
+                if (menuActive != menuPause)
+                {
+                    if (playerController.instance.PauseGameInInventory)
+                        StatePause();
 
-                menuActive = Inventory;
-                menuActive.SetActive(true);
-            }
-            else
-            {
-                playerController.instance.IsInventory = false;
+                    menuActive = Inventory;
+                    menuActive.SetActive(true);
+                }
+                else
+                {
+                    playerController.instance.IsInventory = false;
+                }
             }
         }
+       
 
         if (Input.GetKey("q"))
         {
@@ -295,14 +299,29 @@ public class gameManager : MonoBehaviour
 
     public void UpdatePotionCount()
     {
-        healpotionCountOrig = ItemCount.HealthPotion;
-        healpotionText.text = healpotionCountOrig.ToString("F0");
-        manapotionCountOrig = ItemCount.ManaPotion;
-        manapotionText.text = manapotionCountOrig.ToString("F0");
-        healpotionCountOrig = ItemCount.HealPlusPotion;
-        healpotionplusText.text = healpotionplusCountOrig.ToString("F0");
-        manapotionCountOrig = ItemCount.ManaPlusPotion;
-        manapotionplusText.text = manapotionplusCountOrig.ToString("F0");
+        if(healpotionText != null)
+        {
+            healpotionCountOrig = ItemCount.HealthPotion;
+            healpotionText.text = healpotionCountOrig.ToString("F0");
+        }
+      
+        if (manapotionText != null)
+        {
+            manapotionCountOrig = ItemCount.ManaPotion;
+            manapotionText.text = manapotionCountOrig.ToString("F0");
+        }
+       
+        if (healpotionplusText != null)
+        {
+            healpotionCountOrig = ItemCount.HealPlusPotion;
+            healpotionplusText.text = healpotionplusCountOrig.ToString("F0");
+        }
+        
+        if (manapotionplusText != null)
+        {
+            manapotionCountOrig = ItemCount.ManaPlusPotion;
+            manapotionplusText.text = manapotionplusCountOrig.ToString("F0");
+        }
     }
 
     public void UpdateIngredientCount(int baconAmount, int beesWaxAmount, int mushroomAmount)
