@@ -6099,7 +6099,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 16083c08c66bc284a8638631496464e3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cac973777531d724389d95a830782a1b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9875,7 +9875,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7631c6d047a1cb64b807ae1f3f5b68e6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 527644fda92223a4c93535959af11239, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10785,6 +10785,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d9eff992f1e03854cafa061d622e508e, type: 2}
   - {fileID: 11400000, guid: c014b37a4a75843489d3cf8951313973, type: 2}
   - {fileID: 11400000, guid: 3652a15500d78184abd97988c2aabe3f, type: 2}
+  - {fileID: 11400000, guid: 9f07034eb247813488bfffd126d31c22, type: 2}
+  - {fileID: 11400000, guid: f6c9a58e5e590404eb83e1726073a517, type: 2}
   ItemCount: {fileID: 11400000, guid: 8a2453d5c2004404fa7c439fd221ff39, type: 2}
   AllLists: {fileID: 11400000, guid: c026569c04ebb0e47be12351098e42fd, type: 2}
   TeleportObj: {fileID: 2253082701255707994}
