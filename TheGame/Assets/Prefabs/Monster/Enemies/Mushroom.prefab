@@ -74,7 +74,7 @@ MonoBehaviour:
   isAttacking: 0
   CanShoot: 0
   faceTargetSpeed: 45
-  FOV: 120
+  FOV: 360
   roamDist: 10
   roamPauseTime: 2
   animTransSpeed: 0
@@ -87,7 +87,7 @@ MonoBehaviour:
   roamTimer: 0
   playerInRange: 0
   fleeDistance: 50
-  fleeRange: 0
+  fleeRange: 10
   canAttack: 0
 --- !u!195 &5526081716726769597
 NavMeshAgent:

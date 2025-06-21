@@ -43,11 +43,11 @@ public class AttackState : IState
         switch (enemy.attackType)
         {
             case EnemyBase.AttackType.Melee:
-                HandleMelee(distanceToPlayer);
+                    HandleMelee(distanceToPlayer);
                 break;
 
             case EnemyBase.AttackType.Ranged:
-                HandleRanged();
+                    HandleRanged();
                 break;
 
             case EnemyBase.AttackType.Hybrid:

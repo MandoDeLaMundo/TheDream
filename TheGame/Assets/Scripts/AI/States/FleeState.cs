@@ -7,7 +7,7 @@ public class FleeState : IState
     float attackCooldown;
     float attackTimer;
     float fleeTimer;
-    float fleeInterval = 0.5f;
+    float fleeInterval = .2f;
 
     public FleeState(CowardEnemy _enemy)
     {
@@ -29,7 +29,9 @@ public class FleeState : IState
         attackTimer += Time.deltaTime;
         fleeTimer += Time.deltaTime;
 
-        if (!enemy.playerInRange && !enemy.CanSeePlayer())
+        float distanceToPlayer = Vector3.Distance(enemy.transform.position, gameManager.instance.player.transform.position);
+
+        if (distanceToPlayer >= enemy.fleeRange)
         {
             enemy.stateMachine.ChangeState(new IdleState(enemy));
         }
