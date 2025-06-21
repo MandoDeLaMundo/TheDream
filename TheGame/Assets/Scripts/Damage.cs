@@ -5,9 +5,11 @@ using System.Collections.Generic;
 public class Damage : MonoBehaviour
 {
 	enum damagetype { moving, stationary, DOT, homing, contact, AOE}
+	enum effecttype { none, linger }
 
     [Header("Types")]
     [SerializeField] damagetype type;
+	[SerializeField] effecttype effect;
 
 	[SerializeField] int damageAmount;
 	[SerializeField] int damageRate;
@@ -21,6 +23,9 @@ public class Damage : MonoBehaviour
 
     [Header("AOE")]
     [SerializeField] GameObject explosionArea;
+
+	[Header("Effect")]
+	[SerializeField] float lingerDuration;
 
     [Header("")]
     [SerializeField] Rigidbody rb;
@@ -43,17 +48,20 @@ public class Damage : MonoBehaviour
 				rb.linearVelocity = transform.forward * speed;
 			}
 		}
-	}
+        if (type == damagetype.DOT && effect == effecttype.linger)
+        {
+			StartCoroutine(lingerEffectDectection());
+        }
+    }
 
 	// Update is called once per frame
 	void Update()
 	{
-		if (type == damagetype.homing)
+        if (type == damagetype.homing)
 		{
 			rb.linearVelocity = (gameManager.instance.transform.position - transform.position).normalized * speed * Time.deltaTime;
 		}
-		
-	}
+    }
 
 	private void OnTriggerEnter(Collider other)
 	{
@@ -103,7 +111,7 @@ public class Damage : MonoBehaviour
 			return;
 		}
 		IDamage dmg = other.GetComponent<IDamage>();
-		if (dmg != null && type == damagetype.DOT)
+		if (dmg != null && type == damagetype.DOT && effect == effecttype.none)
 		{
 			if (!isDamaging)
 			{
@@ -111,15 +119,31 @@ public class Damage : MonoBehaviour
 			}
 
 		}
-	}
+        if (dmg != null && type == damagetype.DOT && effect == effecttype.linger)
+        {
+            if (!isDamaging)
+            {
+				Debug.Log("X");
+                StartCoroutine(lingerEffect(dmg));
+            }
+        }
+    }
     private void OnTriggerExit(Collider other)
     {
 		isDamaging = false;
     }
 
+	IEnumerator lingerEffect(IDamage dmg)
+	{
+        isDamaging = true;
+        dmg.TakeDMG(damageAmount);
+        yield return new WaitForSeconds(damageRate);
+        isDamaging = false;
+        yield return new WaitForSeconds(lingerDuration);
+		Destroy(gameObject);
+    }
     void Explode()
 	{
-		Debug.Log("Explosion Trigger");
 		isExploded = true;
 		speed = 0;
         rb.linearVelocity = transform.forward * speed;
@@ -156,5 +180,10 @@ public class Damage : MonoBehaviour
 		yield return new WaitForSeconds (knockbackDelay);
 		canKnockBack = true;
 	}
+    IEnumerator lingerEffectDectection()
+    {
+        yield return new WaitForSeconds(lingerDuration);
+		Destroy(gameObject);
+    }
 }
 

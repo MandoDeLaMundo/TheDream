@@ -124,13 +124,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32f2f564b76da8b4f8918ba971a9f1cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
   objectModel: {fileID: 8904007760972255349}
   particleVFX: {fileID: 6058539231017627197}
-  oxygenRegen: 0
+  type: 3
   rootDuration: 5
   silentDuration: 5
   geyserStrength: 0
+  oxygenRegen: 0
+  spellProjectileMaterial: {fileID: 0}
+  timer: 5
 --- !u!1001 &1726464246492851260
 PrefabInstance:
   m_ObjectHideFlags: 0

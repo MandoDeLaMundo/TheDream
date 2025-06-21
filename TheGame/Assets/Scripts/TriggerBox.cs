@@ -23,21 +23,32 @@ public class TriggerBox : MonoBehaviour
     [Header("Element Shield")]
     [SerializeField] private Material spellProjectileMaterial;
 
+    [Header("")]
+    [SerializeField] float timer;
+
     float oxygenTimer;
 
+    bool playerInside = false;
     bool proc;
     void Start()
     {
-
+        if (type == triggertype.debuff || type == triggertype.root || type == triggertype.silent)
+        {
+            StartCoroutine(SelfDestroy());
+        }
     }
 
     void Update()
     {
-
+        if (timer != 0)
+        {
+            timer -= Time.deltaTime;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        playerInside = true;
         objectModel.SetActive(true);
         if (particleVFX != null)
         {
@@ -134,9 +145,10 @@ public class TriggerBox : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
+        playerInside = false;
         if (type == triggertype.debuff || type == triggertype.root || type == triggertype.silent || type== triggertype.none)
         {
-            objectModel.SetActive(false);
+            Destroy(gameObject);
         }
         if (particleVFX != null)
         {
@@ -149,7 +161,8 @@ public class TriggerBox : MonoBehaviour
         playerController.instance.controller.enabled = false;
         yield return new WaitForSeconds(rootDuration);
         playerController.instance.controller.enabled = true;
-        objectModel.SetActive(false);
+        yield return null;
+        Destroy(gameObject);
     }
     IEnumerator SilentPlayer()
     {
@@ -159,7 +172,7 @@ public class TriggerBox : MonoBehaviour
         playerController.instance.canShoot = true;
         if (type == triggertype.silent)
         {
-            objectModel.SetActive(false);
+            Destroy(gameObject);
         }
     }
     IEnumerator PlayerKnockBack(Transform playerPosition)
@@ -172,6 +185,15 @@ public class TriggerBox : MonoBehaviour
             playerPosition.Translate(direction * range, Space.World);
             move += range;
             yield return null;
+        }
+    }
+
+    IEnumerator SelfDestroy()
+    {
+        yield return new WaitForSeconds(timer);
+        if(timer <= 0 && !playerInside)
+        {
+        Destroy(gameObject);
         }
     }
     public void OxygenRegen()
