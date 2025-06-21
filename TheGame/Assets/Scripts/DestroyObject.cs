@@ -73,7 +73,8 @@ public class DestroyObject : MonoBehaviour, IDamage
             Instantiate(VFX, transform.position, Quaternion.identity);
         }
         ItemsChance();
-        Destroy(gameObject);
+        VFX.Play();
+        StartCoroutine(DestroyDelay());
     }
 
     void IDamage.TakeDMG(int amount)
@@ -83,5 +84,10 @@ public class DestroyObject : MonoBehaviour, IDamage
         {
             TriggerDrop();
         }
+    }
+    IEnumerator DestroyDelay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Destroy(gameObject);
     }
 }

@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fa449b0a99887c4c86b8770222bbb74, type: 3}
   m_Name: ItemStat_ManaPotion+
   m_EditorClassIdentifier: 
-  model: {fileID: 0}
-  itemName: 
+  model: {fileID: 8362694997508588280, guid: 948fc5673db644740983d4a2dab35c30, type: 3}
+  itemName: ManaPotion+
   itemDescription: The essence of this potion so PURE! One sip can make one become
     powerful
   healFactor: 0
   ManaFactor: 10
-  firstTime: 0
-  pickup: {fileID: 0}
-  sprite: {fileID: 0}
+  firstTime: 1
+  pickup: {fileID: 8362694997508588280, guid: 948fc5673db644740983d4a2dab35c30, type: 3}
+  sprite: {fileID: 21300000, guid: cac973777531d724389d95a830782a1b, type: 3}
   Count: 0

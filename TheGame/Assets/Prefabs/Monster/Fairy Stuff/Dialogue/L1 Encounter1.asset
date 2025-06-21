@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: L1 Encounter1
   m_EditorClassIdentifier: 
   dialogue:
-  - '[Fairy: *Yawns* Who is waking me up? Do you need something?] '
-  - "[Fairy: Oh\u2026 You\u2019re new\u2026 What are you doing here?] "
-  - "[Fairy: You\u2019re getting breakfast? Here? What are you having for breakfast?] "
-  - "[Fairy: An omelet? Wha\u2026 where are you getting the eggs?] "
-  - '[Fairy: FROM THE COCKATRICE?!] '
-  - '[Fairy: HOW DARE YOU DISRESPECT MY CITIZENS! I will make sure you do not harm
-    my creatures!] '
+  - 'Fairy: *Yawns* Who is waking me up? Do you need something?'
+  - "Fairy: Oh\u2026 You\u2019re new\u2026 What are you doing here?"
+  - "Fairy: You\u2019re getting breakfast? Here? What are you having for breakfast?"
+  - "Fairy: An omelet? Wha\u2026 where are you getting the eggs?"
+  - 'Fairy: FROM THE COCKATRICE?!'
+  - 'Fairy: HOW DARE YOU DISRESPECT MY CITIZENS!'
+  - 'Fairy: I will make sure you do not harm my creatures!'
