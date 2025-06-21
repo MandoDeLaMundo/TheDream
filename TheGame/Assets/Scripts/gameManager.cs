@@ -410,11 +410,12 @@ public class gameManager : MonoBehaviour
             ItemCount.ManaPlusPotion = 0;
         }
         InventoryReset();
-        //if (AllLists.spellList.Count > 0)
-        //{
-        //    AllLists.spellList = null;
-        //    AllLists.spellListPos = 0;
-        //    AllLists.ItemList = null;
-        //}
+        if (AllLists.spellList.Count > 0)
+        {
+            AllLists.spellList.Clear();
+            AllLists.spellListPos = 0;
+        }
+        if(AllLists.ItemList.Count > 0)
+            AllLists.ItemList.Clear();
     }
 }
