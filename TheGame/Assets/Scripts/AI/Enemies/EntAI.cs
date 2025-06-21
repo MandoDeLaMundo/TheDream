@@ -4,10 +4,12 @@ using UnityEngine;
 public class EntAI : EnemyBase
 {
     [Header("Ent Mini Boss Abilities")]
-    public float vineWhipRange;
+    public float vineWhipRangeMin;
+    public float vineWhipRangeMax;
     public float entangleCooldown;
     public float immobilizeTimer;
     public float warningDuration;
+
     public GameObject entanglePrefab;
     public GameObject vineWhipPrefab;
 
