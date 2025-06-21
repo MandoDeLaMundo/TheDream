@@ -155,7 +155,7 @@ public class TriggerBox : MonoBehaviour
         playerController.instance.controller.enabled = false;
         yield return new WaitForSeconds(rootDuration);
         playerController.instance.controller.enabled = true;
-        objectModel.SetActive(false);
+        Destroy(gameObject);
     }
     IEnumerator SilentPlayer()
     {
@@ -165,7 +165,7 @@ public class TriggerBox : MonoBehaviour
         playerController.instance.canShoot = true;
         if (type == triggertype.silent)
         {
-            objectModel.SetActive(false);
+            Destroy(gameObject);
         }
     }
     IEnumerator PlayerKnockBack(Transform playerPosition)
