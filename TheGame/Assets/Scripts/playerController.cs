@@ -27,7 +27,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     int HPOrig;
     [SerializeField] float healingCooldown;
     public int healingnum;
-    int healingnumOrig;
     public int numofhealpotions;
     float healTimer;
     public bool canTakeDam = true;
@@ -116,6 +115,12 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     public float potionTimerUse;
     float potionTimer;
+    int OverMax;
+
+    [SerializeField] itemStats healthPotionStats;
+    [SerializeField] itemStats manaPotionStats;
+    [SerializeField] itemStats healthPotionPlusStats;
+    [SerializeField] itemStats manaPotionPlusStats;
 
     bool test;
 
@@ -132,7 +137,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         origJump = jumpForce;
         test = true;
         IsInventory = false;
-        healingnumOrig = healingnum;
+        canTakeDam = true;
+        OverMax = 0;
         gameManager.instance.UpdatePlayerMaxHPMPOXCount(HP, Mana, Oxygen);
         updatePlayerUI();
         if (spellList.Count > 0)
@@ -249,17 +255,23 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         {
             if (Input.GetKeyDown("z"))
             {
-                Debug.Log("Use Health");
-                Heal();
+                HealPotion();
             }
 
             if (Input.GetKeyDown("x"))
             {
-
                 ManaPotion();
             }
 
+            if (Input.GetKeyDown("c"))
+            {
+                HealPotionPlus();
+            }
 
+            if (Input.GetKeyDown("v"))
+            {
+                ManaPotionPlus();
+            }
         }
 
 
@@ -390,7 +402,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     {
         if (craftingSystem.instance.IsHPPotion() && HP < HPOrig && healTimer > healingCooldown)
         {
-            Heal();
+            HealPotion();
         }
         else if (craftingSystem.instance.IsMPPotion())
         {
@@ -398,21 +410,22 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         }
     }
 
-    void Heal()
+    void HealPotion()
     {
         if (ingredents.HealthPotion > 0)
         {
-            HP += healingnum;
-            if (HP > HPOrig)
+            OverMax = HP + healthPotionStats.healFactor;
+            if (OverMax > HPOrig)
             {
-                healingnum = healingnum + (HPOrig - HP);
-                gameManager.instance.UpdatePlayerHPCount(healingnum);
+                OverMax = HPOrig - HP;
+                gameManager.instance.UpdatePlayerHPCount(OverMax);
                 HP = HPOrig;
-                healingnum = healingnumOrig;
+                OverMax = 0;
             }
             else
             {
-                gameManager.instance.UpdatePlayerHPCount(healingnum);
+                gameManager.instance.UpdatePlayerHPCount(healthPotionStats.healFactor);
+                HP += healthPotionStats.healFactor;
             }
             healTimer = 0;
 
@@ -426,22 +439,73 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     {
         if (ingredents.ManaPotion > 0)
         {
-            Mana += healingnum;
-            if (Mana > ManaOrig)
+            OverMax = Mana + manaPotionStats.ManaFactor;
+            if (OverMax > ManaOrig)
             {
-                healingnum = healingnum + (ManaOrig - Mana);
-                gameManager.instance.UpdatePlayerMPCount(healingnum);
+                OverMax = ManaOrig - Mana;
+                gameManager.instance.UpdatePlayerMPCount(OverMax);
                 Mana = ManaOrig;
-                healingnum = healingnumOrig;
+                OverMax = 0;
             }
             else
             {
-                gameManager.instance.UpdatePlayerMPCount(healingnum);
+                gameManager.instance.UpdatePlayerMPCount(manaPotionStats.ManaFactor);
+                Mana += manaPotionStats.ManaFactor;
             }
             healTimer = 0;
 
             updatePlayerUI();
             ingredents.ManaPotion--;
+            gameManager.instance.UpdatePotionCount();
+        }
+    }
+
+    void HealPotionPlus()
+    {
+        if (ingredents.HealPlusPotion > 0)
+        {
+            OverMax = HP + healthPotionPlusStats.healFactor;
+            if (OverMax > HPOrig)
+            {
+                OverMax = HPOrig - HP;
+                gameManager.instance.UpdatePlayerHPCount(OverMax);
+                HP = HPOrig;
+                OverMax = 0;
+            }
+            else
+            {
+                gameManager.instance.UpdatePlayerHPCount(healthPotionPlusStats.healFactor);
+                HP += healthPotionPlusStats.healFactor;
+            }
+            healTimer = 0;
+
+            updatePlayerUI();
+            ingredents.HealPlusPotion--;
+            gameManager.instance.UpdatePotionCount();
+        }
+    }
+
+    void ManaPotionPlus()
+    {
+        if (ingredents.ManaPlusPotion > 0)
+        {
+            OverMax = Mana + manaPotionPlusStats.ManaFactor;
+            if (OverMax > ManaOrig)
+            {
+                OverMax = ManaOrig - Mana;
+                gameManager.instance.UpdatePlayerMPCount(OverMax);
+                Mana = ManaOrig;
+                OverMax = 0;
+            }
+            else
+            {
+                gameManager.instance.UpdatePlayerMPCount(manaPotionPlusStats.ManaFactor);
+                Mana += manaPotionPlusStats.ManaFactor;
+            }
+            healTimer = 0;
+
+            updatePlayerUI();
+            ingredents.ManaPlusPotion--;
             gameManager.instance.UpdatePotionCount();
         }
     }
@@ -490,8 +554,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
                 HP -= amount;
                 gameManager.instance.UpdatePlayerHPCount(-amount);
                 updatePlayerUI();
-                if(canStunned)
-                StartCoroutine(Stunned());
+                if (canStunned)
+                    StartCoroutine(Stunned());
             }
         }
         else
@@ -654,6 +718,14 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         {
             ingredents.ManaPotion++;
         }
+        else if (item.itemName == "Potion+")
+        {
+            ingredents.HealPlusPotion++;
+        }
+        else if (item.itemName == "ManaPotion+")
+        {
+            ingredents.ManaPlusPotion++;
+        }
 
         if (item.itemName == "Boss Egg")
         {
@@ -667,11 +739,10 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             item.firstTime = false;
         }
 
-        if (item.itemName != "Health Potion" && item.itemName != "Mana Potion")
+        if (item.itemName != "Health Potion" && item.itemName != "Mana Potion" && item.itemName != "Potion+" && item.itemName != "ManaPotion+")
         {
             if (InventorySystem.instance.inventoryStats.Count <= gameManager.instance.items.Count && !InventorySystem.instance.inventoryStats.Contains(item))
             {
-
                 InventorySystem.instance.inventoryStats.Add(item);
                 item.Count++;
                 InventorySystem.instance.StoredInventory(InventoryPos);
@@ -683,7 +754,9 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             }
         }
         else
+        {
             gameManager.instance.UpdatePotionCount();
+        }
 
         InventorySystem.instance.VerifyCount();
     }
