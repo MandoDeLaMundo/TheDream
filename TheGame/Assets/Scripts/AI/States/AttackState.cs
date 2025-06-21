@@ -39,6 +39,7 @@ public class AttackState : IState
 
         FaceTarget();
 
+
         switch (enemy.attackType)
         {
             case EnemyBase.AttackType.Melee:
