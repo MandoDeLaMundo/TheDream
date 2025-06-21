@@ -8,11 +8,15 @@ public class pickup : MonoBehaviour
 	[SerializeField] spellStats spell;
 	[SerializeField] itemStats item;
 
-	//bool isFirstTimePickedup;
+	[SerializeField] AudioSource aud;
+    [SerializeField] AudioClip[] audPick;
+	[Range(0, 10)][SerializeField] float audPickVol;
+    //bool isFirstTimePickedup;
 
-	private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
 	{
-		IPickup toPickup = other.GetComponent<IPickup>();
+		aud.PlayOneShot(audPick[Random.Range(0, audPick.Length)], audPickVol);
+        IPickup toPickup = other.GetComponent<IPickup>();
 
 		if (toPickup != null)
 		{
