@@ -155,28 +155,7 @@ public class InventorySystem : MonoBehaviour
             {
                 inventoryStats[i].Count = ingredents.mushroomCount;
             }
-            else if (inventoryStats[i].itemName == "Health Potion")
-            {
-                gameManager.instance.UpdatePotionCount();
-            }
-            else if (inventoryStats[i].itemName == "Mana Potion")
-            {
-                gameManager.instance.UpdatePotionCount();
-            }
-            //else if (inventoryStats[i].itemName == "Health Potion" || inventoryStats[i].itemName == "Mana Potion")
-            //{
-            //    gameManager.instance.UpdatePotionCount();
-            //}
-            //else if (inventoryStats[i].name == "Health Potion")
-            //{
-
-            //}
             UpdateInventoryCount();
         }
-    }
-
-    void ResetInventory()
-    {
-
     }
 }

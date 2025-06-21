@@ -113,7 +113,7 @@ MonoBehaviour:
   origSpeed: 0
   sprintMod: 2
   canMove: 1
-  canStunned: 1
+  canStunned: 0
   superSpeed: 20
   choice: 1
   spellList: []
@@ -166,6 +166,10 @@ MonoBehaviour:
   IsInventory: 0
   PauseGameInInventory: 0
   potionTimerUse: 0
+  healthPotionStats: {fileID: 11400000, guid: 3652a15500d78184abd97988c2aabe3f, type: 2}
+  manaPotionStats: {fileID: 11400000, guid: d9eff992f1e03854cafa061d622e508e, type: 2}
+  healthPotionPlusStats: {fileID: 11400000, guid: 9f07034eb247813488bfffd126d31c22, type: 2}
+  manaPotionPlusStats: {fileID: 11400000, guid: f6c9a58e5e590404eb83e1726073a517, type: 2}
 --- !u!33 &4531356348622312624
 MeshFilter:
   m_ObjectHideFlags: 0
