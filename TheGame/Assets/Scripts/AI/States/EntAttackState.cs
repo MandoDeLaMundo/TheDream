@@ -42,9 +42,7 @@ public class EntAttackState : IState
         {
             ent.CastEntangle();
         }
-
         
-
         ent.shootTimer += Time.deltaTime;
         ent.meleeTimer += Time.deltaTime;
     }
