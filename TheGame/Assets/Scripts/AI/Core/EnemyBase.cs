@@ -39,11 +39,11 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
     [HideInInspector] int healthOrig;
 
     [Header("AI Settings")]
-    [SerializeField] public int faceTargetSpeed;
+    [SerializeField] public float faceTargetSpeed;
     [SerializeField] public int FOV;
-    [SerializeField] public int roamDist;
-    [SerializeField] public int roamPauseTime;
-    [SerializeField] public int animTransSpeed;
+    [SerializeField] public float roamDist;
+    [SerializeField] public float roamPauseTime;
+    [SerializeField] public float animTransSpeed;
     [HideInInspector] public Vector3 playerDir;
     [HideInInspector] public Vector3 startingPos;
     [HideInInspector] public float angleToPlayer;
@@ -81,7 +81,8 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
     {
         stateMachine.Update();
 
-        enemyHP.transform.rotation = gameManager.instance.player.transform.rotation;
+        if (enemyHP != null)
+            enemyHP.transform.rotation = gameManager.instance.player.transform.rotation;
     }
 
     public virtual void TakeDMG(int amount)
