@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.Audio;
 public class MainMenu : MonoBehaviour
 {
-    
+    public AudioMixer mainMixer;
     public void PlayGame()
   {
     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -11,7 +11,12 @@ public class MainMenu : MonoBehaviour
 
     public void Options()
     {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 5);
+    }
 
+    public void Credits()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 6);
     }
 
     public void PlayLv1()
@@ -29,5 +34,23 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
     }
 
-    
+    public void EscToMenu()
+    {
+        SceneManager.LoadScene("TitleMenu");
+    }
+
+    public void SetFullscreen(bool isFullscreen)
+    {
+        Screen.fullScreen = isFullscreen;
+    }
+
+    public void SetQuality(int qualityIndex)
+    {
+        QualitySettings.SetQualityLevel(qualityIndex);
+    } 
+
+    public void SetVolume(float volume)
+    {
+        mainMixer.SetFloat("volume", volume);
+    }
 }
