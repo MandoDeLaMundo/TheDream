@@ -113,6 +113,9 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     bool isShielding = false;
     Coroutine co;
 
+    public float potionTimerUse;
+    float potionTimer;
+
     bool test;
 
     Vector3 moveDir;
@@ -159,6 +162,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         shootTimer += Time.deltaTime;
         healTimer += Time.deltaTime;
         TeleportTimer += Time.deltaTime;
+        potionTimer += Time.deltaTime;
 
         if (Mana != ManaOrig)
             manaCooldownTimer += Time.deltaTime;
@@ -239,6 +243,25 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             shieldBubble.SetActive(isShielding);
             shieldTimer = 0;
         }
+
+        if (potionTimer > potionTimerUse)
+        {
+            if (Input.GetKeyDown("z"))
+            {
+                Debug.Log("Use Health");
+                Heal();
+            }
+
+            if (Input.GetKeyDown("x"))
+            {
+
+                ManaPotion();
+            }
+
+
+        }
+
+
 
         selectSpell();
 
@@ -376,7 +399,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     void Heal()
     {
-        if (numofhealpotions > 0)
+        if (ingredents.HealthPotion > 0)
         {
             HP += healingnum;
             if (HP > HPOrig)
@@ -400,7 +423,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
     void ManaPotion()
     {
-        if (numofmanapotions > 0)
+        if (ingredents.ManaPotion > 0)
         {
             Mana += healingnum;
             if (Mana > ManaOrig)
@@ -523,7 +546,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
                 }
             }
         }
-        listsTracker.spellListPos = spellListPos;
+        //listsTracker.spellListPos = spellListPos;
     }
 
     void changeSpell()
@@ -556,8 +579,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     {
         if (spell.spellCheck)
         {
-
-
             if (spell.name != "Spell8_Shield" && spell.name != "Spell7_Teleport Spell")
             {
                 listsTracker.spellList.Add(spell);
@@ -644,19 +665,24 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             item.firstTime = false;
         }
 
-
-        if (InventorySystem.instance.inventoryStats.Count <= gameManager.instance.items.Count && !InventorySystem.instance.inventoryStats.Contains(item))
+        if (item.itemName != "Health Potion" && item.itemName != "Mana Potion")
         {
+            if (InventorySystem.instance.inventoryStats.Count <= gameManager.instance.items.Count && !InventorySystem.instance.inventoryStats.Contains(item))
+            {
 
-            InventorySystem.instance.inventoryStats.Add(item);
-            item.Count++;
-            InventorySystem.instance.StoredInventory(InventoryPos);
-            InventoryPos++;
+                InventorySystem.instance.inventoryStats.Add(item);
+                item.Count++;
+                InventorySystem.instance.StoredInventory(InventoryPos);
+                InventoryPos++;
+            }
+            else
+            {
+                item.Count++;
+            }
         }
         else
-        {
-            item.Count++;
-        }
+            gameManager.instance.UpdatePotionCount();
+
         InventorySystem.instance.VerifyCount();
     }
 
