@@ -33,15 +33,17 @@ public class EntAttackState : IState
             HandleMelee();
         }
 
-        else if (distance <= ent.vineWhipRange)
+        else if (distance <= ent.vineWhipRangeMax && distance >= ent.vineWhipRangeMin)
         {
             HandleVineWhip();
         }
 
-        if (ent.CanEntangle())
+        if (ent.CanEntangle() && distance > ent.vineWhipRangeMin)
         {
             ent.CastEntangle();
         }
+
+        
 
         ent.shootTimer += Time.deltaTime;
         ent.meleeTimer += Time.deltaTime;
