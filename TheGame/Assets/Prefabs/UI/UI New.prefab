@@ -438,7 +438,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 511.0848}
+  m_AnchoredPosition: {x: 0, y: 70}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8255639732462728752
@@ -4931,7 +4931,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5393957323708870611
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4950,7 +4950,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 218, y: -229.6864}
+  m_AnchoredPosition: {x: 218, y: -295}
   m_SizeDelta: {x: 300, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1150749146147968638
@@ -5970,7 +5970,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6192677209148104997
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7687,7 +7687,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1594780229270238618
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7705,7 +7705,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 810, y: 300.302}
+  m_AnchoredPosition: {x: 810, y: 389.99994}
   m_SizeDelta: {x: 220, y: 220}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5324707532334230610
@@ -8148,7 +8148,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -128.1289, y: 143.59296}
+  m_AnchoredPosition: {x: -110, y: 120}
   m_SizeDelta: {x: 210, y: 210}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4969161061166020431
@@ -10786,7 +10786,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c014b37a4a75843489d3cf8951313973, type: 2}
   - {fileID: 11400000, guid: 3652a15500d78184abd97988c2aabe3f, type: 2}
   ItemCount: {fileID: 11400000, guid: 8a2453d5c2004404fa7c439fd221ff39, type: 2}
-  AllLists: {fileID: 0}
+  AllLists: {fileID: 11400000, guid: c026569c04ebb0e47be12351098e42fd, type: 2}
   TeleportObj: {fileID: 2253082701255707994}
   TeleportSlot: {fileID: 5122213274381834532}
   ShieldObj: {fileID: 4291115554222745418}
@@ -16183,11 +16183,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e013bc3994939d47bc7e513cc28255a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueStatsList:
-  - {fileID: 11400000, guid: b1b825747b92ea5478d2835c27029999, type: 2}
-  FairyTriggerList:
-  - {fileID: 0}
-  - {fileID: 0}
+  dialogueStatsList: []
+  FairyTriggerList: []
 --- !u!1 &7812488047478212150
 GameObject:
   m_ObjectHideFlags: 0

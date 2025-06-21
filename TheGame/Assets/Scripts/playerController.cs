@@ -56,6 +56,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     bool inMud = false;
     bool canSprint = true;
     public bool canMove = true;
+    public bool canStunned = true;
     [SerializeField] int superSpeed;
 
     enum shootchoice { shootraycast, spellList, teleportraycast }
@@ -378,10 +379,10 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
                 if (spellList[spellListPos].hitEffect != null)
                     Instantiate(spellList[spellListPos].hitEffect, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
             }
-            //else
-            //{
-            //    Teleport();
-            //}
+            else
+            {
+                Teleport();
+            }
         }
     }
 
@@ -489,6 +490,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
                 HP -= amount;
                 gameManager.instance.UpdatePlayerHPCount(-amount);
                 updatePlayerUI();
+                if(canStunned)
                 StartCoroutine(Stunned());
             }
         }
