@@ -15,7 +15,9 @@ public class pickup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
 	{
+		if(aud != null)
 		aud.PlayOneShot(audPick[Random.Range(0, audPick.Length)], audPickVol);
+
         IPickup toPickup = other.GetComponent<IPickup>();
 
 		if (toPickup != null)
