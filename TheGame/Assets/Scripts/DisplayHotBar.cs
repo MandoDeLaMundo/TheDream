@@ -103,7 +103,7 @@ public class DisplayHotBar : MonoBehaviour
                     {
                         //CurrentHotBar.SetActive(false);
                         CurrentHotBar = ThreeSlots;
-                        //CurrentHotBar.SetActive(true);
+                        CurrentHotBar.SetActive(true);
                     }
                     switch (spell)
                     {
@@ -137,7 +137,7 @@ public class DisplayHotBar : MonoBehaviour
                     {
                         //CurrentHotBar.SetActive(false);
                         CurrentHotBar = FourSlots;
-                        //CurrentHotBar.SetActive(true);
+                        CurrentHotBar.SetActive(true);
                     }
                     switch (spell)
                     {
@@ -176,7 +176,7 @@ public class DisplayHotBar : MonoBehaviour
                     {
                         //CurrentHotBar.SetActive(false);
                         CurrentHotBar = FiveSlots;
-                        //CurrentHotBar.SetActive(true);
+                        CurrentHotBar.SetActive(true);
                     }
                     switch (spell)
                     {

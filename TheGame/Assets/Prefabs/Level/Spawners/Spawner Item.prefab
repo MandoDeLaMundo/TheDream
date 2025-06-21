@@ -286,7 +286,7 @@ Transform:
   m_GameObject: {fileID: 1639791263099738274}
   serializedVersion: 2
   m_LocalRotation: {x: -0.2587955, y: 0.68301195, z: 0.003450118, w: 0.6830137}
-  m_LocalPosition: {x: -6.7227297, y: 2.7596579, z: -1.5852907}
+  m_LocalPosition: {x: -6.7227297, y: 4.15, z: -1.5852907}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -515,6 +515,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d66ba5dd60734ee458c8718e54df2888, type: 2}
   - {fileID: 11400000, guid: 9115e1f1975955d49a0c8238bbee3b96, type: 2}
   - {fileID: 11400000, guid: 2879a3e7d02ff1f4f9717aae54fef5e7, type: 2}
+  - {fileID: 11400000, guid: 3d3edb5a53742944a9251be70cba0a0d, type: 2}
+  - {fileID: 11400000, guid: 1ed2c11336b2876478e3286f9bc26ae5, type: 2}
   spellList: []
   itemList: []
   dialogue: []

@@ -313,13 +313,13 @@ public class gameManager : MonoBehaviour
        
         if (healpotionplusText != null)
         {
-            healpotionCountOrig = ItemCount.HealPlusPotion;
+            healpotionplusCountOrig = ItemCount.HealPlusPotion;
             healpotionplusText.text = healpotionplusCountOrig.ToString("F0");
         }
         
         if (manapotionplusText != null)
         {
-            manapotionCountOrig = ItemCount.ManaPlusPotion;
+            manapotionplusCountOrig = ItemCount.ManaPlusPotion;
             manapotionplusText.text = manapotionplusCountOrig.ToString("F0");
         }
     }
@@ -410,11 +410,12 @@ public class gameManager : MonoBehaviour
             ItemCount.ManaPlusPotion = 0;
         }
         InventoryReset();
-        //if (AllLists.spellList.Count > 0)
-        //{
-        //    AllLists.spellList = null;
-        //    AllLists.spellListPos = 0;
-        //    AllLists.ItemList = null;
-        //}
+        if (AllLists.spellList.Count > 0)
+        {
+            AllLists.spellList.Clear();
+            AllLists.spellListPos = 0;
+        }
+        if(AllLists.ItemList.Count > 0)
+            AllLists.ItemList.Clear();
     }
 }

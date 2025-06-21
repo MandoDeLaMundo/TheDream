@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aadde711143cf24f86d97c6a7636986, type: 3}
   m_Name: EnemySpawn1_Boar
   m_EditorClassIdentifier: 
-  pickup: {fileID: 6190965845547561936, guid: aecbe61f6729f224eabf5c506ca6e050, type: 3}
+  pickup: {fileID: 3288092488759638632, guid: 97cf88cddcf12a748bb21ad7ca599ea8, type: 3}
   sprite: {fileID: 0}

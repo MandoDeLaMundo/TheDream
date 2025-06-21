@@ -4931,7 +4931,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5393957323708870611
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5970,7 +5970,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6192677209148104997
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6099,7 +6099,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 16083c08c66bc284a8638631496464e3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cac973777531d724389d95a830782a1b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7687,7 +7687,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1594780229270238618
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9875,7 +9875,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7631c6d047a1cb64b807ae1f3f5b68e6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 527644fda92223a4c93535959af11239, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10763,7 +10763,6 @@ MonoBehaviour:
   manapotionText: {fileID: 6647543318253866637}
   healpotionplusText: {fileID: 9199541571835387247}
   manapotionplusText: {fileID: 3368938373710014646}
-  ItemCount: {fileID: 11400000, guid: 8a2453d5c2004404fa7c439fd221ff39, type: 2}
   MainSpell: {fileID: 5523256374374300743}
   SpellOne: {fileID: 8247435775873216997}
   SpellTwo: {fileID: 5255935836750911353}
@@ -10786,6 +10785,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d9eff992f1e03854cafa061d622e508e, type: 2}
   - {fileID: 11400000, guid: c014b37a4a75843489d3cf8951313973, type: 2}
   - {fileID: 11400000, guid: 3652a15500d78184abd97988c2aabe3f, type: 2}
+  - {fileID: 11400000, guid: 9f07034eb247813488bfffd126d31c22, type: 2}
+  - {fileID: 11400000, guid: f6c9a58e5e590404eb83e1726073a517, type: 2}
+  ItemCount: {fileID: 11400000, guid: 8a2453d5c2004404fa7c439fd221ff39, type: 2}
+  AllLists: {fileID: 11400000, guid: c026569c04ebb0e47be12351098e42fd, type: 2}
   TeleportObj: {fileID: 2253082701255707994}
   TeleportSlot: {fileID: 5122213274381834532}
   ShieldObj: {fileID: 4291115554222745418}
@@ -16182,12 +16185,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e013bc3994939d47bc7e513cc28255a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueStatsList:
-  - {fileID: 11400000, guid: b1b825747b92ea5478d2835c27029999, type: 2}
-  - {fileID: 11400000, guid: 179c9da5b76c6604286cce5d0c204d3a, type: 2}
-  FairyTriggerList:
-  - {fileID: 0}
-  - {fileID: 0}
+  dialogueStatsList: []
+  FairyTriggerList: []
 --- !u!1 &7812488047478212150
 GameObject:
   m_ObjectHideFlags: 0
