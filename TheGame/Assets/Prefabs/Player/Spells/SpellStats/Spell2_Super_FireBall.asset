@@ -19,9 +19,10 @@ MonoBehaviour:
   shootDist: 45
   manaCost: 4
   spellRadius: 1
-  hitEffect: {fileID: 5444105318733727396, guid: cf82839c411151342a7b2337bda9fb34, type: 3}
-  shootSound: []
-  shootSoundVol: 0
+  hitEffect: {fileID: 0}
+  shootSound:
+  - {fileID: 8300000, guid: 6e8444c5906d52347bc06eaac31601c1, type: 3}
+  shootSoundVol: 0.479
   spellCheck: 1
   spellManual: A spell of fireballs. This might just be powerful enough to destroy
     weak walls.
