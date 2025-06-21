@@ -5,6 +5,7 @@ using UnityEngine.AI;
 using UnityEngine.UIElements;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime;
+using System.Linq;
 
 public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 {
@@ -519,11 +520,10 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
                     Debug.Log("i" + i);
                     spellListPos = spellpos;
                     changeSpell();
-
                 }
             }
         }
-        //listsTracker.spellListPos = spellListPos;
+        listsTracker.spellListPos = spellListPos;
     }
 
     void changeSpell()
@@ -556,8 +556,11 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     {
         if (spell.spellCheck)
         {
+
+
             if (spell.name != "Spell8_Shield" && spell.name != "Spell7_Teleport Spell")
             {
+                listsTracker.spellList.Add(spell);
                 spellList.Add(spell);
                 spellListPos = spellList.Count - 1;
 
@@ -589,10 +592,11 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             if (!Cheatmanager.instance.DescriptionCheat)
                 gameManager.instance.DisplayDescription(spell.spellManual);
         }
+
         if (Cheatmanager.instance.spellCheat == true)
         {
             spellList.Add(spell);
-            spellListPos = spellList.Count - 1;
+            spellListPos = listsTracker.spellList.Count;
 
             changeSpell();
             spell.spellCheck = false;

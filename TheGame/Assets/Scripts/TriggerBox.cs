@@ -23,12 +23,18 @@ public class TriggerBox : MonoBehaviour
     [Header("Element Shield")]
     [SerializeField] private Material spellProjectileMaterial;
 
+    [Header("")]
+    [SerializeField] float timer;
+
     float oxygenTimer;
 
     bool proc;
     void Start()
     {
-
+        if (type == triggertype.debuff || type == triggertype.root || type == triggertype.silent)
+        {
+            StartCoroutine(SelfDestroy());
+        }
     }
 
     void Update()
@@ -173,6 +179,13 @@ public class TriggerBox : MonoBehaviour
             move += range;
             yield return null;
         }
+    }
+
+    IEnumerator SelfDestroy()
+    {
+        Debug.Log("X");
+        yield return new WaitForSeconds(timer);
+        Destroy(gameObject);
     }
     public void OxygenRegen()
     {
