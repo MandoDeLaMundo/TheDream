@@ -109,7 +109,7 @@ MonoBehaviour:
   aud: {fileID: 4547231275879349808}
   audPick:
   - {fileID: 8300000, guid: 35cf7766e9e2aa542811e896fde57989, type: 3}
-  audPickVol: 0
+  audPickVol: 5
 --- !u!135 &7469999514955733287
 SphereCollider:
   m_ObjectHideFlags: 0
