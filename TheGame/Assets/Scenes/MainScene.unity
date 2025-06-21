@@ -48016,25 +48016,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 169064889966806894, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
-      propertyPath: FairyTriggerList.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 169064889966806894, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
-      propertyPath: dialogueStatsList.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 169064889966806894, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
       propertyPath: 'FairyTriggerList.Array.data[0]'
       value: 
       objectReference: {fileID: 1703577584}
-    - target: {fileID: 169064889966806894, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
-      propertyPath: 'dialogueStatsList.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: b1b825747b92ea5478d2835c27029999, type: 2}
-    - target: {fileID: 169064889966806894, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
-      propertyPath: 'dialogueStatsList.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 179c9da5b76c6604286cce5d0c204d3a, type: 2}
+    - target: {fileID: 5359718259018042481, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6911230452717452533, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
       propertyPath: m_Name
       value: UI New
@@ -48118,6 +48106,10 @@ PrefabInstance:
     - target: {fileID: 7686955477975542978, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7792525135125696084, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

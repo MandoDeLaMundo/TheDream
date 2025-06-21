@@ -137,6 +137,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         origJump = jumpForce;
         test = true;
         IsInventory = false;
+        canTakeDam = true;
         OverMax = 0;
         gameManager.instance.UpdatePlayerMaxHPMPOXCount(HP, Mana, Oxygen);
         updatePlayerUI();
