@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: ItemSpawn7_ManaPotion+
   m_EditorClassIdentifier: 
   pickup: {fileID: 8362694997508588280, guid: 948fc5673db644740983d4a2dab35c30, type: 3}
-  sprite: {fileID: 21300000, guid: 6afb4906456b94d47b629085a57a2c3c, type: 3}
+  sprite: {fileID: 21300000, guid: cac973777531d724389d95a830782a1b, type: 3}

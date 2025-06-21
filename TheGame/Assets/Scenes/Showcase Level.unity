@@ -3963,14 +3963,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 169064889966806894, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
-      propertyPath: 'FairyTriggerList.Array.data[0]'
-      value: 
-      objectReference: {fileID: 1855171816}
-    - target: {fileID: 169064889966806894, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
-      propertyPath: 'FairyTriggerList.Array.data[1]'
-      value: 
-      objectReference: {fileID: 800789304}
     - target: {fileID: 6911230452717452533, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
       propertyPath: m_Name
       value: UI New (1)
@@ -4892,11 +4884,6 @@ MonoBehaviour:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2004295532068628637, guid: 2abb40dbeae0a8a43933331548fef4d3, type: 3}
   m_PrefabInstance: {fileID: 296398083}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &800789304 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7060722792169140798, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
-  m_PrefabInstance: {fileID: 170570603}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &834443585
 PrefabInstance:
@@ -26682,10 +26669,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7427404398149037457, guid: 7df180d1f5585a1408de42c6f3ef5dd2, type: 3}
-      propertyPath: listsTracker
-      value: 
-      objectReference: {fileID: 11400000, guid: c026569c04ebb0e47be12351098e42fd, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -27734,11 +27717,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2004295532068628637, guid: 2abb40dbeae0a8a43933331548fef4d3, type: 3}
   m_PrefabInstance: {fileID: 1395243582}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1855171816 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7060722792169140798, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
-  m_PrefabInstance: {fileID: 3950293243194903683}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1861863833 stripped
 Transform:
@@ -28817,6 +28795,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 542909633428486810, guid: 4858bc7d3873be54fbb82a1c051460ba, type: 3}
+      propertyPath: spawnList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 542909633428486810, guid: 4858bc7d3873be54fbb82a1c051460ba, type: 3}
+      propertyPath: 'spawnList.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 8869bc79faccae84d87fc816cb268ee1, type: 2}
     - target: {fileID: 3240927230701807391, guid: 4858bc7d3873be54fbb82a1c051460ba, type: 3}
       propertyPath: m_Name
       value: Spawner Enemy

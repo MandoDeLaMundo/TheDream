@@ -313,13 +313,13 @@ public class gameManager : MonoBehaviour
        
         if (healpotionplusText != null)
         {
-            healpotionCountOrig = ItemCount.HealPlusPotion;
+            healpotionplusCountOrig = ItemCount.HealPlusPotion;
             healpotionplusText.text = healpotionplusCountOrig.ToString("F0");
         }
         
         if (manapotionplusText != null)
         {
-            manapotionCountOrig = ItemCount.ManaPlusPotion;
+            manapotionplusCountOrig = ItemCount.ManaPlusPotion;
             manapotionplusText.text = manapotionplusCountOrig.ToString("F0");
         }
     }
