@@ -105,7 +105,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: cdba4cf8221c996418d78b00dcfe2e0f, type: 2}
   - {fileID: 2100000, guid: 99a631ab4c202ea41b53cbd85f5614c7, type: 2}
   - {fileID: 2100000, guid: da82dad061f6f8e42b8cdba081584cd4, type: 2}
-  stageInterval: 0.5
+  stageInterval: 1
   respawnDelay: 10
   rend: {fileID: 7587279937652978130}
   col: {fileID: 8861644291883349881}
