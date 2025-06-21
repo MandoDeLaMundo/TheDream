@@ -48021,7 +48021,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 169064889966806894, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
       propertyPath: dialogueStatsList.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 169064889966806894, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
       propertyPath: 'FairyTriggerList.Array.data[0]'
