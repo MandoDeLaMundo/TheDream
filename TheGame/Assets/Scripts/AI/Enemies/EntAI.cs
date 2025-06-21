@@ -12,6 +12,7 @@ public class EntAI : EnemyBase
     public GameObject vineWhipPrefab;
 
     [HideInInspector] public float entangleTimer;
+    [HideInInspector] public bool canEntangle;
 
     protected override void Update()
     {
@@ -36,7 +37,10 @@ public class EntAI : EnemyBase
     {
         if (entanglePrefab)
         {
-            GameObject entangle = Instantiate(entanglePrefab, gameManager.instance.player.transform.position, Quaternion.identity);
+            ResetEntangleCooldown();
+            Vector3 playerPos = (gameManager.instance.player.transform.position);
+            playerPos.y -= 1;
+            GameObject entangle = Instantiate(entanglePrefab, playerPos, Quaternion.identity);
 
             entangle.SetActive(false);
             StartCoroutine(ActivateEntangle(entangle));
