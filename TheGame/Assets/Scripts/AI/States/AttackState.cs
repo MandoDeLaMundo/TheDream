@@ -24,6 +24,12 @@ public class AttackState : IState
 
         if (!enemy.CanSeePlayer() || !enemy.playerInRange)
         {
+            if (enemy is StationaryEnemy stationaryEnemy)
+            {
+                enemy.stateMachine.ChangeState(new StationaryIdleState(stationaryEnemy));
+                return;
+            }
+
             enemy.agent.isStopped = false;
             enemy.stateMachine.ChangeState(new PatrolState(enemy));
             return;
@@ -32,6 +38,7 @@ public class AttackState : IState
         float distanceToPlayer = Vector3.Distance(enemy.transform.position, gameManager.instance.player.transform.position);
 
         FaceTarget();
+
 
         switch (enemy.attackType)
         {

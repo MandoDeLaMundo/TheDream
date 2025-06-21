@@ -45,6 +45,11 @@ public class ChaseState : IState
 
         float distanceToPlayer = Vector3.Distance(enemy.transform.position, playerPos);
 
+        if (enemy is EntAI ent)
+        {
+            enemy.stateMachine.ChangeState(new EntAttackState(ent));
+        }
+
         bool shouldAttack = false;
 
         switch (enemy.attackType)

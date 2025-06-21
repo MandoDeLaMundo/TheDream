@@ -56,7 +56,6 @@ public class gameManager : MonoBehaviour
     [SerializeField] TMP_Text manapotionplusText;
     int manapotionplusCountOrig;
 
-    [SerializeField] ItemCount ItemCount;
 
     [Header("HotBar")]
     public Image MainSpell;
@@ -67,6 +66,8 @@ public class gameManager : MonoBehaviour
     public Image SpellFive;
     [SerializeField] List<spellStats> Spell = new List<spellStats>();
     public List<itemStats> items = new List<itemStats>();
+    [SerializeField] ItemCount ItemCount;
+    [SerializeField] ListsTracker AllLists;
 
     public GameObject TeleportObj;
     public Image TeleportSlot;
@@ -127,8 +128,7 @@ public class gameManager : MonoBehaviour
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        PickUpCheck();
-        InventoryReset();
+        AllReset();
         UpdatePotionCount();
         UpdateIngredientGoal(baconGoalPI, beesWaxGoalPI, mushroomGoalPI);
     }
@@ -394,5 +394,27 @@ public class gameManager : MonoBehaviour
         {
             items[i].Count = 0;
         }
+    }
+
+    void AllReset()
+    {
+        PickUpCheck();
+        if(ItemCount != null)
+        {
+            ItemCount.beewaxCount = 0;
+            ItemCount.baconCount = 0;
+            ItemCount.mushroomCount = 0;
+            ItemCount.HealthPotion = 0;
+            ItemCount.ManaPotion = 0;
+            ItemCount.HealPlusPotion = 0;
+            ItemCount.ManaPlusPotion = 0;
+        }
+        InventoryReset();
+        //if (AllLists.spellList.Count > 0)
+        //{
+        //    AllLists.spellList = null;
+        //    AllLists.spellListPos = 0;
+        //    AllLists.ItemList = null;
+        //}
     }
 }

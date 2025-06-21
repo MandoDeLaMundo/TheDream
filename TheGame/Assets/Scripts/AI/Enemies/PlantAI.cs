@@ -1,16 +1,11 @@
 using UnityEngine;
 
-public class PlantAI : MonoBehaviour
+public class PlantAI : StationaryEnemy
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    
+    protected override void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        base.Start();
+        stateMachine.ChangeState(new StationaryIdleState(this));
     }
 }
