@@ -39,7 +39,7 @@ public class EntAI : EnemyBase
         {
             ResetEntangleCooldown();
             Vector3 playerPos = (gameManager.instance.player.transform.position);
-            playerPos.y -= 1;
+            playerPos.y = 0;
             GameObject entangle = Instantiate(entanglePrefab, playerPos, Quaternion.identity);
 
             entangle.SetActive(false);
