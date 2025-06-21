@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class MovingPlatform : MonoBehaviour
 {
-    [SerializeField] private Vector3 movementOffset = new Vector3(0f, 3f, 0f);
+    [SerializeField] private Vector3 movementOffset = new Vector3(0f, 0f, 0f);
     [SerializeField] private float cycleDuration = 4f;
 
     private Vector3 startPoint;

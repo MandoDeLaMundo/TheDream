@@ -14773,6 +14773,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
+  effect: 1
   damageAmount: 1
   damageRate: 3
   speed: 0
@@ -14780,5 +14781,6 @@ MonoBehaviour:
   contactDMGAmount: 0
   knockBackStrength: 0
   knockbackDelay: 0
-  explosionArea: {fileID: 0}
+  explosionArea: {fileID: 8978822922218374344}
+  lingerDuration: 5
   rb: {fileID: 0}

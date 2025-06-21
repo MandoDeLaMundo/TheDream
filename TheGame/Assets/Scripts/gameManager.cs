@@ -399,13 +399,16 @@ public class gameManager : MonoBehaviour
     void AllReset()
     {
         PickUpCheck();
-        ItemCount.beewaxCount = 0;
-        ItemCount.baconCount = 0;
-        ItemCount.mushroomCount = 0;
-        ItemCount.HealthPotion = 0;
-        ItemCount.ManaPotion = 0;
-        ItemCount.HealPlusPotion = 0;
-        ItemCount.ManaPlusPotion = 0;
+        if(ItemCount != null)
+        {
+            ItemCount.beewaxCount = 0;
+            ItemCount.baconCount = 0;
+            ItemCount.mushroomCount = 0;
+            ItemCount.HealthPotion = 0;
+            ItemCount.ManaPotion = 0;
+            ItemCount.HealPlusPotion = 0;
+            ItemCount.ManaPlusPotion = 0;
+        }
         InventoryReset();
         //if (AllLists.spellList.Count > 0)
         //{

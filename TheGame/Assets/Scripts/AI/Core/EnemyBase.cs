@@ -77,7 +77,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
         stateMachine.ChangeState(new IdleState(this));
     }
 
-    void Update()
+    protected virtual void Update()
     {
         stateMachine.Update();
 
