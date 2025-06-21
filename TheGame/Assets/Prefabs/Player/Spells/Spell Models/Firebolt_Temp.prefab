@@ -52,14 +52,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  effect: 0
   damageAmount: 1
   damageRate: 0
-  speed: 25
+  speed: 35
   destroyTime: 3
   contactDMGAmount: 0
   knockBackStrength: 0
   knockbackDelay: 0
   explosionArea: {fileID: 0}
+  lingerDuration: 0
   rb: {fileID: 5609082165397218280}
 --- !u!33 &2440964203697844242
 MeshFilter:
