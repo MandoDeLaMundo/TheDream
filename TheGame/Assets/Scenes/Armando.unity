@@ -1120,8 +1120,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7173192705754102241, guid: b43d49160ae63f647971375398f12c73, type: 3}
+      propertyPath: fleeRange
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7173192705754102241, guid: b43d49160ae63f647971375398f12c73, type: 3}
       propertyPath: shootRate
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7173192705754102241, guid: b43d49160ae63f647971375398f12c73, type: 3}
+      propertyPath: fleeDistance
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7173192705754102241, guid: b43d49160ae63f647971375398f12c73, type: 3}
+      propertyPath: fleeInterval
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
