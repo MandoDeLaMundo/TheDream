@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EntAttackState : IState
@@ -18,6 +19,10 @@ public class EntAttackState : IState
 
     public void Update()
     {
+        ent.shootTimer += Time.deltaTime;
+        ent.meleeTimer += Time.deltaTime;
+        ent.entangleTimer += Time.deltaTime;
+
         distance = Vector3.Distance(ent.transform.position, gameManager.instance.player.transform.position);
         FaceTarget();
 
@@ -28,25 +33,38 @@ public class EntAttackState : IState
             return;
         }
 
-        if (distance <= ent.meleeRange)
+        bool didAttack = false;
+
+        if (distance <= ent.meleeRange && ent.meleeTimer >= ent.meleeRate)
         {
             HandleMelee();
+            didAttack = true;
+            return;
         }
 
-        else if (distance <= ent.vineWhipRangeMax && distance >= ent.vineWhipRangeMin)
+        else if (distance <= ent.vineWhipRangeMax && ent.shootTimer >= ent.shootRate)
         {
             HandleVineWhip();
+            didAttack = true;
+            return;
         }
 
-        if (ent.CanEntangle() && distance > ent.vineWhipRangeMin)
+        if (ent.CanEntangle())
         {
             ent.CastEntangle();
+            didAttack = true;
+            return;
         }
 
-        
+        if (didAttack)
+        {
+            ent.StartCooldownAndChase();
+        }
 
-        ent.shootTimer += Time.deltaTime;
-        ent.meleeTimer += Time.deltaTime;
+        else
+        {
+            ent.stateMachine.ChangeState(new ChaseState(ent));
+        }
     }
 
     public void Exit()

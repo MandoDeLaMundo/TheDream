@@ -87,7 +87,7 @@ MonoBehaviour:
   roamTimer: 0
   playerInRange: 0
   fleeDistance: 50
-  fleeRange: 0
+  fleeRange: 10
   canAttack: 0
 --- !u!195 &5526081716726769597
 NavMeshAgent:
