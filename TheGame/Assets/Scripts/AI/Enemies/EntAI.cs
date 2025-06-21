@@ -1,4 +1,5 @@
 using System.Collections;
+using NUnit;
 using UnityEngine;
 
 public class EntAI : EnemyBase
@@ -60,9 +61,31 @@ public class EntAI : EnemyBase
         whip.GetComponent<Whip>().damageAmount = whipDamage;
     }
 
-        IEnumerator ActivateEntangle(GameObject obj)
+    public bool ShouldUseEntAttack()
+    {
+        float distance = Vector3.Distance(transform.position, gameManager.instance.player.transform.position);
+
+        bool entangleReady = entangleTimer >= entangleCooldown;
+        bool whipReady = shootTimer >= shootRate;
+        bool inWhipZone = distance > meleeRange && distance <= vineWhipRangeMax;
+
+        return (entangleReady || whipReady) && inWhipZone;
+    }
+
+    public void StartCooldownAndChase()
+    {
+        StartCoroutine(PauseBeforeChase());
+    }
+
+    IEnumerator ActivateEntangle(GameObject obj)
     {
         yield return new WaitForSeconds(warningDuration);
         obj.SetActive(true);
+    }
+
+    IEnumerator PauseBeforeChase()
+    {
+        yield return new WaitForSeconds(1f);
+        stateMachine.ChangeState(new ChaseState(this));
     }
 }
