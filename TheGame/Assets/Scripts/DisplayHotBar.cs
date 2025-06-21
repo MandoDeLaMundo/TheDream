@@ -37,7 +37,7 @@ public class DisplayHotBar : MonoBehaviour
     public Image FiveSpellFour;
     public Image FiveSpellFive;
 
-    
+
     [SerializeField] ListsTracker listsTracker;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -52,12 +52,12 @@ public class DisplayHotBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void HotBar(int spell)
     {
-        if(spell < listsTracker.spellList.Count)
+        if (spell < listsTracker.spellList.Count)
         {
             switch (listsTracker.spellList.Count - 1)
             {
@@ -76,7 +76,6 @@ public class DisplayHotBar : MonoBehaviour
                         //CurrentHotBar.SetActive(false);
                         CurrentHotBar = TwoSlots;
                         CurrentHotBar.SetActive(true);
-
                     }
                     switch (spell)
                     {
@@ -94,14 +93,17 @@ public class DisplayHotBar : MonoBehaviour
                             FourSpellTwo.sprite = listsTracker.spellList[spell].sprite;
                             FiveSpellTwo.sprite = listsTracker.spellList[spell].sprite;
                             break;
+                        case 2:
+                            listsTracker.spellListPos -= 1;
+                            break;
                     }
                     break;
                 case 2:
                     if (CurrentHotBar != ThreeSlots)
                     {
-                        CurrentHotBar.SetActive(false);
+                        //CurrentHotBar.SetActive(false);
                         CurrentHotBar = ThreeSlots;
-                        CurrentHotBar.SetActive(true);
+                        //CurrentHotBar.SetActive(true);
                     }
                     switch (spell)
                     {
@@ -125,14 +127,17 @@ public class DisplayHotBar : MonoBehaviour
                             FourSpellThree.sprite = listsTracker.spellList[spell].sprite;
                             FiveSpellThree.sprite = listsTracker.spellList[spell].sprite;
                             break;
+                        case 3:
+                            listsTracker.spellListPos -= 1;
+                            break;
                     }
                     break;
                 case 3:
                     if (CurrentHotBar != FourSlots)
                     {
-                        CurrentHotBar.SetActive(false);
+                        //CurrentHotBar.SetActive(false);
                         CurrentHotBar = FourSlots;
-                        CurrentHotBar.SetActive(true);
+                        //CurrentHotBar.SetActive(true);
                     }
                     switch (spell)
                     {
@@ -161,14 +166,17 @@ public class DisplayHotBar : MonoBehaviour
                             FourSpellFour.sprite = listsTracker.spellList[spell].sprite;
                             FiveSpellFour.sprite = listsTracker.spellList[spell].sprite;
                             break;
+                        case 4:
+                            listsTracker.spellListPos -= 1;
+                            break;
                     }
                     break;
                 case 4:
                     if (CurrentHotBar != FiveSlots)
                     {
-                        CurrentHotBar.SetActive(false);
+                        //CurrentHotBar.SetActive(false);
                         CurrentHotBar = FiveSlots;
-                        CurrentHotBar.SetActive(true);
+                        //CurrentHotBar.SetActive(true);
                     }
                     switch (spell)
                     {
@@ -201,11 +209,13 @@ public class DisplayHotBar : MonoBehaviour
                             MainSpell.sprite = listsTracker.spellList[spell].sprite;
                             FiveSpellFive.sprite = listsTracker.spellList[spell].sprite;
                             break;
+                        case 5:
+                            listsTracker.spellListPos -= 1;
+                            break;
 
                     }
                     break;
             }
         }
-        Debug.Log(listsTracker.spellList.Count - 1);
     }
 }

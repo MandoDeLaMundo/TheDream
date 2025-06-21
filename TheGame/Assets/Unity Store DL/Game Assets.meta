@@ -1,7 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:TheGame/Assets/Prefabs/Boulder.prefab.meta
+guid: 2f4378a765f69f14988b4316d487fb55
+PrefabImporter:
+========
 guid: f82721d9b0372324ca471f273e98ee44
 folderAsset: yes
 DefaultImporter:
+>>>>>>>> safety:TheGame/Assets/Unity Store DL/Game Assets.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
