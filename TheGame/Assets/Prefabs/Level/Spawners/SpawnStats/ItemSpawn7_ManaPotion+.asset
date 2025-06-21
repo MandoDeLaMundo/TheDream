@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6d48e41e4abe434186f4594eff52da1, type: 3}
-  m_Name: AllLists
+  m_Script: {fileID: 11500000, guid: 5aadde711143cf24f86d97c6a7636986, type: 3}
+  m_Name: ItemSpawn7_ManaPotion+
   m_EditorClassIdentifier: 
-  spellList:
-  - {fileID: 11400000, guid: 3152bdeabdc9d8145bfce5983ab7ab46, type: 2}
-  spellListPos: 0
-  ItemList: []
+  pickup: {fileID: 8362694997508588280, guid: 948fc5673db644740983d4a2dab35c30, type: 3}
+  sprite: {fileID: 21300000, guid: cac973777531d724389d95a830782a1b, type: 3}

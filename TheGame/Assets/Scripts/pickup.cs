@@ -19,7 +19,7 @@ public class pickup : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
 	{
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && aud != null)
         {
             aud.PlayOneShot(audPick[Random.Range(0, audPick.Length)], audPickVol);
         }
