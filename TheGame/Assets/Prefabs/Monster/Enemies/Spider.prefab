@@ -1156,7 +1156,7 @@ MonoBehaviour:
   headPos: {fileID: 7217257065353809681}
   lootPos: {fileID: 8093785888047526576}
   weaponCol: {fileID: 0}
-  dropItemPrefab: {fileID: 9075227077817776970, guid: 0fc2845ea817d2a45a8608573e9eb5d0, type: 3}
+  dropItemPrefab: {fileID: 3203336510497522917, guid: 09cc732f6ae58a8409f6c5aab79e7f0c, type: 3}
   enemyHP: {fileID: 5272918578631082713}
   hpBar: {fileID: 3051575019336752247}
   health: 5
