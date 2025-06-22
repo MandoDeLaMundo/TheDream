@@ -30,6 +30,7 @@ public class BossCoreAI : MonoBehaviour, IDamage
     [HideInInspector] public Vector3 startingPos;
     [HideInInspector] public float angleToPlayer;
     [HideInInspector] public float attackTimer;
+    [HideInInspector] public bool isAttacking;
 
     protected virtual void Start()
     {
@@ -53,10 +54,10 @@ public class BossCoreAI : MonoBehaviour, IDamage
     {
         currentPhase.Update();
 
-        if (health <= phase2Threshold && currentPhase != phase2)
-        {
-            StartPhase(phase2);
-        }
+        //if (health <= phase2Threshold && currentPhase != phase2)
+        //{
+        //    StartPhase(phase2);
+        //}
     }
 
     public void StartPhase(BossPhaseBase phase)
