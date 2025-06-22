@@ -1,8 +1,8 @@
+using System.Collections;
 using UnityEngine;
 
 public class CockatricePhase1 : BossPhaseBase
 {
-    float stompTimer = 0f;
     public CockatricePhase1(BossCoreAI boss) : base(boss) { }
 
     public override void Enter()
@@ -13,26 +13,45 @@ public class CockatricePhase1 : BossPhaseBase
     {
         if (!boss.CanSeePlayer())
             return;
-
+        
         boss.FacePlayer();
-
-        stompTimer += Time.deltaTime;
-        boss.attackTimer += Time.deltaTime;
 
         var cockatrice = (BossCockatriceAI)boss;
 
+        if (!cockatrice.isPetrifying)
+        {
+            boss.FacePlayer();
+            cockatrice.agent.SetDestination(gameManager.instance.player.transform.position);
+        }
+        else
+        {
+            cockatrice.agent.ResetPath();
+        }
+
+        cockatrice.stompTimer += Time.deltaTime;
+        boss.attackTimer += Time.deltaTime;
+        cockatrice.stareCooldownTimer += Time.deltaTime;
+
         float distance = Vector3.Distance(boss.transform.position, gameManager.instance.player.transform.position);
 
-        if (stompTimer >= cockatrice.stompCooldown && distance <= cockatrice.stompRange)
+        if (!cockatrice.isPetrifying && cockatrice.stareCooldownTimer >= cockatrice.petrifyCooldown && !cockatrice.isAttacking)
         {
-            StompAttack(cockatrice);
-            stompTimer = 0f;
+            Debug.Log("I can petrify the player");
+            cockatrice.stareCooldownTimer = 0f;
+            cockatrice.StartCoroutine(cockatrice.PetrifyPlayer());
             return;
         }
 
-        if (boss.attackTimer >= cockatrice.attackCooldown && distance <= cockatrice.meleeRange)
+        if (cockatrice.stompTimer >= cockatrice.stompCooldown && distance <= cockatrice.stompRange && !cockatrice.isPetrifying)
         {
-            MeleeAttack(cockatrice);
+            cockatrice.StompAttack();
+            cockatrice.stompTimer = 0f;
+            return;
+        }
+
+        if (boss.attackTimer >= cockatrice.attackCooldown && distance <= cockatrice.meleeRange && !cockatrice.isPetrifying)
+        {
+            cockatrice.MeleeAttack();
             boss.attackTimer = 0f;
             return;
         }
@@ -42,21 +61,5 @@ public class CockatricePhase1 : BossPhaseBase
     {
         Debug.Log("Cockatrice Phase 1 ends!");
 
-    }
-
-    void MeleeAttack(BossCockatriceAI cockatrice)
-    {
-        // boss.anim.SetTrigger("Attack");
-        gameManager.instance.player.GetComponent<playerController>().TakeDMG(cockatrice.meleeDamage);
-    }
-
-    void StompAttack(BossCockatriceAI cockatrice)
-    {
-        Debug.Log("Stomp!");
-        float distance = Vector3.Distance(boss.transform.position, gameManager.instance.player.transform.position);
-        if (distance <= cockatrice.stompRadius)
-        {
-            gameManager.instance.player.GetComponent<playerController>().TakeDMG(cockatrice.stompDamage);
-        }
     }
 }

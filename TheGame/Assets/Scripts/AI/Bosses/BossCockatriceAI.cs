@@ -11,60 +11,133 @@ public class BossCockatriceAI : BossCoreAI
     public float stompRadius;
     public int meleeDamage;
     public int stompDamage;
+    [HideInInspector] public float stompTimer;
+
+    [Header("Phase 2 Stats")]
+    public float phase2AttackCooldown;
+    public float phase2StompCooldown;
 
     [Header("Petrify Settings")]
     public GameObject petrifyTrigger;
     public float petrifyCooldown;
     public float petrifyDuration;
+    public float stareDuration;
+    public float stunThreshold;
     [HideInInspector] public float stareTimer;
+    [HideInInspector] public float stareCooldownTimer;
     [HideInInspector] public bool isPetrifying;
+    [HideInInspector] public float faceTargetSpeedOrig;
 
     [Header("Visuals")]
     public GameObject petrifyConeVisual;
 
     protected override void Start()
     {
-        base.Start();
-
         phase1 = new CockatricePhase1(this);
         phase2 = new CockatricePhase2(this);
         currentPhase = phase1;
+
+        if (petrifyTrigger)
+            petrifyTrigger.SetActive(false);
+
+        if (petrifyConeVisual)
+            petrifyConeVisual.SetActive(false);
+
+        faceTargetSpeedOrig = faceTargetSpeed;
 
         base.Start();
         currentPhase.Enter();
     }
 
-    public void HandlePetrify()
+    public void MeleeAttack()
     {
-        if (isPetrifying)
-            return;
+        isAttacking = true;
+        // boss.anim.SetTrigger("Attack");
+        gameManager.instance.player.GetComponent<playerController>().TakeDMG(meleeDamage);
+        isAttacking = false;
+    }
 
-        Transform player = gameManager.instance.player.transform;
-        Vector3 toPlayer = (player.position - transform.position).normalized;
-        float angle = Vector3.Angle(transform.forward, toPlayer);
-        float distance = Vector3.Distance(transform.position, player.position);
+    public void StompAttack()
+    {
+        isAttacking = true;
+        float distance = Vector3.Distance(transform.position, gameManager.instance.player.transform.position);
+        if (distance <= stompRadius)
+        {
+            gameManager.instance.player.GetComponent<playerController>().TakeDMG(stompDamage);
+        }
+
+        isAttacking = false;
+    }
+
+    public void TriggerPetrify()
+    {
+        if (!isPetrifying)
+        {
+            StartCoroutine(PetrifyPlayer());
+        }
     }
 
     public IEnumerator PetrifyPlayer()
     {
+        isPetrifying = true;
+        agent.isStopped = false;
+
+        Vector3 toPlayer = gameManager.instance.player.transform.position - transform.position;
+        Vector3 retreatDir = -toPlayer.normalized;
+        Vector3 retreatTarget = transform.position + retreatDir * 5f;
+
+        agent.SetDestination(retreatTarget);
+
+        float retreatTime = 0f;
+        while (retreatTime < 1f && Vector3.Distance(transform.position, retreatTarget) > 0.5f)
+        {
+            retreatTime += Time.deltaTime;
+            yield return null;
+        }
+
         agent.isStopped = true;
+        faceTargetSpeed *= 0.25f;
 
         //anim.SetTrigger("Petrify");
 
+        if (petrifyTrigger)
+            petrifyTrigger.SetActive(true);
         if (petrifyConeVisual)
             petrifyConeVisual.SetActive(true);
 
-        playerController player = gameManager.instance.player.GetComponent<playerController>();
+        float stareTimer = 0f;
+        float inConeTimer = 0f;
 
-        if (player)
-            player.Stun(petrifyDuration);
+        while (stareTimer < stareDuration)
+        {
+            stareTimer += Time.deltaTime;
+            if (petrifyTrigger.GetComponent<PetrifyTrigger>().IsPlayerInZone)
+            {
+                inConeTimer += Time.deltaTime;
 
-        yield return new WaitForSeconds(petrifyDuration);
+                if (inConeTimer >= stunThreshold)
+                {
+                    playerController player = gameManager.instance.player.GetComponent<playerController>();
+
+                    if (player)
+                        player.Stun(petrifyDuration);
+
+                    break;
+                }
+            }
+
+            stareTimer += Time.deltaTime;
+            yield return null;
+        }
 
 
+        if (petrifyTrigger)
+            petrifyTrigger.SetActive(false);
         if (petrifyConeVisual)
             petrifyConeVisual.SetActive(false);
 
         agent.isStopped = false;
+        faceTargetSpeed = faceTargetSpeedOrig;
+        isPetrifying = false;
     }
 }
