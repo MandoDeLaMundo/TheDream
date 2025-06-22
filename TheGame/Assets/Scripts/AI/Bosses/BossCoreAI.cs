@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class BossCoreAI : MonoBehaviour
+public class BossCoreAI : MonoBehaviour, IDamage
 {
     [Header("References")]
     [SerializeField] public NavMeshAgent agent;
@@ -38,12 +38,14 @@ public class BossCoreAI : MonoBehaviour
         if (!anim)
             anim = GetComponent<Animator>();
 
-        bossDoor.SetActive(true);
+        if (bossDoor)
+            bossDoor.SetActive(true);
 
         healthOrig = health;
         phase2Threshold = healthOrig / 2;
         startingPos = transform.position;
-
+        Debug.Log($"Phase 2 Threshold: {phase2Threshold}");
+        gameManager.instance.bossHPBar.gameObject.SetActive(true);
         UpdateUI();
     }
 
@@ -68,11 +70,12 @@ public class BossCoreAI : MonoBehaviour
         StartCoroutine(PhaseTransitionPause(1));
     }
 
-    public void TakeDamage(int amount)
+    public virtual void TakeDMG(int amount)
     {
         if (hotSpot.activeSelf || currentPhase == phase1)
         {
             health -= amount;
+            UpdateUI();
         }
 
         if (health <= 0)
@@ -90,6 +93,7 @@ public class BossCoreAI : MonoBehaviour
             Instantiate(dropItemPrefab, itemDropPos.position, Quaternion.identity);
 
         Destroy(this.gameObject);
+        gameManager.instance.bossHPBar.gameObject.SetActive(false);
     }
 
     public bool CanSeePlayer()
@@ -105,6 +109,14 @@ public class BossCoreAI : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void FacePlayer()
+    {
+        Vector3 dir = (gameManager.instance.player.transform.position - transform.position).normalized;
+        dir.y = 0;
+        Quaternion rot = Quaternion.LookRotation(dir);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * faceTargetSpeed);
     }
 
     public void UpdateUI()

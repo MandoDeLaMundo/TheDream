@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class BossPhaseBase : MonoBehaviour
+public abstract class BossPhaseBase
 {
     protected BossCoreAI boss;
 

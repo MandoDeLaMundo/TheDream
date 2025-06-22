@@ -554,7 +554,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
                 gameManager.instance.UpdatePlayerHPCount(-amount);
                 updatePlayerUI();
                 if (canStunned)
-                    StartCoroutine(Stunned());
+                    StartCoroutine(Stunned(0.5f));
             }
         }
         else
@@ -767,6 +767,11 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         teleproj.GetComponent<Teleport>().playercon = controller;
     }
 
+    public void Stun(float duration)
+    {
+        StartCoroutine(Stunned(duration));
+    }
+
     IEnumerator flashDamageScreen()
     {
         gameManager.instance.playerDamageScreen.SetActive(true);
@@ -789,12 +794,12 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         isPlayingStep = false;
     }
 
-    IEnumerator Stunned()
+    IEnumerator Stunned(float duration)
     {
         canShoot = false;
         canMove = false;
         gameManager.instance.playerStunScreen.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(duration);
         gameManager.instance.playerStunScreen.SetActive(false);
         canMove = true;
         canShoot = true;
