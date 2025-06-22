@@ -1,16 +1,21 @@
 using UnityEngine;
 
-public class CockatricePhase1 : MonoBehaviour
+public class CockatricePhase1 : BossPhaseBase
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public CockatricePhase1(BossCoreAI boss) : base(boss) { }
+
+    public override void Enter()
+    {
+        Debug.Log("Cockatrice Phase 1 begins!");
+    }
+    public override void Update()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Exit()
     {
-        
+        Debug.Log("Cockatrice Phase 1 ends!");
+
     }
 }

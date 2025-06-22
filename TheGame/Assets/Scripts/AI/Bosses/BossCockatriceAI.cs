@@ -1,16 +1,13 @@
 using UnityEngine;
 
-public class BossCockatriceAI : MonoBehaviour
+public class BossCockatriceAI : BossCoreAI
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected override void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        base.Start();
+        phase1 = new CockatricePhase1(this);
+        phase2 = new CockatricePhase2(this);
+        currentPhase = phase1;
+        currentPhase.Enter();
     }
 }

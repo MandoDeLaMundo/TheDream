@@ -1,16 +1,17 @@
 using UnityEngine;
 
-public class BossPhaseBase : MonoBehaviour
+public abstract class BossPhaseBase : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected BossCoreAI boss;
+
+    public BossPhaseBase(BossCoreAI _boss)
     {
-        
+        boss = _boss;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public abstract void Enter();
+
+    public abstract void Update();
+
+    public abstract void Exit();
 }
