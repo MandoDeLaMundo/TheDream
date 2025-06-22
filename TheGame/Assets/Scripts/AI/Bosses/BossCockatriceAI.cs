@@ -13,12 +13,14 @@ public class BossCockatriceAI : BossCoreAI
     public int stompDamage;
 
     [Header("Petrify Settings")]
+    public GameObject petrifyTrigger;
+    public float petrifyCooldown;
     public float petrifyDuration;
-    public float stareThreshold;
-    public float petrifyRange;
-    public float gazeAngle;
     [HideInInspector] public float stareTimer;
     [HideInInspector] public bool isPetrifying;
+
+    [Header("Visuals")]
+    public GameObject petrifyConeVisual;
 
     protected override void Start()
     {
@@ -41,33 +43,28 @@ public class BossCockatriceAI : BossCoreAI
         Vector3 toPlayer = (player.position - transform.position).normalized;
         float angle = Vector3.Angle(transform.forward, toPlayer);
         float distance = Vector3.Distance(transform.position, player.position);
-
-        if (angle < gazeAngle && distance <= petrifyRange && CanSeePlayer())
-        {
-            stareTimer += Time.deltaTime;
-
-            if (stareTimer >= stareThreshold)
-            {
-                
-                stareTimer = 0f;
-            }
-        }
-        else
-        {
-            stareTimer = 0f;
-        }
     }
 
     public IEnumerator PetrifyPlayer()
     {
-        isPetrifying = true;
+        agent.isStopped = true;
+
+        //anim.SetTrigger("Petrify");
+
+        if (petrifyConeVisual)
+            petrifyConeVisual.SetActive(true);
 
         playerController player = gameManager.instance.player.GetComponent<playerController>();
+
         if (player)
             player.Stun(petrifyDuration);
 
         yield return new WaitForSeconds(petrifyDuration);
 
-        isPetrifying = false;
+
+        if (petrifyConeVisual)
+            petrifyConeVisual.SetActive(false);
+
+        agent.isStopped = false;
     }
 }
