@@ -137,6 +137,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         origJump = jumpForce;
         test = true;
         IsInventory = false;
+        canTakeDam = true;
         OverMax = 0;
         gameManager.instance.UpdatePlayerMaxHPMPOXCount(HP, Mana, Oxygen);
         updatePlayerUI();
@@ -229,6 +230,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         {
             ManaRegen();
         }
+
         if (Input.GetButtonDown("Shield") && shield != null && gameManager.instance.Shield.sprite != null)
         {
             isShielding = !isShielding;
@@ -238,16 +240,17 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             shieldTimer += Time.deltaTime;
             Shield();
         }
-        if (Input.GetButtonDown("Inventory"))
-        {
-            IsInventory = !IsInventory;
-            Inventory();
-        }
         else
         {
             isShielding = false;
             shieldBubble.SetActive(isShielding);
             shieldTimer = 0;
+        }
+
+        if (Input.GetButtonDown("Inventory"))
+        {
+            IsInventory = !IsInventory;
+            Inventory();
         }
 
         if (potionTimer > potionTimerUse)

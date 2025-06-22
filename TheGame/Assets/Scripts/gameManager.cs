@@ -138,19 +138,22 @@ public class gameManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel"))
         {
-            if (menuActive == null)
+            if (textBox.activeSelf != true && DialogueBox.activeSelf != true)
             {
-                StatePause();
-                menuActive = menuPause;
-
-                if (menuActive != null)
+                if (menuActive == null)
                 {
-                    menuActive.SetActive(true);
-                }
+                    StatePause();
+                    menuActive = menuPause;
 
+                    if (menuActive != null)
+                    {
+                        menuActive.SetActive(true);
+                    }
+
+                }
+                else if (menuActive == menuPause)
+                    StateUnpause();
             }
-            else if (menuActive == menuPause)
-                StateUnpause();
         }
 
         if (playerController.instance != null && playerController.instance.IsInventory)
@@ -171,7 +174,7 @@ public class gameManager : MonoBehaviour
                 }
             }
         }
-       
+
 
         if (Input.GetKey("q"))
         {
@@ -299,24 +302,24 @@ public class gameManager : MonoBehaviour
 
     public void UpdatePotionCount()
     {
-        if(healpotionText != null)
+        if (healpotionText != null)
         {
             healpotionCountOrig = ItemCount.HealthPotion;
             healpotionText.text = healpotionCountOrig.ToString("F0");
         }
-      
+
         if (manapotionText != null)
         {
             manapotionCountOrig = ItemCount.ManaPotion;
             manapotionText.text = manapotionCountOrig.ToString("F0");
         }
-       
+
         if (healpotionplusText != null)
         {
             healpotionplusCountOrig = ItemCount.HealPlusPotion;
             healpotionplusText.text = healpotionplusCountOrig.ToString("F0");
         }
-        
+
         if (manapotionplusText != null)
         {
             manapotionplusCountOrig = ItemCount.ManaPlusPotion;
@@ -390,7 +393,7 @@ public class gameManager : MonoBehaviour
 
     void InventoryReset()
     {
-        for(int i = 0; i < items.Count; i++)
+        for (int i = 0; i < items.Count; i++)
         {
             items[i].Count = 0;
         }
@@ -399,7 +402,7 @@ public class gameManager : MonoBehaviour
     void AllReset()
     {
         PickUpCheck();
-        if(ItemCount != null)
+        if (ItemCount != null)
         {
             ItemCount.beewaxCount = 0;
             ItemCount.baconCount = 0;
@@ -410,12 +413,16 @@ public class gameManager : MonoBehaviour
             ItemCount.ManaPlusPotion = 0;
         }
         InventoryReset();
-        if (AllLists.spellList.Count > 0)
+        if(AllLists != null)
         {
-            AllLists.spellList.Clear();
-            AllLists.spellListPos = 0;
+            if (AllLists.spellList.Count > 0 && AllLists.spellList != null)
+            {
+                AllLists.spellList.Clear();
+                AllLists.spellListPos = 0;
+            }
+            if (AllLists.ItemList.Count > 0 && AllLists.ItemList != null)
+                AllLists.ItemList.Clear();
         }
-        if(AllLists.ItemList.Count > 0)
-            AllLists.ItemList.Clear();
+        
     }
 }

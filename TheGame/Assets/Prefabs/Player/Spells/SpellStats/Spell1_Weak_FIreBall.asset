@@ -19,11 +19,11 @@ MonoBehaviour:
   shootDist: 10
   manaCost: 1
   spellRadius: 0
-  hitEffect: {fileID: 6280281539998945384, guid: f78aaaec3b393e24ca74cd6de8194347, type: 3}
-  shootSound: []
-  shootSoundVol: 0.5
-  spellCheck: 1
+  hitEffect: {fileID: 0}
+  shootSound:
+  - {fileID: 8300000, guid: a652877b012108e41871f867ada9f176, type: 3}
+  shootSoundVol: 0.479
+  spellCheck: 0
   spellManual: "Ah yes, behold my signature spell: Tiny Fireball of Moderate Warmth\u2122!
     It\u2019s not explosive, it sometimes barely toasts my marshmallows"
-  pickup: {fileID: 3065584030892626305, guid: deddad2d62d44094dbc60305047e8a77, type: 3}
   sprite: {fileID: 21300000, guid: a2407bd54863fb942873d421355cff4b, type: 3}

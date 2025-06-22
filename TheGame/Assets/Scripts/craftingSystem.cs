@@ -29,8 +29,8 @@ public class craftingSystem : MonoBehaviour
     int recipePos;
     bool IsHealPotion;
     bool IsManaPotion;
-    [SerializeField] float healingCooldown;
-    float healTimer;
+    [SerializeField] float PotionCooldown;
+    float makePotionsTimer;
 
     void Awake()
     {
@@ -52,7 +52,7 @@ public class craftingSystem : MonoBehaviour
 
     void Update()
     {
-        healTimer += Time.deltaTime;
+        makePotionsTimer += Time.deltaTime;
         if (playerController.instance.IsInventory)
         {
             if (Input.GetKeyDown("r"))
@@ -67,7 +67,7 @@ public class craftingSystem : MonoBehaviour
                     recipePos = 0;
                 }
             }
-            if (Input.GetKey("c"))
+            if (Input.GetKeyDown("c") && makePotionsTimer > PotionCooldown)
             {
                 CraftPotion();
             }
@@ -88,30 +88,36 @@ public class craftingSystem : MonoBehaviour
                     IsManaPotion = false;
 
 
+
                     break;
                 case 1:
                     IsHealPotion = false;
                     IsManaPotion = true;
+
 
                     break;
                 case 2:
                     IsHealPotion = false;
                     IsManaPotion = false;
 
+
                     break;
+                case 3:
+
+                    break;//venom and leaf for Mana+
             }
         }
     }
 
     void CraftPotion()
     {
-        if (IsHPPotion() && ingredents.beewaxCount > 0 && ingredents.mushroomCount > 0 && healTimer > healingCooldown)
+        if (IsHPPotion() && ingredents.beewaxCount > 0 && ingredents.mushroomCount > 0)
         {
             ingredents.HealthPotion++;
             ingredents.beewaxCount--;
             ingredents.mushroomCount--;
 
-            healTimer = 0;
+            makePotionsTimer = 0;
         }
         else if (IsMPPotion() && ingredents.beewaxCount > 0 && ingredents.baconCount > 0)
         {
@@ -120,6 +126,7 @@ public class craftingSystem : MonoBehaviour
             ingredents.baconCount--;
         }
         InventorySystem.instance.VerifyCount();
+        gameManager.instance.UpdatePotionCount();
     }
 
     public bool IsHPPotion()
