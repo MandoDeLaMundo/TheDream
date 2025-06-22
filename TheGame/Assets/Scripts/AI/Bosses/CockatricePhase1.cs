@@ -40,10 +40,10 @@ public class CockatricePhase1 : BossPhaseBase
             return;
         }
 
-        if (petrifyTimer >= cockatrice.petrifyCooldown)
-        {
-            cockatrice.StartCorou
-        }
+        //if (petrifyTimer >= cockatrice.petrifyCooldown)
+        //{
+        //    cockatrice.StartCorou
+        //}
     }
 
     public override void Exit()
