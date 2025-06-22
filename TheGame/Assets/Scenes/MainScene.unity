@@ -95829,36 +95829,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 169064889966806894, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
-      propertyPath: dialogueStatsList.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 169064889966806894, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
       propertyPath: 'FairyTriggerList.Array.data[0]'
       value: 
       objectReference: {fileID: 1703577584}
-    - target: {fileID: 1306425457777730440, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 511.0848
-      objectReference: {fileID: 0}
-    - target: {fileID: 1594780229270238618, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 300.302
-      objectReference: {fileID: 0}
-    - target: {fileID: 2648398277507372499, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3019420842739145004, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -327.2857
-      objectReference: {fileID: 0}
-    - target: {fileID: 5393957323708870611, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -229.6864
-      objectReference: {fileID: 0}
     - target: {fileID: 6911230452717452533, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
       propertyPath: m_Name
-      value: UI New
+      value: UI
       objectReference: {fileID: 0}
     - target: {fileID: 7686955477975542978, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
       propertyPath: m_Pivot.x

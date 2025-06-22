@@ -12,9 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27441690e90c7bc499eb581e32a15568, type: 3}
   m_Name: Mana potion
   m_EditorClassIdentifier: 
-  ingredentsOne: {fileID: 21300000, guid: 732a43f4e0424b04fbd7b177fa4f64c8, type: 3}
-  ingredentsTwo: {fileID: 21300000, guid: 399a33bc15942634f9f956f57d62931f, type: 3}
+  ingredentsOne: {fileID: 21300000, guid: 399a33bc15942634f9f956f57d62931f, type: 3}
+  ingredentsTwo: {fileID: 21300000, guid: 0f618ec634476564ba286e56edb9331d, type: 3}
   result: {fileID: 21300000, guid: 16083c08c66bc284a8638631496464e3, type: 3}
-  ingredentsOneCount: 0
-  ingredentsTwoCount: 0
-  resultCount: 0

@@ -407,6 +407,9 @@ public class gameManager : MonoBehaviour
             ItemCount.beewaxCount = 0;
             ItemCount.baconCount = 0;
             ItemCount.mushroomCount = 0;
+            ItemCount.venomGlandCount = 0;
+            ItemCount.cinnamonCount = 0;
+
             ItemCount.HealthPotion = 0;
             ItemCount.ManaPotion = 0;
             ItemCount.HealPlusPotion = 0;

@@ -124,7 +124,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   spell: {fileID: 0}
-  item: {fileID: 11400000, guid: 9f07034eb247813488bfffd126d31c22, type: 2}
+  item: {fileID: 11400000, guid: 5fd59bf5261dd2644b349bf13168d1a9, type: 2}
   aud: {fileID: -844403139561502149}
   audPick:
   - {fileID: 8300000, guid: 35cf7766e9e2aa542811e896fde57989, type: 3}
