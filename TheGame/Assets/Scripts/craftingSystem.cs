@@ -104,7 +104,7 @@ public class craftingSystem : MonoBehaviour
                     break;
                 case 3:
 
-                    break;
+                    break;//venom and leaf for Mana+
             }
         }
     }
