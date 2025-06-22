@@ -3,6 +3,8 @@ using UnityEngine;
 public class CockatricePhase1 : BossPhaseBase
 {
     float stompTimer = 0f;
+    float petrifyTimer = 0f;
+
     public CockatricePhase1(BossCoreAI boss) : base(boss) { }
 
     public override void Enter()
@@ -18,6 +20,7 @@ public class CockatricePhase1 : BossPhaseBase
 
         stompTimer += Time.deltaTime;
         boss.attackTimer += Time.deltaTime;
+        petrifyTimer += Time.deltaTime;
 
         var cockatrice = (BossCockatriceAI)boss;
 
@@ -35,6 +38,11 @@ public class CockatricePhase1 : BossPhaseBase
             MeleeAttack(cockatrice);
             boss.attackTimer = 0f;
             return;
+        }
+
+        if (petrifyTimer >= cockatrice.petrifyCooldown)
+        {
+            cockatrice.StartCorou
         }
     }
 
