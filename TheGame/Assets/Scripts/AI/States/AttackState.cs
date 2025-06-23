@@ -87,7 +87,7 @@ public class AttackState : IState
 
     void HandleRanged()
     {
-        if (enemy.playerInRange && enemy.shootTimer >= enemy.shootRate)
+        if (enemy.playerInRange && enemy.shootTimer >= enemy.shootRate && enemy.projectile != null)
         {
             enemy.anim.SetTrigger("Shoot");
             enemy.CanShoot = false;

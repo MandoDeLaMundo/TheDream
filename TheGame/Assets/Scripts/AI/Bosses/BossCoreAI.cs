@@ -45,7 +45,6 @@ public class BossCoreAI : MonoBehaviour, IDamage
         healthOrig = health;
         phase2Threshold = healthOrig / 2;
         startingPos = transform.position;
-        Debug.Log($"Phase 2 Threshold: {phase2Threshold}");
         gameManager.instance.bossHPBar.gameObject.SetActive(true);
         UpdateUI();
     }
