@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 
 public class DisplayHotBar : MonoBehaviour
 {
@@ -43,10 +44,55 @@ public class DisplayHotBar : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
-        if (instance == null)
-            instance = this;
-        else
-            Destroy(gameObject); // or log a warning
+        instance = this;
+        //DontDestroyOnLoad(gameObject);
+        //if (listsTracker.spellList != null)
+        //    switch (listsTracker.spellList.Count)
+        //    {
+        //        case 1:
+        //            if (MainSpell.sprite != null)
+        //            {
+        //                OneSlots.SetActive(true);
+        //                MainSpell.sprite = listsTracker.spellList[0].sprite;
+        //            }
+        //            break;
+        //        case 2:
+        //            TwoSpellOne.sprite = listsTracker.spellList[0].sprite;
+        //            TwoSpellTwo.sprite = listsTracker.spellList[1].sprite;
+        //            OneSlots.SetActive(true);
+        //            CurrentHotBar = TwoSlots;
+        //            CurrentHotBar.SetActive(true);
+        //            break;
+        //        case 3:
+        //            ThreeSpellOne.sprite = listsTracker.spellList[0].sprite;
+        //            ThreeSpellTwo.sprite = listsTracker.spellList[1].sprite;
+        //            ThreeSpellThree.sprite = listsTracker.spellList[2].sprite;
+        //            OneSlots.SetActive(true);
+        //            CurrentHotBar = ThreeSlots;
+        //            CurrentHotBar.SetActive(true);
+        //            break;
+        //        case 4:
+        //            FourSpellOne.sprite = listsTracker.spellList[0].sprite;
+        //            FourSpellTwo.sprite = listsTracker.spellList[1].sprite;
+        //            FourSpellThree.sprite = listsTracker.spellList[2].sprite;
+        //            FourSpellFour.sprite = listsTracker.spellList[3].sprite;
+        //            OneSlots.SetActive(true);
+        //            CurrentHotBar = FourSlots;
+        //            CurrentHotBar.SetActive(true);
+        //            break;
+        //        case 5:
+        //            FiveSpellOne.sprite = listsTracker.spellList[0].sprite;
+        //            FiveSpellTwo.sprite = listsTracker.spellList[1].sprite;
+        //            FiveSpellThree.sprite = listsTracker.spellList[2].sprite;
+        //            FiveSpellFour.sprite = listsTracker.spellList[3].sprite;
+        //            FiveSpellFive.sprite = listsTracker.spellList[4].sprite;
+        //            OneSlots.SetActive(true);
+        //            CurrentHotBar = FiveSlots;
+        //            CurrentHotBar.SetActive(true);
+        //            break;
+        //        default:
+        //            break;
+        //    }
     }
 
     // Update is called once per frame
