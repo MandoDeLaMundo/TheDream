@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76a7bda188c412f40ab6e1ce937f43bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 1
   spell: {fileID: 0}
   item: {fileID: 11400000, guid: 5fd59bf5261dd2644b349bf13168d1a9, type: 2}
   aud: {fileID: 0}

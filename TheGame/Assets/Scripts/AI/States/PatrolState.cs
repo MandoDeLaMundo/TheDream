@@ -16,6 +16,8 @@ public class PatrolState : IState
     {
         roamTimer = 0;
         enemy.agent.stoppingDistance = 0;
+        enemy.anim.SetBool("isWalking", true);
+
         SetNewRoamPoint();
     }
 
@@ -45,6 +47,7 @@ public class PatrolState : IState
     public void Exit() 
     {
         roamTimer = 0;
+        enemy.anim.SetBool("isWalking", false);
     }
 
     void SetNewRoamPoint()

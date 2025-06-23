@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class gameManager : MonoBehaviour
 {
@@ -109,15 +110,15 @@ public class gameManager : MonoBehaviour
     int beesWaxGoal;
     int mushroomGoal;
 
-    bool hasMonsterEgg = false;
-    bool hasEnoughBacon = false;
-    bool hasEnoughBeesWax = false;
-    bool hasEnoughMushroom = false;
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
         instance = this;
         player = GameObject.FindWithTag("Player");
         if (player != null)
@@ -128,9 +129,15 @@ public class gameManager : MonoBehaviour
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        AllReset();
+        if (SceneManager.GetActiveScene().name == "MainScene")
+        {
+            AllReset();
+            DisplayDescription(playerController.instance.startupDialogue);
+        }
+
+
         UpdatePotionCount();
-        UpdateIngredientGoal(baconGoalPI, beesWaxGoalPI, mushroomGoalPI);
+        //UpdateIngredientGoal(baconGoalPI, beesWaxGoalPI, mushroomGoalPI);
     }
 
     // Update is called once per frame
@@ -336,8 +343,6 @@ public class gameManager : MonoBehaviour
         baconCountText.text = baconCount.ToString("F0");
         beesWaxCountText.text = beesWaxCount.ToString("F0");
         mushroomCountText.text = mushroomCount.ToString("F0");
-
-        CheckIngredientGoals();
     }
 
     public void UpdateIngredientGoal(int baconAmount, int beesWaxAmount, int mushroomAmount)
@@ -361,26 +366,16 @@ public class gameManager : MonoBehaviour
         }
     }
 
-    private void CheckIngredientGoals()
-    {
-        hasEnoughBacon = baconCount >= baconGoal;
-        hasEnoughBeesWax = beesWaxCount >= beesWaxGoal;
-        hasEnoughMushroom = mushroomCount >= mushroomGoal;
-    }
-
-    public void UpdateMonsterEgg(bool hasEgg)
-    {
-        hasMonsterEgg = hasEgg;
-    }
-
     public void GameGoalMonsterEgg()
     {
-        if (hasMonsterEgg)
-        {
-            StatePause();
-            menuActive = menuWin;
-            menuActive.SetActive(true);
-        }
+        SceneManager.LoadScene("Forest1");
+    }
+
+    public void YouWin()
+    {
+        StatePause();
+        menuActive = menuWin;
+        menuActive.SetActive(true);
     }
 
     void PickUpCheck()
@@ -389,6 +384,11 @@ public class gameManager : MonoBehaviour
             Spell[i].spellCheck = true;
         for (int i = 0; i < items.Count; i++)
             items[i].firstTime = true;
+        for (int i = 0; i < items.Count; i++)
+        {
+            if (items[i].itemName == "Boss Egg" || items[i].itemName == "Cinnamon")
+                items[i].bossCheck = true;
+        }
     }
 
     void InventoryReset()
@@ -416,7 +416,7 @@ public class gameManager : MonoBehaviour
             ItemCount.ManaPlusPotion = 0;
         }
         InventoryReset();
-        if(AllLists != null)
+        if (AllLists != null)
         {
             if (AllLists.spellList.Count > 0 && AllLists.spellList != null)
             {
@@ -426,6 +426,28 @@ public class gameManager : MonoBehaviour
             if (AllLists.ItemList.Count > 0 && AllLists.ItemList != null)
                 AllLists.ItemList.Clear();
         }
-        
+
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Time.timeScale = 1f;
+        isPaused = false;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        menuActive = null; // clear any leftover UI state
+
     }
 }

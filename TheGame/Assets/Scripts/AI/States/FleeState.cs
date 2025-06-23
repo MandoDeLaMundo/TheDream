@@ -20,6 +20,7 @@ public class FleeState : IState
         enemy.agent.isStopped = false;
         enemy.agent.speed *= 2;
         fleeTimer = 0f;
+        enemy.anim.SetBool("isRunning", true);
 
         SetNewFleeDestination();
     }
@@ -54,6 +55,7 @@ public class FleeState : IState
     { 
         enemy.agent.speed /= 2;
         enemy.CanShoot = true;
+        enemy.anim.SetBool("isRunning", false);
     }
 
     void SetNewFleeDestination()
