@@ -1,7 +1,14 @@
 fileFormatVersion: 2
 guid: 9d7119adae4906f47a924bc8ea34035c
+AssetOrigin:
+  serializedVersion: 1
+  productId: 308875
+  packageName: Stylised Animated Plant Monster
+  packageVersion: 1.1
+  assetPath: Assets/GreyratsLab/Stylised Plant Monster/Model/Boss Plant.fbx
+  uploadId: 729793
 ModelImporter:
-  serializedVersion: 21300
+  serializedVersion: 22200
   internalIDToNameTable: []
   externalObjects:
   - first:
@@ -21,8 +28,6 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 1
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -45,6 +50,7 @@ ModelImporter:
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
+    importPhysicalCameras: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -103,17 +109,11 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 0
   remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 308875
-  packageName: Stylised Animated Plant Monster
-  packageVersion: 1.1
-  assetPath: Assets/GreyratsLab/Stylised Plant Monster/Model/Boss Plant.fbx
-  uploadId: 729793
