@@ -97,6 +97,7 @@ public class gameManager : MonoBehaviour
     public int beesWaxGoalPI;
     public int mushroomGoalPI;
 
+    public string startupDialogue;
     public bool isPaused;
 
     float timeScaleOrig;
@@ -132,7 +133,7 @@ public class gameManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "MainScene")
         {
             AllReset();
-            DisplayDescription(playerController.instance.startupDialogue);
+            DisplayDescription(startupDialogue);
         }
 
 
