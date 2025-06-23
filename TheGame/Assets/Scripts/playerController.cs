@@ -2,11 +2,6 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.AI;
-using UnityEngine.UIElements;
-using Unity.VisualScripting;
-using Unity.VisualScripting.Antlr3.Runtime;
-using System.Linq;
-using UnityEngine.InputSystem;
 
 public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 {
@@ -544,7 +539,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
         {
-            //Debug.Log(hit.collider.name);
             Vector3 teleportPosition = hit.point;
             if (Vector3.Distance(transform.position, teleportPosition) <= teleportDist)
             {
@@ -639,7 +633,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
         if (DisplayHotBar.instance == null)
         {
-            Debug.LogError("DisplayHotBar.instance is null!");
+            
         }
         else
         {
@@ -747,7 +741,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         else if(item.itemName == "Cinnamon")
         {
             item.bossCheck = false;
-            gameManager.instance.YouWin();
+            gameManager.instance.DisplayDescription(item.itemDescription);
         }
 
         if (item.firstTime && Cheatmanager.instance.DescriptionCheat == false && item.itemName != "Boss Egg" && item.itemName != "Cinnamon")
