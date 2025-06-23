@@ -14,12 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 6912960705099921443, guid: 851c8d32ce030584da48e67af8c2c6b3, type: 3}
   itemName: Cinnamon
-  itemDescription: This boar meat comes from a creature resembling a cow. I could
-    make bacon with this, perfect for my omelet! Although, the monster seemed to
-    move oddly...
+  itemDescription: This would go great with pumpkin pie.
   healFactor: 0
   ManaFactor: 0
   firstTime: 1
   pickup: {fileID: 6912960705099921443, guid: 851c8d32ce030584da48e67af8c2c6b3, type: 3}
   sprite: {fileID: 21300000, guid: cb84c5bb84eccde42b3156b739612278, type: 3}
   Count: 0
+  bossCheck: 0
