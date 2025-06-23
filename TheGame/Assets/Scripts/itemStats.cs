@@ -14,4 +14,6 @@ public class itemStats : ScriptableObject
 	public GameObject pickup;
     public Sprite sprite;
 	public int Count;
+
+	public bool bossCheck;
 }

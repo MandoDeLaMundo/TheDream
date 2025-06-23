@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime;
 using System.Linq;
+using UnityEngine.InputSystem;
 
 public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 {
@@ -23,7 +24,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     [SerializeField] ListsTracker listsTracker;
 
     [Header("Health")]
-    [SerializeField] int HP;
+    public int HP;
     int HPOrig;
     [SerializeField] float healingCooldown;
     public int healingnum;
@@ -129,7 +130,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     void Start()
     {
         instance = this;
-        gameManager.instance.DisplayDescription(startupDialogue);
         HPOrig = HP;
         ManaOrig = Mana;
         OxygenOrig = Oxygen;
@@ -139,6 +139,16 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         IsInventory = false;
         canTakeDam = true;
         OverMax = 0;
+
+        if(listsTracker.spellList.Count != 0 && spellList.Count == 0)
+        {
+            for (int i = 0; i < listsTracker.spellList.Count; i++)
+            {
+                spellList.Add(listsTracker.spellList[i]);
+                changeSpell();
+            }
+        }
+
         gameManager.instance.UpdatePlayerMaxHPMPOXCount(HP, Mana, Oxygen);
         updatePlayerUI();
         if (spellList.Count > 0)
@@ -605,10 +615,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
                 if (Input.GetKeyDown(key) && spellListPos < spellList.Count && spellList.Count != 1)
                 {
                     int spellpos = i - 1;
-                    Debug.Log("spell pos" + spellListPos);
-                    Debug.Log("spell count" + spellList.Count);
-                    Debug.Log("Key preesed" + key);
-                    Debug.Log("i" + i);
                     spellListPos = spellpos;
                     changeSpell();
                 }
@@ -716,10 +722,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         {
             ingredents.venomGlandCount++;
         }
-        else if (item.itemName == "Cinnamon")
-        {
-            ingredents.cinnamonCount++;
-        }
         else if (item.itemName == "Health Potion")
         {
             ingredents.HealthPotion++;
@@ -739,11 +741,16 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
         if (item.itemName == "Boss Egg")
         {
-            gameManager.instance.UpdateMonsterEgg(true);
+            item.bossCheck = false;
             gameManager.instance.GameGoalMonsterEgg();
         }
+        else if(item.itemName == "Cinnamon")
+        {
+            item.bossCheck = false;
+            gameManager.instance.YouWin();
+        }
 
-        if (item.firstTime && Cheatmanager.instance.DescriptionCheat == false)
+        if (item.firstTime && Cheatmanager.instance.DescriptionCheat == false && item.itemName != "Boss Egg" && item.itemName != "Cinnamon")
         {
             gameManager.instance.DisplayDescription(item.itemDescription);
             item.firstTime = false;

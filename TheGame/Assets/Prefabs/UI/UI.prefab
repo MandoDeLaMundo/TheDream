@@ -4259,7 +4259,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5416484785711582222
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6754,6 +6754,11 @@ MonoBehaviour:
   R2SlotThree: {fileID: 0}
   R2SlotFour: {fileID: 0}
   R2SlotFive: {fileID: 0}
+  R2SlotOnetext: {fileID: 0}
+  R2SlotTwotext: {fileID: 0}
+  R2SlotThreetext: {fileID: 0}
+  R2SlotFourtext: {fileID: 0}
+  R2SlotFivetext: {fileID: 0}
 --- !u!1 &2992973557459439460
 GameObject:
   m_ObjectHideFlags: 0
@@ -16690,7 +16695,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6841965532503502987
 Transform:
   m_ObjectHideFlags: 0
