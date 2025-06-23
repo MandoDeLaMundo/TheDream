@@ -23,6 +23,7 @@ public class BossCockatriceAI : BossCoreAI
     public float petrifyDuration;
     public float stareDuration;
     public float stunThreshold;
+    public float stareRotationSpeed;
     [HideInInspector] public float stareTimer;
     [HideInInspector] public float stareCooldownTimer;
     [HideInInspector] public bool isPetrifying;
@@ -30,8 +31,6 @@ public class BossCockatriceAI : BossCoreAI
 
     [Header("Visuals")]
     public GameObject stareCone;
-    //public MeshRenderer petrifyConeVisual;
-    //public MeshCollider petrifyConeMesh;
 
     protected override void Start()
     {
@@ -44,11 +43,6 @@ public class BossCockatriceAI : BossCoreAI
 
         if (stareCone)
             stareCone.SetActive(false);
-
-        //if (petrifyConeVisual)
-        //    petrifyConeVisual.enabled = false;
-        //if (petrifyConeMesh)
-        //    petrifyConeMesh.enabled = false;
 
         faceTargetSpeedOrig = faceTargetSpeed;
 
@@ -107,16 +101,12 @@ public class BossCockatriceAI : BossCoreAI
 
         agent.isStopped = true;
         anim.SetBool("isRunning", false);
-        faceTargetSpeed *= 0.25f;
+        faceTargetSpeed *= stareRotationSpeed;
 
         if (petrifyTrigger)
             petrifyTrigger.SetActive(true);
         if (stareCone)
             stareCone.SetActive(true);
-        //if (petrifyConeVisual)
-        //    petrifyConeVisual.enabled = true;
-        //if (petrifyConeMesh)
-        //    petrifyConeMesh.enabled = true;
 
         float stareTimer = 0f;
         float inConeTimer = 0f;
@@ -148,25 +138,9 @@ public class BossCockatriceAI : BossCoreAI
             petrifyTrigger.SetActive(false);
         if (stareCone)
             stareCone.SetActive(false);
-        //if (petrifyConeVisual)
-        //    petrifyConeVisual.enabled = false;
-        //if (petrifyConeMesh)
-        //    petrifyConeMesh.enabled = false;
 
         agent.isStopped = false;
         faceTargetSpeed = faceTargetSpeedOrig;
         isPetrifying = false;
     }
-
-    //private void LateUpdate()
-    //{
-    //    if (petrifyConeVisual && headPos)
-    //    {
-    //        Vector3 targetForward = headPos.forward;
-
-    //        Quaternion targetRotation = Quaternion.LookRotation(targetForward, Vector3.up);
-
-    //        petrifyConeVisual.transform.localRotation = Quaternion.Lerp(petrifyConeVisual.transform.localRotation, targetRotation, Time.deltaTime * 5f);
-    //    }
-    //}
 }

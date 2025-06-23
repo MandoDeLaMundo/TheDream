@@ -260,6 +260,10 @@ PrefabInstance:
       propertyPath: petrifyConeVisual
       value: 
       objectReference: {fileID: 2073082630}
+    - target: {fileID: 821020827853714515, guid: c090c3554828f5f47854b04c27dfd913, type: 3}
+      propertyPath: stareRotationSpeed
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 5032895954143322063, guid: c090c3554828f5f47854b04c27dfd913, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9
