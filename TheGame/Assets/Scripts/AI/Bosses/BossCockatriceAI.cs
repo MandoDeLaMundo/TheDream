@@ -29,7 +29,9 @@ public class BossCockatriceAI : BossCoreAI
     [HideInInspector] public float faceTargetSpeedOrig;
 
     [Header("Visuals")]
-    public GameObject petrifyConeVisual;
+    public GameObject stareCone;
+    //public MeshRenderer petrifyConeVisual;
+    //public MeshCollider petrifyConeMesh;
 
     protected override void Start()
     {
@@ -40,8 +42,13 @@ public class BossCockatriceAI : BossCoreAI
         if (petrifyTrigger)
             petrifyTrigger.SetActive(false);
 
-        if (petrifyConeVisual)
-            petrifyConeVisual.SetActive(false);
+        if (stareCone)
+            stareCone.SetActive(false);
+
+        //if (petrifyConeVisual)
+        //    petrifyConeVisual.enabled = false;
+        //if (petrifyConeMesh)
+        //    petrifyConeMesh.enabled = false;
 
         faceTargetSpeedOrig = faceTargetSpeed;
 
@@ -104,8 +111,12 @@ public class BossCockatriceAI : BossCoreAI
 
         if (petrifyTrigger)
             petrifyTrigger.SetActive(true);
-        if (petrifyConeVisual)
-            petrifyConeVisual.SetActive(true);
+        if (stareCone)
+            stareCone.SetActive(true);
+        //if (petrifyConeVisual)
+        //    petrifyConeVisual.enabled = true;
+        //if (petrifyConeMesh)
+        //    petrifyConeMesh.enabled = true;
 
         float stareTimer = 0f;
         float inConeTimer = 0f;
@@ -135,8 +146,12 @@ public class BossCockatriceAI : BossCoreAI
 
         if (petrifyTrigger)
             petrifyTrigger.SetActive(false);
-        if (petrifyConeVisual)
-            petrifyConeVisual.SetActive(false);
+        if (stareCone)
+            stareCone.SetActive(false);
+        //if (petrifyConeVisual)
+        //    petrifyConeVisual.enabled = false;
+        //if (petrifyConeMesh)
+        //    petrifyConeMesh.enabled = false;
 
         agent.isStopped = false;
         faceTargetSpeed = faceTargetSpeedOrig;
