@@ -11,63 +11,133 @@ public class BossCockatriceAI : BossCoreAI
     public float stompRadius;
     public int meleeDamage;
     public int stompDamage;
+    [HideInInspector] public float stompTimer;
+
+    [Header("Phase 2 Stats")]
+    public float phase2AttackCooldown;
+    public float phase2StompCooldown;
 
     [Header("Petrify Settings")]
+    public GameObject petrifyTrigger;
+    public float petrifyCooldown;
     public float petrifyDuration;
-    public float stareThreshold;
-    public float petrifyRange;
-    public float gazeAngle;
+    public float stareDuration;
+    public float stunThreshold;
     [HideInInspector] public float stareTimer;
+    [HideInInspector] public float stareCooldownTimer;
     [HideInInspector] public bool isPetrifying;
+    [HideInInspector] public float faceTargetSpeedOrig;
+
+    [Header("Visuals")]
+    public GameObject petrifyConeVisual;
 
     protected override void Start()
     {
-        base.Start();
-
         phase1 = new CockatricePhase1(this);
         phase2 = new CockatricePhase2(this);
         currentPhase = phase1;
+
+        if (petrifyTrigger)
+            petrifyTrigger.SetActive(false);
+
+        if (petrifyConeVisual)
+            petrifyConeVisual.SetActive(false);
+
+        faceTargetSpeedOrig = faceTargetSpeed;
 
         base.Start();
         currentPhase.Enter();
     }
 
-    public void HandlePetrify()
+    public void MeleeAttack()
     {
-        if (isPetrifying)
-            return;
+        isAttacking = true;
+        // boss.anim.SetTrigger("Attack");
+        gameManager.instance.player.GetComponent<playerController>().TakeDMG(meleeDamage);
+        isAttacking = false;
+    }
 
-        Transform player = gameManager.instance.player.transform;
-        Vector3 toPlayer = (player.position - transform.position).normalized;
-        float angle = Vector3.Angle(transform.forward, toPlayer);
-        float distance = Vector3.Distance(transform.position, player.position);
-
-        if (angle < gazeAngle && distance <= petrifyRange && CanSeePlayer())
+    public void StompAttack()
+    {
+        isAttacking = true;
+        float distance = Vector3.Distance(transform.position, gameManager.instance.player.transform.position);
+        if (distance <= stompRadius)
         {
-            stareTimer += Time.deltaTime;
-
-            if (stareTimer >= stareThreshold)
-            {
-                
-                stareTimer = 0f;
-            }
+            gameManager.instance.player.GetComponent<playerController>().TakeDMG(stompDamage);
         }
-        else
+
+        isAttacking = false;
+    }
+
+    public void TriggerPetrify()
+    {
+        if (!isPetrifying)
         {
-            stareTimer = 0f;
+            StartCoroutine(PetrifyPlayer());
         }
     }
 
     public IEnumerator PetrifyPlayer()
     {
         isPetrifying = true;
+        agent.isStopped = false;
 
-        playerController player = gameManager.instance.player.GetComponent<playerController>();
-        if (player)
-            player.Stun(petrifyDuration);
+        Vector3 toPlayer = gameManager.instance.player.transform.position - transform.position;
+        Vector3 retreatDir = -toPlayer.normalized;
+        Vector3 retreatTarget = transform.position + retreatDir * 5f;
 
-        yield return new WaitForSeconds(petrifyDuration);
+        agent.SetDestination(retreatTarget);
 
+        float retreatTime = 0f;
+        while (retreatTime < 1f && Vector3.Distance(transform.position, retreatTarget) > 0.5f)
+        {
+            retreatTime += Time.deltaTime;
+            yield return null;
+        }
+
+        agent.isStopped = true;
+        faceTargetSpeed *= 0.25f;
+
+        //anim.SetTrigger("Petrify");
+
+        if (petrifyTrigger)
+            petrifyTrigger.SetActive(true);
+        if (petrifyConeVisual)
+            petrifyConeVisual.SetActive(true);
+
+        float stareTimer = 0f;
+        float inConeTimer = 0f;
+
+        while (stareTimer < stareDuration)
+        {
+            stareTimer += Time.deltaTime;
+            if (petrifyTrigger.GetComponent<PetrifyTrigger>().IsPlayerInZone)
+            {
+                inConeTimer += Time.deltaTime;
+
+                if (inConeTimer >= stunThreshold)
+                {
+                    playerController player = gameManager.instance.player.GetComponent<playerController>();
+
+                    if (player)
+                        player.Stun(petrifyDuration);
+
+                    break;
+                }
+            }
+
+            stareTimer += Time.deltaTime;
+            yield return null;
+        }
+
+
+        if (petrifyTrigger)
+            petrifyTrigger.SetActive(false);
+        if (petrifyConeVisual)
+            petrifyConeVisual.SetActive(false);
+
+        agent.isStopped = false;
+        faceTargetSpeed = faceTargetSpeedOrig;
         isPetrifying = false;
     }
 }
