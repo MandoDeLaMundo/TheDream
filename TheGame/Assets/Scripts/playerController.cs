@@ -98,8 +98,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
     [SerializeField] AudioClip[] audHurt;
     [Range(0, 1)][SerializeField] float audHurtVol;
 
-    public string startupDialogue;
-
     int InventoryPos = 0;
     public bool IsInventory;
     public bool PauseGameInInventory;
