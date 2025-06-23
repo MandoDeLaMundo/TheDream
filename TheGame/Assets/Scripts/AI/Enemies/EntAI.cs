@@ -43,6 +43,7 @@ public class EntAI : EnemyBase
     {
         if (entanglePrefab)
         {
+            anim.SetTrigger("Spell");
             ResetEntangleCooldown();
             Vector3 playerPos = (gameManager.instance.player.transform.position);
             playerPos.y = 0;
@@ -56,6 +57,7 @@ public class EntAI : EnemyBase
 
     public void FireVineWhip()
     {
+        anim.SetTrigger("Whip");
         GameObject whip = Instantiate(vineWhipPrefab, whipPos.position, whipPos.rotation);
         whip.GetComponent<Whip>().maxLength = vineWhipRangeMax;
         whip.GetComponent<Whip>().damageAmount = whipDamage;

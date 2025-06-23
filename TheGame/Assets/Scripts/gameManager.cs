@@ -110,11 +110,6 @@ public class gameManager : MonoBehaviour
     int beesWaxGoal;
     int mushroomGoal;
 
-    bool hasMonsterEgg = false;
-    bool hasEnoughBacon = false;
-    bool hasEnoughBeesWax = false;
-    bool hasEnoughMushroom = false;
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -142,7 +137,7 @@ public class gameManager : MonoBehaviour
 
 
         UpdatePotionCount();
-        UpdateIngredientGoal(baconGoalPI, beesWaxGoalPI, mushroomGoalPI);
+        //UpdateIngredientGoal(baconGoalPI, beesWaxGoalPI, mushroomGoalPI);
     }
 
     // Update is called once per frame
@@ -196,7 +191,6 @@ public class gameManager : MonoBehaviour
 
     public void StatePause()
     {
-        Debug.Log("Pausing game via StatePause()");
         isPaused = !isPaused;
         Time.timeScale = 0;
         Cursor.visible = true;
@@ -349,8 +343,6 @@ public class gameManager : MonoBehaviour
         baconCountText.text = baconCount.ToString("F0");
         beesWaxCountText.text = beesWaxCount.ToString("F0");
         mushroomCountText.text = mushroomCount.ToString("F0");
-
-        CheckIngredientGoals();
     }
 
     public void UpdateIngredientGoal(int baconAmount, int beesWaxAmount, int mushroomAmount)
@@ -372,13 +364,6 @@ public class gameManager : MonoBehaviour
         {
             mushroomGoalText.text = mushroomGoal.ToString("F0");
         }
-    }
-
-    private void CheckIngredientGoals()
-    {
-        hasEnoughBacon = baconCount >= baconGoal;
-        hasEnoughBeesWax = beesWaxCount >= beesWaxGoal;
-        hasEnoughMushroom = mushroomCount >= mushroomGoal;
     }
 
     public void GameGoalMonsterEgg()
@@ -457,7 +442,6 @@ public class gameManager : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Time.timeScale = 1f;
-        Debug.Log("Time scale reset to: " + Time.timeScale + " in scene " + scene.name);
         isPaused = false;
 
         Cursor.lockState = CursorLockMode.Locked;
