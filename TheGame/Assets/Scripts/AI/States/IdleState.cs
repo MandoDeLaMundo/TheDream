@@ -19,7 +19,7 @@ public class IdleState : IState
             enemy.agent.isStopped = true;
         }
 
-        // Play Idle animation
+        enemy.anim.SetBool("isIdle", true);
     }
 
     public void Update()
@@ -50,5 +50,7 @@ public class IdleState : IState
         {
             enemy.agent.isStopped = false;
         }
+
+        enemy.anim.SetBool("isIdle", false);
     }
 }

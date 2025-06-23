@@ -14,7 +14,6 @@ public class AttackState : IState
     {
         enemy.agent.isStopped = true;
         enemy.isAttacking = false;
-        // Play attack animation
     }
 
     public void Update()
@@ -80,7 +79,7 @@ public class AttackState : IState
         {
             enemy.meleeTimer = 0f;
             gameManager.instance.player.GetComponent<playerController>()?.TakeDMG(enemy.meleeDmgAmt);
-            // TODO: enemy.anim.SetTrigger("MeleeAttack");
+            enemy.anim.SetTrigger("Melee");
         }
 
         enemy.meleeTimer += Time.deltaTime;
@@ -94,7 +93,7 @@ public class AttackState : IState
             enemy.shootTimer = 0f;
             Vector3 playerDir = (gameManager.instance.player.transform.position - enemy.shootPos.position).normalized;
             Object.Instantiate(enemy.projectile, enemy.shootPos.position, Quaternion.LookRotation(playerDir));
-            // TODO: enemy.anim.SetTrigger("Shoot");
+            enemy.anim.SetTrigger("Shoot");
 
             if (enemy is CowardEnemy cowardEnemy)
             {
