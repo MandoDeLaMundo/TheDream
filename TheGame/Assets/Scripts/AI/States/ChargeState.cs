@@ -22,14 +22,14 @@ public class ChargeState : IState
 
         chargeDir = (gameManager.instance.player.transform.position - enemy.transform.position).normalized;
         timer = 0f;
-
-        enemy.anim.SetTrigger("Charge");
+        enemy.anim.SetTrigger("ReadyCharge");
     }
 
     public void Update()
     {
         timer += Time.deltaTime;
 
+        enemy.anim.SetTrigger("Charge");
         enemy.transform.forward = chargeDir;
         enemy.transform.position += chargeDir * enemy.chargeSpeed * Time.deltaTime;
 

@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: a732d30adb2af904a9a2c23e90419494
+guid: 2bac18be35e16db47a83af0a6392baf3
 NativeFormatImporter:
   externalObjects: {}
-  mainObjectFileID: 7400000
+  mainObjectFileID: 11400000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -11,5 +11,5 @@ AssetOrigin:
   productId: 206323
   packageName: Ent - Casual Fantasy
   packageVersion: 1.0
-  assetPath: Assets/Unity Store DL/CasualFantasy/_Demo/Anim/Demo_Idle.anim
+  assetPath: Assets/Unity Store DL/CasualFantasy/_Demo/Main Camera Profile.asset
   uploadId: 461340

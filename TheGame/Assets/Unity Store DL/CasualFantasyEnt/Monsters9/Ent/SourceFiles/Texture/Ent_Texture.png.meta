@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ec346780a41ed5e4c89f2b7afbcb2d04
+guid: 4e5b746fb0eace341bfb1d49cc98eddc
 TextureImporter:
   fileIDToRecycleName: {}
   externalObjects: {}
@@ -91,5 +91,5 @@ AssetOrigin:
   productId: 206323
   packageName: Ent - Casual Fantasy
   packageVersion: 1.0
-  assetPath: Assets/Unity Store DL/CasualFantasy/_Demo/Tex/Tex_Background.png
+  assetPath: Assets/CasualFantasy/Monsters9/Ent/SourceFiles/Texture/Ent_Texture.png
   uploadId: 461340

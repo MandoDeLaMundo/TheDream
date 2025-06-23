@@ -1,78 +1,219 @@
 fileFormatVersion: 2
 guid: 97aa327720de8c34eb11e33b2c24743d
+AssetOrigin:
+  serializedVersion: 1
+  productId: 189307
+  packageName: Boar - Casual Fantasy
+  packageVersion: 1.0
+  assetPath: Assets/CasualFantasy/Monsters2/Boar/SourceFiles/Model/Boar.fbx
+  uploadId: 417541
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: Arm_L
-    100002: Arm_R
-    100004: Armature
-    100006: ArmLower_L
-    100008: ArmLower_R
-    100010: //RootNode
-    100012: Boar
-    100014: Chest
-    100016: Foot_L
-    100018: Foot_R
-    100020: Hand_L
-    100022: Hand_R
-    100024: Head
-    100026: Hip
-    100028: Jaw
-    100030: LegLower_L
-    100032: LegLower_R
-    100034: LegUpper_L
-    100036: LegUpper_R
-    100038: Neck
-    100040: Plane
-    100042: Tail
-    100044: Tail_001
-    100046: Tail_002
-    400000: Arm_L
-    400002: Arm_R
-    400004: Armature
-    400006: ArmLower_L
-    400008: ArmLower_R
-    400010: //RootNode
-    400012: Boar
-    400014: Chest
-    400016: Foot_L
-    400018: Foot_R
-    400020: Hand_L
-    400022: Hand_R
-    400024: Head
-    400026: Hip
-    400028: Jaw
-    400030: LegLower_L
-    400032: LegLower_R
-    400034: LegUpper_L
-    400036: LegUpper_R
-    400038: Neck
-    400040: Plane
-    400042: Tail
-    400044: Tail_001
-    400046: Tail_002
-    2100000: unnamed
-    2100002: BoarTexture
-    2100004: BoarHoofFangsAndTeeth
-    2100006: BoarEyes
-    2300000: Plane
-    3300000: Plane
-    4300000: Plane
-    4300002: Boar
-    7400000: Default Take
-    7400002: Attack1
-    7400004: Attack2
-    7400006: Death
-    7400008: Idle
-    7400010: Move
-    7400012: Walk
-    7400014: Run
-    9500000: //RootNode
-    13700000: Boar
-    2186277476908879412: ImportLogs
+  serializedVersion: 22200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Arm_L
+  - first:
+      1: 100002
+    second: Arm_R
+  - first:
+      1: 100004
+    second: Armature
+  - first:
+      1: 100006
+    second: ArmLower_L
+  - first:
+      1: 100008
+    second: ArmLower_R
+  - first:
+      1: 100010
+    second: //RootNode
+  - first:
+      1: 100012
+    second: Boar
+  - first:
+      1: 100014
+    second: Chest
+  - first:
+      1: 100016
+    second: Foot_L
+  - first:
+      1: 100018
+    second: Foot_R
+  - first:
+      1: 100020
+    second: Hand_L
+  - first:
+      1: 100022
+    second: Hand_R
+  - first:
+      1: 100024
+    second: Head
+  - first:
+      1: 100026
+    second: Hip
+  - first:
+      1: 100028
+    second: Jaw
+  - first:
+      1: 100030
+    second: LegLower_L
+  - first:
+      1: 100032
+    second: LegLower_R
+  - first:
+      1: 100034
+    second: LegUpper_L
+  - first:
+      1: 100036
+    second: LegUpper_R
+  - first:
+      1: 100038
+    second: Neck
+  - first:
+      1: 100040
+    second: Plane
+  - first:
+      1: 100042
+    second: Tail
+  - first:
+      1: 100044
+    second: Tail_001
+  - first:
+      1: 100046
+    second: Tail_002
+  - first:
+      4: 400000
+    second: Arm_L
+  - first:
+      4: 400002
+    second: Arm_R
+  - first:
+      4: 400004
+    second: Armature
+  - first:
+      4: 400006
+    second: ArmLower_L
+  - first:
+      4: 400008
+    second: ArmLower_R
+  - first:
+      4: 400010
+    second: //RootNode
+  - first:
+      4: 400012
+    second: Boar
+  - first:
+      4: 400014
+    second: Chest
+  - first:
+      4: 400016
+    second: Foot_L
+  - first:
+      4: 400018
+    second: Foot_R
+  - first:
+      4: 400020
+    second: Hand_L
+  - first:
+      4: 400022
+    second: Hand_R
+  - first:
+      4: 400024
+    second: Head
+  - first:
+      4: 400026
+    second: Hip
+  - first:
+      4: 400028
+    second: Jaw
+  - first:
+      4: 400030
+    second: LegLower_L
+  - first:
+      4: 400032
+    second: LegLower_R
+  - first:
+      4: 400034
+    second: LegUpper_L
+  - first:
+      4: 400036
+    second: LegUpper_R
+  - first:
+      4: 400038
+    second: Neck
+  - first:
+      4: 400040
+    second: Plane
+  - first:
+      4: 400042
+    second: Tail
+  - first:
+      4: 400044
+    second: Tail_001
+  - first:
+      4: 400046
+    second: Tail_002
+  - first:
+      21: 2100000
+    second: unnamed
+  - first:
+      21: 2100002
+    second: BoarTexture
+  - first:
+      21: 2100004
+    second: BoarHoofFangsAndTeeth
+  - first:
+      21: 2100006
+    second: BoarEyes
+  - first:
+      23: 2300000
+    second: Plane
+  - first:
+      33: 3300000
+    second: Plane
+  - first:
+      43: 4300000
+    second: Plane
+  - first:
+      43: 4300002
+    second: Boar
+  - first:
+      74: 7400000
+    second: Default Take
+  - first:
+      74: 7400002
+    second: Attack1
+  - first:
+      74: 7400004
+    second: Attack2
+  - first:
+      74: 7400006
+    second: Death
+  - first:
+      74: 7400008
+    second: Idle
+  - first:
+      74: 7400010
+    second: Move
+  - first:
+      74: 7400012
+    second: Walk
+  - first:
+      74: 7400014
+    second: Run
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Boar
+  - first:
+      41386430: 2186277476908879412
+    second: ImportLogs
   externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -81,9 +222,8 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -101,6 +241,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Attack1
       takeName: Attack1
+      internalID: 0
       firstFrame: -1
       lastFrame: 49
       wrapMode: 0
@@ -129,15 +270,16 @@ ModelImporter:
     - serializedVersion: 16
       name: Attack2
       takeName: Attack2
+      internalID: 0
       firstFrame: -1
-      lastFrame: 39
+      lastFrame: 18
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -157,6 +299,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Death
       takeName: Death
+      internalID: 0
       firstFrame: -1
       lastFrame: 52
       wrapMode: 0
@@ -185,6 +328,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Idle
       takeName: Idle
+      internalID: 0
       firstFrame: -1
       lastFrame: 199
       wrapMode: 0
@@ -213,6 +357,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Walk
       takeName: Walk
+      internalID: 0
       firstFrame: -1
       lastFrame: 29
       wrapMode: 0
@@ -241,6 +386,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Run
       takeName: Run
+      internalID: 0
       firstFrame: 0
       lastFrame: 15
       wrapMode: 0
@@ -273,25 +419,36 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    nodeNameCollisionStrategy: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.35
-    hasPreviousCalculatedGlobalScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -300,10 +457,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -313,21 +470,20 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 35
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  importBlendShapeDeformPercent: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 189307
-  packageName: Boar - Casual Fantasy
-  packageVersion: 1.0
-  assetPath: Assets/CasualFantasy/Monsters2/Boar/SourceFiles/Model/Boar.fbx
-  uploadId: 417541

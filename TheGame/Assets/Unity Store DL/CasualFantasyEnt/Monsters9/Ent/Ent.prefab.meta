@@ -1,8 +1,7 @@
 fileFormatVersion: 2
-guid: a732d30adb2af904a9a2c23e90419494
-NativeFormatImporter:
+guid: 31bcad68a9f5c1c41ace2d8e898e3b73
+PrefabImporter:
   externalObjects: {}
-  mainObjectFileID: 7400000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -11,5 +10,5 @@ AssetOrigin:
   productId: 206323
   packageName: Ent - Casual Fantasy
   packageVersion: 1.0
-  assetPath: Assets/Unity Store DL/CasualFantasy/_Demo/Anim/Demo_Idle.anim
+  assetPath: Assets/CasualFantasy/Monsters9/Ent/Ent.prefab
   uploadId: 461340
