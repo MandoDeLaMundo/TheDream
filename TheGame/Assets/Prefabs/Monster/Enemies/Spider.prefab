@@ -1110,6 +1110,7 @@ GameObject:
   - component: {fileID: 8013299435646703299}
   - component: {fileID: 8865736877567651635}
   - component: {fileID: 7158287851781632824}
+  - component: {fileID: 4081854165426873752}
   m_Layer: 0
   m_Name: Spider
   m_TagString: Untagged
@@ -1152,7 +1153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 2516004326810953835}
   agent: {fileID: 8013299435646703299}
-  anim: {fileID: 0}
+  anim: {fileID: 4081854165426873752}
   headPos: {fileID: 7217257065353809681}
   lootPos: {fileID: 8093785888047526576}
   weaponCol: {fileID: 0}
@@ -1246,6 +1247,28 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 20
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &4081854165426873752
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5821252395671810989}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: a96ff394aa19efb4bbcd55446aefd7db, type: 2}
+  m_Controller: {fileID: 9100000, guid: a30c654044b28974497cb8c5440fce70, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5929493703560230707
 GameObject:
   m_ObjectHideFlags: 0

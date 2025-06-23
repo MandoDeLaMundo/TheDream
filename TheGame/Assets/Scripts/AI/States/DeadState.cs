@@ -14,7 +14,7 @@ public class DeadState : IState
     public void Enter()
     {
         if (enemy.agent) enemy.agent.isStopped = true;
-        // if (enemy.anim) enemy.anim.SetTrigger("Die");
+        enemy.anim.SetTrigger("Die");
 
         DropItem();
 
