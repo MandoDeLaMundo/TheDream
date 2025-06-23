@@ -11317,6 +11317,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1740003811}
     m_Modifications:
+    - target: {fileID: 1627394391720961752, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.8669028
+      objectReference: {fileID: 0}
+    - target: {fileID: 1627394391720961752, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9.859766
+      objectReference: {fileID: 0}
+    - target: {fileID: 1693271740983094112, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2173358242022842524, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
       propertyPath: m_LocalPosition.x
       value: 50.60107
@@ -11360,6 +11372,38 @@ PrefabInstance:
     - target: {fileID: 7555960384420180019, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
       propertyPath: m_Name
       value: Fairy Spawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 7555960384420180019, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8091333245743118699, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8091333245743118699, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8934312484256956317, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
+      propertyPath: m_Size.x
+      value: 8.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8934312484256956317, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
+      propertyPath: m_Size.y
+      value: 16.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 8934312484256956317, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
+      propertyPath: m_Size.z
+      value: 14.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 8934312484256956317, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
+      propertyPath: m_Center.y
+      value: 9.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9029926806467791030, guid: a29778ae616a8e54d8ec9c2210216564, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.5903425
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12145,6 +12189,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 422446581106539599, guid: 7df180d1f5585a1408de42c6f3ef5dd2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1813122186319802432, guid: 7df180d1f5585a1408de42c6f3ef5dd2, type: 3}
       propertyPath: m_Name
       value: Player
