@@ -60,11 +60,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: metarig|Scream
-      takeName: metarig|Camera_Action
+      name: metarig|Stomp
+      takeName: metarig|CameraAction
       internalID: 273519742768677861
-      firstFrame: 0
-      lastFrame: 359
+      firstFrame: 63
+      lastFrame: 158
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -268,6 +268,35 @@ ModelImporter:
       internalID: 7970037217857969994
       firstFrame: 249
       lastFrame: 467
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: metarig|Petrify
+      takeName: metarig|CameraAction
+      internalID: 2967987785474467634
+      firstFrame: 1278
+      lastFrame: 1318
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

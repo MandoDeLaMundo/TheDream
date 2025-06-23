@@ -52,7 +52,7 @@ public class BossCockatriceAI : BossCoreAI
     public void MeleeAttack()
     {
         isAttacking = true;
-        // boss.anim.SetTrigger("Attack");
+        anim.SetTrigger("Melee");
         gameManager.instance.player.GetComponent<playerController>().TakeDMG(meleeDamage);
         isAttacking = false;
     }
@@ -60,6 +60,8 @@ public class BossCockatriceAI : BossCoreAI
     public void StompAttack()
     {
         isAttacking = true;
+        anim.SetTrigger("Stomp");
+
         float distance = Vector3.Distance(transform.position, gameManager.instance.player.transform.position);
         if (distance <= stompRadius)
         {
@@ -81,6 +83,7 @@ public class BossCockatriceAI : BossCoreAI
     {
         isPetrifying = true;
         agent.isStopped = false;
+        anim.SetTrigger("Petrify");
 
         Vector3 toPlayer = gameManager.instance.player.transform.position - transform.position;
         Vector3 retreatDir = -toPlayer.normalized;
@@ -96,9 +99,8 @@ public class BossCockatriceAI : BossCoreAI
         }
 
         agent.isStopped = true;
+        anim.SetBool("isRunning", false);
         faceTargetSpeed *= 0.25f;
-
-        //anim.SetTrigger("Petrify");
 
         if (petrifyTrigger)
             petrifyTrigger.SetActive(true);
@@ -140,4 +142,16 @@ public class BossCockatriceAI : BossCoreAI
         faceTargetSpeed = faceTargetSpeedOrig;
         isPetrifying = false;
     }
+
+    //private void LateUpdate()
+    //{
+    //    if (petrifyConeVisual && headPos)
+    //    {
+    //        Vector3 targetForward = headPos.forward;
+
+    //        Quaternion targetRotation = Quaternion.LookRotation(targetForward, Vector3.up);
+
+    //        petrifyConeVisual.transform.localRotation = Quaternion.Lerp(petrifyConeVisual.transform.localRotation, targetRotation, Time.deltaTime * 5f);
+    //    }
+    //}
 }

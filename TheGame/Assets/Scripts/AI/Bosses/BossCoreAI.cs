@@ -90,6 +90,8 @@ public class BossCoreAI : MonoBehaviour, IDamage
         if (agent)
             agent.isStopped = true;
 
+        anim.SetTrigger("Die");
+
         if (dropItemPrefab)
             Instantiate(dropItemPrefab, itemDropPos.position, Quaternion.identity);
 

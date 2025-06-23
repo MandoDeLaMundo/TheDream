@@ -20,12 +20,14 @@ public class CockatricePhase1 : BossPhaseBase
 
         if (!cockatrice.isPetrifying)
         {
+            boss.anim.SetBool("isRunning", true);
             boss.FacePlayer();
             cockatrice.agent.SetDestination(gameManager.instance.player.transform.position);
         }
         else
         {
             cockatrice.agent.ResetPath();
+            boss.anim.SetBool("isRunning", false);
         }
 
         cockatrice.stompTimer += Time.deltaTime;
@@ -36,7 +38,6 @@ public class CockatricePhase1 : BossPhaseBase
 
         if (!cockatrice.isPetrifying && cockatrice.stareCooldownTimer >= cockatrice.petrifyCooldown && !cockatrice.isAttacking)
         {
-            Debug.Log("I can petrify the player");
             cockatrice.stareCooldownTimer = 0f;
             cockatrice.StartCoroutine(cockatrice.PetrifyPlayer());
             return;
