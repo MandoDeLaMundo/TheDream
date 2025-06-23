@@ -77717,14 +77717,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5122547944038142572, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
-      propertyPath: isPaused
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5122547944038142572, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
-      propertyPath: startupDialogue
-      value: I want an omelet for breakfast, I hope I can find an egg in this dungeon!
-      objectReference: {fileID: 0}
     - target: {fileID: 6911230452717452533, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
       propertyPath: m_Name
       value: UI
