@@ -741,7 +741,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         else if(item.itemName == "Cinnamon")
         {
             item.bossCheck = false;
-            gameManager.instance.YouWin();
+            gameManager.instance.DisplayDescription(item.itemDescription);
         }
 
         if (item.firstTime && Cheatmanager.instance.DescriptionCheat == false && item.itemName != "Boss Egg" && item.itemName != "Cinnamon")
