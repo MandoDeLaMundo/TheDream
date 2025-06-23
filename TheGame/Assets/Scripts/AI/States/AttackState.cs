@@ -89,11 +89,11 @@ public class AttackState : IState
     {
         if (enemy.playerInRange && enemy.shootTimer >= enemy.shootRate)
         {
+            enemy.anim.SetTrigger("Shoot");
             enemy.CanShoot = false;
             enemy.shootTimer = 0f;
             Vector3 playerDir = (gameManager.instance.player.transform.position - enemy.shootPos.position).normalized;
             Object.Instantiate(enemy.projectile, enemy.shootPos.position, Quaternion.LookRotation(playerDir));
-            enemy.anim.SetTrigger("Shoot");
 
             if (enemy is CowardEnemy cowardEnemy)
             {

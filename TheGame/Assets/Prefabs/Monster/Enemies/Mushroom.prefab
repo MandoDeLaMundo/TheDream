@@ -44,6 +44,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4511665919379058656}
+  - component: {fileID: 5657589859276457611}
   - component: {fileID: 7173192705754102241}
   - component: {fileID: 5526081716726769597}
   - component: {fileID: 7905611318087059978}
@@ -76,6 +77,28 @@ Transform:
   - {fileID: 4781664703197363485}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &5657589859276457611
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429976862743107279}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 1bb511c8a05be7d4aab86bc7439e73f3, type: 3}
+  m_Controller: {fileID: 9100000, guid: a25828d59d5074e43b3669b2d1e38d9e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &7173192705754102241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa451d51e4627c34fa00d85bd9775ec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 0}
+  model: {fileID: 1373798416058869299}
   agent: {fileID: 5526081716726769597}
   anim: {fileID: 0}
   headPos: {fileID: 2085715464459584644}
@@ -314,7 +337,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4781664703197363485}
-  - component: {fileID: 4484302047960099247}
   m_Layer: 0
   m_Name: MushroomMeshPA
   m_TagString: Untagged
@@ -339,28 +361,6 @@ Transform:
   - {fileID: 743464426879791346}
   m_Father: {fileID: 4511665919379058656}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &4484302047960099247
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1938286852006499866}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 1bb511c8a05be7d4aab86bc7439e73f3, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2119095071825937727
 GameObject:
   m_ObjectHideFlags: 0
@@ -957,7 +957,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5351799004330354562, guid: 539071c324af7a34583ffac96256daaf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.66
+      value: 4.8
       objectReference: {fileID: 0}
     - target: {fileID: 5351799004330354562, guid: 539071c324af7a34583ffac96256daaf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

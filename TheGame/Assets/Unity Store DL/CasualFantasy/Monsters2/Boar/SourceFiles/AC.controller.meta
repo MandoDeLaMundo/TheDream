@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a655db613165d894f95ba4c5ba78a86e
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 189307
+  packageName: Boar - Casual Fantasy
+  packageVersion: 1.0
+  assetPath: Assets/CasualFantasy/Monsters2/Boar/SourceFiles/AC.controller
+  uploadId: 417541

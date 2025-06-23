@@ -16,6 +16,8 @@ public class StationaryIdleState : IState
             enemy.agent.ResetPath();
             enemy.agent.isStopped = true;
         }
+
+        enemy.anim.SetBool("isIdle", true);
     }
 
     public void Update()
@@ -29,5 +31,6 @@ public class StationaryIdleState : IState
     public void Exit()
     {
         enemy.agent.isStopped = false;
+        enemy.anim.SetBool("isIdle", false);
     }
 }
