@@ -4,26 +4,27 @@ using UnityEngine;
 public class BossCockatriceAI : BossCoreAI
 {
     [Header("Phase 1 Stats")]
-    public float attackCooldown;
+    public float meleeCooldown;
     public float stompCooldown;
     public float meleeRange;
     public float stompRange;
     public float stompRadius;
     public int meleeDamage;
     public int stompDamage;
+    public int retreatDistance;
     [HideInInspector] public float stompTimer;
 
-    [Header("Phase 2 Stats")]
-    public float phase2AttackCooldown;
-    public float phase2StompCooldown;
+    //[Header("Phase 2 Stats")]
+    //public float phase2MeleeCooldown;
+    //public float phase2StompCooldown;
 
     [Header("Petrify Settings")]
     public GameObject petrifyTrigger;
-    public float petrifyCooldown;
-    public float petrifyDuration;
+    public float petrifyStareCooldown;
+    public float stareRotationSpeed;
     public float stareDuration;
     public float stunThreshold;
-    public float stareRotationSpeed;
+    public float stunDuration;
     [HideInInspector] public float stareTimer;
     [HideInInspector] public float stareCooldownTimer;
     [HideInInspector] public bool isPetrifying;
@@ -80,15 +81,11 @@ public class BossCockatriceAI : BossCoreAI
         }
     }
 
-    public IEnumerator PetrifyPlayer()
+    public void RetreatFromPlayer()
     {
-        isPetrifying = true;
-        agent.isStopped = false;
-        anim.SetTrigger("Petrify");
-
         Vector3 toPlayer = gameManager.instance.player.transform.position - transform.position;
         Vector3 retreatDir = -toPlayer.normalized;
-        Vector3 retreatTarget = transform.position + retreatDir * 5f;
+        Vector3 retreatTarget = transform.position + retreatDir * retreatDistance;
 
         agent.SetDestination(retreatTarget);
 
@@ -96,8 +93,15 @@ public class BossCockatriceAI : BossCoreAI
         while (retreatTime < 1f && Vector3.Distance(transform.position, retreatTarget) > 0.5f)
         {
             retreatTime += Time.deltaTime;
-            yield return null;
         }
+    }
+
+    public IEnumerator PetrifyPlayer()
+    {
+        isPetrifying = true;
+        agent.isStopped = false;
+        isAttacking = true;
+        anim.SetTrigger("Petrify");
 
         agent.isStopped = true;
         anim.SetBool("isRunning", false);
@@ -123,7 +127,7 @@ public class BossCockatriceAI : BossCoreAI
                     playerController player = gameManager.instance.player.GetComponent<playerController>();
 
                     if (player)
-                        player.Stun(petrifyDuration);
+                        player.Stun(stunDuration);
 
                     break;
                 }

@@ -28,7 +28,8 @@ public class BossCoreAI : MonoBehaviour, IDamage
     [HideInInspector] public Vector3 playerDir;
     [HideInInspector] public Vector3 startingPos;
     [HideInInspector] public float angleToPlayer;
-    [HideInInspector] public float attackTimer;
+    [HideInInspector] public float meleeTimer;
+    [HideInInspector] public float shootTimer;
     [HideInInspector] public bool isAttacking;
 
     protected virtual void Start()
