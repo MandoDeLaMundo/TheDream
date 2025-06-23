@@ -137,7 +137,7 @@ public class gameManager : MonoBehaviour
 
 
         UpdatePotionCount();
-        UpdateIngredientGoal(baconGoalPI, beesWaxGoalPI, mushroomGoalPI);
+        //UpdateIngredientGoal(baconGoalPI, beesWaxGoalPI, mushroomGoalPI);
     }
 
     // Update is called once per frame
