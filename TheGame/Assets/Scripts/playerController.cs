@@ -712,6 +712,14 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         {
             ingredents.mushroomCount++;
         }
+        else if (item.itemName == "Venom Gland")
+        {
+            ingredents.venomGlandCount++;
+        }
+        else if (item.itemName == "Cinnamon")
+        {
+            ingredents.cinnamonCount++;
+        }
         else if (item.itemName == "Health Potion")
         {
             ingredents.HealthPotion++;

@@ -8,13 +8,6 @@ public class craftingSystem : MonoBehaviour
 
     [Header("Crafting Display")]
     [SerializeField] GameObject craftActive;
-    [SerializeField] GameObject craftHeal;
-    [SerializeField] GameObject craftMana;
-
-    [Header("Potion Display")]
-    [SerializeField] GameObject potionActive;
-    [SerializeField] GameObject potionHeal;
-    [SerializeField] GameObject potionMana;
 
     [Header("Ingredents Display")]
     [SerializeField] Image ingredentOne;
@@ -29,17 +22,18 @@ public class craftingSystem : MonoBehaviour
     int recipePos;
     bool IsHealPotion;
     bool IsManaPotion;
+    bool IsHealPotionPlus;
     [SerializeField] float PotionCooldown;
     float makePotionsTimer;
 
     void Awake()
     {
         instance = this;
-        craftActive = craftHeal;
         craftActive.SetActive(true);
 
         IsHealPotion = true;
         IsManaPotion = false;
+        IsHealPotionPlus = false;
 
         if (recipes != null)
         {
@@ -86,23 +80,26 @@ public class craftingSystem : MonoBehaviour
                 case 0:
                     IsHealPotion = true;
                     IsManaPotion = false;
-
-
+                    IsHealPotionPlus = false;
 
                     break;
                 case 1:
                     IsHealPotion = false;
                     IsManaPotion = true;
-
+                    IsHealPotionPlus = false;
 
                     break;
                 case 2:
                     IsHealPotion = false;
                     IsManaPotion = false;
+                    IsHealPotionPlus = true;
 
 
                     break;
                 case 3:
+                    IsHealPotion = false;
+                    IsManaPotion = false;
+                    IsHealPotionPlus = false;
 
                     break;//venom and leaf for Mana+
             }
@@ -119,11 +116,23 @@ public class craftingSystem : MonoBehaviour
 
             makePotionsTimer = 0;
         }
-        else if (IsMPPotion() && ingredents.beewaxCount > 0 && ingredents.baconCount > 0)
+        else if (IsMPPotion() && ingredents.beewaxCount > 0 && ingredents.venomGlandCount > 0)
         {
             ingredents.ManaPotion++;
             ingredents.beewaxCount--;
-            ingredents.baconCount--;
+            ingredents.venomGlandCount--;
+        }
+        else if (IsHPPotionPlus() && ingredents.beewaxCount > 0 && ingredents.leafCount > 0)
+        {
+            ingredents.ManaPotion++;
+            ingredents.beewaxCount--;
+            ingredents.leafCount--;
+        }
+        else if (IsMPPotion() && ingredents.venomGlandCount > 0 && ingredents.leafCount > 0)
+        {
+            ingredents.ManaPotion++;
+            ingredents.venomGlandCount--;
+            ingredents.leafCount--;
         }
         InventorySystem.instance.VerifyCount();
         gameManager.instance.UpdatePotionCount();
@@ -137,5 +146,10 @@ public class craftingSystem : MonoBehaviour
     public bool IsMPPotion()
     {
         return IsManaPotion;
+    }
+
+    public bool IsHPPotionPlus()
+    {
+        return IsHealPotionPlus;
     }
 }

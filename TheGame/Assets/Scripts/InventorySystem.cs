@@ -33,6 +33,12 @@ public class InventorySystem : MonoBehaviour
     public Image R2SlotFour;
     public Image R2SlotFive;
 
+    public TMP_Text R2SlotOnetext;
+    public TMP_Text R2SlotTwotext;
+    public TMP_Text R2SlotThreetext;
+    public TMP_Text R2SlotFourtext;
+    public TMP_Text R2SlotFivetext;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
@@ -74,24 +80,24 @@ public class InventorySystem : MonoBehaviour
                 case 4:
                     R1SlotFivetext.text = inventoryStats[index].Count.ToString("F0");
                     break;
-                    ////Row2
-                    //case 5:
-                    //    RowTwo.SetActive(true);
+                //Row2
+                case 5:
+                    RowTwo.SetActive(true);
 
-                    //    R2SlotOne.sprite = inventoryStats[item].sprite;
-                    //    break;
-                    //case 6:
-                    //    R2SlotTwo.sprite = inventoryStats[item].sprite;
-                    //    break;
-                    //case 7:
-                    //    R2SlotThree.sprite = inventoryStats[item].sprite;
-                    //    break;
-                    //case 8:
-                    //    R2SlotFour.sprite = inventoryStats[item].sprite;
-                    //    break;
-                    //case 9:
-                    //    R2SlotFive.sprite = inventoryStats[item].sprite;
-                    //    break;
+                    R2SlotOnetext.text = inventoryStats[index].Count.ToString("F0");
+                    break;
+                case 6:
+                    R2SlotTwotext.text = inventoryStats[index].Count.ToString("F0");
+                    break;
+                case 7:
+                    R2SlotThreetext.text = inventoryStats[index].Count.ToString("F0");
+                    break;
+                case 8:
+                    R2SlotFourtext.text = inventoryStats[index].Count.ToString("F0");
+                    break;
+                case 9:
+                    R2SlotFivetext.text = inventoryStats[index].Count.ToString("F0");
+                    break;
             }
         }
     }
@@ -154,6 +160,14 @@ public class InventorySystem : MonoBehaviour
             else if (inventoryStats[i].itemName == "Mushroom")
             {
                 inventoryStats[i].Count = ingredents.mushroomCount;
+            }
+            else if (inventoryStats[i].itemName == "Venom Gland")
+            {
+                inventoryStats[i].Count = ingredents.venomGlandCount;
+            }
+            else if (inventoryStats[i].itemName == "Cinnamon")
+            {
+                inventoryStats[i].Count = ingredents.cinnamonCount;
             }
             UpdateInventoryCount();
         }

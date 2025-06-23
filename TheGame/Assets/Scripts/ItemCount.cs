@@ -7,6 +7,9 @@ public class ItemCount : ScriptableObject
     public int beewaxCount;
     public int baconCount;
     public int mushroomCount;
+    public int venomGlandCount;
+    public int cinnamonCount;
+    public int leafCount;
 
     [Header("Potions Count")]
     public int HealthPotion;
