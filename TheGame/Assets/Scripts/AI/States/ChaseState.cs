@@ -24,6 +24,8 @@ public class ChaseState : IState
         {
             lastCheckedPos = enemy.transform.position;
         }
+
+        enemy.anim.SetBool("isRunning", true);
     }
 
     public void Update()
@@ -119,6 +121,6 @@ public class ChaseState : IState
 
     public void Exit()
     {
-
+        enemy.anim.SetBool("isRunning", false);
     }
 }

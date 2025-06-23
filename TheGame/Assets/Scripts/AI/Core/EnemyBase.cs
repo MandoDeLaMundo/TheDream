@@ -104,7 +104,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
         }
     }
 
-    IEnumerator FlashRed()
+    public IEnumerator FlashRed()
     {
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.05f);
@@ -144,7 +144,7 @@ public abstract class EnemyBase : MonoBehaviour, IDamage
     }
 
 
-    void UpdateEnemyUI()
+    public void UpdateEnemyUI()
     {
         if (hpBar != null)
         {
