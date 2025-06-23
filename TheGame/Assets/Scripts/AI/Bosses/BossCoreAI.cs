@@ -7,7 +7,6 @@ public class BossCoreAI : MonoBehaviour, IDamage
 {
     [Header("References")]
     [SerializeField] public NavMeshAgent agent;
-    [SerializeField] public GameObject bossDoor;
     [SerializeField] public GameObject hotSpot;
     [SerializeField] public GameObject dropItemPrefab;
     [SerializeField] public Transform itemDropPos;
@@ -39,13 +38,12 @@ public class BossCoreAI : MonoBehaviour, IDamage
         if (!anim)
             anim = GetComponent<Animator>();
 
-        if (bossDoor)
-            bossDoor.SetActive(true);
+
 
         healthOrig = health;
         phase2Threshold = healthOrig / 2;
         startingPos = transform.position;
-        gameManager.instance.bossHPBar.gameObject.SetActive(true);
+
         UpdateUI();
     }
 

@@ -88,13 +88,11 @@ public class Damage : MonoBehaviour
         if (other.CompareTag("Player") && type == damagetype.contact )
         {
             dmg.TakeDMG(contactDMGAmount);
-            Debug.Log("Contact DMG");
             StartCoroutine(PlayerKnockBack(other.transform));
             StartCoroutine(Cooldown());
         }
 		if(type == damagetype.AOE)
 		{
-            Debug.Log("Hit: " + other.name);
             if (isExploded)
             {
                 return;
@@ -123,7 +121,6 @@ public class Damage : MonoBehaviour
         {
             if (!isDamaging)
             {
-				Debug.Log("X");
                 StartCoroutine(lingerEffect(dmg));
             }
         }
