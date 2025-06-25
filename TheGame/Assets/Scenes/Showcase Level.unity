@@ -2088,10 +2088,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 381569674}
     m_Modifications:
     - target: {fileID: 2004295532068628637, guid: 2abb40dbeae0a8a43933331548fef4d3, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2004295532068628637, guid: 2abb40dbeae0a8a43933331548fef4d3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 21.715622
       objectReference: {fileID: 0}
@@ -2134,10 +2130,6 @@ PrefabInstance:
     - target: {fileID: 7948742562314343748, guid: 2abb40dbeae0a8a43933331548fef4d3, type: 3}
       propertyPath: m_Name
       value: Wall Orig (116)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7948742562314343748, guid: 2abb40dbeae0a8a43933331548fef4d3, type: 3}
-      propertyPath: m_TagString
-      value: NONTeleportable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
