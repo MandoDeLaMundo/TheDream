@@ -52,6 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
+  effect: 0
   damageAmount: 24
   damageRate: 0
   speed: 0
@@ -60,6 +61,7 @@ MonoBehaviour:
   knockBackStrength: 0
   knockbackDelay: 0
   explosionArea: {fileID: 0}
+  lingerDuration: 0
   rb: {fileID: 0}
 --- !u!33 &856818046770292453
 MeshFilter:
@@ -82,6 +84,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pushStrength: 21.49
+  rollDirection: {x: 0, y: 0, z: 1}
+  rollSpeed: 8
 --- !u!114 &7730399815489115159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +149,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cb6977cc9ebc49943b1e6cc7017ca16d, type: 2}
+  - {fileID: 2100000, guid: 505fbbba9c5a99a4ba162ef4ee7c5736, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -87284,7 +87284,7 @@ GameObject:
   - component: {fileID: 1040794965}
   m_Layer: 12
   m_Name: Roof
-  m_TagString: Untagged
+  m_TagString: NONTeleportable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87357,7 +87357,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 88239cd177ed46749861af0b5ab3b5a4, type: 2}
+  - {fileID: 2100000, guid: 874e2f9ca20bf86439d6df0b96564c74, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -98858,15 +98858,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4825607470107316854, guid: ddb0691f0cd84b14da67306d3d67427e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 64.809
+      value: 177.181
       objectReference: {fileID: 0}
     - target: {fileID: 4825607470107316854, guid: ddb0691f0cd84b14da67306d3d67427e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.019
+      value: 5.128
       objectReference: {fileID: 0}
     - target: {fileID: 4825607470107316854, guid: ddb0691f0cd84b14da67306d3d67427e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 211.816
+      value: 342.486
       objectReference: {fileID: 0}
     - target: {fileID: 4825607470107316854, guid: ddb0691f0cd84b14da67306d3d67427e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -198709,7 +198709,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cb6977cc9ebc49943b1e6cc7017ca16d, type: 2}
+  - {fileID: 2100000, guid: 874e2f9ca20bf86439d6df0b96564c74, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
