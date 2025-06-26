@@ -201,7 +201,7 @@ public class gameManager : MonoBehaviour
     public void StateUnpause()
     {
         isPaused = !isPaused;
-        Time.timeScale = timeScaleOrig;
+        Time.timeScale = 1f;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         menuActive.SetActive(false);
@@ -231,7 +231,7 @@ public class gameManager : MonoBehaviour
         textDescription.text = "";
 
         isPaused = false;
-        Time.timeScale = timeScaleOrig;
+        Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -251,7 +251,7 @@ public class gameManager : MonoBehaviour
         DialogueDescription.text = "";
 
         isPaused = false;
-        Time.timeScale = timeScaleOrig;
+        Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
