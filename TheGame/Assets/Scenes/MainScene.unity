@@ -9731,6 +9731,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 104518316}
+  - component: {fileID: 104518317}
   m_Layer: 0
   m_Name: Chest Open (1)
   m_TagString: NONTeleportable
@@ -9755,6 +9756,27 @@ Transform:
   - {fileID: 1525631917}
   m_Father: {fileID: 1521808325}
   m_LocalEulerAnglesHint: {x: 0, y: 180.563, z: 0}
+--- !u!65 &104518317
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104518315}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5, y: 1.5, z: 1}
+  m_Center: {x: -0.05, y: 0, z: 0.3}
 --- !u!4 &105445786 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2474167371185856612, guid: e0b2491dfd0bb9d4c9007eb87e252f4b, type: 3}
@@ -15262,18 +15284,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 981769954}
     m_Modifications:
     - target: {fileID: 922671887464563809, guid: a1834b6441f5f964186d094e8fd881e5, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 6.5800004
-      objectReference: {fileID: 0}
-    - target: {fileID: 922671887464563809, guid: a1834b6441f5f964186d094e8fd881e5, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 6.5800004
-      objectReference: {fileID: 0}
-    - target: {fileID: 922671887464563809, guid: a1834b6441f5f964186d094e8fd881e5, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 6.58
-      objectReference: {fileID: 0}
-    - target: {fileID: 922671887464563809, guid: a1834b6441f5f964186d094e8fd881e5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 132.80324
       objectReference: {fileID: 0}
@@ -15313,17 +15323,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 122.483
       objectReference: {fileID: 0}
-    - target: {fileID: 922671887464563809, guid: a1834b6441f5f964186d094e8fd881e5, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4377933626515690895, guid: a1834b6441f5f964186d094e8fd881e5, type: 3}
       propertyPath: m_Name
       value: Barrel_C (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4377933626515690895, guid: a1834b6441f5f964186d094e8fd881e5, type: 3}
-      propertyPath: m_TagString
-      value: NONTeleportable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15528,6 +15530,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 181127101}
+  - component: {fileID: 181127102}
   m_Layer: 0
   m_Name: Chest Open
   m_TagString: NONTeleportable
@@ -15552,6 +15555,27 @@ Transform:
   - {fileID: 2025777767}
   m_Father: {fileID: 1521808325}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &181127102
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181127100}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5, y: 1.5, z: 1}
+  m_Center: {x: -0.05, y: 0, z: 0.3}
 --- !u!4 &181138291 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4101987296473340265, guid: 6f7a0ab6f1aa3b34e852c4a787e74df2, type: 3}
@@ -35205,6 +35229,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 375513582}
+  - component: {fileID: 375513583}
   m_Layer: 0
   m_Name: Chest Close (6)
   m_TagString: NONTeleportable
@@ -35229,6 +35254,27 @@ Transform:
   - {fileID: 81068024}
   m_Father: {fileID: 1521808325}
   m_LocalEulerAnglesHint: {x: 0, y: 178.85, z: 0}
+--- !u!65 &375513583
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 375513581}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5, y: 0.8, z: 0.75}
+  m_Center: {x: -0.05, y: 0, z: 0.4}
 --- !u!4 &377330654 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6116531347517222288, guid: c0b6670604b282847a0f26cf98f36820, type: 3}
@@ -50451,6 +50497,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 587261643}
+  - component: {fileID: 587261644}
   m_Layer: 0
   m_Name: Chest Close (2)
   m_TagString: NONTeleportable
@@ -50475,6 +50522,27 @@ Transform:
   - {fileID: 2024165486}
   m_Father: {fileID: 1521808325}
   m_LocalEulerAnglesHint: {x: 0, y: -176.892, z: 0}
+--- !u!65 &587261644
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587261642}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5, y: 0.8, z: 0.75}
+  m_Center: {x: -0.05, y: 0, z: 0.4}
 --- !u!1 &588079135
 GameObject:
   m_ObjectHideFlags: 0
@@ -60012,18 +60080,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 981769954}
     m_Modifications:
     - target: {fileID: 2862807068714679641, guid: d429c8a2280208c43ace747d82fa1864, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.44
-      objectReference: {fileID: 0}
-    - target: {fileID: 2862807068714679641, guid: d429c8a2280208c43ace747d82fa1864, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.44
-      objectReference: {fileID: 0}
-    - target: {fileID: 2862807068714679641, guid: d429c8a2280208c43ace747d82fa1864, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.44
-      objectReference: {fileID: 0}
-    - target: {fileID: 2862807068714679641, guid: d429c8a2280208c43ace747d82fa1864, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -60063,17 +60119,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2862807068714679641, guid: d429c8a2280208c43ace747d82fa1864, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4302944737786620945, guid: d429c8a2280208c43ace747d82fa1864, type: 3}
       propertyPath: m_Name
       value: Cauldron
-      objectReference: {fileID: 0}
-    - target: {fileID: 4302944737786620945, guid: d429c8a2280208c43ace747d82fa1864, type: 3}
-      propertyPath: m_TagString
-      value: NONTeleportable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -64960,6 +65008,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 772010194}
+  - component: {fileID: 772010195}
   m_Layer: 0
   m_Name: Chest Close (1)
   m_TagString: NONTeleportable
@@ -64984,6 +65033,27 @@ Transform:
   - {fileID: 770538665}
   m_Father: {fileID: 1521808325}
   m_LocalEulerAnglesHint: {x: 0, y: -127.619, z: 0}
+--- !u!65 &772010195
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772010193}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5, y: 0.8, z: 0.75}
+  m_Center: {x: -0.05, y: 0, z: 0.4}
 --- !u!4 &772783002 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8424763590408775625, guid: 3d40a6ae3a17eb24d87bc18c9e353526, type: 3}
@@ -79773,6 +79843,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 948673813}
+  - component: {fileID: 948673814}
   m_Layer: 0
   m_Name: Chest Close
   m_TagString: NONTeleportable
@@ -79797,6 +79868,27 @@ Transform:
   - {fileID: 177300846}
   m_Father: {fileID: 1521808325}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &948673814
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 948673812}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5, y: 0.8, z: 0.75}
+  m_Center: {x: -0.05, y: 0, z: 0.4}
 --- !u!1 &949071290
 GameObject:
   m_ObjectHideFlags: 0
@@ -80575,6 +80667,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 957644985}
+  - component: {fileID: 957644986}
   m_Layer: 0
   m_Name: Chest Close (7)
   m_TagString: NONTeleportable
@@ -80599,6 +80692,27 @@ Transform:
   - {fileID: 660371449}
   m_Father: {fileID: 1521808325}
   m_LocalEulerAnglesHint: {x: 0, y: 178.85, z: 0}
+--- !u!65 &957644986
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 957644984}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5, y: 0.8, z: 0.75}
+  m_Center: {x: -0.05, y: 0, z: 0.4}
 --- !u!4 &959096349 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8582451509887590953, guid: f8c0297a8d99e2747baeb5697c8ecb66, type: 3}
@@ -93988,6 +94102,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1046004630}
+  - component: {fileID: 1046004631}
   m_Layer: 0
   m_Name: Chest Open (4)
   m_TagString: NONTeleportable
@@ -94012,6 +94127,27 @@ Transform:
   - {fileID: 2012611267}
   m_Father: {fileID: 1521808325}
   m_LocalEulerAnglesHint: {x: 0, y: 88.845, z: 0}
+--- !u!65 &1046004631
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1046004629}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5, y: 1.5, z: 1}
+  m_Center: {x: -0.05, y: 0, z: 0.3}
 --- !u!1 &1047003720
 GameObject:
   m_ObjectHideFlags: 0
@@ -94021,6 +94157,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1047003721}
+  - component: {fileID: 1047003722}
   m_Layer: 0
   m_Name: Chest Open (2)
   m_TagString: NONTeleportable
@@ -94045,6 +94182,27 @@ Transform:
   - {fileID: 163542957}
   m_Father: {fileID: 1521808325}
   m_LocalEulerAnglesHint: {x: 0, y: 204.978, z: 0}
+--- !u!65 &1047003722
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047003720}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5, y: 1.5, z: 1}
+  m_Center: {x: -0.05, y: 0, z: 0.3}
 --- !u!1001 &1048341352
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -97744,6 +97902,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1094642912}
+  - component: {fileID: 1094642913}
   m_Layer: 0
   m_Name: Chest (1)
   m_TagString: NONTeleportable
@@ -97768,6 +97927,27 @@ Transform:
   - {fileID: 1249858138}
   m_Father: {fileID: 1521808325}
   m_LocalEulerAnglesHint: {x: 0, y: -48.239, z: 0}
+--- !u!65 &1094642913
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094642911}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5, y: 0.8, z: 0.75}
+  m_Center: {x: -0.05, y: 0, z: 0.4}
 --- !u!1001 &1096517272
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -117836,6 +118016,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1313346928}
+  - component: {fileID: 1313346929}
   m_Layer: 0
   m_Name: Chest Close (3)
   m_TagString: NONTeleportable
@@ -117860,6 +118041,27 @@ Transform:
   - {fileID: 506212256}
   m_Father: {fileID: 1521808325}
   m_LocalEulerAnglesHint: {x: 0, y: -176.892, z: 0}
+--- !u!65 &1313346929
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313346927}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5, y: 0.8, z: 0.75}
+  m_Center: {x: -0.05, y: 0, z: 0.4}
 --- !u!1 &1313579162
 GameObject:
   m_ObjectHideFlags: 0
@@ -174920,6 +175122,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1812012059}
+  - component: {fileID: 1812012060}
   m_Layer: 0
   m_Name: Chest Close (4)
   m_TagString: NONTeleportable
@@ -174944,6 +175147,27 @@ Transform:
   - {fileID: 1839147891}
   m_Father: {fileID: 1521808325}
   m_LocalEulerAnglesHint: {x: 0, y: -208.449, z: 0}
+--- !u!65 &1812012060
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812012058}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5, y: 0.8, z: 0.75}
+  m_Center: {x: -0.05, y: 0, z: 0.4}
 --- !u!1 &1812354621
 GameObject:
   m_ObjectHideFlags: 0
@@ -177618,6 +177842,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1853104618}
+  - component: {fileID: 1853104619}
   m_Layer: 0
   m_Name: Chest Open (3)
   m_TagString: NONTeleportable
@@ -177642,6 +177867,27 @@ Transform:
   - {fileID: 1120886976}
   m_Father: {fileID: 1521808325}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1853104619
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1853104617}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5, y: 1.5, z: 1}
+  m_Center: {x: -0.05, y: 0, z: 0.3}
 --- !u!1001 &1853156037
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -180116,7 +180362,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 178610679539645696, guid: 3cf9838fbfeed584fb5575a337d6ab00, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -77.51999
+      value: -76.82
       objectReference: {fileID: 0}
     - target: {fileID: 178610679539645696, guid: 3cf9838fbfeed584fb5575a337d6ab00, type: 3}
       propertyPath: m_LocalRotation.w
@@ -192381,6 +192627,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2031329995}
+  - component: {fileID: 2031329996}
   m_Layer: 0
   m_Name: Chest Close (5)
   m_TagString: NONTeleportable
@@ -192405,6 +192652,27 @@ Transform:
   - {fileID: 1837514450}
   m_Father: {fileID: 1521808325}
   m_LocalEulerAnglesHint: {x: 0, y: -119.513, z: 0}
+--- !u!65 &2031329996
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031329994}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5, y: 0.8, z: 0.75}
+  m_Center: {x: -0.05, y: 0, z: 0.4}
 --- !u!1 &2035326089
 GameObject:
   m_ObjectHideFlags: 0
@@ -481671,15 +481939,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 178610679539645696, guid: d7e865dab3f72dc4a8852c7d551c0654, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 162.83
+      value: 162.6
       objectReference: {fileID: 0}
     - target: {fileID: 178610679539645696, guid: d7e865dab3f72dc4a8852c7d551c0654, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.0110002
+      value: 2.9
       objectReference: {fileID: 0}
     - target: {fileID: 178610679539645696, guid: d7e865dab3f72dc4a8852c7d551c0654, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -77.48001
+      value: -76.87
       objectReference: {fileID: 0}
     - target: {fileID: 178610679539645696, guid: d7e865dab3f72dc4a8852c7d551c0654, type: 3}
       propertyPath: m_LocalRotation.w
