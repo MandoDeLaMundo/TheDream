@@ -375,6 +375,7 @@ MonoBehaviour:
   baconGoalPI: 0
   beesWaxGoalPI: 0
   mushroomGoalPI: 0
+  startupDialogue: 
   isPaused: 0
 --- !u!114 &91798657
 MonoBehaviour:
@@ -1968,7 +1969,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 01a7a6d7e87757a4ba763cafd16ae5da, type: 3}
+  m_Texture: {fileID: 2800000, guid: de0d10141886b464b817ca4fd1cf3641, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -2696,6 +2697,7 @@ MonoBehaviour:
   baconGoalPI: 0
   beesWaxGoalPI: 0
   mushroomGoalPI: 0
+  startupDialogue: 
   isPaused: 0
 --- !u!114 &2103008146
 MonoBehaviour:
@@ -2764,6 +2766,7 @@ MonoBehaviour:
   baconGoalPI: 0
   beesWaxGoalPI: 0
   mushroomGoalPI: 0
+  startupDialogue: 
   isPaused: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
