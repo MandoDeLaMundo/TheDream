@@ -20,10 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Showcase Level.unity
     guid: da4cb6562bec946439a19c13fcf410c9
-  - enabled: 0
-    path: Assets/Scenes/Settiings.unity
+  - enabled: 1
+    path: Assets/Scenes/Settings.unity
     guid: 819d5404a3f820f49ad4181bcc42725b
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: 96b2dba6a64a28444a0371b59a250289
   m_configObjects:
