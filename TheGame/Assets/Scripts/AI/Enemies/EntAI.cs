@@ -26,44 +26,6 @@ public class EntAI : EnemyBase
         entangleTimer += Time.deltaTime;
     }
 
-    public bool CanEntangle()
-    {
-        if (entangleTimer >= entangleCooldown)
-            return true;
-
-        return false;
-    }
-
-    public void ResetEntangleCooldown()
-    {
-        entangleTimer = 0f;
-    }
-
-    public void CastEntangle()
-    {
-        if (entanglePrefab)
-        {
-            isAttacking = true;
-            anim.SetTrigger("Spell");
-            ResetEntangleCooldown();
-            Vector3 playerPos = (gameManager.instance.player.transform.position);
-            playerPos.y = 0;
-            GameObject entangle = Instantiate(entanglePrefab, playerPos, Quaternion.identity);
-
-            entangle.SetActive(false);
-            StartCoroutine(ActivateEntangle(entangle));
-        }
-
-    }
-
-    public void FireVineWhip()
-    {
-        anim.SetTrigger("Whip");
-        GameObject whip = Instantiate(vineWhipPrefab, whipPos.position, whipPos.rotation);
-        whip.GetComponent<Whip>().maxLength = vineWhipRangeMax;
-        whip.GetComponent<Whip>().damageAmount = whipDamage;
-    }
-
     public bool CanAttack()
     {
         bool entangleReady = entangleTimer >= entangleCooldown;

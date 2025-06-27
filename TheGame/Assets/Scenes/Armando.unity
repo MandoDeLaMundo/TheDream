@@ -253,6 +253,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 414582942659555365, guid: dbae6b6b1f2e3744d92c991fc0c36b50, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.588
+      objectReference: {fileID: 0}
     - target: {fileID: 806760941944166486, guid: dbae6b6b1f2e3744d92c991fc0c36b50, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.2743654
@@ -299,7 +303,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8256784651311568379, guid: dbae6b6b1f2e3744d92c991fc0c36b50, type: 3}
       propertyPath: m_StoppingDistance
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8993922071620963504, guid: dbae6b6b1f2e3744d92c991fc0c36b50, type: 3}
       propertyPath: FOV
@@ -331,7 +335,7 @@ PrefabInstance:
       objectReference: {fileID: 1444325808}
     - target: {fileID: 8993922071620963504, guid: dbae6b6b1f2e3744d92c991fc0c36b50, type: 3}
       propertyPath: meleeRange
-      value: 5
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8993922071620963504, guid: dbae6b6b1f2e3744d92c991fc0c36b50, type: 3}
       propertyPath: whipPrefab
@@ -347,19 +351,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8993922071620963504, guid: dbae6b6b1f2e3744d92c991fc0c36b50, type: 3}
       propertyPath: whipCooldown
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8993922071620963504, guid: dbae6b6b1f2e3744d92c991fc0c36b50, type: 3}
       propertyPath: whipMaxRange
-      value: 15
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8993922071620963504, guid: dbae6b6b1f2e3744d92c991fc0c36b50, type: 3}
       propertyPath: whipMinRange
-      value: 6
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8993922071620963504, guid: dbae6b6b1f2e3744d92c991fc0c36b50, type: 3}
       propertyPath: meleeCooldown
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8993922071620963504, guid: dbae6b6b1f2e3744d92c991fc0c36b50, type: 3}
       propertyPath: attackCooldown
@@ -379,15 +383,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8993922071620963504, guid: dbae6b6b1f2e3744d92c991fc0c36b50, type: 3}
       propertyPath: entangleCooldown
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8993922071620963504, guid: dbae6b6b1f2e3744d92c991fc0c36b50, type: 3}
       propertyPath: entangleMaxRange
-      value: 15
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 8993922071620963504, guid: dbae6b6b1f2e3744d92c991fc0c36b50, type: 3}
       propertyPath: entangleMinRange
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

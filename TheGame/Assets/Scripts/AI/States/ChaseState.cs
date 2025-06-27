@@ -7,7 +7,6 @@ public class ChaseState : IState
     const float losePlayerDelay = 0.5f;
 
     Vector3 lastCheckedPos;
-    float entMoveBuffer = 1.5f;
     
     public ChaseState(EnemyBase _enemy)
     {
@@ -20,31 +19,19 @@ public class ChaseState : IState
         enemy.agent.stoppingDistance = enemy.stoppingDistOrig;
         enemy.agent.isStopped = false;
 
-        if (enemy is EntAI)
-        {
-            lastCheckedPos = enemy.transform.position;
-        }
-
         enemy.anim.SetBool("isRunning", true);
     }
 
     public void Update()
     {
         enemy.shootTimer += Time.deltaTime;
-        if (enemy is EntAI ent)
-        {
-            ent.entangleTimer += Time.deltaTime;
-        }
 
         if (!enemy.CanSeePlayer() || !enemy.playerInRange)
         {
             losePlayerTimer += Time.deltaTime;
             if (losePlayerTimer >= losePlayerDelay)
             {
-                if (!(enemy is EntAI))
-                    enemy.stateMachine.ChangeState(new PatrolState(enemy));
-                else
-                    enemy.stateMachine.ChangeState(new IdleState(enemy));
+                enemy.stateMachine.ChangeState(new IdleState(enemy));
                 return;
             }
         }
@@ -65,22 +52,6 @@ public class ChaseState : IState
 
         float distanceToPlayer = Vector3.Distance(enemy.transform.position, playerPos);
 
-        if (enemy is EntAI entAI)
-        {
-            //float distanceMoved = Vector3.Distance(entAI.transform.position, lastCheckedPos);
-
-            //if (distanceMoved >= entMoveBuffer)
-            //{
-            //    lastCheckedPos = entAI.transform.position;
-
-                if (entAI.CanAttack())
-                {
-                    enemy.stateMachine.ChangeState(new EntAttackState(entAI));
-                    return;
-                }
-            //}
-        }
-
         bool shouldAttack = false;
 
         switch (enemy.attackType)
@@ -94,13 +65,10 @@ public class ChaseState : IState
                     shouldAttack = true;
                 break;
             case EnemyBase.AttackType.Hybrid:
-                if (!(enemy is EntAI))
-                {
-                    if (enemy.playerInRange && enemy.CanShoot)
-                        shouldAttack = true;
-                    else if (distanceToPlayer <= enemy.meleeRange)
-                        shouldAttack = true;
-                }
+                if (enemy.playerInRange && enemy.CanShoot)
+                    shouldAttack = true;
+                else if (distanceToPlayer <= enemy.meleeRange)
+                    shouldAttack = true;
                 break;
         };
 

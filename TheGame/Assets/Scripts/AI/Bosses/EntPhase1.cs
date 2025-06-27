@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EntPhase1 : BossPhaseBase
 {
@@ -19,50 +20,40 @@ public class EntPhase1 : BossPhaseBase
 
         var ent = (BossEntAI) boss;
 
-        if (!ent.isAttacking)
-        {
-            boss.anim.SetBool("isRunning", true);
-            boss.FacePlayer();
-            ent.agent.SetDestination(gameManager.instance.player.transform.position);
-        }
-        else
-        {
-            ent.agent.ResetPath();
-            boss.anim.SetBool("isRunning", false);
-        }
-
         boss.attackTimer += Time.deltaTime;
         ent.meleeTimer += Time.deltaTime;
         ent.whipTimer += Time.deltaTime;
         ent.entangleTimer += Time.deltaTime;
 
-        if (!boss.isAttacking && boss.attackTimer >= boss.attackCooldown)
+        if (ent.isAttacking)
         {
-            boss.isAttacking = true;
-            boss.agent.isStopped = true;
-
-            if (ent.CanMelee() && ent.meleeTimer >= ent.meleeCooldown)
-            {
-                ent.MeleeAttack();
-                ent.meleeTimer = 0f;
-                return;
-            }
-            else if (ent.CanWhip() && ent.whipTimer >= ent.whipCooldown)
-            {
-                ent.WhipAttack();
-                ent.whipTimer = 0f;
-                return;
-            }
-            else if (ent.CanEntangle() && ent.entangleTimer >= ent.entangleCooldown)
-            {
-                ent.EntangleAttack();
-                ent.entangleTimer = 0f;
-                return;
-            }
+            ent.agent.isStopped = true;
+            ent.agent.ResetPath();
+            boss.anim.SetBool("isRunning", false);
+            return;
         }
 
-        boss.agent.isStopped = false;
-        boss.isAttacking = false;
+        Vector3 playerPos = gameManager.instance.player.transform.position;
+        ent.agent.SetDestination(playerPos);
+
+        //Debug.Log($"SetDestination success: {result}, remaining: {ent.agent.remainingDistance}, stopped: {ent.agent.isStopped}");
+
+        if (!ent.agent.pathPending)
+        {
+            float distance = ent.agent.remainingDistance;
+
+            if (distance >= ent.agent.stoppingDistance)
+            {
+                ent.agent.isStopped = false;
+                boss.anim.SetBool("isRunning", true);
+            }
+            else
+            {
+                boss.anim.SetBool("isRunning", false);
+                ent.agent.isStopped = true;
+                ent.TryAttack();
+            }
+        }
     }
 
     public override void Exit()

@@ -1,3 +1,4 @@
+using NUnit;
 using UnityEngine;
 
 public class BossEntAI : BossCoreAI
@@ -37,15 +38,15 @@ public class BossEntAI : BossCoreAI
 
     public void MeleeAttack()
     {
-        isAttacking = true;
         anim.SetTrigger("Melee");
+        isAttacking = true;
         gameManager.instance.player.GetComponent<playerController>().TakeDMG(meleeDamage);
-        isAttacking = false;
     }
 
     public void WhipAttack()
     {
         anim.SetTrigger("Whip");
+        isAttacking = true;
         GameObject whip = Instantiate(whipPrefab, whipPos.position, whipPos.rotation);
         whip.GetComponent<Whip>().maxLength = whipMaxRange;
         //whip.GetComponent<Whip>().damageAmount = whipDamage;
@@ -53,15 +54,13 @@ public class BossEntAI : BossCoreAI
 
     public void EntangleAttack()
     {
-        isAttacking = true;
         anim.SetTrigger("Spell");
+        isAttacking = true;
         entangleTimer = 0f;
-        Vector3 playerPos = (gameManager.instance.player.transform.position);
+
+        Vector3 playerPos = gameManager.instance.player.transform.position;
         playerPos.y = 0;
         GameObject entangle = Instantiate(entanglePrefab, playerPos, Quaternion.identity);
-
-        entangle.SetActive(false);
-        //StartCoroutine(ActivateEntangle(entangle));
     }
 
     public bool CanMelee()
@@ -82,5 +81,42 @@ public class BossEntAI : BossCoreAI
         bool inEntangleMaxRange = Vector3.Distance(gameManager.instance.player.transform.position, transform.position) <= entangleMaxRange;
         bool inEntangleMinRange = Vector3.Distance(gameManager.instance.player.transform.position, transform.position) <= entangleMinRange;
         return inEntangleMaxRange && inEntangleMinRange;
+    }
+
+    public void EndAttack()
+    {
+        isAttacking = false;
+        anim.ResetTrigger("Melee");
+        anim.ResetTrigger("Whip");
+        anim.ResetTrigger("Spell");
+    }
+
+    public void TryAttack()
+    {
+        if (isAttacking)
+            return;
+        if (attackTimer < attackCooldown)
+            return;
+
+        attackTimer = 0f;
+
+        if (CanMelee() && meleeTimer >= meleeCooldown)
+        {
+            MeleeAttack();
+            meleeTimer = 0f;
+            return;
+        }
+        else if (CanWhip() && whipTimer >= whipCooldown)
+        {
+            WhipAttack();
+            whipTimer = 0f;
+            return;
+        }
+        else if (CanEntangle() && entangleTimer >= entangleCooldown)
+        {
+            EntangleAttack();
+            entangleTimer = 0f;
+            return;
+        }
     }
 }
