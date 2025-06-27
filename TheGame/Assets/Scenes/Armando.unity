@@ -358,6 +358,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8993922071620963504, guid: dbae6b6b1f2e3744d92c991fc0c36b50, type: 3}
+      propertyPath: currentHPBar
+      value: 
+      objectReference: {fileID: 1772752697}
+    - target: {fileID: 8993922071620963504, guid: dbae6b6b1f2e3744d92c991fc0c36b50, type: 3}
       propertyPath: whipCooldown
       value: 1
       objectReference: {fileID: 0}
@@ -720,6 +724,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 414582942659555365, guid: dbae6b6b1f2e3744d92c991fc0c36b50, type: 3}
   m_PrefabInstance: {fileID: 387733254}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1772752697 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8655487256150760053, guid: 9e78c64d62f02734b9241f56d4d1c4f2, type: 3}
+  m_PrefabInstance: {fileID: 458319953}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2027977990
 PrefabInstance:
   m_ObjectHideFlags: 0
