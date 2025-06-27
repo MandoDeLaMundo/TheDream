@@ -36,7 +36,6 @@ public class EntPhase1 : BossPhaseBase
         Vector3 playerPos = gameManager.instance.player.transform.position;
         ent.agent.SetDestination(playerPos);
 
-        //Debug.Log($"SetDestination success: {result}, remaining: {ent.agent.remainingDistance}, stopped: {ent.agent.isStopped}");
 
         if (!ent.agent.pathPending)
         {

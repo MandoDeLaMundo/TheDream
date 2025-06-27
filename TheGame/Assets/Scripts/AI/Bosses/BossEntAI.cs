@@ -21,6 +21,7 @@ public class BossEntAI : BossCoreAI
 
     [Header("Entangle Settings")]
     public GameObject entanglePrefab;
+    public float entanglePrefabDuration;
     public float entangleMinRange;
     public float entangleMaxRange;
     public float entangleCooldown;
@@ -54,6 +55,7 @@ public class BossEntAI : BossCoreAI
 
     public void EntangleAttack()
     {
+        Debug.Log("EntangleAttack called");
         anim.SetTrigger("Spell");
         isAttacking = true;
         entangleTimer = 0f;
@@ -72,14 +74,14 @@ public class BossEntAI : BossCoreAI
     public bool CanWhip()
     {
         bool inWhipMaxRange = Vector3.Distance(gameManager.instance.player.transform.position, transform.position) <= whipMaxRange;
-        bool inWhipMinRange = Vector3.Distance(gameManager.instance.player.transform.position, transform.position) <= whipMinRange;
+        bool inWhipMinRange = Vector3.Distance(gameManager.instance.player.transform.position, transform.position) >= whipMinRange;
         return inWhipMaxRange && inWhipMinRange;
     }
 
     public bool CanEntangle()
     {
         bool inEntangleMaxRange = Vector3.Distance(gameManager.instance.player.transform.position, transform.position) <= entangleMaxRange;
-        bool inEntangleMinRange = Vector3.Distance(gameManager.instance.player.transform.position, transform.position) <= entangleMinRange;
+        bool inEntangleMinRange = Vector3.Distance(gameManager.instance.player.transform.position, transform.position) >= entangleMinRange;
         return inEntangleMaxRange && inEntangleMinRange;
     }
 

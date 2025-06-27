@@ -129,4 +129,12 @@ public class BossCoreAI : MonoBehaviour, IDamage
     {
         yield return new WaitForSeconds(phasePauseTime);
     }
+
+    public IEnumerator ActivateEntangle(GameObject obj, float warningDuration)
+    {
+        Debug.Log("Entangle will activate in " + warningDuration);
+        yield return new WaitForSeconds(warningDuration);
+        obj.SetActive(true);
+        Debug.Log("Entangle activated");
+    }
 }

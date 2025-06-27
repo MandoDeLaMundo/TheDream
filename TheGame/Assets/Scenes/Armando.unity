@@ -297,9 +297,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2875452663427073253, guid: dbae6b6b1f2e3744d92c991fc0c36b50, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 7565828319213032366, guid: dbae6b6b1f2e3744d92c991fc0c36b50, type: 3}
       propertyPath: m_Name
       value: Ent
+      objectReference: {fileID: 0}
+    - target: {fileID: 7565828319213032366, guid: dbae6b6b1f2e3744d92c991fc0c36b50, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8256784651311568379, guid: dbae6b6b1f2e3744d92c991fc0c36b50, type: 3}
       propertyPath: m_StoppingDistance
@@ -335,7 +343,7 @@ PrefabInstance:
       objectReference: {fileID: 1444325808}
     - target: {fileID: 8993922071620963504, guid: dbae6b6b1f2e3744d92c991fc0c36b50, type: 3}
       propertyPath: meleeRange
-      value: 12
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8993922071620963504, guid: dbae6b6b1f2e3744d92c991fc0c36b50, type: 3}
       propertyPath: whipPrefab
@@ -355,11 +363,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8993922071620963504, guid: dbae6b6b1f2e3744d92c991fc0c36b50, type: 3}
       propertyPath: whipMaxRange
-      value: 30
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8993922071620963504, guid: dbae6b6b1f2e3744d92c991fc0c36b50, type: 3}
       propertyPath: whipMinRange
-      value: 15
+      value: 10.01
       objectReference: {fileID: 0}
     - target: {fileID: 8993922071620963504, guid: dbae6b6b1f2e3744d92c991fc0c36b50, type: 3}
       propertyPath: meleeCooldown
@@ -387,11 +395,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8993922071620963504, guid: dbae6b6b1f2e3744d92c991fc0c36b50, type: 3}
       propertyPath: entangleMaxRange
-      value: 40
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8993922071620963504, guid: dbae6b6b1f2e3744d92c991fc0c36b50, type: 3}
       propertyPath: entangleMinRange
-      value: 15
+      value: 15.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8993922071620963504, guid: dbae6b6b1f2e3744d92c991fc0c36b50, type: 3}
+      propertyPath: entanglePrefabDuration
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
