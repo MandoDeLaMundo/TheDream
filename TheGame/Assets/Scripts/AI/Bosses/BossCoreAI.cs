@@ -13,6 +13,7 @@ public class BossCoreAI : MonoBehaviour, IDamage
     [SerializeField] public Transform headPos;
     [SerializeField] public Animator anim;
     [SerializeField] public Image hpBar;
+    [SerializeField] public Image currentHPBar;
 
     [Header("Boss Stats")]
     public int health;
@@ -23,6 +24,7 @@ public class BossCoreAI : MonoBehaviour, IDamage
     [HideInInspector] public BossPhaseBase phase2;
 
     [Header("AI Settings")]
+    [SerializeField] public float attackCooldown;
     [SerializeField] public float faceTargetSpeed;
     [SerializeField] public int FOV;
     [HideInInspector] public Vector3 playerDir;
@@ -70,7 +72,7 @@ public class BossCoreAI : MonoBehaviour, IDamage
 
     public virtual void TakeDMG(int amount)
     {
-        if (hotSpot.activeSelf || currentPhase == phase1)
+        if (currentPhase == phase1)
         {
             health -= amount;
             UpdateUI();
@@ -84,9 +86,6 @@ public class BossCoreAI : MonoBehaviour, IDamage
 
     public void BossDefeated()
     {
-        if (agent)
-            agent.isStopped = true;
-
         anim.SetTrigger("Die");
 
         if (dropItemPrefab)
@@ -121,12 +120,20 @@ public class BossCoreAI : MonoBehaviour, IDamage
 
     public void UpdateUI()
     {
-        if (hpBar)
-            hpBar.fillAmount = (float)health / healthOrig;
+        if (currentHPBar)
+            currentHPBar.fillAmount = (float)health / healthOrig;
     }
 
     IEnumerator PhaseTransitionPause(float phasePauseTime)
     {
         yield return new WaitForSeconds(phasePauseTime);
+    }
+
+    public IEnumerator ActivateEntangle(GameObject obj, float warningDuration)
+    {
+        Debug.Log("Entangle will activate in " + warningDuration);
+        yield return new WaitForSeconds(warningDuration);
+        obj.SetActive(true);
+        Debug.Log("Entangle activated");
     }
 }

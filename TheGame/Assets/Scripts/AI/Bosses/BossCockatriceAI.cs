@@ -4,7 +4,7 @@ using UnityEngine;
 public class BossCockatriceAI : BossCoreAI
 {
     [Header("Phase 1 Stats")]
-    public float attackCooldown;
+    //public float attackCooldown;
     public float stompCooldown;
     public float meleeRange;
     public float stompRange;

@@ -2776,8 +2776,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 806760941944166486}
+  - component: {fileID: 8993922071620963504}
   - component: {fileID: 8256784651311568379}
-  - component: {fileID: 8861999280191089925}
   - component: {fileID: 2875452663427073253}
   - component: {fileID: 6528341074222235336}
   - component: {fileID: 6278316488546028344}
@@ -2809,6 +2809,38 @@ Transform:
   - {fileID: 8958725824967655774}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8993922071620963504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7565828319213032366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4927268e75ff8b9428c5f78d810d133e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 0}
+  bossDoor: {fileID: 0}
+  hotSpot: {fileID: 0}
+  dropItemPrefab: {fileID: 0}
+  itemDropPos: {fileID: 0}
+  headPos: {fileID: 0}
+  anim: {fileID: 0}
+  hpBar: {fileID: 0}
+  health: 0
+  phase2Threshold: 0
+  healthOrig: 0
+  faceTargetSpeed: 0
+  FOV: 0
+  playerDir: {x: 0, y: 0, z: 0}
+  startingPos: {x: 0, y: 0, z: 0}
+  angleToPlayer: 0
+  attackTimer: 0
+  isAttacking: 0
+  attackCooldown: 0
+  whipPrefab: {fileID: 0}
 --- !u!195 &8256784651311568379
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2831,61 +2863,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &8861999280191089925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7565828319213032366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f505051e0bfe4a43b3d771b96959491, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  model: {fileID: 8756981690364582606}
-  agent: {fileID: 8256784651311568379}
-  anim: {fileID: 8038271633904330165}
-  headPos: {fileID: 283161009148149677}
-  lootPos: {fileID: 414582942659555365}
-  weaponCol: {fileID: 0}
-  dropItemPrefab: {fileID: 6912960705099921443, guid: 851c8d32ce030584da48e67af8c2c6b3, type: 3}
-  enemyHP: {fileID: 4565842316649263148}
-  hpBar: {fileID: 3344416928912294973}
-  health: 20
-  shootPos: {fileID: 0}
-  projectile: {fileID: 0}
-  shootRate: 3
-  meleeRate: 1
-  meleeDmgAmt: 1
-  meleeRange: 5
-  attackType: 2
-  isAttacking: 0
-  CanShoot: 0
-  faceTargetSpeed: 45
-  FOV: 120
-  roamDist: 20
-  roamPauseTime: 0
-  animTransSpeed: 0
-  playerDir: {x: 0, y: 0, z: 0}
-  startingPos: {x: 0, y: 0, z: 0}
-  angleToPlayer: 0
-  stoppingDistOrig: 0
-  shootTimer: 0
-  meleeTimer: 0
-  roamTimer: 0
-  playerInRange: 0
-  whipDamage: 1
-  vineWhipRangeMin: 6
-  vineWhipRangeMax: 15
-  entangleCooldown: 10
-  immobilizeTimer: 2
-  warningDuration: 0
-  whipPos: {fileID: 6337389930999735733}
-  entanglePrefab: {fileID: 8904007760972255349, guid: fe652edbda7fcf646abc4239443da9c2, type: 3}
-  vineWhipPrefab: {fileID: 2152247458854860932, guid: 6619ad3e5ccc2d34d9bc127a5bb41f76, type: 3}
-  entangleTimer: 0
-  canEntangle: 0
 --- !u!136 &2875452663427073253
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3860,25 +3837,3 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5351799004330354562, guid: 539071c324af7a34583ffac96256daaf, type: 3}
   m_PrefabInstance: {fileID: 7177101254427947078}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3344416928912294973 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5617095851595723899, guid: 539071c324af7a34583ffac96256daaf, type: 3}
-  m_PrefabInstance: {fileID: 7177101254427947078}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4565842316649263148 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6685328620696846442, guid: 539071c324af7a34583ffac96256daaf, type: 3}
-  m_PrefabInstance: {fileID: 7177101254427947078}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
