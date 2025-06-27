@@ -150,9 +150,7 @@ public class gameManager : MonoBehaviour
             loseText.text = losePumpkinPieText;
         }
 
-
         UpdatePotionCount();
-        //UpdateIngredientGoal(baconGoalPI, beesWaxGoalPI, mushroomGoalPI);
     }
 
     // Update is called once per frame

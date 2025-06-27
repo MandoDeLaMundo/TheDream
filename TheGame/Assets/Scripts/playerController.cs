@@ -133,7 +133,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         canTakeDam = true;
         OverMax = 0;
 
-        if(listsTracker.spellList.Count != 0 && spellList.Count == 0)
+        if (listsTracker.spellList.Count != 0 && spellList.Count == 0)
         {
             for (int i = 0; i < listsTracker.spellList.Count; i++)
             {
@@ -279,8 +279,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             }
         }
 
-
-
         selectSpell();
 
         gameManager.instance.UpdateIngredientCount(ingredents.baconCount, ingredents.beewaxCount, ingredents.mushroomCount);
@@ -395,10 +393,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
                 Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
                 if (spellList[spellListPos].hitEffect != null)
                     Instantiate(spellList[spellListPos].hitEffect, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
-            }
-            else
-            {
-                Teleport();
             }
         }
     }
@@ -631,7 +625,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
         if (DisplayHotBar.instance == null)
         {
-            
+
         }
         else
         {
