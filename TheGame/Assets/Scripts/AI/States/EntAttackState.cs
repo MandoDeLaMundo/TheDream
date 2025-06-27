@@ -35,25 +35,32 @@ public class EntAttackState : IState
 
         bool didAttack = false;
 
-        if (distance <= ent.meleeRange && ent.meleeTimer >= ent.meleeRate)
-        {
-            HandleMelee();
-            didAttack = true;
-            return;
-        }
+        bool canAttack = ent.CanAttack();
 
-        else if (distance <= ent.vineWhipRangeMax && ent.shootTimer >= ent.shootRate)
+        if (canAttack && !ent.isAttacking)
         {
-            HandleVineWhip();
-            didAttack = true;
-            return;
-        }
+            if (distance <= ent.meleeRange && ent.meleeTimer >= ent.meleeRate)
+            {
+                HandleMelee();
+                didAttack = true;
+                return;
+            }
 
-        if (ent.CanEntangle())
-        {
-            ent.CastEntangle();
-            didAttack = true;
-            return;
+            else if (distance <= ent.vineWhipRangeMax && ent.shootTimer >= ent.shootRate)
+            {
+                HandleVineWhip();
+                didAttack = true;
+                return;
+            }
+
+            else if (ent.CanEntangle())
+            {
+                ent.CastEntangle();
+                didAttack = true;
+                return;
+            }
+
+            ent.isAttacking = false;
         }
 
         if (didAttack)
@@ -65,6 +72,7 @@ public class EntAttackState : IState
         {
             ent.stateMachine.ChangeState(new ChaseState(ent));
         }
+
     }
 
     public void Exit()
@@ -85,6 +93,7 @@ public class EntAttackState : IState
     {
         if (ent.meleeTimer >= ent.meleeRange)
         {
+            ent.isAttacking = true;
             // ent.anim.SetTrigger("Slash");
             gameManager.instance.player.GetComponent<playerController>().TakeDMG(ent.meleeDmgAmt);
             ent.meleeTimer = 0f;
@@ -93,10 +102,8 @@ public class EntAttackState : IState
 
     void HandleVineWhip()
     {
-        if (ent.shootTimer >= ent.shootRate)
-        {
-            ent.FireVineWhip();
-            ent.shootTimer = 0f;
-        }
+        ent.isAttacking = true;
+        ent.FireVineWhip();
+        ent.shootTimer = 0f;
     }
 }

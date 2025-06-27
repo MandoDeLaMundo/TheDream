@@ -67,18 +67,18 @@ public class ChaseState : IState
 
         if (enemy is EntAI entAI)
         {
-            float distanceMoved = Vector3.Distance(entAI.transform.position, lastCheckedPos);
+            //float distanceMoved = Vector3.Distance(entAI.transform.position, lastCheckedPos);
 
-            if (distanceMoved >= entMoveBuffer)
-            {
-                lastCheckedPos = entAI.transform.position;
-                    
-                if (entAI.ShouldUseEntAttack())
+            //if (distanceMoved >= entMoveBuffer)
+            //{
+            //    lastCheckedPos = entAI.transform.position;
+
+                if (entAI.CanAttack())
                 {
                     enemy.stateMachine.ChangeState(new EntAttackState(entAI));
                     return;
                 }
-            }
+            //}
         }
 
         bool shouldAttack = false;

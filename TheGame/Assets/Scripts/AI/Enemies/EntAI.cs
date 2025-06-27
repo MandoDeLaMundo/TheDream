@@ -43,6 +43,7 @@ public class EntAI : EnemyBase
     {
         if (entanglePrefab)
         {
+            isAttacking = true;
             anim.SetTrigger("Spell");
             ResetEntangleCooldown();
             Vector3 playerPos = (gameManager.instance.player.transform.position);
@@ -63,15 +64,13 @@ public class EntAI : EnemyBase
         whip.GetComponent<Whip>().damageAmount = whipDamage;
     }
 
-    public bool ShouldUseEntAttack()
+    public bool CanAttack()
     {
-        float distance = Vector3.Distance(transform.position, gameManager.instance.player.transform.position);
-
         bool entangleReady = entangleTimer >= entangleCooldown;
         bool whipReady = shootTimer >= shootRate;
-        bool inWhipZone = distance > meleeRange && distance <= vineWhipRangeMax;
+        bool meleeReady = meleeTimer >= meleeRate;
 
-        return (entangleReady || whipReady) && inWhipZone;
+        return (entangleReady || whipReady || meleeReady);
     }
 
     public void StartCooldownAndChase()

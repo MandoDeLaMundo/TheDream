@@ -24,6 +24,7 @@ public class BossCoreAI : MonoBehaviour, IDamage
     [HideInInspector] public BossPhaseBase phase2;
 
     [Header("AI Settings")]
+    [SerializeField] public float attackCooldown;
     [SerializeField] public float faceTargetSpeed;
     [SerializeField] public int FOV;
     [HideInInspector] public Vector3 playerDir;
@@ -72,7 +73,7 @@ public class BossCoreAI : MonoBehaviour, IDamage
 
     public virtual void TakeDMG(int amount)
     {
-        if (hotSpot.activeSelf || currentPhase == phase1)
+        if (currentPhase == phase1)
         {
             health -= amount;
             UpdateUI();
