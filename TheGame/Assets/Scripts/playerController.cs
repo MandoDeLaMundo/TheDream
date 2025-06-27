@@ -731,15 +731,10 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             ingredents.ManaPlusPotion++;
         }
 
-        if (item.itemName == "Boss Egg")
+        if (item.bossCheck)
         {
             item.bossCheck = false;
-            gameManager.instance.GameGoalMonsterEgg();
-        }
-        else if(item.itemName == "Cinnamon")
-        {
-            item.bossCheck = false;
-            gameManager.instance.DisplayDescription(item.itemDescription);
+            gameManager.instance.BossPickups();
         }
 
         if (item.firstTime && Cheatmanager.instance.DescriptionCheat == false && item.itemName != "Boss Egg" && item.itemName != "Cinnamon")

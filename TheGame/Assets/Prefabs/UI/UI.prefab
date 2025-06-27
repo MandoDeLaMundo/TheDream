@@ -4334,7 +4334,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5077702308838156595
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8966,7 +8966,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2851314560590826251
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10939,7 +10939,13 @@ MonoBehaviour:
   menuActive: {fileID: 0}
   menuPause: {fileID: 8931985089370624195}
   menuWin: {fileID: 6838310205374196277}
+  winText: {fileID: 7098446422639639069}
+  winOmeletText: You got your omelet!
+  winPumpkinPieText: You got your pumpkin pie!
   menuLose: {fileID: 3326214369910321856}
+  loseText: {fileID: 2826275789112532135}
+  loseOmeletText: No omelet for you...
+  losePumpkinPieText: No pumpkin pie for you...
   Inventory: {fileID: 2142553354841208101}
   gameGoalCountText: {fileID: 0}
   bossHPCountText: {fileID: 466782926503192755}
