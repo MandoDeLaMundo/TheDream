@@ -13,7 +13,6 @@ public class BossCoreAI : MonoBehaviour, IDamage
     [SerializeField] public Transform headPos;
     [SerializeField] public Animator anim;
     [SerializeField] public Image hpBar;
-    [SerializeField] public Image currentHPBar;
 
     [Header("Boss Stats")]
     public int health;
@@ -39,8 +38,6 @@ public class BossCoreAI : MonoBehaviour, IDamage
             agent = GetComponent<NavMeshAgent>();
         if (!anim)
             anim = GetComponent<Animator>();
-
-
 
         healthOrig = health;
         phase2Threshold = healthOrig / 2;
@@ -120,8 +117,8 @@ public class BossCoreAI : MonoBehaviour, IDamage
 
     public void UpdateUI()
     {
-        if (currentHPBar)
-            currentHPBar.fillAmount = (float)health / healthOrig;
+        if (hpBar)
+            hpBar.fillAmount = (float)health / healthOrig;
     }
 
     IEnumerator PhaseTransitionPause(float phasePauseTime)
