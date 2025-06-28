@@ -27,6 +27,7 @@ public class BossCockatriceAI : BossCoreAI
     public float stunThreshold;
     public float stunDuration;
     [HideInInspector] public float stareTimer;
+    [HideInInspector] public float meleeTimer;
     [HideInInspector] public float stareCooldownTimer;
     [HideInInspector] public bool isPetrifying;
     [HideInInspector] public float faceTargetSpeedOrig;
