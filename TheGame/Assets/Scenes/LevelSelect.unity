@@ -1153,8 +1153,8 @@ Canvas:
   m_GameObject: {fileID: 821168961}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1534292744}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -1191,7 +1191,7 @@ RectTransform:
   - {fileID: 1143811028}
   - {fileID: 1151405571}
   - {fileID: 1771773782}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1534292745}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1226,7 +1226,13 @@ MonoBehaviour:
   menuActive: {fileID: 0}
   menuPause: {fileID: 0}
   menuWin: {fileID: 0}
+  winText: {fileID: 0}
+  winOmeletText: 
+  winPumpkinPieText: 
   menuLose: {fileID: 0}
+  loseText: {fileID: 0}
+  loseOmeletText: 
+  losePumpkinPieText: 
   Inventory: {fileID: 0}
   gameGoalCountText: {fileID: 0}
   bossHPCountText: {fileID: 0}
@@ -1923,7 +1929,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 821168965}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1534292746
@@ -2683,5 +2690,4 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1534292745}
-  - {fileID: 821168965}
   - {fileID: 969057913}
