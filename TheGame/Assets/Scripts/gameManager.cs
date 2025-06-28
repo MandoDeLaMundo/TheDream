@@ -208,6 +208,7 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        playerController.instance.canShoot = false;
     }
 
     public void StateUnpause()
@@ -218,6 +219,7 @@ public class gameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         menuActive.SetActive(false);
         menuActive = null;
+        playerController.instance.canShoot = true;
     }
 
     public void YouLose()

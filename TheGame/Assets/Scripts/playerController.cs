@@ -220,7 +220,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             if (choice == shootchoice.spellList && spellList.Count > 0 && Mana >= manaCost)
                 shootSpell(canShoot);
         }
-        if (Input.GetButton("Fire2") && TeleportTimer >= teleportRate && spellTeleport != null)
+        if (Input.GetButton("Fire2") && TeleportTimer >= teleportRate && spellTeleport != null && canShoot)
         {
             Teleport();
             TeleportTimer = 0;

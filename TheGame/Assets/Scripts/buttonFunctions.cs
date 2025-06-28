@@ -8,6 +8,18 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.StateUnpause();
     }
 
+    public void NextLevel()
+    {
+        if (SceneManager.GetActiveScene().name == "MainScene")
+        {
+            SceneManager.LoadScene("Forest1");
+        }
+        else if (SceneManager.GetActiveScene().name == "Forest1")
+        {
+            SceneManager.LoadScene("Showcase Level");
+        }
+    }
+
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
