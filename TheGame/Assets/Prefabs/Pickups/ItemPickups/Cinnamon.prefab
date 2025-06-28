@@ -9,11 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1081799852356690299}
+  - component: {fileID: -1956568021542375042}
   - component: {fileID: 5525194593406611811}
-  - component: {fileID: -4915300140774163253}
   - component: {fileID: 7775446126523091632}
   - component: {fileID: 8244846207389734710}
-  - component: {fileID: -1956568021542375042}
   - component: {fileID: -844403139561502149}
   m_Layer: 0
   m_Name: Cinnamon
@@ -38,15 +37,7 @@ Transform:
   - {fileID: 4154927045877863357}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5525194593406611811
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6912960705099921443}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &-4915300140774163253
+--- !u!114 &-1956568021542375042
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -61,9 +52,18 @@ MonoBehaviour:
   type: 1
   spell: {fileID: 0}
   item: {fileID: 11400000, guid: 5fd59bf5261dd2644b349bf13168d1a9, type: 2}
-  aud: {fileID: 0}
-  audPick: []
+  aud: {fileID: -844403139561502149}
+  audPick:
+  - {fileID: 8300000, guid: 35cf7766e9e2aa542811e896fde57989, type: 3}
   audPickVol: 0
+--- !u!33 &5525194593406611811
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6912960705099921443}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &7775446126523091632
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -132,25 +132,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &-1956568021542375042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6912960705099921443}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76a7bda188c412f40ab6e1ce937f43bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 1
-  spell: {fileID: 0}
-  item: {fileID: 11400000, guid: 5fd59bf5261dd2644b349bf13168d1a9, type: 2}
-  aud: {fileID: -844403139561502149}
-  audPick:
-  - {fileID: 8300000, guid: 35cf7766e9e2aa542811e896fde57989, type: 3}
-  audPickVol: 0
 --- !u!82 &-844403139561502149
 AudioSource:
   m_ObjectHideFlags: 0
@@ -274,15 +255,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5674383046283250234, guid: e953460ff16e0a6459684f9b77202b5c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5674383046283250234, guid: e953460ff16e0a6459684f9b77202b5c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5674383046283250234, guid: e953460ff16e0a6459684f9b77202b5c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 81.4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5674383046283250234, guid: e953460ff16e0a6459684f9b77202b5c, type: 3}
       propertyPath: m_LocalRotation.w

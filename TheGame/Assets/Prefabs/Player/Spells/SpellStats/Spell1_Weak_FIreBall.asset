@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4679952212bcb7c48b6fd9f89c05547d, type: 3}
   m_Name: Spell1_Weak_FIreBall
   m_EditorClassIdentifier: 
-  model: {fileID: 4260819330917749670, guid: 3b4b27421c2a6de4f88b36cc36531976, type: 3}
+  model: {fileID: 3065584030892626305, guid: deddad2d62d44094dbc60305047e8a77, type: 3}
   spellProjectile: {fileID: 544241052533153475, guid: 5c4e86f7eab0bcb45970360bdb1676e9, type: 3}
   shootDMG: 5
   shootRate: 0.5

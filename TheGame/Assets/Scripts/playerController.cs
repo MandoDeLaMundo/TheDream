@@ -133,7 +133,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
         canTakeDam = true;
         OverMax = 0;
 
-        if(listsTracker.spellList.Count != 0 && spellList.Count == 0)
+        if (listsTracker.spellList.Count != 0 && spellList.Count == 0)
         {
             for (int i = 0; i < listsTracker.spellList.Count; i++)
             {
@@ -220,7 +220,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             if (choice == shootchoice.spellList && spellList.Count > 0 && Mana >= manaCost)
                 shootSpell(canShoot);
         }
-        if (Input.GetButton("Fire2") && TeleportTimer >= teleportRate && spellTeleport != null)
+        if (Input.GetButton("Fire2") && TeleportTimer >= teleportRate && spellTeleport != null && canShoot)
         {
             Teleport();
             TeleportTimer = 0;
@@ -278,8 +278,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
                 ManaPotionPlus();
             }
         }
-
-
 
         selectSpell();
 
@@ -395,10 +393,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
                 Instantiate(spell, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
                 if (spellList[spellListPos].hitEffect != null)
                     Instantiate(spellList[spellListPos].hitEffect, shootPos.position, Quaternion.LookRotation(Camera.main.transform.forward));
-            }
-            else
-            {
-                Teleport();
             }
         }
     }
@@ -631,7 +625,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
 
         if (DisplayHotBar.instance == null)
         {
-            
+
         }
         else
         {
@@ -731,15 +725,10 @@ public class playerController : MonoBehaviour, IDamage, IPickup, IInteraction
             ingredents.ManaPlusPotion++;
         }
 
-        if (item.itemName == "Boss Egg")
+        if (item.bossCheck)
         {
             item.bossCheck = false;
-            gameManager.instance.GameGoalMonsterEgg();
-        }
-        else if(item.itemName == "Cinnamon")
-        {
-            item.bossCheck = false;
-            gameManager.instance.DisplayDescription(item.itemDescription);
+            gameManager.instance.BossPickups();
         }
 
         if (item.firstTime && Cheatmanager.instance.DescriptionCheat == false && item.itemName != "Boss Egg" && item.itemName != "Cinnamon")

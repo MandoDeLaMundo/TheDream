@@ -5,6 +5,7 @@ public class BossCockatriceAI : BossCoreAI
 {
     [Header("Phase 1 Stats")]
     public float meleeCooldown;
+    //public float attackCooldown;
     public float stompCooldown;
     public float meleeRange;
     public float stompRange;

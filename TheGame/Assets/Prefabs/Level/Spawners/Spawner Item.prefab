@@ -517,6 +517,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2879a3e7d02ff1f4f9717aae54fef5e7, type: 2}
   - {fileID: 11400000, guid: 3d3edb5a53742944a9251be70cba0a0d, type: 2}
   - {fileID: 11400000, guid: 1ed2c11336b2876478e3286f9bc26ae5, type: 2}
+  - {fileID: 11400000, guid: cde6c156df309d74eb6f0be8d719298c, type: 2}
+  - {fileID: 11400000, guid: e7adca45f0bd991498c61939b162e0ec, type: 2}
   spellList: []
   itemList: []
   dialogue: []
@@ -1177,7 +1179,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2126896774255293724, guid: 1f2df18c8d37e344092e26ad53b0e864, type: 3}
+  - {fileID: 2100000, guid: 010dd68491d1d4a1692a6d2272e5cb69, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

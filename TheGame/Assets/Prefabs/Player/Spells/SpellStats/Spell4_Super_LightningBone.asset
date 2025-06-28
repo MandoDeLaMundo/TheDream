@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4679952212bcb7c48b6fd9f89c05547d, type: 3}
   m_Name: Spell4_Super_LightningBone
   m_EditorClassIdentifier: 
-  model: {fileID: 4417435450986619218, guid: 0d0ae09fa98635e4e8435fc1a1fc72c7, type: 3}
+  model: {fileID: 8530042751684896022, guid: 12e65437c438dd543aa8cddd42cdbd37, type: 3}
   spellProjectile: {fileID: 3749515074666461166, guid: 8050d5cc44e91fc469f497359c3382ab, type: 3}
   shootDMG: 5
   shootRate: 0.5
@@ -24,5 +24,4 @@ MonoBehaviour:
   shootSoundVol: 0
   spellCheck: 1
   spellManual: 
-  pickup: {fileID: 8530042751684896022, guid: 12e65437c438dd543aa8cddd42cdbd37, type: 3}
   sprite: {fileID: 21300000, guid: fb5fefa89ac57c846963508ff0077c5b, type: 3}
