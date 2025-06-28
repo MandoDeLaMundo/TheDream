@@ -4,39 +4,35 @@ using UnityEngine.Audio;
 public class MainMenu : MonoBehaviour
 {
     public AudioMixer mainMixer;
-    public void PlayGame()
-  {
-    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-  }
-
+  
     public void Options()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 5);
+        SceneManager.LoadScene("Settings");
     }
 
     public void Credits()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 6);
+        SceneManager.LoadScene("Credits");
     }
 
     public void PlayLv1()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("MainScene");
     }
 
     public void PlayLv2()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+        SceneManager.LoadScene("Forest1");
     }
 
     public void PlayLv3()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
+        SceneManager.LoadScene("Showcase Level");
     }
 
     public void EscToMenu()
     {
-        SceneManager.LoadScene("TitleMenu");
+        SceneManager.LoadScene("LevelSelect");
     }
 
     public void SetFullscreen(bool isFullscreen)

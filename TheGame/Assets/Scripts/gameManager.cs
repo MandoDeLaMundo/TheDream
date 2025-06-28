@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using static UnityEditor.Progress;
 
 public class gameManager : MonoBehaviour
 {
@@ -12,7 +13,13 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
+    [SerializeField] TMP_Text winText;
+    [SerializeField] string winOmeletText;
+    [SerializeField] string winPumpkinPieText;
     [SerializeField] GameObject menuLose;
+    [SerializeField] TMP_Text loseText;
+    [SerializeField] string loseOmeletText;
+    [SerializeField] string losePumpkinPieText;
     public GameObject Inventory;
 
     [Header("Texts")]
@@ -134,11 +141,16 @@ public class gameManager : MonoBehaviour
         {
             AllReset();
             DisplayDescription(startupDialogue);
+            winText.text = winOmeletText;
+            loseText.text = loseOmeletText;
+        }
+        if(SceneManager.GetActiveScene().name == "Forest1")
+        {
+            winText.text = winPumpkinPieText;
+            loseText.text = losePumpkinPieText;
         }
 
-
         UpdatePotionCount();
-        //UpdateIngredientGoal(baconGoalPI, beesWaxGoalPI, mushroomGoalPI);
     }
 
     // Update is called once per frame
@@ -196,16 +208,18 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        playerController.instance.canShoot = false;
     }
 
     public void StateUnpause()
     {
         isPaused = !isPaused;
-        Time.timeScale = timeScaleOrig;
+        Time.timeScale = 1f;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         menuActive.SetActive(false);
         menuActive = null;
+        playerController.instance.canShoot = true;
     }
 
     public void YouLose()
@@ -231,7 +245,7 @@ public class gameManager : MonoBehaviour
         textDescription.text = "";
 
         isPaused = false;
-        Time.timeScale = timeScaleOrig;
+        Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -251,7 +265,7 @@ public class gameManager : MonoBehaviour
         DialogueDescription.text = "";
 
         isPaused = false;
-        Time.timeScale = timeScaleOrig;
+        Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -367,9 +381,9 @@ public class gameManager : MonoBehaviour
         }
     }
 
-    public void GameGoalMonsterEgg()
+    public void BossPickups()
     {
-        SceneManager.LoadScene("Forest1");
+        YouWin();
     }
 
     public void YouWin()

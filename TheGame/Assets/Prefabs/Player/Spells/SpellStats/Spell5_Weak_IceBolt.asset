@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4679952212bcb7c48b6fd9f89c05547d, type: 3}
   m_Name: Spell5_Weak_IceBolt
   m_EditorClassIdentifier: 
-  model: {fileID: 6262986123301899059, guid: 8e26553eb7bc8f84e87ad5cbe258d7a2, type: 3}
+  model: {fileID: 7520428267672629110, guid: 9e0e3cf3f3a590746aab6322c573ca83, type: 3}
   spellProjectile: {fileID: 3461775368703754523, guid: 481127b6fe2938f4da694c091457ff4d, type: 3}
   shootDMG: 1
   shootRate: 1
