@@ -5,6 +5,7 @@ public class BossRoomEnter : MonoBehaviour
 {
     [SerializeField] public GameObject bossDoor;
     [SerializeField] public GameObject bossHP;
+    [SerializeField] public GameObject boss;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,6 +15,7 @@ public class BossRoomEnter : MonoBehaviour
                 bossDoor.SetActive(true);
 
             bossHP.SetActive(true);
+            boss.SetActive(true);
         }
     }
 }
