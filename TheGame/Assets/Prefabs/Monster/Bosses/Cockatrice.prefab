@@ -3070,7 +3070,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 5448513355654054468}
-  bossDoor: {fileID: 0}
   hotSpot: {fileID: 2248854211232221993}
   dropItemPrefab: {fileID: 1634457089981656779, guid: 34a0fd6865b7a9641851ec6978d767c5, type: 3}
   itemDropPos: {fileID: 4013320390989937379}
@@ -3080,6 +3079,7 @@ MonoBehaviour:
   health: 20
   phase2Threshold: 0
   healthOrig: 0
+  attackCooldown: 1
   faceTargetSpeed: 45
   FOV: 120
   playerDir: {x: 0, y: 0, z: 0}
@@ -3087,7 +3087,6 @@ MonoBehaviour:
   angleToPlayer: 0
   attackTimer: 0
   isAttacking: 0
-  attackCooldown: 1
   stompCooldown: 5
   meleeRange: 5
   stompRange: 15
@@ -3095,18 +3094,19 @@ MonoBehaviour:
   meleeDamage: 1
   stompDamage: 3
   stompTimer: 0
-  phase2AttackCooldown: 0
+  phase2MeleeCooldown: 0
   phase2StompCooldown: 0
   petrifyTrigger: {fileID: 5124058820520363829}
   petrifyCooldown: 5
   petrifyDuration: 3
   stareDuration: 5
   stunThreshold: 2
+  stareRotationSpeed: 0
   stareTimer: 0
   stareCooldownTimer: 0
   isPetrifying: 0
   faceTargetSpeedOrig: 0
-  petrifyConeVisual: {fileID: 5124058820520363829}
+  stareCone: {fileID: 0}
 --- !u!136 &4769218116042984839
 CapsuleCollider:
   m_ObjectHideFlags: 0

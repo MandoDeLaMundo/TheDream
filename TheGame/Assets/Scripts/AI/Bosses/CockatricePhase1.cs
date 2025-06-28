@@ -7,7 +7,7 @@ public class CockatricePhase1 : BossPhaseBase
 
     public override void Enter()
     {
-        meleeTimer = ((BossCockatriceAI)boss).meleeCooldown;
+        boss.attackTimer = ((BossCockatriceAI)boss).attackCooldown;
     }
     public override void Update()
     {
@@ -31,12 +31,12 @@ public class CockatricePhase1 : BossPhaseBase
         }
 
         cockatrice.stompTimer += Time.deltaTime;
-        meleeTimer += Time.deltaTime;
+        boss.attackTimer += Time.deltaTime;
         cockatrice.stareCooldownTimer += Time.deltaTime;
 
         float distance = Vector3.Distance(boss.transform.position, gameManager.instance.player.transform.position);
 
-        if (!cockatrice.isPetrifying && cockatrice.stareCooldownTimer >= cockatrice.petrifyStareCooldown && !cockatrice.isAttacking)
+        if (!cockatrice.isPetrifying && cockatrice.stareCooldownTimer >= cockatrice.petrifyCooldown && !cockatrice.isAttacking)
         {
             cockatrice.stareCooldownTimer = 0f;
             cockatrice.StartCoroutine(cockatrice.PetrifyPlayer());
@@ -50,10 +50,10 @@ public class CockatricePhase1 : BossPhaseBase
             return;
         }
 
-        if (meleeTimer >= cockatrice.meleeCooldown && distance <= cockatrice.meleeRange && !cockatrice.isPetrifying)
+        if (boss.attackTimer >= cockatrice.attackCooldown && distance <= cockatrice.meleeRange && !cockatrice.isPetrifying)
         {
             cockatrice.MeleeAttack();
-            meleeTimer = 0f;
+            boss.attackTimer = 0f;
             return;
         }
     }
