@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
-using static UnityEditor.Progress;
 
 public class gameManager : MonoBehaviour
 {
@@ -135,19 +134,27 @@ public class gameManager : MonoBehaviour
         }
         timeScaleOrig = Time.timeScale;
 
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
         if (SceneManager.GetActiveScene().name == "MainScene")
         {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
             AllReset();
             DisplayDescription(startupDialogue);
+
             winText.text = winOmeletText;
             loseText.text = loseOmeletText;
         }
-        if(SceneManager.GetActiveScene().name == "Forest1")
+        if (SceneManager.GetActiveScene().name == "Forest1")
         {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
             winText.text = winPumpkinPieText;
             loseText.text = losePumpkinPieText;
+        }
+        if (SceneManager.GetActiveScene().name == "LevelSelect")
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
 
         UpdatePotionCount();
@@ -208,7 +215,8 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        playerController.instance.canShoot = false;
+        if (playerController.instance != null)
+            playerController.instance.canShoot = false;
     }
 
     public void StateUnpause()
@@ -219,7 +227,8 @@ public class gameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         menuActive.SetActive(false);
         menuActive = null;
-        playerController.instance.canShoot = true;
+        if (playerController.instance != null)
+            playerController.instance.canShoot = true;
     }
 
     public void YouLose()
@@ -255,7 +264,7 @@ public class gameManager : MonoBehaviour
         DialogueDescription.text = Dialogue;
 
         isPaused = true;
-        Time.timeScale = 0;
+        Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
     }
 
