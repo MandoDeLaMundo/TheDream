@@ -1823,6 +1823,7 @@ GameObject:
   - component: {fileID: 478054456693685563}
   - component: {fileID: 6180888485633430226}
   - component: {fileID: 7193289226602149396}
+  - component: {fileID: 2066812780119149226}
   m_Layer: 8
   m_Name: Stare
   m_TagString: Untagged
@@ -1959,6 +1960,33 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -9175101788625696748, guid: b1bfefa3aaba6db4a8b35dfb87d2fdda, type: 3}
+--- !u!1773428102 &2066812780119149226
+ParentConstraint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5124058820520363829}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Weight: 1
+  m_TranslationAtRest: {x: -0.68, y: -3.77, z: 5.33}
+  m_RotationAtRest: {x: 0, y: 81.99999, z: -51.90001}
+  m_TranslationOffsets:
+  - {x: -3.842, y: -18.419, z: 30.1145}
+  m_RotationOffsets:
+  - {x: 0, y: 82.00001, z: -51.90002}
+  m_AffectTranslationX: 1
+  m_AffectTranslationY: 1
+  m_AffectTranslationZ: 1
+  m_AffectRotationX: 1
+  m_AffectRotationY: 1
+  m_AffectRotationZ: 1
+  m_Active: 1
+  m_IsLocked: 0
+  m_Sources:
+  - sourceTransform: {fileID: 5032895954143322063}
+    weight: 1
 --- !u!1 &5175346195746729313
 GameObject:
   m_ObjectHideFlags: 0
@@ -3015,7 +3043,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5032895954143322063
 Transform:
   m_ObjectHideFlags: 0
@@ -3070,7 +3098,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 5448513355654054468}
-  bossDoor: {fileID: 0}
   hotSpot: {fileID: 2248854211232221993}
   dropItemPrefab: {fileID: 1634457089981656779, guid: 34a0fd6865b7a9641851ec6978d767c5, type: 3}
   itemDropPos: {fileID: 4013320390989937379}
@@ -3080,6 +3107,7 @@ MonoBehaviour:
   health: 20
   phase2Threshold: 0
   healthOrig: 0
+  attackCooldown: 1
   faceTargetSpeed: 45
   FOV: 120
   playerDir: {x: 0, y: 0, z: 0}
@@ -3087,7 +3115,6 @@ MonoBehaviour:
   angleToPlayer: 0
   attackTimer: 0
   isAttacking: 0
-  attackCooldown: 1
   stompCooldown: 5
   meleeRange: 5
   stompRange: 15
@@ -3095,18 +3122,19 @@ MonoBehaviour:
   meleeDamage: 1
   stompDamage: 3
   stompTimer: 0
-  phase2AttackCooldown: 0
+  phase2MeleeCooldown: 0
   phase2StompCooldown: 0
   petrifyTrigger: {fileID: 5124058820520363829}
   petrifyCooldown: 5
   petrifyDuration: 3
   stareDuration: 5
   stunThreshold: 2
+  stareRotationSpeed: 0.05
   stareTimer: 0
   stareCooldownTimer: 0
   isPetrifying: 0
   faceTargetSpeedOrig: 0
-  petrifyConeVisual: {fileID: 5124058820520363829}
+  stareCone: {fileID: 0}
 --- !u!136 &4769218116042984839
 CapsuleCollider:
   m_ObjectHideFlags: 0

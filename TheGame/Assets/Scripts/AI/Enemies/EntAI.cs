@@ -26,52 +26,13 @@ public class EntAI : EnemyBase
         entangleTimer += Time.deltaTime;
     }
 
-    public bool CanEntangle()
+    public bool CanAttack()
     {
-        if (entangleTimer >= entangleCooldown)
-            return true;
-
-        return false;
-    }
-
-    public void ResetEntangleCooldown()
-    {
-        entangleTimer = 0f;
-    }
-
-    public void CastEntangle()
-    {
-        if (entanglePrefab)
-        {
-            anim.SetTrigger("Spell");
-            ResetEntangleCooldown();
-            Vector3 playerPos = (gameManager.instance.player.transform.position);
-            playerPos.y = 0;
-            GameObject entangle = Instantiate(entanglePrefab, playerPos, Quaternion.identity);
-
-            entangle.SetActive(false);
-            StartCoroutine(ActivateEntangle(entangle));
-        }
-
-    }
-
-    public void FireVineWhip()
-    {
-        anim.SetTrigger("Whip");
-        GameObject whip = Instantiate(vineWhipPrefab, whipPos.position, whipPos.rotation);
-        whip.GetComponent<Whip>().maxLength = vineWhipRangeMax;
-        whip.GetComponent<Whip>().damageAmount = whipDamage;
-    }
-
-    public bool ShouldUseEntAttack()
-    {
-        float distance = Vector3.Distance(transform.position, gameManager.instance.player.transform.position);
-
         bool entangleReady = entangleTimer >= entangleCooldown;
         bool whipReady = shootTimer >= shootRate;
-        bool inWhipZone = distance > meleeRange && distance <= vineWhipRangeMax;
+        bool meleeReady = meleeTimer >= meleeRate;
 
-        return (entangleReady || whipReady) && inWhipZone;
+        return (entangleReady || whipReady || meleeReady);
     }
 
     public void StartCooldownAndChase()

@@ -4,17 +4,19 @@ using UnityEngine;
 public class BossCockatriceAI : BossCoreAI
 {
     [Header("Phase 1 Stats")]
-    public float attackCooldown;
+    //public float meleeCooldown;
+    //public float attackCooldown;
     public float stompCooldown;
     public float meleeRange;
     public float stompRange;
     public float stompRadius;
     public int meleeDamage;
     public int stompDamage;
+    //public int retreatDistance;
     [HideInInspector] public float stompTimer;
 
     [Header("Phase 2 Stats")]
-    public float phase2AttackCooldown;
+    public float phase2MeleeCooldown;
     public float phase2StompCooldown;
 
     [Header("Petrify Settings")]
@@ -23,13 +25,16 @@ public class BossCockatriceAI : BossCoreAI
     public float petrifyDuration;
     public float stareDuration;
     public float stunThreshold;
+    public float stareRotationSpeed;
+    //public float stunDuration;
     [HideInInspector] public float stareTimer;
+    //[HideInInspector] public float meleeTimer;
     [HideInInspector] public float stareCooldownTimer;
     [HideInInspector] public bool isPetrifying;
     [HideInInspector] public float faceTargetSpeedOrig;
 
     [Header("Visuals")]
-    public GameObject petrifyConeVisual;
+    public GameObject stareCone;
 
     protected override void Start()
     {
@@ -40,8 +45,8 @@ public class BossCockatriceAI : BossCoreAI
         if (petrifyTrigger)
             petrifyTrigger.SetActive(false);
 
-        if (petrifyConeVisual)
-            petrifyConeVisual.SetActive(false);
+        if (stareCone)
+            stareCone.SetActive(false);
 
         faceTargetSpeedOrig = faceTargetSpeed;
 
@@ -79,10 +84,26 @@ public class BossCockatriceAI : BossCoreAI
         }
     }
 
+    //public void RetreatFromPlayer()
+    //{
+    //    Vector3 toPlayer = gameManager.instance.player.transform.position - transform.position;
+    //    Vector3 retreatDir = -toPlayer.normalized;
+    //    Vector3 retreatTarget = transform.position + retreatDir * retreatDistance;
+
+    //    agent.SetDestination(retreatTarget);
+
+    //    float retreatTime = 0f;
+    //    while (retreatTime < 1f && Vector3.Distance(transform.position, retreatTarget) > 0.5f)
+    //    {
+    //        retreatTime += Time.deltaTime;
+    //    }
+    //}
+
     public IEnumerator PetrifyPlayer()
     {
         isPetrifying = true;
         agent.isStopped = false;
+        isAttacking = true;
         anim.SetTrigger("Petrify");
 
         Vector3 toPlayer = gameManager.instance.player.transform.position - transform.position;
@@ -100,12 +121,12 @@ public class BossCockatriceAI : BossCoreAI
 
         agent.isStopped = true;
         anim.SetBool("isRunning", false);
-        faceTargetSpeed *= 0.25f;
+        faceTargetSpeed *= stareRotationSpeed;
 
         if (petrifyTrigger)
             petrifyTrigger.SetActive(true);
-        if (petrifyConeVisual)
-            petrifyConeVisual.SetActive(true);
+        if (stareCone)
+            stareCone.SetActive(true);
 
         float stareTimer = 0f;
         float inConeTimer = 0f;
@@ -135,23 +156,11 @@ public class BossCockatriceAI : BossCoreAI
 
         if (petrifyTrigger)
             petrifyTrigger.SetActive(false);
-        if (petrifyConeVisual)
-            petrifyConeVisual.SetActive(false);
+        if (stareCone)
+            stareCone.SetActive(false);
 
         agent.isStopped = false;
         faceTargetSpeed = faceTargetSpeedOrig;
         isPetrifying = false;
     }
-
-    //private void LateUpdate()
-    //{
-    //    if (petrifyConeVisual && headPos)
-    //    {
-    //        Vector3 targetForward = headPos.forward;
-
-    //        Quaternion targetRotation = Quaternion.LookRotation(targetForward, Vector3.up);
-
-    //        petrifyConeVisual.transform.localRotation = Quaternion.Lerp(petrifyConeVisual.transform.localRotation, targetRotation, Time.deltaTime * 5f);
-    //    }
-    //}
 }
