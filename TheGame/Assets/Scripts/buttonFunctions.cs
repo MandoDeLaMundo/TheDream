@@ -31,6 +31,8 @@ public class buttonFunctions : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "MainScene" || SceneManager.GetActiveScene().name == "Forest1" || SceneManager.GetActiveScene().name == "Showcase Level")
         {
             SceneManager.LoadScene("LevelSelect");
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
         else
         {
