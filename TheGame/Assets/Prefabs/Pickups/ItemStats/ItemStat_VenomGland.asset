@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 3203336510497522917, guid: 09cc732f6ae58a8409f6c5aab79e7f0c, type: 3}
   itemName: Venom Gland
-  itemDescription: This boar meat comes from a creature resembling a cow. I could
-    make bacon with this, perfect for my omelet! Although, the monster seemed to
-    move oddly...
+  itemDescription: The difference between medicine and poison is the dosage, maybe
+    if I change the concentration to make a mana potion
   healFactor: 0
   ManaFactor: 0
   firstTime: 1
   pickup: {fileID: 3203336510497522917, guid: 09cc732f6ae58a8409f6c5aab79e7f0c, type: 3}
   sprite: {fileID: 21300000, guid: 0f618ec634476564ba286e56edb9331d, type: 3}
   Count: 0
+  bossCheck: 0

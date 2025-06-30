@@ -35761,7 +35761,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2666478674610987089, guid: 0d4233ffc0497a94d8457ec9f2e8fb75, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 541
+      value: 541.5
       objectReference: {fileID: 0}
     - target: {fileID: 2666478674610987089, guid: 0d4233ffc0497a94d8457ec9f2e8fb75, type: 3}
       propertyPath: m_LocalRotation.w
@@ -77258,7 +77258,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1040794964
 Transform:
   m_ObjectHideFlags: 0
@@ -85847,7 +85847,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2666478674610987089, guid: 0d4233ffc0497a94d8457ec9f2e8fb75, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 541
+      value: 541.5
       objectReference: {fileID: 0}
     - target: {fileID: 2666478674610987089, guid: 0d4233ffc0497a94d8457ec9f2e8fb75, type: 3}
       propertyPath: m_LocalRotation.w
@@ -126090,7 +126090,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2666478674610987089, guid: 0d4233ffc0497a94d8457ec9f2e8fb75, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 541
+      value: 541.5
       objectReference: {fileID: 0}
     - target: {fileID: 2666478674610987089, guid: 0d4233ffc0497a94d8457ec9f2e8fb75, type: 3}
       propertyPath: m_LocalRotation.w
@@ -174417,7 +174417,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2666478674610987089, guid: 0d4233ffc0497a94d8457ec9f2e8fb75, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 541
+      value: 541.5
       objectReference: {fileID: 0}
     - target: {fileID: 2666478674610987089, guid: 0d4233ffc0497a94d8457ec9f2e8fb75, type: 3}
       propertyPath: m_LocalRotation.w
@@ -175551,6 +175551,14 @@ PrefabInstance:
       propertyPath: bossDoor
       value: 
       objectReference: {fileID: 1964262596}
+    - target: {fileID: 2066812780119149226, guid: c090c3554828f5f47854b04c27dfd913, type: 3}
+      propertyPath: m_TranslationOffsets.Array.data[0].x
+      value: -3.8419952
+      objectReference: {fileID: 0}
+    - target: {fileID: 2066812780119149226, guid: c090c3554828f5f47854b04c27dfd913, type: 3}
+      propertyPath: m_TranslationOffsets.Array.data[0].z
+      value: 30.114502
+      objectReference: {fileID: 0}
     - target: {fileID: 5032895954143322063, guid: c090c3554828f5f47854b04c27dfd913, type: 3}
       propertyPath: m_LocalPosition.x
       value: 134.96416
@@ -175594,6 +175602,10 @@ PrefabInstance:
     - target: {fileID: 7987970732013941001, guid: c090c3554828f5f47854b04c27dfd913, type: 3}
       propertyPath: m_Name
       value: Cockatrice
+      objectReference: {fileID: 0}
+    - target: {fileID: 7987970732013941001, guid: c090c3554828f5f47854b04c27dfd913, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -464332,7 +464344,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 903397118830779270, guid: b7468ad2ef299954898dc722f4d9e4b9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2439270197566893582, guid: b7468ad2ef299954898dc722f4d9e4b9, type: 3}
       propertyPath: m_Size.x
