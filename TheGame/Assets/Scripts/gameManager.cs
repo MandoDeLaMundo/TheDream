@@ -203,7 +203,7 @@ public class gameManager : MonoBehaviour
         }
 
 
-        if (Input.GetKey("q"))
+        if (Input.GetKey("q") && textBox.activeSelf == true)
         {
             HideDescription();
         }

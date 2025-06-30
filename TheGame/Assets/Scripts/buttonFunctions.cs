@@ -18,12 +18,16 @@ public class buttonFunctions : MonoBehaviour
         {
             SceneManager.LoadScene("Showcase Level");
         }
+        else if (SceneManager.GetActiveScene().name == "Showcase Level")
+        {
+            SceneManager.LoadScene("LevelSelect");
+        }
     }
 
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        gameManager.instance.StateUnpause();
+            gameManager.instance.StateUnpause();
     }
 
     public void Quit()
